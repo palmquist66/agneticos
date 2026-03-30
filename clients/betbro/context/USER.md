@@ -20,3 +20,4 @@
 - Wants things done fast, iterated later
 - Trusts the system to make good defaults
 - Will course-correct when something's off
+- Any output meant for copy-paste (social posts, captions, emails) → save to ~/Downloads/ as .txt — chat formatting is unreliable

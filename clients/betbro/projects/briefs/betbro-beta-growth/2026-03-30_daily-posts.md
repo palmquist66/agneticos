@@ -40,15 +40,11 @@ getbetbro.com
 **Graphic text:** "MLB WEEK 1. SMALL SAMPLES. BIG TRAPS."
 
 **Caption:**
-Five days into baseball season and props are already priced on last year's numbers.
-
-New lineups. New rotations. Spring training stats that mean nothing.
-
-Some of those lines are value. Some are coinflips. BetBro tells you which is which.
+MLB week 1 props are priced on last year's numbers. Books haven't caught up to new lineups and new rotations yet. BetBro tells you which lines to play and which to walk away from.
 
 Free during beta. Link in bio.
 
-#mlb #baseball #propbets #sportsbetting #betbro #openingweek #mlb2026
+#mlb #baseball #propbets #sportsbetting #betbro #openingweek #reels #bettingtips
 
 **Why this works:** MLB just started — first week is notorious for bad prop pricing. Casual bettors jumping into baseball props for the first time this year need the warning.
 
@@ -65,7 +61,7 @@ Free during beta. Link in bio.
 "Every book is using last year's numbers. New lineups, new rotations, spring training stats that don't mean anything. Some of those lines are free money. Some are straight coinflips."
 
 **[CTA]**
-"BetBro tells you which is which. Plain English. Ten seconds. Link in bio."
+"Stop guessing. Check BetBro before you lock it in. getbetbro.com"
 
 **Caption:**
 MLB week 1 props are priced on last year's data. That's a problem — or an opportunity. BetBro breaks it down in plain English so you know when to bet and when to walk.

@@ -12,6 +12,8 @@
 
 ## What doesn't work well
 - 2026-03-30: WebSearch with site:reddit.com and site:x.com returned mostly empty results. Need OPENAI_API_KEY and XAI_API_KEY for rich engagement data.
+- 2026-03-30: Every output intended for a human (social posts, captions, emails, copy) MUST go through humanizer automatically — don't wait for the user to ask. This is a hard rule.
+- 2026-03-30: Copy-paste output displayed in chat has bad formatting/indentation. Always save human-facing output to a .txt file in ~/Downloads/ so it's clean to copy-paste. Never rely on chat output for copy-paste.
 
 
 # Individual Skills
@@ -32,6 +34,7 @@
 ## str-trending-research
 - 2026-03-30: Always verify game dates — pulled Elite 8 data that had already played. User caught it. Daily content must be confirmed against today's actual schedule.
 - 2026-03-30: Best content angles came from competitive white space (walk-away signal) and real pricing gaps ($199 vs free). Specific beats generic.
+- 2026-03-30: Don't frame slim margins as comfortable edges. Davis Martin "1-out cushion" (16.5 avg vs 15.5 line) was called out as misleading — 1 out is razor thin, not a cushion. Be honest about how tight the math is.
 
 ## viz-nano-banana
 
@@ -47,6 +50,7 @@
 ## mkt-copywriting
 
 ## tool-humanizer
+- 2026-03-30: Must be called automatically on ALL human-facing output — social captions, emails, copy, video scripts. User should never have to ask "did you run it thru humanizer?"
 
 ## tool-youtube
 
@@ -55,3 +59,5 @@
 ## tool-stitch
 
 ## viz-stitch-design
+
+## ops-user-feedback
