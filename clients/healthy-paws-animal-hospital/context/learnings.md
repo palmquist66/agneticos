@@ -50,6 +50,7 @@
 ## mkt-copywriting
 
 ## tool-humanizer
+- 2026-03-30: Em dashes are a strong AI tell in casual/short-form content — replace with periods or commas. Even 2 in a short email is too many. Be more aggressive about flagging these.
 
 ## tool-youtube
 
