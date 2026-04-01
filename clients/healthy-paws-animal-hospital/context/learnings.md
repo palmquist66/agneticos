@@ -10,6 +10,7 @@
 - 2026-03-29: Firecrawl enrichment significantly improved brand context quality — real website copy made voice-profile and samples feel authentic vs. generic
 - 2026-03-29: Reading .numbers files via `uv run --with numbers-parser` works reliably — good workaround for Apple spreadsheet data
 - 2026-03-29: Gamma presentations with themed templates (Sprout for green/health) land well for client-facing materials
+- 2026-03-31: For client-facing decks presenting to non-SEO audiences, explain every technical term inline. The audience is practice owners/managers, not marketers.
 
 ## What doesn't work well
 - 2026-03-29: Don't assume "we" framing — user is a contractor, not part of the client's business. Always use third-person for the practice in client-facing materials
@@ -51,6 +52,9 @@
 
 ## tool-humanizer
 - 2026-03-30: Em dashes are a strong AI tell in casual/short-form content — replace with periods or commas. Even 2 in a short email is too many. Be more aggressive about flagging these.
+- 2026-03-31: Always run humanizer BEFORE sending to Gamma, not after. Can't edit Gamma decks after generation.
+- 2026-03-31: Presentation decks for non-technical audiences need all acronyms (NAP, DR, GBP, AEO) explained inline on first use. Don't assume the audience knows SEO terminology.
+- 2026-03-31: Slide titles like "The Easiest Wins I've Ever Seen" read as clickbait/AI. Use factual titles that describe the content.
 
 ## tool-youtube
 
