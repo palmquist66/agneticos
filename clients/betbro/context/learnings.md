@@ -50,6 +50,7 @@
 ## ops-cron
 - 2026-03-30: User wants to post manually to keep accounts feeling human. Cron generates content + reminders, user copies and posts. Don't automate posting.
 - 2026-03-31: x-engagement-replies cron job created. Key lessons from building it: no links in replies (X suppresses them), always additive tone (never dunk on OP), cross-reference BetBro app data before endorsing props, output must be plain text with no markdown for clean copy-paste.
+- 2026-03-31: Cron jobs running via launchd need SSL fix (certifi) for Python urllib. Also never mention "pipeline mode" in cron prompts — Claude enters a waiting state thinking it's a sub-tool. Use "MAIN agent" directive at top of prompt.
 
 ## mkt-content-repurposing
 
@@ -68,3 +69,10 @@
 ## viz-stitch-design
 
 ## ops-user-feedback
+- 2026-03-31: Strikeout prop bug was critical — Ohtani is #1 searched player and the app was showing batter K rate instead of pitcher K rate. Self-discovered bugs should be logged immediately with `self-discovered` source.
+
+## data-sync
+- 2026-03-31: NBA and NHL players share the same `players` table. NBA IDs are <8M, NHL IDs are >=8M. Always filter by ID range when running NBA-specific operations.
+- 2026-03-31: `main.py --mode sync` only syncs players with props TODAY — anyone OUT or without listed props gets skipped. The daily_sync.sh script syncs ALL active players instead.
+- 2026-03-31: Game records in the `games` table can have wrong `season` values (e.g., "2024-25" for 2025-26 games). The daily sync includes a date-fix step that cross-references the NBA API. Without this, L5/L10 queries filter by season and miss recent games.
+- 2026-03-31: propread-web deploys via GitHub push → Render auto-deploy. The daily_sync.sh script handles: sync → fix dates → copy DB → git commit+push.

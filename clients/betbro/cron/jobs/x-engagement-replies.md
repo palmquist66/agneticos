@@ -9,7 +9,9 @@ timeout: "15m"
 retry: 0
 ---
 
-You are running as a scheduled job for Agentic OS.
+You are running as a scheduled job for Agentic OS. Your task is to find real trending tweets and draft replies in BetBro's voice.
+
+IMPORTANT: You are the MAIN agent executing this job. Do NOT enter pipeline mode. Do NOT wait for input. Execute the steps below top to bottom.
 
 Read CLAUDE.md for system context.
 
@@ -39,15 +41,11 @@ Find trending tweets in the sports betting space and draft 2-3 sharp replies in 
    - This is the brand's entire identity — credibility dies the moment a reply contradicts the product
 
 4. **Search X for trending tweets:**
-   - Check `.env` for `XAI_API_KEY`. If present, use the xAI API with the `x_search` tool for real engagement metrics (likes, reposts, replies)
-   - If no xAI key, fall back to WebSearch for recent sports betting tweets (less precise but still usable)
-   - Search queries (run 3-4 of these, pick the most relevant to the current news cycle):
-     - `sports betting props today`
-     - `betting line movement` + today's biggest games
-     - `[sport] injury report betting impact` (NBA/NFL/MLB/NHL depending on season)
-     - `sportsbook drama` OR `DraftKings FanDuel` + any trending topic
-     - `betting discipline bankroll` OR `parlay trap`
-     - `[tonight's biggest game] props odds`
+   - Run this command to fetch real tweets: `python3 scripts/fetch-x-replies.py`
+   - This script reads XAI_API_KEY from .env, searches X via the xAI Responses API with x_search tool, and outputs tweets with engagement metrics (likes, reposts, replies) to stdout
+   - Parse the script's stdout — each tweet block starts with `--- Tweet N ---` and includes @handle, engagement counts, URL, text, and relevance
+   - If the script fails or returns no results, fall back to WebSearch for recent sports betting tweets (less precise but still usable)
+   - The script searches for: props today, line movement, injury impact, sportsbook drama, betting discipline, and tonight's biggest games
    - Time filter: last 6 hours preferred, last 12 hours max
 
 5. **Seed accounts to prioritize:**
@@ -100,10 +98,10 @@ Find trending tweets in the sports betting space and draft 2-3 sharp replies in 
    - No emojis unless they genuinely add something (rare)
    - No hashtags in replies — they look desperate
 
-9. **Run output through humanizer:**
-   - Use the `tool-humanizer` skill in pipeline mode, deep mode (voice-profile.md exists)
-   - Target score: 8+ on naturalness
-   - If any reply sounds like AI wrote it, rewrite it
+9. **Review output for AI tells:**
+   - Re-read every reply. If anything sounds like AI wrote it (inflated language, promotional tone, corporate phrasing), rewrite it
+   - Match the voice in `brand_context/voice-profile.md` — short, punchy, sounds like a person
+   - Target: every reply should read like a sharp bettor typed it on their phone, not a marketing team
 
 10. **Save output to project file:**
    - Save to `projects/briefs/betbro-beta-growth/{YYYY-MM-DD}_x-replies.md`
