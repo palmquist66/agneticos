@@ -11,6 +11,7 @@
 - 2026-03-30: Timely daily posts (tied to today's actual games) resonate more than evergreen batch content.
 
 ## What doesn't work well
+- 2026-04-01: TikTok bans gambling-related accounts immediately. BetBro was banned after one video. Don't waste time on TikTok — focus video on Reels + YouTube Shorts.
 - 2026-03-30: WebSearch with site:reddit.com and site:x.com returned mostly empty results. Need OPENAI_API_KEY and XAI_API_KEY for rich engagement data.
 - 2026-03-30: Every output intended for a human (social posts, captions, emails, copy) MUST go through humanizer automatically — don't wait for the user to ask. This is a hard rule.
 - 2026-03-30: Copy-paste output displayed in chat has bad formatting/indentation. Always save human-facing output to a .txt file in ~/Downloads/ so it's clean to copy-paste. Never rely on chat output for copy-paste.
@@ -51,6 +52,7 @@
 - 2026-03-30: User wants to post manually to keep accounts feeling human. Cron generates content + reminders, user copies and posts. Don't automate posting.
 - 2026-03-31: x-engagement-replies cron job created. Key lessons from building it: no links in replies (X suppresses them), always additive tone (never dunk on OP), cross-reference BetBro app data before endorsing props, output must be plain text with no markdown for clean copy-paste.
 - 2026-03-31: Cron jobs running via launchd need SSL fix (certifi) for Python urllib. Also never mention "pipeline mode" in cron prompts — Claude enters a waiting state thinking it's a sub-tool. Use "MAIN agent" directive at top of prompt.
+- 2026-04-01: Reddit engagement cron added (2x daily). Key rule: NEVER mention BetBro by name in Reddit replies — instant ban. Use anonymous account, build reputation through genuinely helpful analysis. No branded vocabulary ("walk away", "bet or walk") either.
 
 ## mkt-content-repurposing
 

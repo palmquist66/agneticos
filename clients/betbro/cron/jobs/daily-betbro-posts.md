@@ -39,12 +39,17 @@ Generate 2-3 social media posts for BetBro (@GetBetBro) based on what's happenin
 4. **Write 2-3 posts + 1 video script:**
    - **1 X/Twitter post** — tied to the day's biggest game or trending topic. Under 280 chars if possible, max 2 short paragraphs. Include getbetbro.com link on at least one.
    - **1 X/Twitter post** — evergreen BetBro positioning (anti-tout, walk-away, plain English, anti-dashboard). Rotate through different angles daily.
-   - **1 Instagram Reel script** — a short talking-head video script (15-30 seconds) for HeyGen avatar delivery. Write it conversational, like a friend talking to camera. Include:
+   - **1 Instagram Reel / YouTube Short script** — a short talking-head video script (15-30 seconds) for HeyGen avatar delivery. Same video gets posted to BOTH platforms. Write it conversational, like a friend talking to camera. Include:
      - Hook (first 2 seconds — must stop the scroll)
      - Body (the take — 2-3 sentences max)
      - CTA ("Link in bio" or "Try BetBro free")
-     - Caption + hashtags for the post
+     - **IG caption** + hashtags
+     - **YT Short metadata:**
+       - Title (under 60 chars, keyword-rich for search — include the player/prop name)
+       - Description (2-3 sentences with "BetBro" mention + getbetbro.com link — links work on YT unlike X replies)
+       - Tags (5-8 relevant tags: sport, player name, prop type, "sports betting", "prop bets")
    - The script should feel like someone riffing at a bar, not reading a teleprompter. Short sentences. Pauses. Personality.
+   - YT Shorts titles should be searchable — people search YouTube for specific player props. Use the player name and prop in the title (e.g., "Ohtani Over 6.5 Ks Tonight? Here's What the Data Says")
 
 5. **Voice rules (critical):**
    - Short punchy sentences. Fragments OK.
@@ -57,6 +62,7 @@ Generate 2-3 social media posts for BetBro (@GetBetBro) based on what's happenin
    - Save to `projects/briefs/betbro-beta-growth/{YYYY-MM-DD}_daily-posts.md`
    - Include posting time recommendations based on today's game schedule
    - Include which post to send first and why
+   - Write a clean copy-paste file to `~/Downloads/betbro-yt-short.txt` with the YT title, description, and tags ready to paste into YouTube Studio
 
 7. **Keep it fresh:**
    - Check `projects/briefs/betbro-beta-growth/` for recent posts — don't repeat the same angle two days in a row
