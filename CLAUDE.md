@@ -280,6 +280,7 @@ Every skill and its output folder uses a category prefix. This keeps skills, out
 | Skill | Triggers on |
 |-------|------------|
 | `str-ai-seo` | "AI SEO", "AEO", "GEO", "LLMO", "answer engine optimization", "AI citations", "AI visibility", "optimize for ChatGPT/Perplexity/Claude", "show up in AI answers" |
+| `str-90-day-plan` | "90-day plan", "survival plan", "launch plan", "3-month plan", "quarterly plan", "growth plan", "go-to-market plan", "GTM plan", "roadmap for next 3 months", "action plan", "what should I do first", "where do I start" |
 
 ### Visual Skills
 
@@ -310,6 +311,7 @@ Which `brand_context/` files each skill reads. Load only what's listed — no sk
 | `mkt-icp` | — | summary | **writes** | — | — | `## mkt-icp` |
 | `meta-wrap-up` | — | — | — | — | — | `## meta-wrap-up` |
 | `str-ai-seo` | tone only | summary | full | — | — | `## str-ai-seo` |
+| `str-90-day-plan` | tone only | summary | full | — | — | `## str-90-day-plan` |
 | `tool-stitch` | — | — | — | — | — | `## tool-stitch` |
 | `viz-stitch-design` | tone only | summary | language section | — | — | `## viz-stitch-design` |
 
