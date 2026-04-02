@@ -52,7 +52,10 @@
 - 2026-03-30: User wants to post manually to keep accounts feeling human. Cron generates content + reminders, user copies and posts. Don't automate posting.
 - 2026-03-31: x-engagement-replies cron job created. Key lessons from building it: no links in replies (X suppresses them), always additive tone (never dunk on OP), cross-reference BetBro app data before endorsing props, output must be plain text with no markdown for clean copy-paste.
 - 2026-03-31: Cron jobs running via launchd need SSL fix (certifi) for Python urllib. Also never mention "pipeline mode" in cron prompts — Claude enters a waiting state thinking it's a sub-tool. Use "MAIN agent" directive at top of prompt.
+- 2026-04-01: X reply selection pattern — user consistently picks the C options (shortest, most confident, no setup). Preferred style: just the take, no framing or buildup. Draft fewer "The one thing worth watching" setups and more direct punches.
 - 2026-04-01: Reddit engagement cron added (2x daily). Key rule: NEVER mention BetBro by name in Reddit replies — instant ban. Use anonymous account, build reputation through genuinely helpful analysis. No branded vocabulary ("walk away", "bet or walk") either.
+- 2026-04-02: ANY edit to post/reply content MUST update BOTH the .md draft AND the .txt files in ~/Downloads/. User was frustrated this was missed. Hard rule — never touch one without the other.
+- 2026-04-02: Cron humanizer step (Sonnet) self-reports passing scores but misses obvious AI tells (em dashes, analytics jargon). The scores are unreliable. May need explicit pattern blacklists in the cron job instructions.
 
 ## mkt-content-repurposing
 
@@ -61,6 +64,7 @@
 ## tool-humanizer
 - 2026-03-30: Must be called automatically on ALL human-facing output — social captions, emails, copy, video scripts. User should never have to ask "did you run it thru humanizer?"
 - 2026-03-31: User asked 5+ times in one session whether output used voice/brand/humanizer. This is a BLOCKING failure. The pipeline is: load voice-profile.md → draft content → invoke /humanizer skill → save final version. Every time. No manual rewrites pretending to be humanizer runs — actually invoke the skill.
+- 2026-04-02: Em dashes (—) are a top AI tell in short-form copy. Cron jobs claim to catch them but don't. Strip all em dashes from reply/post text and replace with periods. Fragments + periods = BetBro voice. Also kill analytics jargon ("playmaking volume", "switch-heavy defense") — nobody types that on their phone.
 
 ## tool-youtube
 

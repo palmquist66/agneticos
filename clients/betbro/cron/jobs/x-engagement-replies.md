@@ -98,10 +98,15 @@ Find trending tweets in the sports betting space and draft 2-3 sharp replies in 
    - No emojis unless they genuinely add something (rare)
    - No hashtags in replies — they look desperate
 
-9. **Review output for AI tells:**
-   - Re-read every reply. If anything sounds like AI wrote it (inflated language, promotional tone, corporate phrasing), rewrite it
-   - Match the voice in `brand_context/voice-profile.md` — short, punchy, sounds like a person
-   - Target: every reply should read like a sharp bettor typed it on their phone, not a marketing team
+9. **Run through humanizer (MANDATORY — never skip):**
+   - Invoke the `/humanizer` skill on all drafted replies before saving
+   - Mode: deep (brand_context/voice-profile.md is loaded)
+   - **HARD RULE: Zero em dashes (—) in reply text.** Replace every em dash with a period. Fragments + periods = BetBro voice. Em dashes = AI voice. Do not skip this.
+   - **Kill analytics jargon.** Phrases like "playmaking volume", "switch-heavy defense", "defensive rating", "usage rate" read like an analyst, not a bettor on their phone. Rewrite in plain bar talk.
+   - Check for: repeated structural patterns across replies, duplicate adjectives (e.g. "sneaky" used twice), same opener format repeated, three-beat rhythm in every reply
+   - Each reply must sound like a sharp bettor typed it on their phone, not a marketing team
+   - Log the humanizer score at the bottom of the output file
+   - If any reply scores below 7/10, rewrite it before saving
 
 10. **Save output to project file:**
    - Save to `projects/briefs/betbro-beta-growth/{YYYY-MM-DD}_x-replies.md`
