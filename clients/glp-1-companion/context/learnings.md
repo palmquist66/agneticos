@@ -58,6 +58,12 @@
 
 ## viz-stitch-design
 
+## pattern-engine
+- 2026-04-02: First implementation — weight↔dose and side effect↔dose correlation. Pure Python, no LLM. Inserted after get_proactive_insights (line ~3099). ~200 lines of analysis + ~40 lines dashboard UI.
+- parse_dosage_value() handles all existing GLP1_DOSAGES formats including "(daily)" suffix and "Other" (returns None).
+- detect_dose_changes() is the shared foundation — both analyzers depend on it. Future analyzers (food, glucose) should reuse it.
+- Cache invalidation must be added at every new logging point — currently covers weight, scheduled med, manual med, side effect. If new log types are added, add `st.session_state.pop("pattern_insights_cache", None)` there too.
+
 ## str-90-day-plan
 - 2026-04-02: First plan generated for GLP-1 Companion (product type). Used positioning + ICP + SNAQ competitive analysis + current app state audit to build 3-phase plan with 31 kanban tasks.
 - Pattern: Phase 1 should always close the gap between positioning promise and product reality — GLP-1's "Pattern Layer" positioning required pattern engine as Week 1 priority.
