@@ -62,7 +62,9 @@
 - 2026-04-02: First implementation — weight↔dose and side effect↔dose correlation. Pure Python, no LLM. Inserted after get_proactive_insights (line ~3099). ~200 lines of analysis + ~40 lines dashboard UI.
 - parse_dosage_value() handles all existing GLP1_DOSAGES formats including "(daily)" suffix and "Other" (returns None).
 - detect_dose_changes() is the shared foundation — both analyzers depend on it. Future analyzers (food, glucose) should reuse it.
-- Cache invalidation must be added at every new logging point — currently covers weight, scheduled med, manual med, side effect. If new log types are added, add `st.session_state.pop("pattern_insights_cache", None)` there too.
+- Cache invalidation must be added at every new logging point — now covers weight, scheduled med, manual med, side effect, AND all 4 food logging paths (photo, voice, recipe, manual).
+- 2026-04-02: Added food/protein correlation analyzer. FoodLog model now has protein/fat/calories columns (auto-migrated via ALTER TABLE). analyze_food_protein_correlation() uses median split on daily protein totals, compares weight trends 1-3 days after high vs low protein days. Also flags low daily protein (<60g) as a muscle preservation warning for GLP-1 users.
+- Historical food logs have NULL nutrition columns — analyzer only works on data logged after this update. Consider a backfill script that parses the notes field (e.g., "📸 AI | Cal: 450 | C: 30g | P: 25g | F: 15g") to populate old rows.
 
 ## str-90-day-plan
 - 2026-04-02: First plan generated for GLP-1 Companion (product type). Used positioning + ICP + SNAQ competitive analysis + current app state audit to build 3-phase plan with 31 kanban tasks.

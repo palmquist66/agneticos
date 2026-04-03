@@ -78,6 +78,20 @@
       "requires_services": [],
       "dependencies": [],
       "mcp_servers": []
+    },
+    "str-90-day-plan": {
+      "category": "strategy",
+      "description": "Generate a 90-day survival plan with week-by-week action plans",
+      "requires_services": [],
+      "dependencies": [],
+      "mcp_servers": []
+    },
+    "ops-user-feedback": {
+      "category": "operations",
+      "description": "Track and manage user feedback, bugs, and feature requests",
+      "requires_services": [],
+      "dependencies": [],
+      "mcp_servers": []
     }
   }
 }
