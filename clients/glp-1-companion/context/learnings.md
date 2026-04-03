@@ -9,6 +9,9 @@
 ## What works well
 
 ## What doesn't work well
+- 2026-04-02: Streamlit tab render order causes subtle bugs — tabs render top-to-bottom on every script run. DB writes in later tabs (Settings, Medication) aren't visible to earlier tabs (Health) without st.rerun(). Always add st.rerun() after any DB mutation that should be reflected across tabs.
+- 2026-04-02: Python local `import X` inside a function creates a local variable scope for X across the ENTIRE function — not just after the import line. If any code path uses X before the import executes, it errors. Fix: rely on top-level imports, remove redundant local imports.
+- 2026-04-02: Streamlit file_uploader widget can lose state on button-triggered reruns. Never put button handlers inside the `if uploaded_file` block. Store parsed data in session_state, put the action button outside.
 
 
 # Individual Skills
