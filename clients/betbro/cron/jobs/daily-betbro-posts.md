@@ -2,7 +2,7 @@
 name: daily-betbro-posts
 time: "09:00"
 days: "daily"
-model: "sonnet"
+model: "opus"
 active: "true"
 notify: "on_finish"
 timeout: "30m"

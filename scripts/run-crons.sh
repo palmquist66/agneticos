@@ -198,6 +198,7 @@ run_job() {
     # Launch claude with timeout watchdog
     env -u CLAUDECODE claude -p "$PROMPT" \
       --model "$MODEL" \
+      --effort high \
       --dangerously-skip-permissions 2>&1 &
     local CLAUDE_PID=$!
 

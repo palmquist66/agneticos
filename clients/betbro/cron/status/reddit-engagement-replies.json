@@ -1,0 +1,10 @@
+{
+  "job": "reddit-engagement-replies",
+  "last_run": "2026-04-02T11:00:00-04:00",
+  "status": "success",
+  "output_file": "projects/briefs/betbro-beta-growth/2026-04-02_reddit-replies.md",
+  "copy_paste_file": "~/Downloads/betbro-reddit-replies.txt",
+  "threads_found": 5,
+  "replies_drafted": 10,
+  "run_type": "midday"
+}

@@ -1,0 +1,12 @@
+{
+  "job": "reddit-replies",
+  "last_run": "2026-04-02T18:01:00-05:00",
+  "status": "success",
+  "run_type": "evening",
+  "threads_identified": 5,
+  "replies_drafted": 10,
+  "output_files": [
+    "projects/briefs/betbro-beta-growth/2026-04-02_reddit-replies.md",
+    "~/Downloads/betbro-reddit-replies.txt"
+  ]
+}

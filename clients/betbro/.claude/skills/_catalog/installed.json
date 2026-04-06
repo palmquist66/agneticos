@@ -1,0 +1,26 @@
+{
+  "installed_at": "2026-03-29",
+  "version": "1.0.0",
+  "installed_skills": [
+    "meta-skill-creator",
+    "meta-wrap-up",
+    "mkt-brand-voice",
+    "mkt-content-repurposing",
+    "mkt-copywriting",
+    "mkt-icp",
+    "mkt-positioning",
+    "mkt-ugc-scripts",
+    "ops-cron",
+    "str-trending-research",
+    "tool-firecrawl-scraper",
+    "tool-humanizer",
+    "tool-youtube",
+    "viz-excalidraw-diagram",
+    "viz-nano-banana",
+    "viz-ugc-heygen",
+    "str-90-day-plan",
+    "ops-user-feedback"
+  ],
+  "removed_skills": [],
+  "selection_pending": false
+}

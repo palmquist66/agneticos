@@ -56,6 +56,7 @@
 - 2026-04-01: Reddit engagement cron added (2x daily). Key rule: NEVER mention BetBro by name in Reddit replies — instant ban. Use anonymous account, build reputation through genuinely helpful analysis. No branded vocabulary ("walk away", "bet or walk") either.
 - 2026-04-02: ANY edit to post/reply content MUST update BOTH the .md draft AND the .txt files in ~/Downloads/. User was frustrated this was missed. Hard rule — never touch one without the other.
 - 2026-04-02: Cron humanizer step (Sonnet) self-reports passing scores but misses obvious AI tells (em dashes, analytics jargon). The scores are unreliable. May need explicit pattern blacklists in the cron job instructions.
+- 2026-04-06: .txt file rule STILL being missed in interactive sessions despite being logged since 4/2. Root cause: cron jobs enforce it but interactive sessions had no gate. Fixed by adding Dual-Output Rule as a HARD RULE in client CLAUDE.md so it loads every session. The rule: if you create or edit content, the .txt files in ~/Downloads/ MUST be written before declaring the work done.
 
 ## mkt-content-repurposing
 

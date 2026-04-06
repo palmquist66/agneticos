@@ -1,0 +1,1 @@
+/Users/jamespalmquist/Projects/Agnetic OS/agentic-os/scripts/run-crons.sh
