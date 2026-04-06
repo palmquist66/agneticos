@@ -11,6 +11,8 @@
 - 2026-03-29: Reading .numbers files via `uv run --with numbers-parser` works reliably — good workaround for Apple spreadsheet data
 - 2026-03-29: Gamma presentations with themed templates (Sprout for green/health) land well for client-facing materials
 - 2026-03-31: For client-facing decks presenting to non-SEO audiences, explain every technical term inline. The audience is practice owners/managers, not marketers.
+- 2026-04-06: Google Slides API via service account works for direct deck editing. Service account: `sgp-updater@sgp-model.iam.gserviceaccount.com`, key at `/Users/jamespalmquist/PycharmProjects/SGP Correlations NBA/credentials.json`. Share doc with service account email + enable Slides API in GCP console.
+- 2026-04-06: `replaceAllText` is the cleanest approach for text fixes — one batch call for all replacements. Watch for curly vs straight quote mismatches (Gamma uses straight quotes).
 
 ## What doesn't work well
 - 2026-03-29: Don't assume "we" framing — user is a contractor, not part of the client's business. Always use third-person for the practice in client-facing materials
