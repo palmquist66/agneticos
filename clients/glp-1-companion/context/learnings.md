@@ -62,6 +62,10 @@
 
 ## viz-stitch-design
 
+## pdf-export
+- 2026-04-06: fpdf2 Helvetica font only supports latin-1. Any user-supplied text (medication names, dosages, notes, symptoms) must be sanitized before passing to pdf.cell(). Added `_latin1_safe()` wrapper that encodes with errors='replace'. Without this, characters like checkmarks crash the export on Streamlit Cloud.
+- 2026-04-06: matplotlib Agg backend works on Streamlit Cloud with no system deps. Charts rendered to BytesIO PNG, embedded via pdf.image(). Always call plt.close(fig) after saving to prevent memory leaks.
+
 ## pattern-engine
 - 2026-04-02: First implementation — weight↔dose and side effect↔dose correlation. Pure Python, no LLM. Inserted after get_proactive_insights (line ~3099). ~200 lines of analysis + ~40 lines dashboard UI.
 - parse_dosage_value() handles all existing GLP1_DOSAGES formats including "(daily)" suffix and "Other" (returns None).
