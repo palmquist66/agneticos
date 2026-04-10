@@ -7,6 +7,7 @@ active: "true"
 notify: "on_finish"
 timeout: "15m"
 retry: 0
+verify_files: "~/Downloads/betbro-x-replies.txt"
 ---
 
 You are running as a scheduled job for Agentic OS. Your task is to find real trending tweets and draft replies in BetBro's voice.
@@ -41,10 +42,11 @@ Find trending tweets in the sports betting space and draft 2-3 sharp replies in 
    - This is the brand's entire identity — credibility dies the moment a reply contradicts the product
 
 4. **Search X for trending tweets:**
-   - Run this command to fetch real tweets: `python3 scripts/fetch-x-replies.py`
+   - Run this command to fetch real tweets: `python3 scripts/search-x-tweets.py`
    - This script reads XAI_API_KEY from .env, searches X via the xAI Responses API with x_search tool, and outputs tweets with engagement metrics (likes, reposts, replies) to stdout
    - Parse the script's stdout — each tweet block starts with `--- Tweet N ---` and includes @handle, engagement counts, URL, text, and relevance
-   - If the script fails or returns no results, fall back to WebSearch for recent sports betting tweets (less precise but still usable)
+   - **If the script fails or returns no results:** Try WebSearch as a fallback for recent sports betting tweets. If WebSearch also fails to return verifiable tweet URLs, STOP the job and write an error file to `~/Downloads/betbro-x-replies.txt` that says: "X replies job failed — no real tweets found. Check XAI_API_KEY in .env and run `python3 scripts/search-x-tweets.py` manually to debug."
+   - **NEVER fabricate tweets, URLs, engagement numbers, or follower counts.** Every tweet in the output MUST come from a real search result with a real URL. If you cannot verify a tweet is real, do not include it. Hallucinated output is worse than no output — it wastes the user's time and damages credibility. If in doubt, produce nothing
    - The script searches for: props today, line movement, injury impact, sportsbook drama, betting discipline, and tonight's biggest games
    - Time filter: last 6 hours preferred, last 12 hours max
 
@@ -98,19 +100,13 @@ Find trending tweets in the sports betting space and draft 2-3 sharp replies in 
    - No emojis unless they genuinely add something (rare)
    - No hashtags in replies — they look desperate
 
-9. **Run through humanizer (MANDATORY — never skip):**
-   - Invoke the `/humanizer` skill on all drafted replies before saving
-   - Mode: deep (brand_context/voice-profile.md is loaded)
-   - **HARD RULE: Zero em dashes (—) in reply text.** Replace every em dash with a period. Fragments + periods = BetBro voice. Em dashes = AI voice. Do not skip this.
-   - **Kill analytics jargon.** Phrases like "playmaking volume", "switch-heavy defense", "defensive rating", "usage rate" read like an analyst, not a bettor on their phone. Rewrite in plain bar talk.
-   - Check for: repeated structural patterns across replies, duplicate adjectives (e.g. "sneaky" used twice), same opener format repeated, three-beat rhythm in every reply
-   - Each reply must sound like a sharp bettor typed it on their phone, not a marketing team
-   - Log the humanizer score at the bottom of the output file
-   - If any reply scores below 7/10, rewrite it before saving
+9. **⛔ WRITE BOTH FILES NOW — before any humanizer analysis:**
 
-10. **Save output to project file:**
-   - Save to `projects/briefs/betbro-beta-growth/{YYYY-MM-DD}_x-replies.md`
-   - If the file already exists (earlier run today), **append** a new section — don't overwrite
+   STOP generating text. Your next actions MUST be Write tool calls. Do not output analysis or commentary until both files below are written. This is the #1 failure point — if files don't exist when the job ends, the entire job has FAILED.
+
+   **File 1: Project markdown file**
+   - Call the Write tool to save to `projects/briefs/betbro-beta-growth/{YYYY-MM-DD}_x-replies.md`
+   - If the file already exists (earlier run today), READ it first, then WRITE the full contents with your new section appended
    - Format each run as a section:
 
    ```markdown
@@ -134,13 +130,12 @@ Find trending tweets in the sports betting space and draft 2-3 sharp replies in 
    ...
    ```
 
-11. **Create copy-paste file:**
-    - Write a clean PLAIN TEXT file to `~/Downloads/betbro-x-replies.txt`
-    - **Overwrite** on each run (user only needs the latest batch)
-    - NO markdown formatting — no bold markers, no ### headers, no ** wrapping
-    - NO weird line breaks mid-sentence — each reply must be a single unbroken paragraph the user can select and paste directly into X
-    - Format: just the reply text, numbered, with the original tweet context for reference
-    - Example:
+   **File 2: Copy-paste txt file**
+   - Call the Write tool to save `~/Downloads/betbro-x-replies.txt`
+   - **Overwrite** on each run (user only needs the latest batch)
+   - NO markdown formatting — no bold markers, no ### headers, no ** wrapping
+   - Each reply must be a single unbroken paragraph ready to paste into X
+   - Format:
     ```
     BetBro X Replies — {date} {time} ET
 
@@ -157,6 +152,25 @@ Find trending tweets in the sports betting space and draft 2-3 sharp replies in 
     REPLYING TO: @AccountName
     ...
     ```
+
+   **CHECKPOINT 1: Validate every tweet URL in your output. Run `grep -c 'mock\|example\|\[mock\]\|placeholder\|status/\d\{0,5\}$' ~/Downloads/betbro-x-replies.txt` — if the count is anything other than 0, your output contains fake URLs. Delete both files and report the error instead.**
+
+   **CHECKPOINT 2: Run `ls -la ~/Downloads/betbro-x-replies.txt` and confirm today's date. Do NOT proceed until confirmed.**
+
+10. **Run through humanizer:**
+    - Invoke the `/humanizer` skill on all drafted replies
+    - Mode: deep (brand_context/voice-profile.md is loaded)
+    - **HARD RULE: Zero em dashes (—) in reply text.** Replace every em dash with a period.
+    - **Kill analytics jargon.** Rewrite in plain bar talk.
+    - Check for: repeated structural patterns, duplicate adjectives, same opener format, three-beat rhythm in every reply
+    - If any reply scores below 7/10, rewrite it
+    - **If the humanizer changed any content: call the Write tool again to UPDATE both files.** Do not skip this.
+    - Keep audit output brief — scores and changes only.
+
+11. **Final verification:**
+    - Run `ls -la ~/Downloads/betbro-x-replies.txt` one final time
+    - Confirm the file exists with today's date
+    - If missing or stale, write it NOW
 
 ## What NOT To Do
 

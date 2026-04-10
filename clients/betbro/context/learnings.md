@@ -57,6 +57,7 @@
 - 2026-04-02: ANY edit to post/reply content MUST update BOTH the .md draft AND the .txt files in ~/Downloads/. User was frustrated this was missed. Hard rule — never touch one without the other.
 - 2026-04-02: Cron humanizer step (Sonnet) self-reports passing scores but misses obvious AI tells (em dashes, analytics jargon). The scores are unreliable. May need explicit pattern blacklists in the cron job instructions.
 - 2026-04-06: .txt file rule STILL being missed in interactive sessions despite being logged since 4/2. Root cause: cron jobs enforce it but interactive sessions had no gate. Fixed by adding Dual-Output Rule as a HARD RULE in client CLAUDE.md so it loads every session. The rule: if you create or edit content, the .txt files in ~/Downloads/ MUST be written before declaring the work done.
+- 2026-04-10: CRITICAL — x-engagement-replies cron was hallucinating entire tweets (fake accounts, fake URLs with "mock"/"example", fake engagement numbers). Three root causes: (1) fetch-x-replies.py was deleted but cron still referenced it, (2) search-x-tweets.py had stale model ID (grok-2-1212 removed from xAI API), (3) no guardrail telling the agent to STOP if it can't find real tweets. Fix: updated script reference, fixed model to grok-4-1-fast-non-reasoning, added hard no-hallucination rule + URL validation checkpoint. Hallucinated output is worse than no output — it wastes the user's time.
 
 ## mkt-content-repurposing
 
@@ -79,6 +80,7 @@
 - 2026-03-31: Strikeout prop bug was critical — Ohtani is #1 searched player and the app was showing batter K rate instead of pitcher K rate. Self-discovered bugs should be logged immediately with `self-discovered` source.
 
 ## data-sync
+- 2026-04-06: CRITICAL — when adding columns to the SQLAlchemy model (models.py), you MUST also ALTER TABLE the actual SQLite database. SQLAlchemy SELECT includes all model columns. If any column is missing from the table, the entire query fails silently (caught by try/except). This broke ALL NBA queries when MLB columns were added to the model but not the DB. Fix both source DB (SGP Correlations NBA) and propread-web copy.
 - 2026-03-31: NBA and NHL players share the same `players` table. NBA IDs are <8M, NHL IDs are >=8M. Always filter by ID range when running NBA-specific operations.
 - 2026-03-31: `main.py --mode sync` only syncs players with props TODAY — anyone OUT or without listed props gets skipped. The daily_sync.sh script syncs ALL active players instead.
 - 2026-03-31: Game records in the `games` table can have wrong `season` values (e.g., "2024-25" for 2025-26 games). The daily sync includes a date-fix step that cross-references the NBA API. Without this, L5/L10 queries filter by season and miss recent games.
