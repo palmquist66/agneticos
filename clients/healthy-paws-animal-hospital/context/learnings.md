@@ -13,11 +13,15 @@
 - 2026-03-31: For client-facing decks presenting to non-SEO audiences, explain every technical term inline. The audience is practice owners/managers, not marketers.
 - 2026-04-06: Google Slides API via service account works for direct deck editing. Service account: `sgp-updater@sgp-model.iam.gserviceaccount.com`, key at `/Users/jamespalmquist/PycharmProjects/SGP Correlations NBA/credentials.json`. Share doc with service account email + enable Slides API in GCP console.
 - 2026-04-06: `replaceAllText` is the cleanest approach for text fixes — one batch call for all replacements. Watch for curly vs straight quote mismatches (Gamma uses straight quotes).
+- 2026-04-09: `replaceAllText` matches substrings — "Location Pages" will also match inside "Service/Location Pages". Use longer, more unique strings or fix collateral damage immediately.
+- 2026-04-09: Google Slides API is good for text swaps but bad for visual layout work. Repositioning elements without seeing the result usually makes things worse. For layout changes, delete and rebuild with precise sizes, or let the user drag in Slides.
+- 2026-04-09: Always confirm which section of a slide the user is referring to before deleting elements. Ask before acting on ambiguous references.
 
 ## What doesn't work well
 - 2026-03-29: Don't assume "we" framing — user is a contractor, not part of the client's business. Always use third-person for the practice in client-facing materials
 - 2026-03-29: Don't assign tasks to specific roles (practice manager, front desk staff) in presentations — the consultant doesn't know the client's team structure
 - 2026-03-29: Gamma has a 10-slide max — plan content to fit within that limit upfront
+- 2026-04-09: When outputting email drafts or copy for the user, use plain text — markdown formatting (bold headers, horizontal rules, indented blocks) can cause weird indentation in the terminal that the user has to fix manually
 
 
 # Individual Skills

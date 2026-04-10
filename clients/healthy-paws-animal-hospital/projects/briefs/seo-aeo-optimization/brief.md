@@ -22,7 +22,7 @@ Increase Healthy Paws' visibility in both traditional search (Google organic + l
 - **Unique website content** — transparency page, pet experience page, education philosophy — exactly the kind of differentiated content AI models prefer to cite
 
 ### Gaps to Close
-- **NAP health score: 54/100** — 3 HIGH priority citation fixes (LinkedIn + CareCredit showing dead hpah.org domain, Quality Canines wrong phone number)
+- **NAP health score: 72/100** — 1 HIGH priority citation fix (Quality Canines wrong phone number). LinkedIn and CareCredit list hpah.org which redirects to the current site (low priority cleanup)
 - **DR 8** vs competitors at DR 11-12 — closeable with 5-10 directory listings
 - **Missing from 5+ high-DR vet directories** (Pawlicy, Scratchpay, DexKnows, PetInsuranceReview, GeniusVets)
 - **10+ missing service/location pages** that competitors have — Fear Free, spay/neuter, cat vet, Algonquin/Crystal Lake/Huntley location pages
@@ -40,7 +40,7 @@ Increase Healthy Paws' visibility in both traditional search (Google organic + l
 ## Deliverables
 
 ### Phase 1: Foundation Fixes (Quick Wins)
-- [ ] **NAP citation cleanup** — fix 3 HIGH priority items (LinkedIn, CareCredit, Quality Canines), then medium items
+- [ ] **NAP citation cleanup** — fix 1 HIGH priority item (Quality Canines wrong phone number), then minor items (LinkedIn/CareCredit hpah.org redirect is functional, low priority cleanup)
 - [ ] **Backlink gap closure** — submit to 7 priority directories (Pawlicy, Scratchpay, DexKnows, PetInsuranceReview, GeniusVets, Waze/GBP verification, rescue partner outreach)
 - [ ] **GBP optimization** — add services (spay/neuter, surgery, euthanasia), secondary categories (veterinarian, emergency), complete attributes section
 - [ ] **Review response strategy** — template + process for 100% response rate
@@ -76,7 +76,7 @@ Build in priority order (from existing research):
 
 ## Acceptance Criteria
 
-- NAP health score moves from 54 → 85+ within 30 days
+- NAP health score moves from 72 → 85+ within 30 days
 - All 7 priority directory submissions completed
 - First 6 service/location pages live and indexed
 - FAQ schema deployed on all new pages
