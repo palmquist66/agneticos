@@ -70,7 +70,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/jamespalmquist/.claude/hooks/gsd-check-update.js\""
+            "command": "node .claude/hooks/gsd-check-update.js"
           }
         ]
       }
@@ -81,7 +81,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/jamespalmquist/.claude/hooks/gsd-context-monitor.js\"",
+            "command": "node .claude/hooks/gsd-context-monitor.js",
             "timeout": 10
           }
         ]
@@ -93,7 +93,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/jamespalmquist/.claude/hooks/gsd-prompt-guard.js\"",
+            "command": "node .claude/hooks/gsd-prompt-guard.js",
             "timeout": 5
           }
         ]
