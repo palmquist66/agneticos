@@ -16,6 +16,8 @@
 - 2026-04-09: `replaceAllText` matches substrings — "Location Pages" will also match inside "Service/Location Pages". Use longer, more unique strings or fix collateral damage immediately.
 - 2026-04-09: Google Slides API is good for text swaps but bad for visual layout work. Repositioning elements without seeing the result usually makes things worse. For layout changes, delete and rebuild with precise sizes, or let the user drag in Slides.
 - 2026-04-09: Always confirm which section of a slide the user is referring to before deleting elements. Ask before acting on ambiguous references.
+- 2026-04-12: Jim P does NOT manage the HP website — they have a separate developer/service. Website changes (service pages, schema, technical SEO) should be packaged as a developer handoff brief, not treated as something Jim P executes.
+- 2026-04-12: For non-technical clients, convert markdown deliverables to email (plain text) or Google Doc/PDF format. Markdown files are useless to practice managers.
 
 ## What doesn't work well
 - 2026-03-29: Don't assume "we" framing — user is a contractor, not part of the client's business. Always use third-person for the practice in client-facing materials

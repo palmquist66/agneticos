@@ -1,0 +1,163 @@
+Subject: Google Business Profile updates — step by step
+
+
+Hey John,
+
+Great meeting Saturday. Here's the breakdown of everything you can do inside your Google Business Profile to start improving visibility. None of this touches the website — it's all within the GBP dashboard.
+
+To get in: sign into Google, search "Healthy Paws Animal Hospital", and your management panel shows up right in the search results. Click "Edit profile" from there. You can also go to business.google.com.
+
+
+STEP 1: ADD YOUR SERVICES (30-45 min)
+
+Right now HP has zero services listed in the profile. That means when someone searches "dog dental cleaning near me" or "cat spay Lake in the Hills," Google doesn't know you offer those things.
+
+Go to Edit profile > Services tab > Add a custom service.
+
+Add each of these with the descriptions below. You can copy and paste them directly:
+
+- Wellness Exams & Vaccinations
+  Comprehensive wellness exams and vaccination programs for dogs and cats at all life stages. Personalized care plans based on your pet's age, breed, and lifestyle.
+
+- Spay & Neuter Surgery
+  Safe spay and neuter procedures for dogs and cats. Pre-surgical bloodwork, dedicated monitoring, and post-op pain management included.
+
+- Pet Dental Cleaning
+  Professional dental cleanings and oral health exams under anesthesia. Digital dental X-rays to catch problems below the gumline.
+
+- Soft Tissue Surgery
+  Surgical services including mass removals, laceration repair, bladder stone removal, and other soft tissue procedures.
+
+- Diagnostic Imaging
+  In-house digital X-ray and diagnostic imaging for fast, accurate diagnosis. Results reviewed same day.
+
+- Laboratory & Blood Work
+  In-house and reference laboratory services. Bloodwork, urinalysis, and diagnostic testing with quick turnaround.
+
+- Senior Pet Care
+  Specialized wellness programs for aging dogs and cats. Semi-annual exams, senior bloodwork panels, and pain management.
+
+- Puppy & Kitten Care
+  First-year care packages including vaccination series, deworming, microchipping, and nutrition guidance for new pet owners.
+
+- Microchipping
+  HomeAgain microchip implantation for permanent pet identification. Quick, safe, and done during any office visit.
+
+- End-of-Life & Euthanasia Services
+  Compassionate end-of-life care in a peaceful, private setting. We're here to support you and your pet through this difficult time.
+
+- Parasite Prevention
+  Year-round flea, tick, and heartworm prevention programs. Personalized recommendations based on your pet's risk factors.
+
+- Nutritional Counseling
+  Diet and nutrition guidance for weight management, food allergies, and life-stage-specific feeding.
+
+- Fear Free Care
+  Fear Free certified practice. Low-stress handling techniques, calming environment, and gentle approach for anxious pets.
+
+If any of these don't match what you actually offer, skip it. If I missed something, add it in the same format.
+
+
+STEP 2: ADD A SECONDARY CATEGORY (5 min)
+
+Right now the profile only says "Animal Hospital." More people search "veterinarian near me" than "animal hospital near me," so adding Veterinarian as a secondary category gets you into more results.
+
+Go to Edit profile > Business category. Below "Animal Hospital," click "Add another category" and type "Veterinarian." Select it and save.
+
+This can take 24-72 hours to go live since Google reviews category changes.
+
+Don't add "Emergency Veterinary Service" unless you actually offer emergency or after-hours care. Google will suspend listings with misleading categories.
+
+
+STEP 3: COMPLETE YOUR ATTRIBUTES (10-15 min)
+
+These are the badges and details on your listing like wheelchair access, accepts new patients, etc. The more you fill out, the more signals Google has.
+
+Go to Edit profile > More tab. Go through every option and toggle the ones that apply:
+
+- Wheelchair-accessible entrance, restroom, parking
+- Accepts new patients (yes)
+- Online appointments (if you have online booking)
+- Appointment required
+- Wi-Fi available
+- Parking available
+- Any identity attributes that apply (women-owned, veteran-owned, etc.) — these show a badge on mobile results
+
+Check everything that's true. Don't mark anything that isn't.
+
+
+STEP 4: UPLOAD PHOTOS (start this week, ongoing)
+
+Your last GBP photo upload was 2014. Winding Creek and Pet Vet both have recent photos. Google's algorithm rewards profiles with fresh images, and potential clients notice when a listing looks active vs abandoned.
+
+The plan: 3 photos per week for 8 weeks, then 1 per week after that. Phone photos are fine — natural lighting, in focus, no filters.
+
+On your management panel, click "Add photo" or go to the Photos section. First thing: set your logo and cover photo.
+
+Here's a week-by-week schedule:
+
+Week 1: Front of building with signage, reception area, full team group photo
+Week 2: Parking lot and entrance, an exam room, Dr. Karen with a patient
+Week 3: Waiting area from a different angle, treatment area, a tech at work
+Week 4: Another exterior angle, surgery or dental suite, vet examining a dog
+Week 5: Seasonal exterior, lab area, vet examining a cat
+Week 6: Close-up of signage, X-ray or diagnostic equipment, happy pet at checkout
+Week 7: Interior detail (artwork, calming features), team member with a pet, action shot like a vaccination or wellness exam
+Week 8: Fresh exterior shot, any new equipment, candid team moment
+
+Tip: pick one person to be the "photo person" each week. Kadee might be good for this. Consistency matters more than perfection. Get verbal OK from pet owners before posting photos of their animals.
+
+Short videos work too — a 30-second facility walkthrough or team intro.
+
+
+STEP 5: RESPOND TO EVERY REVIEW (1-3 hrs to catch up, then 5 min/day)
+
+You have 158 reviews at 4.7 stars, which is solid. The issue is response rate — you're around 30-40%. Winding Creek responds to 100% of theirs. Potential patients notice that, and Google uses response rate as a ranking signal.
+
+On your management panel, click "Read reviews." Find reviews without a reply and click "Reply."
+
+For positive reviews (4-5 stars), keep it 2-3 sentences. Thank them by name, mention something specific from their review (especially the pet's name if they included it), invite them back:
+
+"Thank you, Sarah! We're so glad Max's dental cleaning went well and that our team made you both feel comfortable. We look forward to seeing you at his next visit!"
+
+"Thanks for the kind words, Mike! Buddy is such a great patient. We're happy the new puppy wellness plan has been helpful."
+
+For negative reviews (1-2 stars), don't get defensive. Don't share any private pet or medical details publicly. Take it offline:
+
+"Thank you for sharing your feedback. We're sorry your experience didn't meet expectations and take all concerns seriously. Please reach out to us at (847) 854-2322 so we can discuss this directly."
+
+Rules going forward:
+- Respond within 24 hours of new reviews
+- Vary your responses (don't copy-paste the same thing every time)
+- Never argue publicly
+- Keep it 2-5 sentences
+- Mention the pet's name when the reviewer includes it
+
+To catch up on the backlog, work through them oldest to newest. Replying to a year-old review is still better than leaving it blank.
+
+Google is also testing AI-suggested replies. If you see a suggestion button next to a review, it'll draft something you can edit before posting. Always personalize it before submitting.
+
+
+QUICK REFERENCE
+
+Here's the full list in priority order:
+
+1. Add 13 services with descriptions - 30-45 min - this week
+2. Add "Veterinarian" secondary category - 5 min - this week
+3. Complete all attributes - 10-15 min - this week
+4. Upload first 3 photos (week 1) - 30 min - this week
+5. Respond to all unanswered reviews - 1-3 hrs - this week and next
+6. Continue photo plan (3/week for 7 more weeks) - 15 min/week - ongoing
+7. Respond to every new review within 24 hrs - 5 min/day - ongoing
+
+Total one-time effort is about 3-5 hours spread across a week. After that it's about 20 minutes a week to keep it going.
+
+
+WHAT ABOUT THE WEBSITE?
+
+The GBP stuff above is separate from the website. I'm putting together a separate document with exactly what your website developer needs to do on healthypawsanimalhospital.com — new service pages, location pages, and some technical updates that help with AI search visibility. I'll send that over separately so you can forward it to them.
+
+Let me know if you have any questions on the GBP stuff. Happy to walk through any of it.
+
+Jim P
+JP Digital Works
