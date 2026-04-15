@@ -71,3 +71,14 @@
 ## tool-stitch
 
 ## viz-stitch-design
+
+## str-seo-context-setup
+- 2026-04-14: Google Maps pages are completely unscrappable — even Firecrawl with stealth mode and browser actions only returns the navigation shell. Google aggressively blocks headless browsers.
+- 2026-04-14: Yelp scraping via Firecrawl works excellently — returns 40-50K chars per listing with services, reviews, hours, photos, amenities, and review themes.
+- 2026-04-14: Directory scraping (BirdEye, Checkbook, GeniusVets, TopVet) fills Google review aggregates and pricing data that neither Google Maps nor Yelp provide directly.
+- 2026-04-14: Data gathering should follow this priority: (1) Firecrawl Yelp scrape, (2) directory scraping via WebSearch, (3) co-work handoff for Google Maps-only data (categories, attributes, description, photo counts, posts).
+- 2026-04-14: load_dotenv needs `override=True` to work when FIRECRAWL_API_KEY exists as empty string in environment.
+
+## str-gbp-audit
+- 2026-04-14: The audit ran with incomplete data (estimated categories, unknown attributes/photos/description). Enriching context files with Firecrawl Yelp scrapes before running the audit produces significantly better competitor comparisons.
+- 2026-04-14: Co-work hybrid approach: Code does analysis/deliverables, co-work (Chrome extension) reads rendered Google Maps pages for data Code can't scrape. User pastes structured output back into Code for parsing.
