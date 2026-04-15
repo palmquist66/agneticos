@@ -82,3 +82,4 @@
 ## str-gbp-audit
 - 2026-04-14: The audit ran with incomplete data (estimated categories, unknown attributes/photos/description). Enriching context files with Firecrawl Yelp scrapes before running the audit produces significantly better competitor comparisons.
 - 2026-04-14: Co-work hybrid approach: Code does analysis/deliverables, co-work (Chrome extension) reads rendered Google Maps pages for data Code can't scrape. User pastes structured output back into Code for parsing.
+- 2026-04-14: Step 1 (Category Audit) must ASK the user for 3 target keywords before running — don't pick silently from the keyword list. The user chooses which searches matter most.

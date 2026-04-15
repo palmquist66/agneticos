@@ -161,7 +161,7 @@ Ask: "How did this land? Anything missing or off-base?" Log feedback to `context
 
 ## Rules
 
-*No rules yet — entries added when the user flags issues during runs.*
+- 2026-04-14 (Step 1): Before running the category audit, ASK the user for 3 target keywords to search on Google Maps. Don't assume or pick from the keyword list silently — the user needs to choose which searches matter most to them. These 3 keywords drive the entire category comparison matrix.
 
 ## Self-Update
 
