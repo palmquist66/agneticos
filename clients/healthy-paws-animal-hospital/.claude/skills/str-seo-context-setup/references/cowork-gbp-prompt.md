@@ -1,6 +1,6 @@
 # Co-Work GBP Data Collection Prompt
 
-This reference file contains the prompt template that gets personalized and given to the user to paste into Claude co-work (browser). The Chrome extension can see rendered Google Maps pages and extract data that CLI tools cannot scrape.
+This reference file contains the prompt template that gets personalized and given to the user to paste into Claude in Chrome (browser). The Chrome extension can see rendered Google Maps pages and extract data that CLI tools cannot scrape.
 
 ## When to Generate This
 
@@ -9,27 +9,36 @@ Generate this prompt when:
 - Running `str-gbp-audit` and `brand_context/seo/gbp-details.md` has gaps (Unknown, TBD, "needs verification")
 - The user asks to "refresh GBP data" or "update from Google Maps"
 
+## Prerequisites
+
+Before generating this prompt, the user must have provided **3-5 target keywords** they want to rank for in the map pack. These keywords are used in Part 1 of the prompt. If keywords haven't been collected yet, ask first.
+
 ## How It Works
 
-1. **Code** fills in the template below with actual business names, URLs, and competitor URLs from `brand_context/seo/`
-2. **Code** outputs the filled prompt as a copyable block
-3. **User** opens claude.ai co-work, navigates to the first Google Maps URL, and pastes the prompt
-4. **Co-work** (with Chrome extension reading the page) extracts structured data
-5. **User** copies the co-work output and pastes it back into Code
-6. **Code** parses the structured output and updates `brand_context/seo/` files
+1. **Code** collects 3-5 target keywords from the user
+2. **Code** fills in the template below with keywords, business names, URLs, and competitor URLs from `brand_context/seo/`
+3. **Code** outputs the filled prompt as a copyable block
+4. **User** opens claude.ai in Chrome with the Claude extension active
+5. **User** navigates to Google Maps and pastes the prompt into the Claude side panel
+6. **Part 1:** User searches each keyword on Google Maps — Claude reads the map pack results and records rankings
+7. **Part 2:** User navigates to each listing URL — Claude reads the full GBP data
+8. **User** copies the full output and pastes it back into Code
+9. **Code** parses the structured output and updates `brand_context/seo/` files
 
 ## User Instructions (show these to the user)
 
 ```
 To get the GBP data I can't access from here, do this:
 
-1. Open claude.ai (co-work mode) in Chrome with the Claude extension active
-2. Open Google Maps in another tab
-3. Paste the prompt below into co-work
-4. Follow the URL-by-URL instructions — co-work will read each Maps page
-5. When done, copy the full output and paste it back here
+1. Open claude.ai in Chrome with the Claude extension active
+2. Click the Claude icon in your toolbar to open the side panel
+3. Open Google Maps in another tab
+4. Paste the prompt below into the Claude side panel
+5. Part 1: Search each keyword — Claude will read the map pack results
+6. Part 2: Visit each listing URL — Claude will extract full GBP data
+7. When done, copy the full output and paste it back here
 
-This takes about 5 minutes and fills every gap in our competitor data.
+This takes about 10 minutes and gives us real ranking data + competitor profiles.
 ```
 
 ## Prompt Template
@@ -40,17 +49,46 @@ The `{VARIABLES}` below get replaced by Code with real data before showing to th
 
 ### START OF CO-WORK PROMPT ###
 
-I need you to extract Google Business Profile data from Google Maps listings. I'll navigate to each URL one at a time. For each listing, read everything visible on the page and output the data in the exact format below.
-
-**IMPORTANT:** Use the exact format — this output gets pasted into another tool that parses it.
+I need your help extracting data from Google Maps in two parts. I'll navigate to pages and you read what's on screen. Use the exact output formats below — this gets pasted into another tool that parses it.
 
 ---
+
+## PART 1: MAP PACK KEYWORD SEARCHES
+
+I'm going to search these keywords on Google Maps one at a time. For each search, read the map pack results (the top 3-5 listings that appear) and record them in the exact format below.
+
+**KEYWORDS TO SEARCH:**
+
+{KEYWORD_LIST}
+
+**For each keyword search, after I type it into Google Maps, extract and output:**
+
+```
+=== MAP PACK: "{keyword}" ===
+
+POSITION_1: {business name} | {primary category shown} | {rating} stars | {review count} reviews
+POSITION_2: {business name} | {primary category shown} | {rating} stars | {review count} reviews
+POSITION_3: {business name} | {primary category shown} | {rating} stars | {review count} reviews
+POSITION_4: {business name} | {primary category shown} | {rating} stars | {review count} reviews (if shown)
+POSITION_5: {business name} | {primary category shown} | {rating} stars | {review count} reviews (if shown)
+
+MY_LISTING_APPEARS: Yes (position {N}) / No
+SPONSORED_RESULTS: {any sponsored listings at top, or "None"}
+
+=== END MAP PACK: "{keyword}" ===
+```
+
+Let me search the first keyword now.
+
+---
+
+## PART 2: INDIVIDUAL LISTING EXTRACTION
+
+After we finish all keyword searches, I'll navigate to each business listing one at a time. For each listing, read everything visible on the page and output in this format:
 
 **LISTINGS TO VISIT:**
 
 {URL_LIST}
-
----
 
 **For each listing, after I navigate to the URL, extract and output:**
 
@@ -102,7 +140,7 @@ REVIEWS_SNAPSHOT:
 === END: {business name} ===
 ```
 
-Let me navigate to the first URL now.
+Let me navigate to the first listing now.
 
 ### END OF CO-WORK PROMPT ###
 
@@ -112,6 +150,18 @@ Let me navigate to the first URL now.
 
 When the user pastes co-work output back into Code, parse it using these rules:
 
+### Part 1 (Map Pack Data)
+1. Split on `=== MAP PACK:` markers to separate each keyword search
+2. Extract the keyword from the header (between quotes)
+3. Parse each POSITION line: split on `|` to get business name, category, rating, reviews
+4. Check MY_LISTING_APPEARS for the client's ranking position
+5. Store map pack data for the category audit — this shows:
+   - Which categories correlate with map pack appearances
+   - The client's actual ranking position per keyword
+   - Which competitors consistently appear across keywords
+6. Save to `brand_context/seo/map-pack-rankings.md` with the date
+
+### Part 2 (Listing Data)
 1. Split on `=== GBP DATA:` markers to separate each business
 2. Extract fields by line prefix (RATING:, REVIEWS:, PRIMARY_CATEGORY:, etc.)
 3. ATTRIBUTES and SERVICES are multi-line — collect all `- ` lines until the next section header
@@ -120,6 +170,18 @@ When the user pastes co-work output back into Code, parse it using these rules:
    - If it matches a competitor → update `brand_context/seo/competitors/{slug}.md`
 5. Merge, don't overwrite — keep existing data (website scrapes, Yelp data) and ADD the Google-specific fields
 6. Mark fields as "verified via GBP" with the date
+
+## Keyword List Template
+
+Generate the keyword list section like this:
+
+```
+1. "{keyword 1}" in {primary city}
+2. "{keyword 2}" in {primary city}
+3. "{keyword 3}" in {primary city}
+```
+
+Use the keywords the user selected during the "Before You Start" step of the GBP audit skill.
 
 ## URL List Template
 

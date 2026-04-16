@@ -11,7 +11,7 @@
 - **BirdEye (aggregated):** 4.8 stars / 436 reviews
 - **USA Veterinarians:** 4.73 stars / 26 reviews
 - **Yelp:** 4.2 stars / 33 reviews (unclaimed listing)
-- **Google (estimated):** 350-400+ reviews at ~4.8 stars (from BirdEye aggregate)
+- **Google (via GBP):** 4.8 stars / 383 reviews (verified 2026-04-15)
 
 ## Hours
 - Monday: 8:00 AM - 7:00 PM
@@ -25,9 +25,9 @@
 ## Why They're a Competitor
 Adjacent market in Cary, IL — overlaps with Crystal Lake and Algonquin service areas. Strong review profile and broad service offering including orthopedic surgery.
 
-## GBP Categories
-- **Primary:** Veterinarian [estimated]
-- **Secondary:** Emergency Veterinarian Service, Pet Boarding Service, Animal Hospital [estimated]
+## GBP Categories (verified via GBP 2026-04-15)
+- **Primary:** Animal hospital
+- **Secondary:** None visible
 
 ## Services
 *From website + Yelp verified (pet physical/wellness exam, pet vaccinations)*
@@ -53,7 +53,31 @@ Adjacent market in Cary, IL — overlaps with Crystal Lake and Algonquin service
 ## Animals Treated
 Dogs, cats, rabbits, guinea pigs, other small mammals, plus ambulatory equine services
 
-## Yelp Photos: 10
+## Photos
+- **Yelp photos:** 10
+- **GBP photos (verified 2026-04-15):** 20+ total, 9 owner photos
+- **GBP photo types:** All, By owner, Street View & 360°
+
+## GBP Attributes (verified 2026-04-15)
+- Wheelchair accessible entrance
+- Wheelchair accessible parking lot
+- Wheelchair accessible restroom
+- Onsite services
+- Restroom
+- Appointment required
+- Appointments recommended
+
+## GBP Posts (verified 2026-04-15)
+- **Last post date:** ~October 2025 (6 months ago)
+- **Post frequency:** Infrequent (1 visible)
+- **Recent post topics:** Customer photo — nervous dog waiting at the clinic
+
+## GBP Services Listed
+- No services section visible (verified 2026-04-15)
+
+## GBP Review Highlights (verified 2026-04-15)
+- **Most mentioned:** caring staff (59), dr quinn (29), vet techs (11)
+- **Recent themes:** Staff warmth/communication, Dr. Quinn praised by name, long-term client loyalty, care for nervous/sick pets
 
 ## Certifications
 - No AAHA accreditation found
@@ -102,4 +126,4 @@ Dogs, cats, rabbits, guinea pigs, other small mammals, plus ambulatory equine se
 - Low Cost Veterinary, Animal Hospital, Orthopedic Veterinarian, Emergency Vet, Mobile Veterinary Services
 
 ---
-*Last updated: 2026-04-14 (enriched with Firecrawl Yelp + directory scrape data)*
+*Last updated: 2026-04-15 (enriched with GBP data via Chrome extension co-work)*

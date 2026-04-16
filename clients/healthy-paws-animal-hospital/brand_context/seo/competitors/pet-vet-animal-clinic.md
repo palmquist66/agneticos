@@ -9,7 +9,7 @@
 
 ## Review Profile (Aggregated from Scraped Data)
 - **BirdEye (aggregated):** 4.7 stars / 262 reviews
-- **Google (estimated):** ~150-200 reviews at ~4.7 stars (from BirdEye aggregate)
+- **Google (via GBP):** 4.7 stars / 227 reviews (verified 2026-04-15)
 - **Facebook:** 90% recommend / 54 reviews
 - **Yelp:** 3.8 stars / 32 reviews (claimed)
 - **Consumers' Checkbook:** 84% superior rating / 26 reviews — prices 15% LOWER than average
@@ -27,9 +27,9 @@
 ## Why They're a Competitor
 Located in Huntley, IL — directly adjacent to HPAH's service area. Has geo-targeted SEO pages for Lake in the Hills, Algonquin, and other nearby cities. Mobile practice is a unique differentiator.
 
-## GBP Categories
-- **Primary:** Veterinarian [estimated]
-- **Secondary:** Mobile Veterinary Service, Veterinary Clinic, Animal Hospital [estimated]
+## GBP Categories (verified via GBP 2026-04-15)
+- **Primary:** Veterinarian
+- **Secondary:** None visible
 
 ## Services
 *From website + Yelp verified (pet physical/wellness exam, pet vaccinations)*
@@ -52,7 +52,29 @@ Located in Huntley, IL — directly adjacent to HPAH's service area. Has geo-tar
 - Fecal testing
 - Chronic condition management
 
-## Yelp Photos: 4
+## Photos
+- **Yelp photos:** 4
+- **GBP photos (verified 2026-04-15):** 20+ total, 0 owner photos (no "By owner" tab)
+- **GBP photo types:** All, Street View & 360°
+
+## GBP Attributes (verified 2026-04-15)
+- Wheelchair accessible entrance
+- Wheelchair accessible parking lot
+- Wheelchair accessible restroom
+- Identifies as women-owned
+- Restroom
+- Appointment required
+- Appointments recommended
+
+## GBP Posts (verified 2026-04-15)
+- **Status:** No posts
+
+## GBP Services Listed
+- No services section visible (verified 2026-04-15)
+
+## GBP Review Highlights (verified 2026-04-15)
+- **Most mentioned:** caring staff (27), pricing (6), house calls (5)
+- **Recent themes:** Dr. Deb and Dr. Shalini praised by name, mobile/house call service highlighted, strong emotional connection with staff, compassionate end-of-life care
 
 ## Certifications
 - **Fear Free Certified Practice** — every staff member is Fear Free trained (full practice designation)
@@ -111,4 +133,4 @@ Located in Huntley, IL — directly adjacent to HPAH's service area. Has geo-tar
 - Mobile Veterinarians, Cheap Dog Vaccines, Cheap Veterinarians, Mobile Dog Grooming, Veterinary Clinic, Dog Dental Cleaning
 
 ---
-*Last updated: 2026-04-14 (enriched with Firecrawl Yelp + directory scrape data)*
+*Last updated: 2026-04-15 (enriched with GBP data via Chrome extension co-work)*

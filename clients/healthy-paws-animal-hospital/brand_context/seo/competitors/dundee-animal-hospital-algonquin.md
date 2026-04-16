@@ -9,8 +9,8 @@
 - **GBP URL:** [needs manual lookup on Google Maps]
 
 ## Review Profile (Aggregated from Scraped Data)
-- **Google (from website widget):** 4.4 stars (also referenced as 4.2 in some embeds)
-- **Google review count:** 829 reviews aggregated across all 3 locations — Algonquin-specific count unclear
+- **Google (via GBP):** 4.4 stars / 135 reviews — Algonquin location only (verified 2026-04-15)
+- **Google (from website widget):** 829 reviews aggregated across all 3 locations
 - **Yelp:** 3.4 stars / 26 reviews (claimed)
 - **Consumers' Checkbook:** 83% superior rating / 18 reviews
 
@@ -26,9 +26,9 @@
 ## Why They're a Competitor
 Direct competitor in Algonquin, IL — one of HPAH's target service areas. Multi-location practice (3 locations: Dundee, Algonquin, Elgin) with AAHA accreditation and broad services including exotic care.
 
-## GBP Categories
-- **Primary:** Veterinarian [estimated]
-- **Secondary:** Animal Hospital, Emergency Veterinarian Service, Pet Groomer, Veterinary Pharmacy [estimated]
+## GBP Categories (verified via GBP 2026-04-15)
+- **Primary:** Veterinarian
+- **Secondary:** None visible
 
 ## Services
 *From website + Yelp verified (pet physical/wellness exam, pet vaccinations)*
@@ -50,7 +50,32 @@ Direct competitor in Algonquin, IL — one of HPAH's target service areas. Multi
 ## Animals Treated
 Dogs, cats, birds, pocket pets, exotic animals
 
-## Yelp Photos: 4
+## Photos
+- **Yelp photos:** 4
+- **GBP photos (verified 2026-04-15):** 20+ total, 20+ owner photos (strong owner photo presence)
+- **GBP photo types:** All, By owner, Street View & 360°
+
+## GBP Attributes (verified 2026-04-15)
+- Wheelchair accessible entrance
+- Wheelchair accessible parking lot
+- Wheelchair accessible restroom
+- Onsite services
+- Restroom
+- LGBTQ+ friendly
+- Transgender safespace
+- Appointments recommended
+- Free parking lot
+- On-site parking
+
+## GBP Posts (verified 2026-04-15)
+- **Status:** No posts
+
+## GBP Services Listed
+- No services section visible (verified 2026-04-15)
+
+## GBP Review Highlights (verified 2026-04-15)
+- **Most mentioned:** quality care (4), caring vets (3), caring doctors (3)
+- **Recent themes:** Long-term client loyalty (25+ years), Dr. O'Brien praised by name, staff warmth, gentle handling of anxious pets, owner responses present on some reviews
 
 ## Certifications
 - **AAHA Accredited** since 1975 (all 3 locations — fewer than 15% of US hospitals)
@@ -105,4 +130,4 @@ Dogs, cats, birds, pocket pets, exotic animals
 - Animal Hospital, Veterinary Clinic, Affordable Dog Teeth Cleaning, Bird Shops, Veterinary Oncologist, Free Animal Clinic
 
 ---
-*Last updated: 2026-04-14 (enriched with Firecrawl Yelp + directory scrape data)*
+*Last updated: 2026-04-15 (enriched with GBP data via Chrome extension co-work)*

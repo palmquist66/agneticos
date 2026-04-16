@@ -56,12 +56,13 @@ Per-step deliverables saved to the active project folder (e.g., `projects/briefs
 ## Before You Start
 
 1. **Load SEO context** — read all files from `brand_context/seo/`. If missing, stop and direct user to `str-seo-context-setup`.
-2. **Check data completeness** — scan `brand_context/seo/gbp-details.md` and competitor files for gaps (fields marked "Unknown", "needs verification", "TBD"). If significant gaps exist (missing categories, attributes, photo counts, description), offer: "Some GBP data is missing — want me to generate a co-work prompt so you can grab it from Google Maps in the browser? Takes about 5 minutes." If yes, read `str-seo-context-setup/references/cowork-gbp-prompt.md` and generate the prompt. If no, proceed with what's available and note gaps in the audit output.
-3. **Load learnings** — read `context/learnings.md` → `## str-gbp-audit`. Apply any rules.
-4. **Determine scope** — ask the user:
+2. **Collect target keywords** — ASK the user for 3-5 keywords they want to rank for in the map pack. Show them the list from `brand_context/seo/business-profile.md` → Target Keywords and let them pick, or they can provide custom ones. These keywords drive the entire audit — they're used in the co-work prompt for map pack searches AND in the category audit comparison matrix. Do NOT skip this step or pick keywords silently.
+3. **Check data completeness** — scan `brand_context/seo/gbp-details.md` and competitor files for gaps (fields marked "Unknown", "needs verification", "TBD"). If significant gaps exist (missing categories, attributes, photo counts, description), offer: "Some GBP data is missing — want me to generate a co-work prompt so you can grab it from Google Maps in the browser? Takes about 10 minutes." If yes, read `str-seo-context-setup/references/cowork-gbp-prompt.md` and generate the prompt — **include the user's chosen keywords in Part 1 of the prompt** so the co-work session captures map pack rankings per keyword. If no, proceed with what's available and note gaps in the audit output.
+4. **Load learnings** — read `context/learnings.md` → `## str-gbp-audit`. Apply any rules.
+5. **Determine scope** — ask the user:
    - "Full audit (all 8 steps) or specific steps?"
    - If specific: let them pick by name or number
-5. **Determine output location** — check for an active project in `projects/briefs/` with SEO in the name. If found, save there. Otherwise save to `projects/str-gbp-audit/`.
+6. **Determine output location** — check for an active project in `projects/briefs/` with SEO in the name. If found, save there. Otherwise save to `projects/str-gbp-audit/`.
 
 ## Step 1: GBP Category Audit
 
@@ -162,6 +163,7 @@ Ask: "How did this land? Anything missing or off-base?" Log feedback to `context
 ## Rules
 
 - 2026-04-14 (Step 1): Before running the category audit, ASK the user for 3 target keywords to search on Google Maps. Don't assume or pick from the keyword list silently — the user needs to choose which searches matter most to them. These 3 keywords drive the entire category comparison matrix.
+- 2026-04-15 (Co-work prompt): The co-work prompt has TWO parts: Part 1 searches the user's chosen keywords on Google Maps and records map pack rankings (who appears, what position, their categories). Part 2 visits individual listings to extract full GBP data. Both parts must be included — Part 1 feeds the category audit with actual ranking position data, not estimates.
 
 ## Self-Update
 
