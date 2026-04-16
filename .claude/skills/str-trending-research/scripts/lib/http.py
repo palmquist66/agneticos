@@ -5,6 +5,7 @@ Adapted from https://github.com/Ronnie-Nutrition/last30days-skill
 
 import json
 import os
+import ssl
 import sys
 import time
 import urllib.error
@@ -14,6 +15,23 @@ from urllib.parse import urlencode
 
 DEFAULT_TIMEOUT = 30
 DEBUG = os.environ.get("LAST30DAYS_DEBUG", "").lower() in ("1", "true", "yes")
+
+
+def _get_ssl_context() -> ssl.SSLContext:
+    """Build an SSL context that works across Python installations.
+
+    Uses certifi's CA bundle when available (handles cron environments
+    where system certs may not be configured for the active Python).
+    """
+    try:
+        import certifi
+        ctx = ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        ctx = ssl.create_default_context()
+    return ctx
+
+
+_SSL_CTX = _get_ssl_context()
 
 
 def log(msg: str):
@@ -61,7 +79,7 @@ def request(
     last_error = None
     for attempt in range(retries):
         try:
-            with urllib.request.urlopen(req, timeout=timeout) as response:
+            with urllib.request.urlopen(req, timeout=timeout, context=_SSL_CTX) as response:
                 body = response.read().decode('utf-8')
                 log(f"Response: {response.status} ({len(body)} bytes)")
                 return json.loads(body) if body else {}
