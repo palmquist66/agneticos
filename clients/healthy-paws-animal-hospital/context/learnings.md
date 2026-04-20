@@ -24,6 +24,8 @@
 - 2026-03-29: Don't assign tasks to specific roles (practice manager, front desk staff) in presentations — the consultant doesn't know the client's team structure
 - 2026-03-29: Gamma has a 10-slide max — plan content to fit within that limit upfront
 - 2026-04-09: When outputting email drafts or copy for the user, use plain text — markdown formatting (bold headers, horizontal rules, indented blocks) can cause weird indentation in the terminal that the user has to fix manually
+- 2026-04-20: Markdown files don't paste cleanly into Google Docs — tables break, syntax shows through. For client-facing docs, create a separate Google Docs-friendly version: ALL CAPS headers, bullet lists instead of tables, no markdown syntax
+- 2026-04-20: Business name "JP Digital Works" is not confirmed. Use "Jim Palmquist" and palmquist66@gmail.com until decided. Don't use jpdigitalworks.com email or JP Digital Works branding in any deliverables
 
 
 # Individual Skills
