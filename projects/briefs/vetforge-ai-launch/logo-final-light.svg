@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" width="600" height="200">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&amp;display=swap');
+    </style>
+    <linearGradient id="forgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1D4ED8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="200" fill="#FAFAFA"/>
+
+  <!-- VF Monogram -->
+  <rect x="25" y="30" width="140" height="140" rx="28" fill="url(#forgeGrad)"/>
+
+  <!-- V letter -->
+  <path d="M55 62 L82 138 L88 138 L68 72" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M109 62 L88 138 L82 138 L96 72" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- F letter -->
+  <line x1="100" y1="62" x2="100" y2="138" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+  <line x1="100" y1="62" x2="140" y2="62" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+  <line x1="100" y1="95" x2="132" y2="95" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- VETFORGE text -->
+  <text x="190" y="105" font-family="Inter, Arial Black, sans-serif" font-weight="900" font-size="52" fill="#0A0F1C" letter-spacing="-1">VETFORGE</text>
+
+  <!-- AI accent -->
+  <text x="505" y="105" font-family="Inter, Arial Black, sans-serif" font-weight="900" font-size="52" fill="#3B82F6" letter-spacing="1">AI</text>
+
+  <!-- Divider -->
+  <rect x="190" y="118" width="370" height="2" rx="1" fill="#E4E4E7"/>
+
+  <!-- Tagline -->
+  <text x="190" y="140" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="13" fill="#A1A1AA" letter-spacing="3">AI-POWERED VETERINARY MARKETING</text>
+</svg>
