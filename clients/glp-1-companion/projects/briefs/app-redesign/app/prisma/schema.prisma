@@ -1,0 +1,226 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── User ───────────────────────────────────────────────
+model User {
+  id            String   @id @default(cuid())
+  clerkId       String   @unique
+  email         String   @unique
+  name          String?
+  glp1Med       String?  // e.g. "Ozempic", "Mounjaro"
+  glp1Dosage    String?  // e.g. "0.5mg"
+  otherMeds     String[] // e.g. ["Metformin 500mg", "Vitamin D"]
+  goalWeight    Float?   // lbs
+  proteinTarget Int?     // grams/day, default 100
+  glucoseMin    Int?     // mg/dL, default 70
+  glucoseMax    Int?     // mg/dL, default 180
+  isAdmin       Boolean  @default(false)
+  onboarded     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  glucoseLogs          GlucoseLog[]
+  weightLogs           WeightLog[]
+  foodLogs             FoodLog[]
+  medicationLogs       MedicationLog[]
+  medicationSchedules  MedicationSchedule[]
+  sideEffects          SideEffect[]
+  injectionSites       InjectionSite[]
+  titrationSchedules   TitrationSchedule[]
+  dataSourceConnections DataSourceConnection[]
+  syncLogs             SyncLog[]
+}
+
+// ─── Glucose ────────────────────────────────────────────
+model GlucoseLog {
+  id        String   @id @default(cuid())
+  userId    String
+  value     Float    // mg/dL
+  context   String?  // 'fasting' | 'before_meal' | 'after_meal' | 'bedtime' | trend values
+  notes     String?
+  source    String   @default("manual") // 'manual' | 'dexcom' | 'apple_health'
+  metadata  Json?    // source-specific data (e.g., trendRate from Dexcom)
+  loggedAt  DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, loggedAt, source]) // dedup synced readings
+  @@index([userId, loggedAt])
+}
+
+// ─── Weight ─────────────────────────────────────────────
+model WeightLog {
+  id        String   @id @default(cuid())
+  userId    String
+  weight    Float    // lbs
+  notes     String?
+  source    String   @default("manual") // 'manual' | 'google_fit' | 'apple_health'
+  loggedAt  DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, loggedAt])
+}
+
+// ─── Food ───────────────────────────────────────────────
+model FoodLog {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String   // food name or description
+  calories    Float?
+  protein     Float?   // grams
+  carbs       Float?   // grams
+  fat         Float?   // grams
+  mealType    String?  // 'breakfast' | 'lunch' | 'dinner' | 'snack'
+  inputMethod String   @default("text") // 'photo' | 'text' | 'recipe'
+  imageUrl    String?  // S3 URL for photo-based entries
+  servings    Float?   // for recipe entries
+  notes       String?
+  loggedAt    DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, loggedAt])
+}
+
+// ─── Medication Log (individual dose taken/missed) ──────
+model MedicationLog {
+  id           String   @id @default(cuid())
+  userId       String
+  scheduleId   String?
+  medName      String   // medication name
+  dosage       String   // e.g. "500mg"
+  status       String   @default("taken") // 'taken' | 'missed' | 'skipped'
+  notes        String?
+  loggedAt     DateTime @default(now())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user     User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  schedule MedicationSchedule? @relation(fields: [scheduleId], references: [id], onDelete: SetNull)
+
+  @@index([userId, loggedAt])
+}
+
+// ─── Medication Schedule ────────────────────────────────
+model MedicationSchedule {
+  id        String   @id @default(cuid())
+  userId    String
+  medName   String
+  dosage    String
+  frequency String   // 'daily' | 'specific_days' | 'weekly'
+  days      String[] // e.g. ["monday", "thursday"] for specific_days/weekly
+  times     String[] // e.g. ["08:00", "20:00"] for daily
+  isGlp1    Boolean  @default(false)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  logs MedicationLog[]
+
+  @@index([userId])
+}
+
+// ─── Side Effect ────────────────────────────────────────
+model SideEffect {
+  id        String   @id @default(cuid())
+  userId    String
+  symptom   String   // 'nausea' | 'diarrhea' | 'constipation' | 'stomach_pain' | etc.
+  severity  String   // 'mild' | 'moderate' | 'severe'
+  notes     String?
+  loggedAt  DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, loggedAt])
+}
+
+// ─── Injection Site ─────────────────────────────────────
+model InjectionSite {
+  id        String   @id @default(cuid())
+  userId    String
+  site      String   // 'left_arm' | 'right_arm' | 'left_abdomen' | 'right_abdomen' | 'left_thigh' | 'right_thigh'
+  notes     String?
+  loggedAt  DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, loggedAt])
+}
+
+// ─── Titration Schedule ─────────────────────────────────
+model TitrationSchedule {
+  id        String    @id @default(cuid())
+  userId    String
+  medName   String
+  dosage    String    // e.g. "0.25mg"
+  order     Int       // sequence position (1, 2, 3...)
+  status    String    @default("planned") // 'completed' | 'current' | 'planned'
+  startedAt DateTime?
+  endedAt   DateTime?
+  notes     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ─── Data Source Connection (OAuth tokens) ───────────────
+model DataSourceConnection {
+  id              String    @id @default(cuid())
+  userId          String
+  source          String    // 'dexcom' | 'google_fit' | 'apple_health'
+  status          String    @default("disconnected") // 'connected' | 'disconnected' | 'error' | 'expired'
+  accessToken     String?
+  refreshToken    String?
+  tokenExpiresAt  DateTime?
+  scopes          String[]
+  lastSyncAt      DateTime?
+  lastSyncStatus  String?   // 'success' | 'partial' | 'failed'
+  lastSyncRecords Int?
+  lastSyncError   String?
+  metadata        Json?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, source])
+}
+
+// ─── Sync Log (audit trail) ─────────────────────────────
+model SyncLog {
+  id          String    @id @default(cuid())
+  userId      String
+  source      String
+  action      String    // 'pull' | 'connect' | 'disconnect' | 'refresh_token'
+  status      String    // 'success' | 'partial' | 'failed'
+  recordCount Int?
+  dateFrom    DateTime?
+  dateTo      DateTime?
+  error       String?
+  durationMs  Int?
+  createdAt   DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
