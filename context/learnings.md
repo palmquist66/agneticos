@@ -13,6 +13,7 @@
 - 2026-04-21: Brand naming brainstorm session — parallel research agents (niche vs general, rebranding costs, naming patterns) worked well. Iterative questioning approach helped narrow from wide field to 3 finalists. User found it "very helpful in generating ideas."
 - 2026-04-27: No feedback — routine session. VetForge AI landing page built and deployed end-to-end (scaffold → code → GitHub → Vercel) in one session. Parallel file writes kept it efficient.
 - 2026-04-29: No feedback — routine session. Impeccable critique (26/40) + top 3 fixes applied to VetForge site. Parallel assessment agents (LLM review + automated scan) worked well for comprehensive critique.
+- 2026-04-30: Multi-option design approach paid off — created 3 landing page variants (warm+light, impeccable polish, Claude Design navy+orange), served on separate ports for side-by-side comparison. Wife picked the winner (site-v3). Having concrete options to compare > iterating on a single direction.
 
 ## What doesn't work well
 - 2026-04-08: meta-wrap-up did not auto-trigger on "I'm done" / "done for today" session-end signals. Claude must actively watch for these triggers and run the skill without being asked.
@@ -64,3 +65,6 @@
 ## tool-stitch
 
 ## viz-stitch-design
+
+## impeccable
+- 2026-04-30: Tailwind v4 CSS specificity gotcha — global element styles (a, h1-h3) must be wrapped in `@layer base` or they override Tailwind utility classes like `text-white`. Unlayered styles win over `@layer utilities` in the cascade. Always layer global resets.
