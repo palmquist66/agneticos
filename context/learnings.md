@@ -9,6 +9,10 @@
 ## What works well
 - 2026-04-08: GSD planning workflow (research → plan → verify → revise loop) worked smoothly for complex multi-book phase
 - 2026-04-10: No feedback — routine session. Phase 2.1 gap closure plans 03-04 executed smoothly via parallel agents.
+- 2026-04-21: No feedback — routine session. Phase 2.2 Wave 1 (shared infra) executed cleanly. Wave 2 paused pending mitmproxy captures.
+- 2026-04-21: Brand naming brainstorm session — parallel research agents (niche vs general, rebranding costs, naming patterns) worked well. Iterative questioning approach helped narrow from wide field to 3 finalists. User found it "very helpful in generating ideas."
+- 2026-04-27: No feedback — routine session. VetForge AI landing page built and deployed end-to-end (scaffold → code → GitHub → Vercel) in one session. Parallel file writes kept it efficient.
+- 2026-04-29: No feedback — routine session. Impeccable critique (26/40) + top 3 fixes applied to VetForge site. Parallel assessment agents (LLM review + automated scan) worked well for comprehensive critique.
 
 ## What doesn't work well
 - 2026-04-08: meta-wrap-up did not auto-trigger on "I'm done" / "done for today" session-end signals. Claude must actively watch for these triggers and run the skill without being asked.
