@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VetForge AI — AI marketing for veterinary practices</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="stylesheet" href="colors_and_type.css" />
+<style>
+  /* ------------------------------------------------------------------ */
+  /* Page-local styles. Tokens come from colors_and_type.css.            */
+  /* ------------------------------------------------------------------ */
+
+  /* ============== TWEAK TOKENS — overridden by data-* attrs ============== */
+  :root {
+    --t-accent:        var(--orange-500);
+    --t-accent-strong: var(--orange-400);
+    --t-accent-soft:   var(--orange-300);
+    --t-accent-bg:     rgba(249,115,22,0.10);
+    --t-accent-bg-2:   rgba(249,115,22,0.06);
+    --t-ink:           var(--navy-900);
+    --t-ink-2:         var(--navy-800);
+    --t-ink-3:         var(--navy-700);
+    --t-pace-section:  var(--space-32);
+    --t-pace-block:    var(--space-16);
+    --t-pace-card:     var(--space-10);
+    --t-pace-radius:   var(--radius-2xl);
+    --t-motion-dur:    600ms;
+    --t-motion-y:      16px;
+  }
+
+  /* MOOD: editorial (default) — already set above */
+
+  /* MOOD: warmth — orange-led, softer, blush undertones */
+  html[data-mood="warmth"] {
+    --t-accent:        #EA580C;
+    --t-accent-strong: #C2410C;
+    --t-accent-soft:   #FED7AA;
+    --t-accent-bg:     rgba(234,88,12,0.10);
+    --t-accent-bg-2:   rgba(234,88,12,0.06);
+    --t-ink:           #3B1A0A;
+    --t-ink-2:         #5C2C13;
+    --t-ink-3:         #7C3A1A;
+  }
+  html[data-mood="warmth"] body {
+    background: #FDF6F0;
+  }
+  html[data-mood="warmth"] .nav { background: rgba(253,246,240,0.85); }
+  html[data-mood="warmth"] .stats { background: #FAEDDF; }
+  html[data-mood="warmth"] .why { background: #FAEDDF; }
+  html[data-mood="warmth"] .contact { background: #3B1A0A; }
+  html[data-mood="warmth"] footer.foot { background: #3B1A0A; }
+
+  /* MOOD: clinical — cool teal accent, no orange, more white space feel */
+  html[data-mood="clinical"] {
+    --t-accent:        #0E7C7B;
+    --t-accent-strong: #0A5C5C;
+    --t-accent-soft:   #99E6E5;
+    --t-accent-bg:     rgba(14,124,123,0.10);
+    --t-accent-bg-2:   rgba(14,124,123,0.06);
+    --t-ink:           #0F2540;
+    --t-ink-2:         #143356;
+    --t-ink-3:         #1F4A75;
+  }
+
+  /* MOOD: high-contrast — black ink, single accent, harder edges */
+  html[data-mood="contrast"] {
+    --t-accent:        #FF4500;
+    --t-accent-strong: #CC3700;
+    --t-accent-soft:   #FFB199;
+    --t-accent-bg:     rgba(255,69,0,0.08);
+    --t-accent-bg-2:   rgba(255,69,0,0.04);
+    --t-ink:           #000000;
+    --t-ink-2:         #1A1A1A;
+    --t-ink-3:         #333333;
+    --t-pace-radius:   8px;
+  }
+  html[data-mood="contrast"] .stats,
+  html[data-mood="contrast"] .why { background: #F5F5F0; }
+
+  /* PACE: calm — more breathing room, slower motion */
+  html[data-pace="calm"] {
+    --t-pace-section: 160px;
+    --t-pace-block:   96px;
+    --t-pace-card:    56px;
+    --t-motion-dur:   900ms;
+    --t-motion-y:     24px;
+  }
+  /* PACE: standard — default values above */
+
+  /* PACE: energetic — tighter rhythm, snappier motion */
+  html[data-pace="energetic"] {
+    --t-pace-section: 88px;
+    --t-pace-block:   48px;
+    --t-pace-card:    28px;
+    --t-motion-dur:   320ms;
+    --t-motion-y:     8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg-1);
+    color: var(--fg-2);
+    margin: 0;
+    overflow-x: hidden;
+  }
+  img, svg { display: block; max-width: 100%; }
+  button { font-family: inherit; }
+
+  .container {
+    width: 100%;
+    max-width: var(--maxw-content);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+  }
+  @media (min-width: 1024px) {
+    .container { padding: 0 var(--space-20); }
+  }
+
+  /* ============== NAV ============== */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .nav-logo { height: 48px; width: auto; }
+  .nav-links {
+    display: none;
+    align-items: center;
+    gap: var(--space-8);
+  }
+  @media (min-width: 768px) {
+    .nav-links { display: flex; }
+  }
+  .nav-link {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--fg-2);
+    transition: color var(--dur) var(--ease);
+  }
+  .nav-link:hover { color: var(--t-accent); }
+
+  /* ============== BUTTONS ============== */
+  .btn {
+    height: 44px;
+    padding: 0 var(--space-6);
+    border-radius: var(--radius-lg);
+    font-weight: var(--fw-semibold);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all var(--dur) var(--ease);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    border: 1px solid transparent;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--t-ink);
+    color: var(--white);
+    border-color: var(--t-ink);
+    box-shadow: var(--shadow-1);
+  }
+  .btn-primary:hover { background: var(--t-ink-2); border-color: var(--t-ink-2); transform: translateY(-1px); }
+  .btn-accent {
+    background: var(--t-accent);
+    color: var(--white);
+    border-color: var(--t-accent);
+    box-shadow: var(--shadow-1);
+  }
+  .btn-accent:hover { background: var(--t-accent-strong); border-color: var(--t-accent-strong); transform: translateY(-1px); }
+  .btn-secondary {
+    background: var(--white);
+    color: var(--t-ink);
+    border-color: var(--border);
+  }
+  .btn-secondary:hover { background: var(--gray-100); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--t-accent);
+    border: none;
+    padding: 0 var(--space-1);
+  }
+  .btn-ghost:hover { color: var(--t-accent-strong); }
+  .btn-large { height: 52px; padding: 0 var(--space-8); font-size: 17px; }
+
+  /* ============== HERO ============== */
+  .hero {
+    position: relative;
+    padding: clamp(40px, 4vw, 72px) 0 var(--t-pace-section);
+    overflow: hidden;
+    background:
+      radial-gradient(60% 60% at 90% 10%, var(--t-accent-bg-2), transparent 70%),
+      radial-gradient(50% 50% at 5% 100%, rgba(11,16,58,0.04), transparent 70%);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-20);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .hero-grid { grid-template-columns: 1.1fr 1fr; gap: var(--space-12); }
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 6px 12px;
+    background: rgba(249, 115, 22, 0.08);
+    color: var(--t-accent);
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-6);
+  }
+  .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--t-accent); }
+  h1.hero-title {
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: var(--space-6);
+    color: var(--fg-1);
+    text-wrap: balance;
+  }
+  h1.hero-title .accent { color: var(--t-accent); }
+  .hero-sub {
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--fg-3);
+    margin-bottom: var(--space-10);
+    max-width: 540px;
+    text-wrap: pretty;
+  }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-10);
+  }
+  .hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-6);
+    color: var(--fg-3);
+    font-size: 14px;
+  }
+  .hero-trust .check {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .hero-trust svg { color: var(--t-accent); flex-shrink: 0; }
+
+  /* Hero visual: a stylized "search result" mockup */
+  .hero-visual {
+    position: relative;
+  }
+  .search-mock {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-3);
+    padding: var(--space-6);
+    position: relative;
+    z-index: 2;
+  }
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--gray-100);
+    border-radius: var(--radius-pill);
+    margin-bottom: var(--space-6);
+  }
+  .search-bar svg { color: var(--gray-500); flex-shrink: 0; }
+  .search-bar span { font-size: 14px; color: var(--fg-2); }
+  .search-meta {
+    font-size: 12px;
+    color: var(--gray-500);
+    margin-bottom: var(--space-3);
+  }
+  .result {
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .result:last-child { border-bottom: none; }
+  .result.featured {
+    background: linear-gradient(180deg, var(--t-accent-bg-2), rgba(249,115,22,0));
+    margin: 0 calc(var(--space-4) * -1);
+    padding: var(--space-4);
+    border-radius: var(--radius-xl);
+    border-bottom: none;
+    position: relative;
+  }
+  .result.featured::before {
+    content: "Top result";
+    position: absolute;
+    top: -8px;
+    left: var(--space-4);
+    background: var(--t-accent);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+  }
+  .result-domain {
+    font-size: 12px;
+    color: var(--fg-3);
+    margin-bottom: 4px;
+  }
+  .result-domain strong { color: var(--t-ink-2); font-weight: 500; }
+  .result-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--t-ink-3);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .result.featured .result-title { color: var(--t-ink); }
+  .result-snippet {
+    font-size: 13px;
+    color: var(--fg-3);
+    line-height: 1.5;
+  }
+  .result-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--fg-3);
+    margin-top: 4px;
+  }
+  .result-stars .star { color: #EAB308; }
+
+  /* Floating chip badges */
+  .float-chip {
+    position: absolute;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    padding: 8px 14px;
+    box-shadow: var(--shadow-2);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--t-ink);
+    z-index: 3;
+    animation: float 6s ease-in-out infinite;
+  }
+  .float-chip.chip-1 { top: -16px; left: -20px; animation-delay: 0s; }
+  .float-chip.chip-2 { bottom: 40px; right: -24px; animation-delay: -3s; }
+  .float-chip .pulse {
+    width: 8px; height: 8px; border-radius: 50%; background: #16A34A;
+    box-shadow: 0 0 0 0 rgba(22,163,74,0.5);
+    animation: pulse 2s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(22,163,74,0.5); }
+    100% { box-shadow: 0 0 0 8px rgba(22,163,74,0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ============== STATS BAR ============== */
+  .stats {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--gray-100);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+  @media (min-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .stat {
+    padding: var(--space-10) var(--space-6);
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat:nth-child(2n) { border-right: none; }
+  @media (min-width: 768px) {
+    .stat:nth-child(2n) { border-right: 1px solid var(--border); }
+    .stat:nth-child(4n) { border-right: none; }
+  }
+  .stat-num {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--t-ink);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: var(--space-2);
+  }
+  .stat-num .accent { color: var(--t-accent); }
+  .stat-label {
+    font-size: 13px;
+    color: var(--fg-3);
+  }
+
+  /* ============== SECTION SHELLS ============== */
+  section.bleed {
+    padding: var(--t-pace-section) 0;
+  }
+  .section-head {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto var(--t-pace-block);
+  }
+  .section-head .eyebrow {
+    color: var(--t-accent);
+    margin-bottom: var(--space-3);
+    display: block;
+  }
+  .section-head h2 {
+    font-size: clamp(32px, 4vw, 44px);
+    line-height: 1.1;
+    margin-bottom: var(--space-4);
+    text-wrap: balance;
+  }
+  .section-head p {
+    font-size: 18px;
+    color: var(--fg-3);
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  /* ============== SERVICES ============== */
+  .services {
+    background: var(--white);
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  @media (min-width: 768px) {
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--t-pace-radius);
+    padding: var(--t-pace-card);
+    display: flex;
+    flex-direction: column;
+    transition: all var(--dur-slow) var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card:hover {
+    border-color: var(--t-ink);
+    box-shadow: var(--shadow-3);
+    transform: translateY(-4px);
+  }
+  .service-num {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--gray-500);
+    margin-bottom: var(--space-6);
+  }
+  .service-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-xl);
+    background: var(--t-ink);
+    color: var(--t-accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-6);
+    transition: all var(--dur) var(--ease);
+  }
+  .service-card:hover .service-icon {
+    background: var(--t-accent);
+    color: var(--white);
+  }
+  .service-card h3 {
+    font-size: 22px;
+    line-height: 1.3;
+    margin-bottom: var(--space-3);
+  }
+  .service-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--fg-3);
+    margin-bottom: var(--space-6);
+    flex: 1;
+  }
+  .service-stat {
+    margin-top: auto;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+  }
+  .service-stat .num {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--t-accent);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .service-stat .lbl {
+    font-size: 13px;
+    color: var(--fg-3);
+  }
+
+  /* ============== WHY ============== */
+  .why {
+    background: var(--gray-100);
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  @media (min-width: 768px) {
+    .why-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-8); }
+  }
+  .why-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-8);
+    display: flex;
+    gap: var(--space-6);
+    transition: all var(--dur) var(--ease);
+  }
+  .why-card:hover {
+    border-color: var(--t-ink-3);
+    box-shadow: var(--shadow-2);
+  }
+  .why-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    background: var(--t-accent-bg);
+    color: var(--t-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .why-card h3 {
+    font-size: 20px;
+    line-height: 1.3;
+    margin-bottom: var(--space-2);
+  }
+  .why-card p {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--fg-3);
+  }
+
+  /* ============== FAQ ============== */
+  .faq {
+    margin-top: var(--space-32);
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .faq-head {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+  .faq-head h3 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: var(--space-3);
+  }
+  .faq-head p {
+    color: var(--fg-3);
+  }
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .faq-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all var(--dur) var(--ease);
+  }
+  .faq-item.open {
+    border-color: var(--t-ink);
+    box-shadow: var(--shadow-2);
+  }
+  .faq-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: var(--space-6) var(--space-8);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    color: var(--fg-1);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+    font-family: inherit;
+  }
+  .faq-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    color: var(--t-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--dur) var(--ease);
+  }
+  .faq-item.open .faq-icon {
+    background: var(--t-accent);
+    color: var(--white);
+    transform: rotate(45deg);
+  }
+  .faq-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--dur-slow) var(--ease);
+  }
+  .faq-item.open .faq-body {
+    max-height: 400px;
+  }
+  .faq-body-inner {
+    padding: 0 var(--space-8) var(--space-6);
+    color: var(--fg-3);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ============== CONTACT ============== */
+  .contact {
+    background: var(--t-ink);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(50% 60% at 80% 0%, var(--t-accent-bg), transparent 70%),
+      radial-gradient(40% 50% at 10% 100%, var(--t-accent-bg), transparent 70%);
+    pointer-events: none;
+  }
+  .contact-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+  @media (min-width: 1024px) {
+    .contact-inner { grid-template-columns: 1fr 1.1fr; gap: var(--space-20); }
+  }
+  .contact-copy h2 {
+    color: var(--white);
+    font-size: clamp(36px, 4.5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: var(--space-6);
+    text-wrap: balance;
+  }
+  .contact-copy h2 .accent { color: var(--t-accent); }
+  .contact-copy p {
+    color: rgba(255,255,255,0.7);
+    font-size: 17px;
+    line-height: 1.55;
+    margin-bottom: var(--space-10);
+    max-width: 460px;
+  }
+  .contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .contact-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: rgba(255,255,255,0.85);
+    font-size: 15px;
+  }
+  .contact-list svg {
+    color: var(--t-accent);
+    flex-shrink: 0;
+  }
+
+  .form {
+    background: var(--white);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-10);
+    box-shadow: var(--shadow-3);
+    color: var(--fg-2);
+  }
+  @media (min-width: 768px) { .form { padding: var(--space-12); } }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  @media (min-width: 640px) {
+    .form-row.two { grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+  }
+  .form-row + .form-row { margin-top: var(--space-4); }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--t-ink);
+  }
+  .field label .opt {
+    color: var(--gray-500);
+    font-weight: 400;
+    margin-left: 4px;
+  }
+  .field input, .field textarea {
+    height: 48px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0 var(--space-4);
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--fg-1);
+    outline: none;
+    transition: all var(--dur) var(--ease);
+    background: var(--white);
+  }
+  .field textarea {
+    height: auto;
+    min-height: 110px;
+    padding: var(--space-3) var(--space-4);
+    resize: vertical;
+    line-height: 1.5;
+  }
+  .field input::placeholder, .field textarea::placeholder {
+    color: #9CA3AF;
+  }
+  .field input:focus, .field textarea:focus {
+    border-color: var(--t-accent);
+    box-shadow: var(--shadow-focus);
+  }
+  .field.invalid input, .field.invalid textarea {
+    border-color: var(--status-error);
+  }
+  .field .err {
+    font-size: 12px;
+    color: var(--status-error);
+    display: none;
+  }
+  .field.invalid .err { display: block; }
+
+  .form-submit {
+    margin-top: var(--space-6);
+    width: 100%;
+    height: 52px;
+    font-size: 17px;
+  }
+  .form-fine {
+    margin-top: var(--space-4);
+    font-size: 12px;
+    color: var(--gray-500);
+    text-align: center;
+  }
+
+  .success {
+    text-align: center;
+    padding: var(--space-12) var(--space-6);
+  }
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(22,163,74,0.10);
+    color: #16A34A;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-6);
+  }
+  .success h3 {
+    font-size: 24px;
+    margin-bottom: var(--space-3);
+  }
+  .success p {
+    color: var(--fg-3);
+    margin-bottom: var(--space-6);
+  }
+
+  /* ============== FOOTER ============== */
+  footer.foot {
+    background: var(--t-ink);
+    color: rgba(255,255,255,0.7);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: var(--space-16) 0 var(--space-8);
+  }
+  .foot-top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    padding-bottom: var(--space-12);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  @media (min-width: 768px) {
+    .foot-top { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  }
+  .foot-brand img { height: 56px; width: auto; margin-bottom: var(--space-4); }
+  .foot-brand p {
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 320px;
+    margin-bottom: var(--space-6);
+  }
+  .foot-social {
+    display: flex;
+    gap: var(--space-2);
+  }
+  .foot-social a {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.85);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--dur) var(--ease);
+  }
+  .foot-social a:hover {
+    background: var(--t-accent);
+    color: var(--white);
+  }
+  .foot-col h4 {
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+  }
+  .foot-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .foot-col a {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    transition: color var(--dur) var(--ease);
+  }
+  .foot-col a:hover { color: var(--t-accent); }
+  .foot-bot {
+    padding-top: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-4);
+    font-size: 13px;
+  }
+
+  /* ============== HOW IT WORKS ============== */
+  .hiw-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+  @media (min-width: 768px) {
+    .hiw-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-8); }
+  }
+  .hiw-step {
+    position: relative;
+  }
+  .hiw-num {
+    display: block;
+    font-size: 96px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--gray-100);
+    letter-spacing: -0.04em;
+    margin-bottom: var(--space-4);
+  }
+  .hiw-step h3 {
+    font-size: 22px;
+    line-height: 1.3;
+    margin-bottom: var(--space-3);
+  }
+  .hiw-step p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--fg-3);
+    max-width: 45ch;
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(var(--t-motion-y));
+    transition: opacity var(--t-motion-dur) var(--ease), transform var(--t-motion-dur) var(--ease);
+  }
+
+  /* ============== HERO COMPOSITION VARIANTS ============== */
+  /* default = search-first, side-by-side */
+
+  /* HERO: centered — no visual, big type, single-column centered */
+  html[data-hero="centered"] .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  html[data-hero="centered"] .hero-copy { max-width: 820px; margin: 0 auto; }
+  html[data-hero="centered"] h1.hero-title { font-size: clamp(48px, 7.5vw, 88px); }
+  html[data-hero="centered"] .hero-sub { margin-left: auto; margin-right: auto; font-size: 20px; }
+  html[data-hero="centered"] .hero-ctas { justify-content: center; }
+  html[data-hero="centered"] .hero-trust { justify-content: center; }
+  html[data-hero="centered"] .hero-visual { display: none; }
+  html[data-hero="centered"] .hero-eyebrow { margin-left: auto; margin-right: auto; }
+  @media (min-width: 1024px) {
+    html[data-hero="centered"] .hero-grid { grid-template-columns: 1fr; }
+  }
+
+  /* HERO: editorial — full-bleed colored panel on the right with overlay quote */
+  html[data-hero="editorial"] .hero {
+    background: linear-gradient(180deg, var(--t-accent-bg-2), transparent 40%);
+  }
+  html[data-hero="editorial"] .search-mock { display: none; }
+  html[data-hero="editorial"] .float-chip { display: none; }
+  html[data-hero="editorial"] .hero-visual {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--t-pace-radius);
+    background:
+      radial-gradient(120% 80% at 100% 0%, var(--t-accent) 0%, var(--t-accent-strong) 50%, var(--t-ink) 100%);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-3);
+    min-height: 420px;
+  }
+  html[data-hero="editorial"] .hero-visual::before {
+    content: "\201C";
+    position: absolute; top: 16px; left: 32px;
+    font-family: Georgia, serif;
+    font-size: 220px; line-height: 1; color: rgba(255,255,255,0.18);
+  }
+  html[data-hero="editorial"] .hero-visual::after {
+    content: "Pet owners search for emergency vets at 2am. We make sure they find you, not the chain three towns over.";
+    position: absolute; left: 40px; right: 40px; bottom: 32px;
+    color: var(--white);
+    font-size: 22px; font-weight: 600; line-height: 1.35; letter-spacing: -0.01em;
+  }
+
+  html[data-hero="editorial"] .hero-visual > * { display: none; }
+  .reveal.in { opacity: 1; transform: none; }
+
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#top" aria-label="VetForge AI home">
+      <img class="nav-logo" src="assets/logo-light.svg" alt="VetForge AI" style="object-fit: cover" />
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#how-it-works" class="nav-link">How It Works</a>
+      <a href="#why" class="nav-link">Why VetForge</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+    </nav>
+    <a href="#contact" class="btn btn-primary">Get Started</a>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="hero-eyebrow">
+        <span class="dot"></span>
+        AI Marketing for Veterinary Practices
+      </span>
+      <h1 class="hero-title">Your practice deserves to be <span class="accent">found first</span>.</h1>
+      <p class="hero-sub">
+        We build a brand voice profile for your practice, then use AI to create content that sounds like you — not a robot. Combined with proven local SEO, you show up first on Google where pet owners are already searching.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-accent btn-large">
+          Schedule a Free Audit
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#services" class="btn btn-secondary btn-large">See how it works</a>
+      </div>
+      <div class="hero-trust">
+        <span class="check">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          No long-term contracts
+        </span>
+        <span class="check">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Free practice audit
+        </span>
+        <span class="check">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Veterinary specialists
+        </span>
+      </div>
+    </div>
+
+    <!-- Visual: stylized search results to make the pitch concrete -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="float-chip chip-1">
+        <span class="pulse"></span>
+        Ranking #1 in Asheville
+      </div>
+      <div class="float-chip chip-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--t-accent)"><path d="m9 11-6 6v3h3l6-6"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>
+        +312% organic traffic
+      </div>
+      <div class="search-mock">
+        <div class="search-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span>emergency vet near me</span>
+        </div>
+        <div class="search-meta">About 2,840,000 results · Asheville, NC</div>
+        <div class="result featured">
+          <div class="result-domain"><strong>happypaws-vet.com</strong> › emergency-care</div>
+          <div class="result-title">24/7 Emergency Veterinary Care · Happy Paws Veterinary</div>
+          <div class="result-snippet">When your pet needs immediate care, our team is on call around the clock. No appointment needed — walk-ins welcome at our Asheville location.</div>
+          <div class="result-stars">
+            <span class="star">★★★★★</span>
+            <span>4.9 (412)</span>
+            <span>·</span>
+            <span>Open now</span>
+          </div>
+        </div>
+        <div class="result">
+          <div class="result-domain">generic-vet-chain.com</div>
+          <div class="result-title">Find a vet near you</div>
+          <div class="result-snippet">Search our directory of partner clinics for emergency and routine care...</div>
+        </div>
+        <div class="result">
+          <div class="result-domain">petcare-directory.org</div>
+          <div class="result-title">Top 10 emergency vets in your area</div>
+          <div class="result-snippet">Compare emergency veterinary services and read reviews...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== STATS ============== -->
+<section class="stats" aria-label="Outcomes">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num">3.2<span class="accent">×</span></div>
+        <div class="stat-label">More GBP profile views</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">+312<span class="accent">%</span></div>
+        <div class="stat-label">Organic traffic, on average</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">14<span style="font-size:0.6em;color:var(--fg-3);font-weight:500"> days</span></div>
+        <div class="stat-label">Average to first ranking move</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100<span class="accent">%</span></div>
+        <div class="stat-label">Veterinary-only client roster</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SERVICES ============== -->
+<section class="bleed services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">What we do</span>
+      <h2>Three services. One goal: more pet owners finding your practice.</h2>
+      <p>Every engagement starts with an audit. From there we work on the three things that actually move the needle in local veterinary search.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-num">01 / GBP</div>
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Google Business Profile Optimization</h3>
+        <p>Categories, services, attributes, photos, posts. Most veterinary practices leave 60%+ of their GBP blank — that's lost visibility every time a pet owner searches nearby.</p>
+        <div class="service-stat">
+          <span class="num">60%+</span>
+          <span class="lbl">of GBP fields typically left blank</span>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-num">02 / SEO</div>
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+        </div>
+        <h3>Local SEO that ranks</h3>
+        <p>Keyword strategy and on-page optimization for the phrases pet owners actually type — "emergency vet near me," "veterinarian open Saturday." We get you in front of intent, not just impressions.</p>
+        <div class="service-stat">
+          <span class="num">#1–3</span>
+          <span class="lbl">target ranking for local keywords</span>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-num">03 / Content</div>
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+        </div>
+        <h3>AI-powered content creation</h3>
+        <p>We start by building a voice and brand profile for your practice — your tone, your values, the way your team actually talks. Then AI creates blog posts, social, and GBP updates that read like your front desk, not an agency.</p>
+        <div class="service-stat">
+          <span class="num">12–20</span>
+          <span class="lbl">pieces of content per month</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HOW IT WORKS ============== -->
+<section class="bleed" id="how-it-works" style="background:var(--white)">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>From first audit to measurable results in three steps.</h2>
+    </div>
+
+    <div class="hiw-grid">
+      <div class="hiw-step">
+        <span class="hiw-num">1</span>
+        <h3>Free Audit</h3>
+        <p>We analyze your Google presence, compare you against local competitors, and show you exactly where pet owners are finding other practices instead of yours.</p>
+      </div>
+      <div class="hiw-step">
+        <span class="hiw-num">2</span>
+        <h3>Brand Voice Profile</h3>
+        <p>We study how your team talks to pet owners — your tone, vocabulary, the way you explain procedures — and build a voice profile that captures it.</p>
+      </div>
+      <div class="hiw-step">
+        <span class="hiw-num">3</span>
+        <h3>Content That Works</h3>
+        <p>Optimized blog posts, Google Business updates, and social content that sounds like your team wrote it, posted on a schedule that keeps you visible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== WHY + FAQ ============== -->
+<section class="bleed why" id="why">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Why VetForge AI</span>
+      <h2>Marketing built specifically for practices like yours.</h2>
+      <p>Generic agencies treat veterinary like any other vertical. We don't. Everything we do — the keywords, the voice, the local strategy — is calibrated for vet practices.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg>
+        </div>
+        <div>
+          <h3>Built for veterinary</h3>
+          <p>Not a generic digital agency. We specialize in vet practices and understand the local-search landscape pet owners use to find care.</p>
+        </div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg>
+        </div>
+        <div>
+          <h3>Your voice, not AI slop</h3>
+          <p>Most AI content reads like a machine wrote it. Ours doesn't. We build a voice profile unique to your practice so every post sounds like your team.</p>
+        </div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16V11"/><path d="M12 16V8"/><path d="M17 16v-3"/></svg>
+        </div>
+        <div>
+          <h3>Data, not guesses</h3>
+          <p>Every recommendation starts with an audit of your current presence. We show you exactly where the gaps are before changing anything.</p>
+        </div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+        </div>
+        <div>
+          <h3>No long-term contracts</h3>
+          <p>Month to month. If we're not delivering results you can see, walk away anytime. We earn your business every month.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============== FAQ ============== -->
+    <div class="faq" id="faq">
+      <div class="faq-head">
+        <h3>Frequently asked questions</h3>
+        <p>Common questions from practice managers we've talked to.</p>
+      </div>
+      <div class="faq-list" id="faq-list">
+        <!-- JS-rendered -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTACT ============== -->
+<section class="bleed contact" id="contact">
+  <div class="container contact-inner">
+    <div class="contact-copy">
+      <span class="eyebrow" style="color:var(--t-accent-soft)">Get started</span>
+      <h2 style="margin-top:12px">Ready to get <span class="accent">found?</span></h2>
+      <p>Start with a free audit. No commitment, no credit card. We'll review your current Google Business Profile and local search presence, then walk you through exactly where the gaps are.</p>
+      <ul class="contact-list">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Audit delivered within 24 hours
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Specific to your practice and market
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          No sales pitch — just findings
+        </li>
+      </ul>
+    </div>
+
+    <div class="form" id="form-card">
+      <form id="contact-form" novalidate>
+        <div class="form-row two">
+          <div class="field" data-field="name">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" placeholder="Dr. Sarah Johnson" required />
+            <span class="err">Please enter your name.</span>
+          </div>
+          <div class="field" data-field="email">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="sarah@example.com" required />
+            <span class="err">Please enter a valid email.</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field" data-field="practice">
+            <label for="practice">Practice name</label>
+            <input id="practice" name="practice" type="text" placeholder="Happy Paws Veterinary Clinic" required />
+            <span class="err">Please enter your practice name.</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="message">Message <span class="opt">(optional)</span></label>
+            <textarea id="message" name="message" placeholder="Tell us about your practice or what you're looking for…"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-accent form-submit">
+          Schedule a Free Audit
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        </button>
+        <p class="form-fine">We'll never share your email. Audits are free and come with no commitment.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img src="assets/logo-dark.svg" alt="VetForge AI" />
+        <p>Built for veterinary teams. Powered by AI. Designed for results.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="X">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43A2.06 2.06 0 1 1 5.34 3.3a2.06 2.06 0 0 1 0 4.13M7.12 20.45H3.56V9h3.56zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why">Why VetForge</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Free audit</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:hello@vetforgeai.com">hello@vetforgeai.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 VetForge AI. All rights reserved.</span>
+      <span>Built for veterinary teams.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ============== FAQ ==============
+  const faqs = [
+    {
+      q: "How does AI marketing help veterinary practices?",
+      a: "AI lets a small practice produce the volume and consistency of content that used to require a full marketing team — blog posts, social updates, Google Business Profile posts — without sounding generic. We build a voice profile from your existing materials and team interviews, then use AI to generate content that matches. The result: pet owners searching locally find you first, and what they find sounds like a real practice, not a chatbot."
+    },
+    {
+      q: "What is Google Business Profile optimization for vets?",
+      a: "Your GBP is the panel that shows up on Google Maps and the right side of search results — hours, photos, services, reviews. Most vet practices fill out maybe 40% of it. Optimization means filling every relevant field (categories, services, attributes, FAQs, posts), keeping photos fresh, and posting updates regularly. It's the single biggest local-search lever for a brick-and-mortar practice, and it's free."
+    },
+    {
+      q: "Will AI content sound generic or robotic?",
+      a: "Not the way we do it. The first thing we build for every practice is a voice profile: tone, vocabulary, examples your team has actually written, the kinds of pets and cases you talk about most, and what you sound like when you're warm vs. clinical. Every piece of AI-generated content is constrained to that profile and reviewed before publication. If it doesn't sound like you, it doesn't ship."
+    },
+    {
+      q: "How much does veterinary marketing cost?",
+      a: "Our packages start at $899/month for solo practices and scale by location. There's no setup fee, no long-term contract, and the initial audit is free. We'll quote a specific number after the audit based on what your practice actually needs — practices with strong existing GBP need less than ones starting from scratch."
+    }
+  ];
+  const faqList = document.getElementById('faq-list');
+  faqs.forEach((f, i) => {
+    const item = document.createElement('div');
+    item.className = 'faq-item' + (i === 0 ? ' open' : '');
+    item.innerHTML = `
+      <button class="faq-trigger" aria-expanded="${i===0}">
+        <span>${f.q}</span>
+        <span class="faq-icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        </span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">${f.a}</div></div>
+    `;
+    faqList.appendChild(item);
+  });
+  faqList.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.faq-trigger');
+    if (!trigger) return;
+    const item = trigger.parentElement;
+    const wasOpen = item.classList.contains('open');
+    faqList.querySelectorAll('.faq-item').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+    });
+    if (!wasOpen) {
+      item.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  // ============== FORM ==============
+  const form = document.getElementById('contact-form');
+  const formCard = document.getElementById('form-card');
+
+  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fields = form.querySelectorAll('.field[data-field]');
+    let ok = true;
+    fields.forEach(f => {
+      const input = f.querySelector('input, textarea');
+      const v = input.value.trim();
+      const key = f.dataset.field;
+      let valid = !!v;
+      if (key === 'email') valid = validEmail(v);
+      f.classList.toggle('invalid', !valid);
+      if (!valid) ok = false;
+    });
+    if (!ok) return;
+
+    // Success state
+    formCard.innerHTML = `
+      <div class="success">
+        <div class="success-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h3>Audit request received</h3>
+        <p>We'll be in touch within 24 hours with your free audit. Check your inbox for a confirmation from <strong style="color:var(--t-ink)">hello@vetforgeai.com</strong>.</p>
+        <button class="btn btn-secondary" onclick="location.reload()">Send another</button>
+      </div>
+    `;
+  });
+
+  // Live remove invalid state on input
+  form.addEventListener('input', (e) => {
+    const f = e.target.closest('.field');
+    if (f) f.classList.remove('invalid');
+  });
+
+  // ============== REVEAL ==============
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+<!-- ============== TWEAKS ============== -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<div id="tweaks-root"></div>
+<script type="text/babel">
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "mood": "editorial",
+    "hero": "search",
+    "pace": "calm"
+  }/*EDITMODE-END*/;
+
+  // Apply tweak attrs to <html> on every change.
+  function applyTweaks(t) {
+    document.documentElement.setAttribute('data-mood', t.mood);
+    document.documentElement.setAttribute('data-hero', t.hero);
+    document.documentElement.setAttribute('data-pace', t.pace);
+  }
+  applyTweaks(TWEAK_DEFAULTS);
+
+  function App() {
+    const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+    React.useEffect(() => { applyTweaks(t); }, [t]);
+    return (
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Mood" />
+        <TweakRadio
+          label="Palette + tone"
+          value={t.mood}
+          options={[
+            { value: 'editorial', label: 'Editorial' },
+            { value: 'warmth',    label: 'Warmth' },
+            { value: 'clinical',  label: 'Clinical' },
+            { value: 'contrast',  label: 'Hi-con' },
+          ]}
+          onChange={(v) => setTweak('mood', v)}
+        />
+        <TweakSection label="Hero composition" />
+        <TweakRadio
+          label="Layout"
+          value={t.hero}
+          options={[
+            { value: 'search',    label: 'Search' },
+            { value: 'centered',  label: 'Centered' },
+            { value: 'editorial', label: 'Editorial' },
+          ]}
+          onChange={(v) => setTweak('hero', v)}
+        />
+        <TweakSection label="Pace" />
+        <TweakRadio
+          label="Rhythm + motion"
+          value={t.pace}
+          options={[
+            { value: 'calm',      label: 'Calm' },
+            { value: 'standard',  label: 'Standard' },
+            { value: 'energetic', label: 'Energetic' },
+          ]}
+          onChange={(v) => setTweak('pace', v)}
+        />
+      </TweaksPanel>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<App />);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+/* VetForge AI — Colors & Type tokens
+   Source of truth: brand spec sheet (assets/brand-spec.png).
+   Rebrand 2026-04-28 — Navy + Orange, Proxima Nova. */
+
+/* Proxima Nova is a licensed typeface — load via Adobe Fonts in production
+   (https://fonts.adobe.com/fonts/proxima-nova). Fallback substitution:
+   Montserrat from Google Fonts approximates the geometric humanist
+   character at the same weights. Flagged in README. */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ---------- Navy scale ---------- */
+  --navy-900: #0B103A;   /* primary brand · trust, stability, confidence */
+  --navy-800: #10264A;   /* hover surfaces, navigation, elevated states */
+  --navy-700: #1A3763;   /* interactive states, active elements */
+
+  /* ---------- Orange scale (action / accent) ---------- */
+  --orange-500: #F97316; /* primary accent · energy, innovation, action */
+  --orange-400: #FB623C; /* hover accent, highlights */
+  --orange-300: #FDBA74; /* subtle accents, badges, emphasis */
+
+  /* ---------- Gray scale ---------- */
+  --gray-100: #F5F6F8;   /* page background, subtle surfaces */
+  --gray-300: #D1D5DB;   /* borders, dividers, disabled states */
+  --gray-500: #6B7280;   /* secondary text, icons, placeholders */
+  --white:    #FFFFFF;   /* cards, surfaces, clean backgrounds */
+
+  /* ---------- Status (used sparingly, mapped from spec badges) ---------- */
+  --status-new:     var(--navy-900);
+  --status-active:  #16A34A;
+  --status-warning: #EAB308;
+  --status-error:   #DC2626;
+  --status-info:    #0EA5E9;
+
+  /* ---------- Semantic foreground/background ---------- */
+  --fg-1: var(--navy-900);    /* high-emphasis: headings, primary copy */
+  --fg-2: #1F2937;            /* body */
+  --fg-3: var(--gray-500);    /* secondary, captions */
+  --fg-on-navy: var(--white);
+  --fg-accent: var(--orange-500);
+
+  --bg-1: var(--white);       /* page (light theme is canonical) */
+  --bg-2: var(--gray-100);    /* nested surfaces */
+  --bg-3: var(--navy-900);    /* dark surfaces (hero, footer) */
+  --border: var(--gray-300);
+  --border-strong: #B8BEC9;
+
+  /* ---------- Typography ---------- */
+  --font-display: "Proxima Nova", "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-display);
+
+  /* Spec scale — H1 56/64, H2 40/48, H3 28/36, Body 16/24, Small 14/20 */
+  --fs-h1:    56px;
+  --lh-h1:    64px;
+  --fs-h2:    40px;
+  --lh-h2:    48px;
+  --fs-h3:    28px;
+  --lh-h3:    36px;
+  --fs-body:  16px;
+  --lh-body:  24px;
+  --fs-small: 14px;
+  --lh-small: 20px;
+  --fs-eyebrow: 12px;
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Spec note: -1% to -2.5% letter-spacing on headings for tighter, premium feel */
+  --ls-display: -0.025em;
+  --ls-heading: -0.015em;
+  --ls-body:     0;
+  --ls-eyebrow:  0.14em;
+
+  /* ---------- Spacing — 4px base ---------- */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ---------- Radii ---------- */
+  --radius-sm:    6px;
+  --radius-md:    8px;
+  --radius-lg:   12px;     /* buttons (spec) */
+  --radius-xl:   16px;
+  --radius-2xl:  20px;     /* cards */
+  --radius-pill: 999px;
+
+  /* ---------- Elevation — restrained, never neon ---------- */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.08);                 /* button (spec) */
+  --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(11, 16, 58, 0.06);
+  --shadow-3: 0 1px 2px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(11, 16, 58, 0.10);
+  --shadow-focus: 0 0 0 3px rgba(249, 115, 22, 0.30);
+
+  /* ---------- Motion ---------- */
+  --ease:      cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast:  120ms;
+  --dur:       150ms;       /* button transition (spec) */
+  --dur-slow:  300ms;
+
+  /* ---------- Layout ---------- */
+  --maxw-content: 1200px;
+  --maxw-prose:    720px;
+}
+
+/* ---------- Element defaults ---------- */
+html, body {
+  background: var(--bg-1);
+  color: var(--fg-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-display);
+  color: var(--fg-1);
+  margin: 0;
+}
+h2, .h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-heading);
+  color: var(--fg-1);
+  margin: 0;
+}
+h3, .h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-heading);
+  color: var(--fg-1);
+  margin: 0;
+}
+p { margin: 0; color: var(--fg-2); }
+small, .small { font-size: var(--fs-small); line-height: var(--lh-small); color: var(--fg-3); }
+
+.eyebrow {
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+a { color: var(--orange-500); text-decoration: none; }
+a:hover { color: var(--orange-400); }
