@@ -16,22 +16,27 @@ export async function GET() {
         db.weightLog.findMany({
           where: { userId: user.id, loggedAt: { gte: thirtyDaysAgo } },
           orderBy: { loggedAt: "asc" },
+          take: 60,
         }),
         db.glucoseLog.findMany({
           where: { userId: user.id, loggedAt: { gte: thirtyDaysAgo } },
           orderBy: { loggedAt: "asc" },
+          take: 200,
         }),
         db.medicationLog.findMany({
           where: { userId: user.id, loggedAt: { gte: thirtyDaysAgo } },
           orderBy: { loggedAt: "desc" },
+          take: 100,
         }),
         db.sideEffect.findMany({
           where: { userId: user.id, loggedAt: { gte: thirtyDaysAgo } },
           orderBy: { loggedAt: "desc" },
+          take: 100,
         }),
         db.titrationSchedule.findMany({
           where: { userId: user.id },
           orderBy: { order: "asc" },
+          take: 20,
         }),
       ]);
 

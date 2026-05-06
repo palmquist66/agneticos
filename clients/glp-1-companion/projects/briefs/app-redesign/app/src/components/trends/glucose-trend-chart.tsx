@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   LineChart,
   Line,
@@ -40,16 +40,20 @@ function dotColor(value: number, min: number, max: number): string {
 export function GlucoseTrendChart({ data, stats, targetMin, targetMax }: Props) {
   const [contextFilter, setContextFilter] = useState<string | null>(null);
 
+  const filtered = useMemo(
+    () => (contextFilter ? data.filter((d) => d.context === contextFilter) : data),
+    [data, contextFilter]
+  );
+
+  const { minVal, maxVal, padding } = useMemo(() => {
+    if (filtered.length === 0) return { minVal: 0, maxVal: 0, padding: 0 };
+    const values = filtered.map((d) => d.value);
+    const min = Math.min(...values, targetMin);
+    const max = Math.max(...values, targetMax);
+    return { minVal: min, maxVal: max, padding: Math.max((max - min) * 0.1, 10) };
+  }, [filtered, targetMin, targetMax]);
+
   if (data.length === 0) return null;
-
-  const filtered = contextFilter
-    ? data.filter((d) => d.context === contextFilter)
-    : data;
-
-  const values = filtered.map((d) => d.value);
-  const minVal = Math.min(...values, targetMin);
-  const maxVal = Math.max(...values, targetMax);
-  const padding = Math.max((maxVal - minVal) * 0.1, 10);
 
   return (
     <Card>

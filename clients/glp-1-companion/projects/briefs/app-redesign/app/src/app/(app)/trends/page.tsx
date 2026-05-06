@@ -1,48 +1,88 @@
-import { BarChart3 } from "lucide-react";
+import { Suspense } from "react";
+import { getCurrentUser } from "@/lib/auth";
+import {
+  getWeightTrend,
+  getGlucoseTrend,
+  computeGlucoseStats,
+  getPatternData,
+} from "@/lib/trends-queries";
+import { detectPatterns } from "@/lib/pattern-engine";
+import { TIME_RANGE_DAYS } from "@/lib/types/trends";
+import type { TimeRange } from "@/lib/types/trends";
+import { TimeRangeSelector } from "@/components/trends/time-range-selector";
+import { WeightTrendChart } from "@/components/trends/weight-trend-chart";
+import { GlucoseTrendChart } from "@/components/trends/glucose-trend-chart";
+import { PatternCards } from "@/components/trends/pattern-cards";
+import { AIChat } from "@/components/trends/ai-chat";
+import { DeepAnalysis } from "@/components/trends/deep-analysis";
 
-export default function TrendsPage() {
+export const revalidate = 60; // revalidate at most once per minute
+
+type Props = {
+  searchParams: Promise<{ range?: string }>;
+};
+
+export default async function TrendsPage({ searchParams }: Props) {
+  const params = await searchParams;
+  const range = (
+    Object.keys(TIME_RANGE_DAYS).includes(params.range ?? "")
+      ? params.range
+      : "30d"
+  ) as TimeRange;
+  const days = TIME_RANGE_DAYS[range];
+
+  const user = await getCurrentUser();
+
+  const [weightData, glucoseData, patternData] = await Promise.all([
+    getWeightTrend(user.id, days),
+    getGlucoseTrend(user.id, days),
+    getPatternData(user.id),
+  ]);
+
+  const glucoseStats = computeGlucoseStats(
+    glucoseData,
+    user.glucoseMin ?? 70,
+    user.glucoseMax ?? 180
+  );
+
+  const patterns = detectPatterns({
+    ...patternData,
+    glp1Med: user.glp1Med,
+    proteinTarget: user.proteinTarget,
+  });
+
   return (
     <div className="mx-auto max-w-lg px-4 py-6">
       <h1 className="text-lg font-semibold">Trends</h1>
 
       <div className="mt-6 space-y-4">
-        {/* Time range selector placeholder */}
-        <div className="flex gap-1">
-          {["7d", "14d", "30d", "60d", "90d"].map((range) => (
-            <button
-              key={range}
-              className="flex-1 rounded-full border px-2 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent data-[active]:bg-primary data-[active]:text-primary-foreground"
-              data-active={range === "30d" ? "" : undefined}
-            >
-              {range}
-            </button>
-          ))}
-        </div>
+        <Suspense>
+          <TimeRangeSelector current={range} />
+        </Suspense>
 
-        {/* Charts placeholder */}
-        <div className="flex flex-col items-center rounded-xl border py-12 text-center">
-          <BarChart3 className="mb-3 h-10 w-10 text-muted-foreground/50" />
-          <p className="text-sm font-medium">No data to chart yet</p>
-          <p className="mt-1 text-xs text-muted-foreground">
-            Log weight and glucose readings to see trends over time.
-          </p>
-        </div>
+        <WeightTrendChart data={weightData} goalWeight={user.goalWeight} />
 
-        {/* Patterns placeholder */}
-        <div className="rounded-xl border p-4">
-          <h2 className="text-sm font-medium">Patterns</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Keep logging — patterns appear after 7+ days of data.
-          </p>
-        </div>
+        <GlucoseTrendChart
+          data={glucoseData}
+          stats={glucoseStats}
+          targetMin={user.glucoseMin ?? 70}
+          targetMax={user.glucoseMax ?? 180}
+        />
 
-        {/* AI Chat placeholder */}
-        <div className="rounded-xl border p-4">
-          <h2 className="text-sm font-medium">Ask AI</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Ask questions about your data once you have enough entries.
-          </p>
-        </div>
+        {weightData.length === 0 && glucoseData.length === 0 && (
+          <div className="flex flex-col items-center rounded-xl border py-12 text-center">
+            <p className="text-sm font-medium">No data to chart yet</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Log weight and glucose readings to see trends over time.
+            </p>
+          </div>
+        )}
+
+        <PatternCards patterns={patterns} />
+
+        <AIChat />
+
+        <DeepAnalysis />
       </div>
     </div>
   );
