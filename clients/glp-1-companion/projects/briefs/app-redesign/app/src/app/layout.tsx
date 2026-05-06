@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Poppins, Inter } from "next/font/google";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ServiceWorkerRegister } from "@/components/push/sw-register";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -33,7 +35,10 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#FAF8F3",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FAF8F3" },
+    { media: "(prefers-color-scheme: dark)", color: "#0D1F1E" },
+  ],
 };
 
 export default function RootLayout({
@@ -45,11 +50,15 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${poppins.variable} ${inter.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
         <ClerkProvider>
-          {children}
-          <Toaster position="top-center" />
+          <ThemeProvider>
+            {children}
+            <Toaster position="top-center" />
+            <ServiceWorkerRegister />
+          </ThemeProvider>
         </ClerkProvider>
       </body>
     </html>

@@ -1,51 +1,82 @@
+import { getCurrentUser } from "@/lib/auth";
+import { db } from "@/lib/db";
 import { UserButton } from "@clerk/nextjs";
+import { ProfileInfoCard } from "@/components/profile/profile-info-card";
+import { HealthTargetsCard } from "@/components/profile/health-targets-card";
+import { DataSourcesCard } from "@/components/profile/data-sources-card";
+import { ThemeToggle } from "@/components/profile/theme-toggle";
+import { NotificationToggle } from "@/components/push/notification-toggle";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { FileText, ExternalLink } from "lucide-react";
 
-export default function ProfilePage() {
+export const dynamic = "force-dynamic";
+
+export default async function ProfilePage() {
+  const user = await getCurrentUser();
+
+  const connections = await db.dataSourceConnection.findMany({
+    where: { userId: user.id },
+  });
+
   return (
     <div className="mx-auto max-w-lg px-4 py-6">
       <h1 className="text-lg font-semibold">Profile</h1>
 
       <div className="mt-6 space-y-4">
-        {/* Your Info */}
-        <div className="rounded-xl border p-4">
-          <h2 className="text-sm font-medium">Your Info</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Name, GLP-1 medication, dosage, and other meds.
-          </p>
-        </div>
+        <ProfileInfoCard
+          name={user.name}
+          glp1Med={user.glp1Med}
+          glp1Dosage={user.glp1Dosage}
+          otherMeds={user.otherMeds}
+        />
 
-        {/* Health Targets */}
-        <div className="rounded-xl border p-4">
-          <h2 className="text-sm font-medium">Health Targets</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Glucose range, weight goal, protein target.
-          </p>
-        </div>
+        <HealthTargetsCard
+          goalWeight={user.goalWeight}
+          proteinTarget={user.proteinTarget}
+          glucoseMin={user.glucoseMin}
+          glucoseMax={user.glucoseMax}
+        />
+
+        {/* Medication Reminders */}
+        <NotificationToggle />
 
         {/* Connected Data Sources */}
-        <div className="rounded-xl border p-4">
-          <h2 className="text-sm font-medium">Connected Data Sources</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Connect Dexcom, Google Fit, or Apple Health to auto-import your
-            data.
-          </p>
-        </div>
+        <DataSourcesCard connections={connections} />
 
         {/* Doctor Export */}
-        <div className="rounded-xl border p-4">
-          <h2 className="text-sm font-medium">Doctor Export</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Generate a PDF report to share with your healthcare provider.
-          </p>
-        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Doctor Export</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="mb-3 text-sm text-muted-foreground">
+              Generate a printable 30-day health summary to share with your healthcare provider.
+            </p>
+            <a
+              href="/api/export/doctor-report"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+            >
+              <FileText className="h-4 w-4" />
+              Generate Report
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          </CardContent>
+        </Card>
+
+        {/* Appearance */}
+        <ThemeToggle />
 
         {/* Account */}
-        <div className="rounded-xl border p-4">
-          <h2 className="text-sm font-medium">Account</h2>
-          <div className="mt-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>Account</CardTitle>
+          </CardHeader>
+          <CardContent>
             <UserButton />
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
