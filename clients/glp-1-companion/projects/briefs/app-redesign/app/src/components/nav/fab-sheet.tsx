@@ -124,7 +124,7 @@ function ActionRow({
       onClick={onClick}
       className="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-sm transition-colors hover:bg-accent active:bg-accent/80"
     >
-      <Icon className="h-5 w-5 text-muted-foreground" />
+      <Icon className="h-5 w-5 text-primary" />
       <span>{label}</span>
     </button>
   );

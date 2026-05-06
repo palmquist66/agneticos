@@ -14,7 +14,7 @@ export function FAB() {
         onClick={() => setOpen(true)}
         className={cn(
           "relative -mt-5 flex h-14 w-14 items-center justify-center rounded-full",
-          "bg-primary text-primary-foreground shadow-lg",
+          "bg-accent text-accent-foreground shadow-lg",
           "transition-transform active:scale-95",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         )}
