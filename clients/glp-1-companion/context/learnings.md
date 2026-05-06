@@ -9,6 +9,9 @@
 ## What works well
 
 ## What doesn't work well
+- 2026-05-06: When adding API routes that need to be called externally (cron, webhooks, service workers), always check the auth middleware (e.g. Clerk's `proxy.ts`) and add them to the public routes list DURING implementation — not after debugging 401s.
+- 2026-05-06: Always inspect existing data formats before writing parsers. Medication schedule `times` were stored as `"1753"` not `"17:53"` — the time-matching code should have handled both formats from the start. Check Prisma Studio for actual data shapes before coding.
+- 2026-05-06: When adding env vars to `.env`, always verify they were written (grep immediately after) and restart the dev server. Next.js only reads `.env` at startup. Multiple debugging rounds were caused by env var mismatches.
 - 2026-05-06: Next.js `force-dynamic` + unbounded Prisma queries + Turbopack dev mode is a machine-crashing combo on resource-constrained hardware (Mac Mini). Always add `take:` limits to every `findMany` query — even when a `where` clause seems sufficient. Combined with `revalidatePath` cascades that re-trigger those queries, the memory spiral happens fast. Use `revalidate = N` instead of `force-dynamic` on data-heavy pages. Run `next start` (production) instead of `next dev` when possible.
 - 2026-05-06: Streaming fetch (ReadableStream) without an AbortController leaks memory when components unmount mid-stream. Always create an AbortController, pass its signal to fetch, and abort on cleanup.
 - 2026-04-02: Streamlit tab render order causes subtle bugs — tabs render top-to-bottom on every script run. DB writes in later tabs (Settings, Medication) aren't visible to earlier tabs (Health) without st.rerun(). Always add st.rerun() after any DB mutation that should be reflected across tabs.
