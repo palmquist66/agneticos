@@ -68,3 +68,4 @@
 
 ## impeccable
 - 2026-04-30: Tailwind v4 CSS specificity gotcha — global element styles (a, h1-h3) must be wrapped in `@layer base` or they override Tailwind utility classes like `text-white`. Unlayered styles win over `@layer utilities` in the cascade. Always layer global resets.
+- 2026-05-06: No feedback — routine polish session. CSS-based input focus states (`.input-field` class) are cleaner than JS onFocus/onBlur handlers and work with keyboard navigation. Global `:focus-visible` in `@layer base` works well because Tailwind utility `outline-none` on inputs overrides it (correct — inputs use box-shadow ring instead), while buttons/links get the outline automatically.
