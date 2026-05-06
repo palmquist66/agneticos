@@ -79,6 +79,10 @@
 ## ops-user-feedback
 - 2026-03-31: Strikeout prop bug was critical — Ohtani is #1 searched player and the app was showing batter K rate instead of pitcher K rate. Self-discovered bugs should be logged immediately with `self-discovered` source.
 
+## lineup-service
+- 2026-05-05: MLB schedule endpoint (`/api/v1/schedule?hydrate=lineup`) often has empty lineup arrays even after lineups are announced. The live game feed (`/api/v1.1/game/{id}/feed/live`) has boxscore data with `isOnBench` flags much earlier. Always use live feed as fallback when schedule returns empty lineup.
+- 2026-05-05: Need explicit "not in lineup" state — showing "Projected" when a player is benched is misleading. Three states: confirmed (in lineup), projected (no data yet), not_in_lineup (confirmed out).
+
 ## data-sync
 - 2026-04-06: CRITICAL — when adding columns to the SQLAlchemy model (models.py), you MUST also ALTER TABLE the actual SQLite database. SQLAlchemy SELECT includes all model columns. If any column is missing from the table, the entire query fails silently (caught by try/except). This broke ALL NBA queries when MLB columns were added to the model but not the DB. Fix both source DB (SGP Correlations NBA) and propread-web copy.
 - 2026-03-31: NBA and NHL players share the same `players` table. NBA IDs are <8M, NHL IDs are >=8M. Always filter by ID range when running NBA-specific operations.
