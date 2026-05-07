@@ -41,6 +41,12 @@
 ## mkt-icp
 
 ## str-ai-seo
+- 2026-05-06: Local GEO is fundamentally different from content-site GEO — requires geographic precision, entity consistency, and review ecosystem signals on top of content optimization
+- 2026-05-06: ChatGPT now pulls GBP data directly for local queries — GBP posting (what Karen is doing) feeds the AI pipeline, not just traditional local SEO
+- 2026-05-06: Reddit appears in 40% of AI-generated answers. Zero Reddit presence = zero citations from the highest-impact community source. Even a few helpful comments per month compound over time
+- 2026-05-06: ChatGPT recommends only 1.2% of local businesses; Perplexity 7.4%; Gemini 11%. AI local visibility is up to 30x harder than traditional Google ranking
+- 2026-05-06: 43% of AI citations come from FAQ-structured content with schema markup — FAQ sections with FAQPage schema are the single highest-performing content pattern for AI citations
+- 2026-05-06: Only 8.6% overlap between ChatGPT and Perplexity recommendations — need broad coverage across multiple platforms, not single-channel optimization
 
 ## meta-wrap-up
 
