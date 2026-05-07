@@ -5,6 +5,9 @@
 - **App URL:** https://glp1companion-ybxqlfaewlaev55yeeentt.streamlit.app/
 - **Favicon:** https://glp1companion-ybxqlfaewlaev55yeeentt.streamlit.app/favicon_safari_mask.png
 
+## Social Links
+- **Twitter/X:** @GLP_1Companion (https://x.com/GLP_1Companion)
+
 ## Personal Links
 - (none provided yet)
 

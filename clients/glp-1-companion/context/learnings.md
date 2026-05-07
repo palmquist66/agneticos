@@ -46,6 +46,10 @@
 ## str-trending-research
 
 ## viz-nano-banana
+- 2026-05-06: When generating brand assets (logos, banners, social profile images), ALWAYS check the project's design system first (design-system/tokens.css, globals.css) before using brand_context/assets.md colors. The design system is the source of truth for colors — assets.md may be outdated. Generated 3 rounds of logos because the first used old blue (#1C83E1) instead of the app's actual teal palette (#0F5F5A, #4DB6AC, #FF8A6A, #FFC66D).
+- 2026-05-06: Also check if a logo already exists in the project before generating a new one from scratch. User noted there was already a logo in the app-redesign folder.
+- 2026-05-06: For Twitter/X banners, shift content to center-right — the profile picture overlaps the bottom-left corner of the banner image.
+- 2026-05-06: Gemini API key must be passed via --api-key flag when running from Claude Code — environment variable sourcing doesn't reliably pass through to uv-run Python subprocesses.
 
 ## viz-ugc-heygen
 
