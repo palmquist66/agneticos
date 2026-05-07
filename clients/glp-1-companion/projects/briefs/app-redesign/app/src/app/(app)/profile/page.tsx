@@ -6,6 +6,7 @@ import { HealthTargetsCard } from "@/components/profile/health-targets-card";
 import { DataSourcesCard } from "@/components/profile/data-sources-card";
 import { ThemeToggle } from "@/components/profile/theme-toggle";
 import { NotificationToggle } from "@/components/push/notification-toggle";
+import { DexcomCallbackToast } from "@/components/profile/dexcom-callback-toast";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { FileText, ExternalLink } from "lucide-react";
 
@@ -16,11 +17,21 @@ export default async function ProfilePage() {
 
   const connections = await db.dataSourceConnection.findMany({
     where: { userId: user.id },
+    select: {
+      id: true,
+      source: true,
+      status: true,
+      lastSyncAt: true,
+      lastSyncRecords: true,
+    },
   });
 
   return (
     <div className="mx-auto max-w-lg px-4 py-6">
       <h1 className="text-lg font-semibold">Profile</h1>
+
+      {/* Post-OAuth feedback toast */}
+      <DexcomCallbackToast />
 
       <div className="mt-6 space-y-4">
         <ProfileInfoCard
