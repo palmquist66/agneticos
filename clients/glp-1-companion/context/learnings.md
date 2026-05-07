@@ -41,6 +41,11 @@
 
 ## meta-wrap-up
 
+## dexcom-sync
+- 2026-05-07: Dexcom sandbox (`sandbox-api.dexcom.com`) redirects OAuth login to `developer-api-prod-us.platform.dexcomdev.com` which has a broken SSL cert. Safari blocks entirely, Chrome may also block without bypass option. Created a mock-connect route for dev testing as workaround.
+- 2026-05-07: Dexcom sandbox strips the `scope` parameter during redirect — `scope=offline_access` becomes `scope=`. May need investigation when sandbox is back up.
+- 2026-05-07: Next.js dev server port conflicts are common in this workspace (OpenClaw mission-control auto-respawns on 3000 via launchd). Keep DEXCOM_REDIRECT_URI in .env aligned with actual running port, and update the Dexcom developer portal to match.
+
 ## tool-firecrawl-scraper
 
 ## str-trending-research
