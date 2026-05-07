@@ -17,6 +17,23 @@ DEFAULT_TIMEOUT = 30
 DEBUG = os.environ.get("LAST30DAYS_DEBUG", "").lower() in ("1", "true", "yes")
 
 
+def _get_ssl_context() -> ssl.SSLContext:
+    """Build an SSL context that works across Python installations.
+
+    Uses certifi's CA bundle when available (handles cron environments
+    where system certs may not be configured for the active Python).
+    """
+    try:
+        import certifi
+        ctx = ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        ctx = ssl.create_default_context()
+    return ctx
+
+
+_SSL_CTX = _get_ssl_context()
+
+
 def log(msg: str):
     """Log debug message to stderr."""
     if DEBUG:
@@ -26,17 +43,6 @@ def log(msg: str):
 MAX_RETRIES = 3
 RETRY_DELAY = 1.0
 USER_AGENT = "last30days-skill/1.0 (Claude Code Skill)"
-
-
-def _get_ssl_context() -> ssl.SSLContext:
-    """Build SSL context that works in launchd's minimal environment."""
-    try:
-        import certifi
-        return ssl.create_default_context(cafile=certifi.where())
-    except ImportError:
-        pass
-    # Fallback: default context (uses system cert store)
-    return ssl.create_default_context()
 
 
 class HTTPError(Exception):
@@ -65,7 +71,6 @@ def request(
         headers.setdefault("Content-Type", "application/json")
 
     req = urllib.request.Request(url, data=data, headers=headers, method=method)
-    ssl_ctx = _get_ssl_context()
 
     log(f"{method} {url}")
     if json_data:
@@ -74,7 +79,7 @@ def request(
     last_error = None
     for attempt in range(retries):
         try:
-            with urllib.request.urlopen(req, timeout=timeout, context=ssl_ctx) as response:
+            with urllib.request.urlopen(req, timeout=timeout, context=_SSL_CTX) as response:
                 body = response.read().decode('utf-8')
                 log(f"Response: {response.status} ({len(body)} bytes)")
                 return json.loads(body) if body else {}
