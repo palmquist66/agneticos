@@ -2,6 +2,25 @@
 
 Phased execution order. Each phase ships a usable increment — the app works at every stage.
 
+**Last updated:** 2026-05-08
+
+---
+
+## Progress Overview
+
+| Phase | Status | Completed |
+|-------|--------|-----------|
+| **1: Foundation** | COMPLETE | Apr 28 |
+| **2: Logging** | COMPLETE | Apr 28 – May 5 |
+| **3: Today Screen** | COMPLETE | Apr 28 – May 5 |
+| **4: Trends + AI** | COMPLETE | Apr 28 – May 6 |
+| **5: Meds + Profile** | COMPLETE | Apr 28 – May 6 |
+| **6: Data Sync + Onboarding** | PARTIAL | May 7 (Dexcom + onboarding done, Google Fit + sync-on-open remaining) |
+| **7: PWA + Polish** | PARTIAL | May 5-6 (push notifications + design system done, landing page + polish remaining) |
+| **8: Capacitor Native** | NOT STARTED | — |
+
+**MVP status:** The critical path (Phases 1-4) is complete. The app is deployable as a beta today with manual data entry, full charting, AI chat, pattern detection, and Dexcom sync.
+
 ---
 
 ## Architecture Decisions (Before Code)
@@ -9,18 +28,19 @@ Phased execution order. Each phase ships a usable increment — the app works at
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
 | Framework | Next.js 16 (App Router) | Fastest rebuild path, SSR landing page + client app |
-| Styling | Tailwind CSS + shadcn/ui | Consistent components, mobile-first responsive |
-| Database | PostgreSQL + Prisma | Keep existing schema logic, type-safe queries |
-| Auth | Clerk | Social login, secure password reset, session management |
-| AI | Anthropic Claude Sonnet via Vercel AI SDK | Real AI (replaces keyword matching), streaming responses |
-| Charts | Recharts (or Nivo) | Good mobile web support, React-native feel |
-| PDF | react-pdf (client) or Puppeteer (server) | Doctor export with charts |
-| PWA | Serwist | Offline shell, installable, service worker caching |
-| Native (Phase 2) | Capacitor 8 | HealthKit, Health Connect, native push |
-| Hosting | Vercel | Zero-config Next.js deployment |
+| Styling | Tailwind CSS 4 + shadcn/ui | Consistent components, mobile-first responsive |
+| Database | PostgreSQL + Prisma 7 | Keep existing schema logic, type-safe queries |
+| Auth | Clerk (proxy.ts) | Social login, secure password reset, session management |
+| AI | Anthropic Claude via Vercel AI SDK | Real AI (replaces keyword matching), streaming responses |
+| Charts | Recharts | Good mobile web support, interactive tooltips |
+| PDF | Server-side inline styles | Doctor export with brand colors |
+| PWA | Custom service worker + manifest | Push notifications, installable |
+| Encryption | AES-256-GCM | OAuth token storage |
+| Native (future) | Capacitor 8 | HealthKit, Health Connect, native push |
+| Hosting | Vercel (planned) | Zero-config Next.js deployment |
 | Database hosting | Neon or Supabase Postgres | Serverless Postgres, free tier for MVP |
 
-### Project Structure
+### Project Structure (as built)
 
 ```
 projects/briefs/app-redesign/
@@ -29,332 +49,367 @@ projects/briefs/app-redesign/
 ├── 2026-04-21_information-architecture.md
 ├── 2026-04-21_user-flows.md
 ├── 2026-04-21_screen-specs.md
-├── 2026-04-21_implementation-plan.md    ← this file
-└── app/                                  ← all source code lives here
+├── 2026-04-21_implementation-plan.md       ← this file
+├── 2026-04-28_onboarding-flow.md
+├── 2026-04-28_data-sync-hub.md
+├── design-system/                           ← tokens, typography, color palette
+└── app/                                     ← all source code
     ├── package.json
     ├── next.config.ts
-    ├── prisma/
-    │   └── schema.prisma
-    ├── src/
-    │   ├── app/                          ← Next.js App Router
-    │   │   ├── (marketing)/              ← SSR landing page group
-    │   │   │   ├── page.tsx              ← Landing page
-    │   │   │   └── layout.tsx
-    │   │   ├── (auth)/                   ← Auth pages group
-    │   │   │   ├── sign-in/
-    │   │   │   └── sign-up/
-    │   │   ├── (app)/                    ← Authenticated app group
-    │   │   │   ├── layout.tsx            ← Bottom nav + FAB
-    │   │   │   ├── today/page.tsx
-    │   │   │   ├── trends/page.tsx
-    │   │   │   ├── meds/page.tsx
-    │   │   │   ├── meds/[id]/page.tsx
-    │   │   │   ├── profile/page.tsx
-    │   │   │   └── log/                  ← FAB logging routes
-    │   │   │       ├── meal-photo/page.tsx
-    │   │   │       ├── meal-text/page.tsx
-    │   │   │       ├── recipe/page.tsx
-    │   │   │       ├── weight/page.tsx
-    │   │   │       ├── glucose/page.tsx
-    │   │   │       ├── side-effect/page.tsx
-    │   │   │       └── glp1-dose/page.tsx
-    │   │   ├── onboarding/               ← First-time flow
-    │   │   │   ├── medication/page.tsx
-    │   │   │   ├── goals/page.tsx
-    │   │   │   ├── connect/page.tsx
-    │   │   │   └── ready/page.tsx
-    │   │   ├── admin/page.tsx            ← Auth-gated admin
-    │   │   └── api/                      ← API routes
-    │   │       ├── ai/analyze-food/route.ts
-    │   │       ├── ai/chat/route.ts
-    │   │       ├── ai/deep-analysis/route.ts
-    │   │       ├── sync/dexcom/route.ts
-    │   │       ├── sync/google-fit/route.ts
-    │   │       ├── export/pdf/route.ts
-    │   │       └── trpc/[trpc]/route.ts
-    │   ├── components/
-    │   │   ├── ui/                        ← shadcn/ui components
-    │   │   ├── nav/                       ← Bottom nav, FAB, header
-    │   │   ├── cards/                     ← GLP-1 status, med check-in, etc.
-    │   │   ├── charts/                    ← Weight, glucose, patterns
-    │   │   ├── forms/                     ← Logging forms
-    │   │   └── onboarding/               ← Onboarding step components
-    │   ├── lib/
-    │   │   ├── db.ts                      ← Prisma client
-    │   │   ├── ai.ts                      ← Claude API helpers
-    │   │   ├── patterns.ts               ← Pattern detection engine
-    │   │   ├── sync/                      ← Data source sync logic
-    │   │   └── pdf.ts                     ← PDF generation
-    │   └── hooks/
-    │       ├── use-today-data.ts
-    │       ├── use-patterns.ts
-    │       └── use-medications.ts
+    ├── prisma/schema.prisma                 ← 11-table schema + PushSubscription
     ├── public/
-    │   ├── manifest.json                  ← PWA manifest
-    │   └── sw.js                          ← Service worker (Serwist)
-    └── capacitor/                         ← Phase 2: native wrapper
-        ├── capacitor.config.ts
-        ├── ios/
-        └── android/
+    │   ├── manifest.json                    ← PWA manifest
+    │   ├── sw.js                            ← service worker (push + caching)
+    │   ├── logo-mark.png
+    │   ├── logo-mark.svg
+    │   └── logo-lockup.png
+    └── src/
+        ├── proxy.ts                         ← Clerk auth (Next.js 16 pattern)
+        ├── app/
+        │   ├── globals.css                  ← design system (teal/coral/amber)
+        │   ├── layout.tsx                   ← Poppins + Inter fonts
+        │   ├── page.tsx                     ← landing page
+        │   ├── (marketing)/layout.tsx
+        │   ├── (auth)/sign-in/ + sign-up/
+        │   ├── (app)/
+        │   │   ├── layout.tsx               ← bottom nav + FAB
+        │   │   ├── today/page.tsx + actions.ts
+        │   │   ├── trends/page.tsx
+        │   │   ├── meds/page.tsx + actions.ts
+        │   │   ├── meds/[id]/page.tsx
+        │   │   ├── profile/page.tsx + actions.ts + push-actions.ts
+        │   │   └── log/
+        │   │       ├── actions.ts
+        │   │       ├── meal-photo/page.tsx
+        │   │       ├── meal-text/page.tsx
+        │   │       ├── recipe/page.tsx
+        │   │       ├── weight/page.tsx + weight-form.tsx
+        │   │       ├── glucose/page.tsx
+        │   │       ├── side-effect/page.tsx
+        │   │       └── glp1-dose/page.tsx + dose-form.tsx
+        │   ├── onboarding/
+        │   │   ├── actions.ts
+        │   │   ├── medication/page.tsx + medication-form.tsx
+        │   │   ├── goals/page.tsx + goals-form.tsx
+        │   │   ├── connect/page.tsx + connect-form.tsx
+        │   │   └── ready/page.tsx
+        │   └── api/
+        │       ├── ai/analyze-food/route.ts
+        │       ├── ai/chat/route.ts
+        │       ├── ai/deep-analysis/route.ts
+        │       ├── export/doctor-report/route.ts
+        │       ├── notifications/send/route.ts
+        │       ├── notifications/mark-taken/route.ts
+        │       ├── notifications/snooze/route.ts
+        │       ├── sync/dexcom/route.ts
+        │       ├── sync/dexcom/callback/route.ts
+        │       ├── sync/dexcom/pull/route.ts
+        │       ├── sync/dexcom/disconnect/route.ts
+        │       ├── sync/dexcom/mock-connect/route.ts
+        │       └── sync/status/route.ts
+        ├── components/
+        │   ├── ui/ (button, card, badge, separator, avatar, sheet)
+        │   ├── nav/ (bottom-nav, fab, fab-sheet, app-header)
+        │   ├── today/ (glp1-status-card, medication-checkin, todays-numbers,
+        │   │          pattern-spotlight, recent-activity, activity-item, entry-edit-sheet)
+        │   ├── trends/ (weight-trend-chart, glucose-trend-chart, pattern-cards,
+        │   │           time-range-selector, ai-chat, deep-analysis)
+        │   ├── meds/ (active-medications, titration-timeline, add-medication-sheet,
+        │   │         med-details-card, med-detail-actions, injection-site-history)
+        │   ├── profile/ (profile-info-card, health-targets-card, data-sources-card,
+        │   │            dexcom-callback-toast, theme-toggle)
+        │   ├── log/ (log-page-layout, chip-group, number-input, nutrition-display,
+        │   │        meal-confirmation, injection-site-picker)
+        │   ├── push/ (sw-register, notification-toggle)
+        │   ├── sync/ (auto-sync)
+        │   └── theme-provider.tsx
+        └── lib/
+            ├── db.ts                        ← Prisma client (pool: 10)
+            ├── auth.ts                      ← auth helpers
+            ├── pattern-engine.ts            ← TypeScript port of Python patterns
+            ├── today-queries.ts             ← bounded queries for Today
+            ├── trends-queries.ts            ← bounded queries for Trends
+            ├── crypto.ts                    ← AES-256-GCM token encryption
+            ├── dexcom.ts                    ← Dexcom API client
+            ├── push.ts                      ← client-side push helpers
+            ├── push-server.ts               ← VAPID + HMAC action tokens
+            ├── utils.ts
+            └── types/                       ← shared TypeScript types
 ```
 
 ---
 
-## Phase 1: Foundation (Week 1-2)
+## Phase 1: Foundation ~ COMPLETE
 
-**Goal:** App shell running with auth, database, and navigation. No features yet — just the skeleton.
+**Goal:** App shell running with auth, database, and navigation.
+**Completed:** April 28, 2026
 
-### Week 1: Project Setup + Auth + Database
+| Task | Status | Files |
+|------|--------|-------|
+| Initialize Next.js 16 project | [x] | `app/package.json`, `app/next.config.ts` |
+| Install core deps (shadcn/ui, Prisma, Clerk, Recharts) | [x] | `app/package.json` |
+| Prisma schema (11 tables) | [x] | `prisma/schema.prisma` — User, GlucoseLog, WeightLog, FoodLog, MedicationLog, MedicationSchedule, SideEffect, InjectionSite, TitrationSchedule, DataSourceConnection, SyncLog |
+| Clerk auth setup (proxy.ts) | [x] | `src/proxy.ts`, `src/lib/auth.ts` |
+| Environment config | [x] | `app/.env.example` |
+| Bottom navigation bar (4 tabs + FAB) | [x] | `components/nav/bottom-nav.tsx` |
+| App layout with auth check | [x] | `app/(app)/layout.tsx` |
+| Route groups (marketing, auth, app, onboarding) | [x] | `app/(marketing)/`, `app/(auth)/`, `app/(app)/`, `app/onboarding/` |
+| FAB action sheet (7 options) | [x] | `components/nav/fab.tsx`, `components/nav/fab-sheet.tsx` |
+| App header with logo | [x] | `components/nav/app-header.tsx` |
+| Empty state screens for all 4 tabs | [x] | `today/page.tsx`, `trends/page.tsx`, `meds/page.tsx`, `profile/page.tsx` |
+| Landing page | [x] | `app/page.tsx` |
 
-| Task | Details | Est |
-|------|---------|-----|
-| Initialize Next.js project | `npx create-next-app@latest` with App Router, TypeScript, Tailwind | 1hr |
-| Install core deps | shadcn/ui, Prisma, Clerk, Recharts | 1hr |
-| Prisma schema | Migrate existing SQLAlchemy models → Prisma schema. Tables: User, GlucoseLog, WeightLog, FoodLog, MedicationLog, MedicationSchedule, SideEffect, MedicationHistory, TitrationSchedule, InjectionSite | 3hr |
-| Clerk auth setup | Sign-up, sign-in, middleware, protected routes | 2hr |
-| Seed database | Migration script to import existing PostgreSQL data (if users exist) | 2hr |
-| Environment config | `.env` for Clerk keys, database URL, Anthropic API key | 30min |
-
-### Week 2: App Shell + Navigation
-
-| Task | Details | Est |
-|------|---------|-----|
-| Bottom navigation bar | Fixed bottom nav with 4 tabs + FAB button. Active state, icons, routing. | 4hr |
-| App layout | `(app)/layout.tsx` — auth check, bottom nav, header | 2hr |
-| Route groups | Marketing `(marketing)/`, auth `(auth)/`, app `(app)/`, onboarding | 2hr |
-| FAB action sheet | Bottom sheet component. 7 options. Tap outside to dismiss. Routes to `/log/*` pages. | 3hr |
-| Empty state screens | Placeholder content for Today, Trends, Meds, Profile with correct routing | 2hr |
-| Mobile viewport | Meta tags, safe area insets, prevent zoom on inputs, large touch targets | 1hr |
-
-**Phase 1 checkpoint:** You can sign up, log in, navigate between 4 tabs, tap the FAB, and see placeholder screens. No data yet.
+**Notes:** Next.js 16 renames middleware.ts to proxy.ts. Prisma v7 uses `prisma.config.ts` for datasource URL. shadcn/ui uses @base-ui/react (no `asChild`).
 
 ---
 
-## Phase 2: Logging (Week 2-3)
+## Phase 2: Logging ~ COMPLETE
 
-**Goal:** Every FAB logging flow works. This is the core — if users can't log data, nothing else matters.
+**Goal:** Every FAB logging flow works end to end.
 
-### Quick Logging Screens (FAB → Log → Save → Today)
-
-| Task | Details | Est |
-|------|---------|-----|
-| Log Weight (S9d) | Number input pre-filled with last weight, +/- buttons, save to DB | 2hr |
-| Log Glucose (S9e) | Number input, context chips (auto-suggest from time), save | 2hr |
-| Log Side Effect (S9f) | Symptom chips, severity toggle, notes, save | 2hr |
-| Log GLP-1 Dose (S9g) | Medication display, injection site body map, save to MedicationLog + InjectionSite | 4hr |
-| Snap a Meal — camera (S9a) | Camera capture, send photo to `/api/ai/analyze-food`, confirmation form with AI-filled fields, save | 6hr |
-| Describe a Meal — text (S9b) | Text input, send to `/api/ai/analyze-food` (text mode), same confirmation form, save | 3hr |
-| Log a Recipe (S9c) | Photo or text ingredient input, servings, calculate nutrition via AI, portion-adjusted save | 4hr |
-| AI food analysis API route | `/api/ai/analyze-food` — accepts image (base64) or text, calls Claude Sonnet, returns structured nutrition JSON | 3hr |
-| Toast confirmations | Brief success toast after any save, return to Today | 1hr |
-
-**Phase 2 checkpoint:** All 7 logging flows work end to end. User can log meals (photo + text + recipe), weight, glucose, side effects, and GLP-1 doses. Data is in the database.
+| Task | Status | Files |
+|------|--------|-------|
+| Log Weight | [x] | `log/weight/page.tsx`, `log/weight/weight-form.tsx`, `components/log/number-input.tsx` |
+| Log Glucose | [x] | `log/glucose/page.tsx`, `components/log/chip-group.tsx` |
+| Log Side Effect | [x] | `log/side-effect/page.tsx` |
+| Log GLP-1 Dose | [x] | `log/glp1-dose/page.tsx`, `log/glp1-dose/dose-form.tsx`, `components/log/injection-site-picker.tsx` |
+| Snap a Meal (camera) | [x] | `log/meal-photo/page.tsx`, `components/log/meal-confirmation.tsx`, `components/log/nutrition-display.tsx` |
+| Describe a Meal (text) | [x] | `log/meal-text/page.tsx` |
+| Log a Recipe | [x] | `log/recipe/page.tsx` |
+| AI food analysis API | [x] | `api/ai/analyze-food/route.ts` |
+| Server actions for all log types | [x] | `log/actions.ts` |
+| Shared log page layout | [x] | `components/log/log-page-layout.tsx` |
 
 ---
 
-## Phase 3: Today Screen (Week 3-4)
+## Phase 3: Today Screen ~ COMPLETE
 
-**Goal:** The home screen shows real data and the medication check-in works.
+**Goal:** Home screen shows real data and medication check-in works.
 
-| Task | Details | Est |
-|------|---------|-----|
-| Today's Numbers row | Query latest weight, glucose, food protein today. Compact 3-column display. Dash if no data. | 3hr |
-| Medication Check-In card | Query today's scheduled meds vs logged meds. Toggle circles. "All taken" batch button. Collapse when complete. | 5hr |
-| GLP-1 Status card | Query last GLP-1 log, calculate day X of 7, progress bar, next dose date. Link to GLP-1 Detail. | 3hr |
-| Recent Activity feed | Query last 5 entries across all log tables today, sorted by time. Display with type icon + summary. | 3hr |
-| Entry edit/delete | Tap any Recent Activity entry → bottom sheet with edit form (all fields) + delete button with confirmation | 4hr |
-| Pattern Spotlight | Pull 1 insight from pattern engine (port from Python). Display card with link to Trends. | 2hr |
-| Empty states | Friendly empty states for each card when no data ("Tap + to log your first meal") | 1hr |
-
-**Phase 3 checkpoint:** Today screen is fully functional. Users see their daily snapshot, mark meds as taken, and review recent activity. The app feels useful for daily use.
+| Task | Status | Files |
+|------|--------|-------|
+| Today's Numbers row | [x] | `components/today/todays-numbers.tsx` |
+| Medication Check-In card | [x] | `components/today/medication-checkin.tsx` |
+| GLP-1 Status card | [x] | `components/today/glp1-status-card.tsx` |
+| Recent Activity feed | [x] | `components/today/recent-activity.tsx`, `components/today/activity-item.tsx` |
+| Entry edit/delete | [x] | `components/today/entry-edit-sheet.tsx` |
+| Pattern Spotlight | [x] | `components/today/pattern-spotlight.tsx` |
+| Today page with all cards | [x] | `app/(app)/today/page.tsx` |
+| Today server actions | [x] | `app/(app)/today/actions.ts` |
+| Today data queries (bounded) | [x] | `lib/today-queries.ts` |
 
 ---
 
-## Phase 4: Trends + AI (Week 4-5)
+## Phase 4: Trends + AI ~ COMPLETE
 
 **Goal:** Charts, patterns, and real AI chat.
 
-| Task | Details | Est |
-|------|---------|-----|
-| Time range selector | 7d/14d/30d/60d/90d pill toggle, controls all charts + patterns | 1hr |
-| Weight trend chart | Recharts line chart. Goal weight dashed line. 7-day moving average overlay. Tap point for tooltip. | 4hr |
-| Glucose trend chart | Line chart with target range band (shaded). Color-coded points (green/yellow/red). Context filter chips. | 5hr |
-| Pattern engine (port) | Port Python pattern detection to TypeScript: weight↔dose, side-effects↔dose, protein↔weight correlations | 6hr |
-| Pattern cards | Expandable cards showing each detected pattern with summary text | 3hr |
-| Contextual insights | Attach generated insight text below each chart (from pattern engine) | 2hr |
-| AI chat — API route | `/api/ai/chat` — builds user data context, calls Claude Sonnet, streams response via Vercel AI SDK | 4hr |
-| AI chat — UI | Inline chat at bottom of Trends. Suggested questions. Conversation history (session only). Medical disclaimer. | 4hr |
-| Deep Analysis | "Run Full Analysis" button → Claude generates comprehensive narrative. Cached. Re-analyze option. | 3hr |
-
-**Phase 4 checkpoint:** Trends tab shows real charts with contextual insights, pattern cards detect correlations, and AI chat gives real answers backed by user data. The "Pattern Layer" promise is delivered.
+| Task | Status | Files |
+|------|--------|-------|
+| Time range selector (7d/14d/30d/60d/90d) | [x] | `components/trends/time-range-selector.tsx` |
+| Weight trend chart | [x] | `components/trends/weight-trend-chart.tsx` |
+| Glucose trend chart | [x] | `components/trends/glucose-trend-chart.tsx` |
+| Pattern engine (TypeScript port) | [x] | `lib/pattern-engine.ts` |
+| Pattern cards | [x] | `components/trends/pattern-cards.tsx` |
+| AI chat — API route (streaming) | [x] | `api/ai/chat/route.ts` |
+| AI chat — UI (inline on Trends) | [x] | `components/trends/ai-chat.tsx` |
+| Deep Analysis | [x] | `components/trends/deep-analysis.tsx`, `api/ai/deep-analysis/route.ts` |
+| Trends page with all sections | [x] | `app/(app)/trends/page.tsx` |
+| Trends data queries (bounded) | [x] | `lib/trends-queries.ts` |
 
 ---
 
-## Phase 5: Meds + Profile (Week 5-6)
+## Phase 5: Meds + Profile ~ COMPLETE
 
 **Goal:** Medication management and profile/settings are complete.
 
 ### Meds Tab
 
-| Task | Details | Est |
-|------|---------|-----|
-| Active Medications list | Card list from MedicationSchedule. Adherence % calculated from logs vs schedule. | 3hr |
-| Medication Detail screen (S11) | Drill-down: schedule, adherence stats, log history, edit schedule, delete. | 4hr |
-| Add Medication flow (S13) | Name, dosage, frequency picker (daily/specific days/weekly), time picker(s), save. | 3hr |
-| Titration Timeline | Visual step chart from TitrationSchedule. Auto-build from log history. Manual edit. | 5hr |
-| Injection Site Map | 6-site body map with color-coded recency. Read-only (writes via FAB). | 3hr |
-| Medication History | Filterable log. Taken/missed status. Paginated. | 2hr |
-| GLP-1 Detail screen (S12) | Cycle tracker + titration + injection map + dose history + correlated side effects. | 4hr |
+| Task | Status | Files |
+|------|--------|-------|
+| Active Medications list | [x] | `components/meds/active-medications.tsx` |
+| Medication Detail screen | [x] | `app/(app)/meds/[id]/page.tsx`, `components/meds/med-details-card.tsx`, `components/meds/med-detail-actions.tsx` |
+| Add Medication flow | [x] | `components/meds/add-medication-sheet.tsx` |
+| Titration Timeline | [x] | `components/meds/titration-timeline.tsx` |
+| Injection Site History | [x] | `components/meds/injection-site-history.tsx` |
+| Meds page | [x] | `app/(app)/meds/page.tsx` |
+| Meds server actions | [x] | `app/(app)/meds/actions.ts` |
 
 ### Profile Tab
 
-| Task | Details | Est |
-|------|---------|-----|
-| Your Info section | Display + inline edit: name, GLP-1 med, dosage, other meds | 2hr |
-| Health Targets section | Display + inline edit: glucose range, weight goal, protein target | 2hr |
-| Connected Data Sources | Status display for each source. Connect/Disconnect buttons. Last sync time. Stub the actual sync logic (Phase 6). | 3hr |
-| Doctor Export | Date range picker, data gap warnings, generate PDF (port Python PDF logic to server-side). Download + Share. | 6hr |
-| Account section | Change password (Clerk), log out, delete account, privacy/terms links. | 2hr |
-
-**Phase 5 checkpoint:** All 4 main tabs are fully functional. The app is feature-complete for manual data entry. Only data source sync and onboarding remain.
+| Task | Status | Files |
+|------|--------|-------|
+| Your Info section | [x] | `components/profile/profile-info-card.tsx` |
+| Health Targets section | [x] | `components/profile/health-targets-card.tsx` |
+| Connected Data Sources (UI) | [x] | `components/profile/data-sources-card.tsx` |
+| Doctor Export (PDF) | [x] | `api/export/doctor-report/route.ts` |
+| Theme toggle (dark mode) | [x] | `components/profile/theme-toggle.tsx`, `components/theme-provider.tsx` |
+| Profile page | [x] | `app/(app)/profile/page.tsx` |
+| Profile server actions | [x] | `app/(app)/profile/actions.ts` |
 
 ---
 
-## Phase 6: Data Sync + Onboarding (Week 6-7)
+## Phase 6: Data Sync + Onboarding ~ PARTIAL
 
 **Goal:** Connect external data sources. Guide new users through setup.
 
-### Data Source Sync
+### Onboarding ~ COMPLETE
 
-| Task | Details | Est |
-|------|---------|-----|
-| Dexcom OAuth integration | `/api/sync/dexcom` — OAuth 2.0 flow, token storage, glucose data pull. Map to GlucoseLog schema. | 6hr |
-| Dexcom sync UI | Connect button → OAuth redirect → callback → initial sync with progress → status display | 3hr |
-| Google Fit OAuth integration | `/api/sync/google-fit` — OAuth flow, pull weight + activity data. Store tokens securely (not hardcoded). | 6hr |
-| Google Fit sync UI | Connect → OAuth → sync → status. Persist weight readings (not just display-once like current). | 3hr |
-| Apple Health placeholder | Show card in Connected Sources: "Available in the mobile app" (Capacitor Phase 2). | 30min |
-| Sync-on-open | When app opens, auto-sync connected sources in the background. Show "Syncing..." indicator. | 3hr |
-| Manage connections | Choose which data types to sync per source. Disconnect with confirmation + token cleanup. | 2hr |
+| Task | Status | Files |
+|------|--------|-------|
+| Onboarding flow routing | [x] | `app/onboarding/layout.tsx` |
+| Step 1: Medication | [x] | `onboarding/medication/page.tsx`, `onboarding/medication/medication-form.tsx` |
+| Step 2: Goals | [x] | `onboarding/goals/page.tsx`, `onboarding/goals/goals-form.tsx` |
+| Step 3: Connect Data | [x] | `onboarding/connect/page.tsx`, `onboarding/connect/connect-form.tsx` |
+| Step 4: Ready | [x] | `onboarding/ready/page.tsx` |
+| Onboarding server actions | [x] | `onboarding/actions.ts` |
 
-### Onboarding
+### Data Source Sync ~ PARTIAL
 
-| Task | Details | Est |
-|------|---------|-----|
-| Onboarding flow routing | Detect first login (no medication set). Redirect to `/onboarding/medication`. | 1hr |
-| Step 1: Medication (S3) | GLP-1 picker, dosage, other meds. Skip option. | 2hr |
-| Step 2: Goals (S4) | Weight goal, protein target, glucose range. Smart defaults. Skip option. | 2hr |
-| Step 3: Connect Data (S5) | Data source cards with connect buttons. Manual option. Progress tracking. | 4hr |
-| Step 4: Ready (S6) | Import summary, quick tips, go to Today. | 1hr |
-| Onboarding state | Track completion. Don't show again. Allow re-run from Profile. | 1hr |
+| Task | Status | Files |
+|------|--------|-------|
+| Dexcom OAuth integration | [x] | `api/sync/dexcom/route.ts`, `api/sync/dexcom/callback/route.ts`, `lib/dexcom.ts`, `lib/crypto.ts` |
+| Dexcom sync (pull glucose data) | [x] | `api/sync/dexcom/pull/route.ts` |
+| Dexcom disconnect | [x] | `api/sync/dexcom/disconnect/route.ts` |
+| Dexcom mock-connect (dev) | [x] | `api/sync/dexcom/mock-connect/route.ts` |
+| Dexcom sync UI | [x] | `components/profile/data-sources-card.tsx`, `components/profile/dexcom-callback-toast.tsx` |
+| Sync status API | [x] | `api/sync/status/route.ts` |
+| Google Fit OAuth integration | [ ] | — |
+| Google Fit sync UI | [ ] | — |
+| Apple Health placeholder | [ ] | — |
+| Sync-on-open (auto-sync if stale) | [x] | `components/sync/auto-sync.tsx` — mounts in app layout, checks connected sources, pulls if >15 min stale |
 
-**Phase 6 checkpoint:** New users get a guided setup. Data sources connect and sync automatically. The "data in = value out" principle is realized.
+**Known issues:**
+- Dexcom sandbox SSL broken — `sandbox-api.dexcom.com` redirects to `developer-api-prod-us.platform.dexcomdev.com` with invalid cert
+- Mock-connect route must be deleted before production
+- Apply for Dexcom Limited Access once real OAuth validated (allows 5 real users)
 
 ---
 
-## Phase 7: PWA + Landing Page + Polish (Week 7-8)
+## Phase 7: PWA + Landing Page + Polish ~ PARTIAL
 
 **Goal:** Installable PWA, marketing landing page, production-ready polish.
 
 ### PWA
 
-| Task | Details | Est |
-|------|---------|-----|
-| Serwist setup | Service worker, manifest.json, offline shell caching | 3hr |
-| Install prompt | Custom "Add to Home Screen" banner for mobile users | 2hr |
-| Offline support | Cache API responses. Queue writes when offline. Sync when back online. | 5hr |
-| App icons | Generate icon set for all sizes (PWA manifest + Apple touch icon) | 1hr |
+| Task | Status | Notes |
+|------|--------|-------|
+| Service worker | [x] | `public/sw.js` — handles push events, mark-taken, snooze |
+| PWA manifest | [x] | `public/manifest.json` |
+| Push notifications (med reminders) | [x] | Full VAPID flow: `lib/push.ts`, `lib/push-server.ts`, `api/notifications/send/route.ts`, `api/notifications/mark-taken/route.ts`, `api/notifications/snooze/route.ts`, `components/push/sw-register.tsx`, `components/push/notification-toggle.tsx` |
+| Install prompt | [ ] | Custom "Add to Home Screen" banner |
+| Offline support (cache + queue) | [ ] | — |
+| App icon set (all sizes) | [ ] | — |
+
+### Design System + Branding
+
+| Task | Status | Notes |
+|------|--------|-------|
+| Brand colors (teal/coral/amber) | [x] | `globals.css` — full theme with dark mode tokens |
+| Typography (Poppins + Inter) | [x] | `layout.tsx` |
+| Color-coded icons across components | [x] | activity-item, medication-checkin, number-input, deep-analysis, recent-activity, onboarding |
+| Logo assets | [x] | `public/logo-mark.png`, `logo-mark.svg`, `logo-lockup.png` |
+| Dark mode visual verification | [x] | Verified May 8 |
+
+### Performance
+
+| Task | Status | Notes |
+|------|--------|-------|
+| Bounded DB queries (all pages) | [x] | `take:` limits on all 14+ unbounded queries across today-queries.ts, trends-queries.ts, doctor-report |
+| Connection pool tuning | [x] | Prisma pool bumped from 5 to 10 |
+| ISR caching (Trends) | [x] | `revalidate = 60` replaces `force-dynamic` |
+| AI chat abort controller | [x] | Prevents stream memory leaks on unmount |
+| Chart memoization | [x] | `useMemo` on filtered data + computed values |
 
 ### Landing Page
 
-| Task | Details | Est |
-|------|---------|-----|
-| Port landing page | Rebuild current landing copy as SSR Next.js page. Responsive. Fast. | 4hr |
-| SEO | Meta tags, Open Graph, structured data, robots.txt, sitemap | 2hr |
-| Analytics | PostHog or Vercel Analytics | 1hr |
+| Task | Status | Notes |
+|------|--------|-------|
+| Basic landing page | [x] | `app/page.tsx` — hero CTA exists |
+| Full landing page rebuild | [ ] | Responsive, feature sections, social proof |
+| SEO (meta, OG, sitemap) | [ ] | — |
+| Analytics | [ ] | — |
 
 ### Polish
 
-| Task | Details | Est |
-|------|---------|-----|
-| Loading states | Skeleton screens for Today, Trends, Meds. Spinners for AI analysis. | 3hr |
-| Error handling | API error boundaries. Retry logic. User-friendly error messages. | 3hr |
-| Animations | Tab transitions, FAB sheet slide, card expand/collapse, toast enter/exit | 3hr |
-| Accessibility | ARIA labels, keyboard navigation, color contrast (WCAG AA), screen reader testing | 3hr |
-| Mobile testing | Test on iOS Safari, Chrome Android, various screen sizes | 3hr |
-| Security cleanup | Remove hardcoded OAuth creds, auth-gate admin, audit all API routes | 2hr |
-| Data migration | Script to migrate existing Streamlit PostgreSQL data to new schema (if needed) | 3hr |
-
-**Phase 7 checkpoint:** Production-ready PWA. Users can install it on their home screen. Landing page converts visitors. Offline works. Everything is polished.
+| Task | Status | Notes |
+|------|--------|-------|
+| Loading states / skeletons | [x] | Skeleton primitive + loading.tsx for today, trends, meds, meds/[id], profile |
+| Error handling / boundaries | [ ] | — |
+| Animations | [ ] | — |
+| Accessibility (WCAG AA) | [ ] | — |
+| Mobile testing (Safari, Chrome) | [ ] | — |
+| Security cleanup | [ ] | Remove mock-connect, audit routes, remove hardcoded creds |
+| Data migration script | [ ] | Streamlit Postgres → new schema (if needed) |
 
 ---
 
-## Phase 8: Capacitor Native Wrapper (Week 9-10)
+## Phase 8: Capacitor Native Wrapper ~ NOT STARTED
 
 **Goal:** Native app with HealthKit, Health Connect, native push, App Store ready.
 
-| Task | Details | Est |
-|------|---------|-----|
-| Capacitor setup | `@capacitor/core`, `@capacitor/cli`, init with static export | 3hr |
-| Static export config | `output: 'export'` in next.config.ts, API routes → separate backend or edge functions | 4hr |
-| Apple HealthKit | `capacitor-health` plugin. Read weight, glucose, steps, heart rate. Background delivery. | 8hr |
-| Google Health Connect | `capacitor-health` plugin (Android). Read weight, glucose, steps. | 6hr |
-| Native push notifications | `@capacitor/push-notifications`. Migrate from web push to native. Medication reminders as scheduled local notifications. | 6hr |
-| iOS build + TestFlight | EAS Build or Xcode. Provisioning profiles, certificates, HealthKit entitlement. | 4hr |
-| Android build + internal testing | EAS Build or Android Studio. Health Connect permissions, notification permissions. | 3hr |
-| App Store submission | Screenshots (3 device sizes), metadata, privacy nutrition labels, HealthKit usage description, review notes. | 6hr |
-| Google Play submission | Screenshots, metadata, privacy policy, content rating questionnaire. | 4hr |
-
-**Phase 8 checkpoint:** Native apps on iOS and Android. Apple Health and Health Connect sync automatically. Medication reminders actually fire as push notifications. Listed in both app stores.
+| Task | Status |
+|------|--------|
+| Capacitor setup + static export config | [ ] |
+| Apple HealthKit (capacitor-health plugin) | [ ] |
+| Google Health Connect | [ ] |
+| Native push notifications (replace web push) | [ ] |
+| iOS build + TestFlight | [ ] |
+| Android build + internal testing | [ ] |
+| App Store submission | [ ] |
+| Google Play submission | [ ] |
 
 ---
 
 ## Phase Summary
 
-| Phase | Weeks | What Ships | User Value |
-|-------|-------|-----------|------------|
-| **1: Foundation** | 1-2 | Auth, navigation, app shell | Can sign up and navigate |
-| **2: Logging** | 2-3 | All 7 FAB logging flows | Can log meals, weight, glucose, meds, side effects |
-| **3: Today** | 3-4 | Home screen with live data | Daily snapshot, med check-in, recent activity |
-| **4: Trends + AI** | 4-5 | Charts, patterns, real AI chat | See patterns, ask questions, get real answers |
-| **5: Meds + Profile** | 5-6 | Medication management, settings, PDF export | Full medication tracking, doctor exports |
-| **6: Data Sync + Onboarding** | 6-7 | Dexcom/Google Fit sync, guided setup | Auto-import data, smooth first experience |
-| **7: PWA + Polish** | 7-8 | Installable PWA, landing page, production quality | Home screen install, offline, marketing site |
-| **8: Capacitor Native** | 9-10 | HealthKit, Health Connect, native push, App Store | Native app with automatic health data sync |
+| Phase | Status | What Ships | User Value |
+|-------|--------|-----------|------------|
+| **1: Foundation** | COMPLETE | Auth, navigation, app shell | Can sign up and navigate |
+| **2: Logging** | COMPLETE | All 7 FAB logging flows | Can log meals, weight, glucose, meds, side effects |
+| **3: Today** | COMPLETE | Home screen with live data | Daily snapshot, med check-in, recent activity |
+| **4: Trends + AI** | COMPLETE | Charts, patterns, real AI chat | See patterns, ask questions, get real answers |
+| **5: Meds + Profile** | COMPLETE | Medication management, settings, PDF export | Full medication tracking, doctor exports |
+| **6: Data Sync + Onboarding** | PARTIAL | Dexcom sync + onboarding done | Guided setup, Dexcom glucose import |
+| **7: PWA + Polish** | PARTIAL | Push notifications + design system done | Med reminders, branded look |
+| **8: Capacitor Native** | NOT STARTED | — | — |
 
-### Critical Path
+### What's Left to Deploy as Beta
 
-```
-Phase 1 (foundation)
-  → Phase 2 (logging) — the app becomes usable
-    → Phase 3 (today) — the app becomes daily-habit-forming
-      → Phase 4 (trends + AI) — the app delivers the "Pattern Layer" promise
-```
+The critical path (Phases 1-4) is complete. To ship a production beta:
 
-Phases 5-8 add depth but aren't blockers for getting users on the app. You could deploy after Phase 4 and have a solid MVP.
+**Must-do:**
+- [ ] Deploy to Vercel (or equivalent)
+- [ ] Provision production PostgreSQL (Neon / Supabase)
+- [ ] Set production environment variables (Clerk, DB, Anthropic, VAPID, Dexcom, Encryption key)
+- [ ] Security audit: remove mock-connect route, verify all API routes are auth-gated
+- [ ] Validate Dexcom real OAuth (once sandbox SSL is fixed) or apply for Limited Access
 
-### Earliest Deployable Version: End of Week 5 (After Phase 4)
+**Should-do before public beta:**
+- [x] Dark mode visual pass — verified May 8
+- [x] Glucose data flows to Trends page — mock-connect data confirmed rendering in charts
+- [x] Loading states / skeleton screens — May 8
+- [ ] Error boundaries on all pages
+- [ ] Full landing page with feature sections
+- [ ] SEO basics (meta tags, OG images)
+- [ ] App icon set for PWA install
 
-At that point you have:
-- Sign up + log in
-- Log any health data in 3-4 taps
-- Today screen with daily snapshot + med check-in
-- Trends with real charts and AI chat
-- Manual data entry (sync comes in Phase 6)
-- No onboarding yet (users figure it out — acceptable for beta)
+**Can wait:**
+- [ ] Google Fit integration
+- [ ] Apple Health (requires Capacitor)
+- [ ] Sync-on-open
+- [ ] Offline support
+- [ ] Capacitor native wrapper + App Store
+- [ ] Analytics
+- [ ] Data migration from Streamlit
 
 ### Risk Mitigation
 
-| Risk | Mitigation |
-|------|------------|
-| Pattern engine port takes longer than expected | Port the 3 core patterns first (weight↔dose, side-effects↔dose, protein↔weight). Add more later. |
-| Dexcom OAuth approval delays | Dexcom developer registration can take weeks. Apply in Phase 1 while building other features. |
-| Claude API costs at scale | Cache AI responses aggressively. Use Haiku for food analysis, Sonnet for chat/deep analysis. Set per-user daily limits. |
-| Capacitor + Next.js static export friction | Prototype the static export in Phase 1 to confirm it works before building 8 weeks of features. |
-| App Store rejection (HealthKit) | Write thorough privacy policy and review notes. Test HealthKit integration on real devices before submission. |
-| Offline sync conflicts | Simple last-write-wins for MVP. User's local write always wins over synced data. |
-
-### Apply for Dexcom Developer Access NOW
-
-Dexcom developer program registration: https://developer.dexcom.com/
-
-Apply during Phase 1. Approval can take 1-4 weeks. You need it before Phase 6. If delayed, ship Phase 6 with Google Fit only and add Dexcom when approved.
+| Risk | Status |
+|------|--------|
+| Pattern engine port takes longer than expected | RESOLVED — ported to TypeScript, working |
+| Dexcom OAuth approval delays | RESOLVED — sandbox access confirmed Apr 21. SSL cert issue is Dexcom-side. |
+| Claude API costs at scale | MITIGATED — streaming responses in place, bounded context windows |
+| Capacitor + Next.js static export friction | UNRESOLVED — not yet attempted. Prototype before building native features. |
+| App Store rejection (HealthKit) | FUTURE — not started |
+| Offline sync conflicts | FUTURE — not started |
