@@ -26,6 +26,7 @@
 - 2026-04-09: When outputting email drafts or copy for the user, use plain text — markdown formatting (bold headers, horizontal rules, indented blocks) can cause weird indentation in the terminal that the user has to fix manually
 - 2026-04-20: Markdown files don't paste cleanly into Google Docs — tables break, syntax shows through. For client-facing docs, create a separate Google Docs-friendly version: ALL CAPS headers, bullet lists instead of tables, no markdown syntax
 - 2026-04-20: Business name "JP Digital Works" is not confirmed. Use "Jim Palmquist" and palmquist66@gmail.com until decided. Don't use jpdigitalworks.com email or JP Digital Works branding in any deliverables
+- 2026-05-08: GBP API access: James does NOT have GBP manager access for HPAH (pending Karen's approval). Competitor data IS accessible via public Google Maps scraping/browsing. Don't confuse API access (requires manager role) with public data access (anyone can browse). When discussing automation, be accurate about what's accessible now vs what requires pending permissions.
 
 
 # Individual Skills
