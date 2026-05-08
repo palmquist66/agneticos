@@ -16,15 +16,15 @@ export async function GET() {
     const connMap = new Map(connections.map((c) => [c.source, c]));
 
     // Count total records per source
-    const [dexcomCount, googleFitCount] = await Promise.all([
+    const [dexcomCount, fitbitCount] = await Promise.all([
       connMap.has("dexcom")
         ? db.glucoseLog.count({
             where: { userId: user.id, source: "dexcom" },
           })
         : 0,
-      connMap.has("google_fit")
+      connMap.has("fitbit")
         ? db.weightLog.count({
-            where: { userId: user.id, source: "google_fit" },
+            where: { userId: user.id, source: "fitbit" },
           })
         : 0,
     ]);
@@ -40,13 +40,13 @@ export async function GET() {
         totalRecords: dexcomCount,
       },
       {
-        source: "google_fit",
-        status: connMap.get("google_fit")?.status || "not_connected",
-        lastSyncAt: connMap.get("google_fit")?.lastSyncAt?.toISOString() || null,
-        lastSyncStatus: connMap.get("google_fit")?.lastSyncStatus || null,
-        lastSyncRecords: connMap.get("google_fit")?.lastSyncRecords || null,
-        lastSyncError: connMap.get("google_fit")?.lastSyncError || null,
-        totalRecords: googleFitCount,
+        source: "fitbit",
+        status: connMap.get("fitbit")?.status || "not_connected",
+        lastSyncAt: connMap.get("fitbit")?.lastSyncAt?.toISOString() || null,
+        lastSyncStatus: connMap.get("fitbit")?.lastSyncStatus || null,
+        lastSyncRecords: connMap.get("fitbit")?.lastSyncRecords || null,
+        lastSyncError: connMap.get("fitbit")?.lastSyncError || null,
+        totalRecords: fitbitCount,
       },
       {
         source: "apple_health",

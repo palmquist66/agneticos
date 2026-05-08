@@ -63,7 +63,7 @@ model WeightLog {
   userId    String
   weight    Float    // lbs
   notes     String?
-  source    String   @default("manual") // 'manual' | 'google_fit' | 'apple_health'
+  source    String   @default("manual") // 'manual' | 'fitbit' | 'apple_health'
   loggedAt  DateTime @default(now())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -188,7 +188,7 @@ model TitrationSchedule {
 model DataSourceConnection {
   id              String    @id @default(cuid())
   userId          String
-  source          String    // 'dexcom' | 'google_fit' | 'apple_health'
+  source          String    // 'dexcom' | 'fitbit' | 'apple_health'
   status          String    @default("disconnected") // 'connected' | 'disconnected' | 'error' | 'expired'
   accessToken     String?
   refreshToken    String?

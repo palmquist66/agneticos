@@ -21,10 +21,11 @@ const SOURCE_META: Record<string, { name: string; icon: React.ReactNode; descrip
     description: "Continuous glucose readings",
     oauthUrl: "/api/sync/dexcom",
   },
-  google_fit: {
-    name: "Google Fit",
+  fitbit: {
+    name: "Fitbit",
     icon: <Watch className="h-4 w-4" />,
     description: "Weight and activity",
+    oauthUrl: "/api/sync/fitbit",
   },
   apple_health: {
     name: "Apple Health",
@@ -50,7 +51,7 @@ function formatLastSync(date: Date | null) {
 export function DataSourcesCard({ connections }: { connections: DataSourceConnection[] }) {
   const router = useRouter();
   const connectedMap = new Map(connections.map((c) => [c.source, c]));
-  const allSources = ["dexcom", "google_fit", "apple_health"];
+  const allSources = ["dexcom", "fitbit", "apple_health"];
   const [syncing, setSyncing] = useState<string | null>(null);
   const [disconnecting, setDisconnecting] = useState<string | null>(null);
 
@@ -62,8 +63,9 @@ export function DataSourcesCard({ connections }: { connections: DataSourceConnec
 
       if (!res.ok) {
         if (data.needsReconnect) {
+          const sourceName = SOURCE_META[sourceId]?.name || sourceId;
           toast.error("Reconnection needed", {
-            description: "Your Dexcom session expired. Please reconnect.",
+            description: `Your ${sourceName} session expired. Please reconnect.`,
           });
         } else if (res.status === 429) {
           toast.info("Sync too frequent", {

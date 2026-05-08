@@ -22,11 +22,12 @@ const DATA_SOURCES: DataSource[] = [
     oauthUrl: "/api/sync/dexcom",
   },
   {
-    id: "google_fit",
-    name: "Google Fit",
-    description: "Weight, steps, and activity data",
+    id: "fitbit",
+    name: "Fitbit",
+    description: "Weight and activity data",
     icon: <Watch className="h-5 w-5" />,
-    available: false,
+    available: true,
+    oauthUrl: "/api/sync/fitbit",
   },
   {
     id: "apple_health",

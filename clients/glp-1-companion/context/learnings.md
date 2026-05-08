@@ -46,6 +46,13 @@
 - 2026-05-07: Dexcom sandbox strips the `scope` parameter during redirect — `scope=offline_access` becomes `scope=`. May need investigation when sandbox is back up.
 - 2026-05-07: Next.js dev server port conflicts are common in this workspace (OpenClaw mission-control auto-respawns on 3000 via launchd). Keep DEXCOM_REDIRECT_URI in .env aligned with actual running port, and update the Dexcom developer portal to match.
 
+## fitbit-sync
+- 2026-05-08: Fitbit requires PKCE (code_verifier + SHA-256 code_challenge) for OAuth — unlike Dexcom which uses plain OAuth 2.0. Store code_verifier in a second httpOnly cookie alongside CSRF state.
+- 2026-05-08: Fitbit token exchange uses HTTP Basic Auth header (`Authorization: Basic base64(client_id:client_secret)`) — not POST body params like Dexcom. Token refresh also uses Basic Auth.
+- 2026-05-08: Fitbit returns weight in the user's profile unit preference (kg or lbs). No unit field in the API response. Used heuristic: if any weight < 100, treat all as kg. Fragile for very light people (~95 lbs) but covers the vast majority.
+- 2026-05-08: Google Fit REST API shut down June 30 2025. Replaced all `google_fit` references with `fitbit` across schema comments, UI components, status endpoint, and .env.example.
+- 2026-05-08: When adding new data sources, check hardcoded source names in toast messages (e.g., "Your Dexcom session expired"). Use dynamic source name lookups instead.
+
 ## tool-firecrawl-scraper
 
 ## str-trending-research
