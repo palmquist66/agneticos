@@ -223,6 +223,14 @@ model PushSubscription {
   @@index([userId])
 }
 
+// ─── Waitlist ────────────────────────────────────────────
+model Waitlist {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  source    String   @default("landing")
+  createdAt DateTime @default(now())
+}
+
 // ─── Sync Log (audit trail) ─────────────────────────────
 model SyncLog {
   id          String    @id @default(cuid())
