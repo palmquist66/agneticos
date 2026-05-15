@@ -27,6 +27,7 @@
 - 2026-04-20: Markdown files don't paste cleanly into Google Docs — tables break, syntax shows through. For client-facing docs, create a separate Google Docs-friendly version: ALL CAPS headers, bullet lists instead of tables, no markdown syntax
 - 2026-04-20: Business name "JP Digital Works" is not confirmed. Use "Jim Palmquist" and palmquist66@gmail.com until decided. Don't use jpdigitalworks.com email or JP Digital Works branding in any deliverables
 - 2026-05-08: GBP API access: James does NOT have GBP manager access for HPAH (pending Karen's approval). Competitor data IS accessible via public Google Maps scraping/browsing. Don't confuse API access (requires manager role) with public data access (anyone can browse). When discussing automation, be accurate about what's accessible now vs what requires pending permissions.
+- 2026-05-15: AI visibility testing means querying actual AI models (ChatGPT, Perplexity, Claude) and recording their responses — NOT running web searches to see what sources exist. Web search shows what Google ranks; AI visibility shows what AI models actually recommend. These are different things. For a proper test: answer as Claude from training data, then have the user run the same queries in ChatGPT and Perplexity for a 3-model comparison.
 
 
 # Individual Skills
