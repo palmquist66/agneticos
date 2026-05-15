@@ -34,7 +34,7 @@ status: ready-to-use
 
 **Tagline (118 char):**
 
-> Pet owners ask AI for vet recommendations. Your practice should answer — in your voice. GEO + SEO.
+> Pet owners are asking AI where to take their pets. We help your practice be the answer.
 
 **About section:**
 
