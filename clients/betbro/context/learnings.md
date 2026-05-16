@@ -78,6 +78,7 @@
 
 ## ops-user-feedback
 - 2026-03-31: Strikeout prop bug was critical — Ohtani is #1 searched player and the app was showing batter K rate instead of pitcher K rate. Self-discovered bugs should be logged immediately with `self-discovered` source.
+- 2026-05-16: MLB Stats API roster designations can be wrong (e.g. Davis Martin listed as RP when he's a top starter). Never trust position.abbreviation alone — always cross-reference gamesStarted vs gamesPitched from season stats to confirm role.
 
 ## lineup-service
 - 2026-05-05: MLB schedule endpoint (`/api/v1/schedule?hydrate=lineup`) often has empty lineup arrays even after lineups are announced. The live game feed (`/api/v1.1/game/{id}/feed/live`) has boxscore data with `isOnBench` flags much earlier. Always use live feed as fallback when schedule returns empty lineup.
