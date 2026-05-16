@@ -1,5 +1,5 @@
 ## Last Updated
-2026-04-28 — landing page rebrand: Navy + Orange palette, Proxima Nova typeface
+2026-05-16 — new favicon suite (anvil mark on navy), logo-mark standalone, PWA icons, retired old VF monogram favicon
 
 # VetForge AI — Brand Assets
 
@@ -36,9 +36,28 @@ Custom illustrative wordmark featuring a stylized anvil with dog/cat silhouette 
 | `profile-white.png` | Square icon on white background | Light-themed platforms, Google Business Profile |
 | `profile-circle-preview.png` | Circular crop preview | Reference — shows how the icon looks in circle-cropped contexts (Instagram, X) |
 
-**Location:** Wordmark SVGs in `projects/briefs/vetforge-ai-launch/site/public/`. Social profile PNGs in `brand_context/`.
+**Standalone mark (anvil + animal on navy rounded square):**
+| File | Purpose | Size |
+|------|---------|------|
+| `logo-mark.svg` | Standalone brand mark (vector) | 200x200 |
+| `logo-mark-256.png` | Standalone brand mark (raster) | 256x256 |
+| `logo-mark-512.png` | Standalone brand mark (raster) | 512x512 |
 
-> **Note:** The old VF monogram (`logo-icon.svg`, `favicon.svg`) used a legacy blue gradient and is retired. The current brand mark is the anvil + animal silhouette icon shown in the social profile images above.
+**Favicons:**
+| File | Purpose | Size |
+|------|---------|------|
+| `favicon.svg` | Primary favicon (vector, anvil mark on navy) | 64x64 |
+| `favicon-16.png` | PNG fallback | 16x16 |
+| `favicon-32.png` | PNG fallback | 32x32 |
+| `favicon-48.png` | PNG fallback | 48x48 |
+| `apple-touch-icon.png` | iOS home screen icon | 180x180 |
+| `icon-192.png` | PWA / Android icon | 192x192 |
+| `icon-512.png` | PWA / Android icon + maskable | 512x512 |
+| `site.webmanifest` | PWA manifest | — |
+
+**Location:** All assets in `projects/briefs/vetforge-ai-launch/site/public/`. Social profile PNGs in `brand_context/`.
+
+> **Note:** The old VF monogram (`logo-icon.svg`) used a legacy blue gradient and is retired. The current brand mark is the anvil + animal silhouette with orange forge sparks on navy (#0B103A).
 
 ## Colors
 
@@ -148,4 +167,4 @@ Custom illustrative wordmark featuring a stylized anvil with dog/cat silhouette 
 - jpdigitalworks.com is owned and held for potential future use (non-vet brand)
 - Previous typefaces (Playfair Display, Source Sans Pro, Inter) are retired — Proxima Nova is the new typeface
 - Proxima Nova requires Adobe Fonts license for production; Montserrat is the free fallback
-- Old VF monogram (`logo-icon.svg`, `favicon.svg`) is retired — replaced by anvil + animal mark in social profile images
+- Old VF monogram (`logo-icon.svg`) is retired — replaced by anvil + animal mark favicon suite (May 2026)
