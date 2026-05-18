@@ -57,6 +57,7 @@
 ## mkt-copywriting
 
 ## tool-humanizer
+- 2026-05-18: No feedback — routine session. Deep mode humanizer on 5 social media files. Main fixes: em dash reduction, bullet lists converted to flowing text for LinkedIn, parallel constructions broken up, generic closers replaced with harder landings. Voice profile was well-applied in initial drafts — humanizer pass was light touch, mostly rhythm and structure tightening.
 
 ## tool-youtube
 
