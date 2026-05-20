@@ -36,13 +36,13 @@ The app has the right features but the layout is all over the place:
 
 ## Deliverables
 
-- [ ] **Platform evaluation** — Stay on Streamlit vs. migrate to React Native or Next.js. Pros/cons with recommendation.
-- [ ] **Information architecture** — New page/screen structure with clear hierarchy. What goes where and why.
-- [ ] **User flow diagrams** — The 4-5 core journeys mapped out (onboarding, daily logging, data sync, pattern review, doctor export)
-- [ ] **Screen-by-screen redesign specs** — For each screen: purpose, content, interactions, what got removed/moved
-- [x] **Onboarding flow** — Guided setup that walks new users through connecting data sources
-- [x] **Data sync hub** — Central place to manage all data connections (Google Fit, Dexcom, Apple Health, manual)
-- [ ] **Implementation plan** — Phased execution order so the app stays functional throughout the rebuild
+- [x] **Platform evaluation** — Next.js + Capacitor selected. Decision validated through build. See `2026-04-21_platform-evaluation.md`.
+- [x] **Information architecture** — New page/screen structure with clear hierarchy. See `2026-04-21_information-architecture.md`.
+- [x] **User flow diagrams** — The 4-5 core journeys mapped out. See `2026-04-21_user-flows.md`.
+- [x] **Screen-by-screen redesign specs** — For each screen: purpose, content, interactions, what got removed/moved. See `2026-04-21_screen-specs.md`.
+- [x] **Onboarding flow** — Guided setup that walks new users through connecting data sources. See `2026-04-28_onboarding-flow.md`.
+- [x] **Data sync hub** — Central place to manage all data connections. See `2026-04-28_data-sync-hub.md`.
+- [x] **Implementation plan** — Phased execution with completion tracking. See `2026-04-21_implementation-plan.md`.
 
 ## Acceptance Criteria
 

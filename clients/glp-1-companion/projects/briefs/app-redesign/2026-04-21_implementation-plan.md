@@ -2,7 +2,7 @@
 
 Phased execution order. Each phase ships a usable increment — the app works at every stage.
 
-**Last updated:** 2026-05-08
+**Last updated:** 2026-05-11
 
 ---
 
@@ -16,7 +16,7 @@ Phased execution order. Each phase ships a usable increment — the app works at
 | **4: Trends + AI** | COMPLETE | Apr 28 – May 6 |
 | **5: Meds + Profile** | COMPLETE | Apr 28 – May 6 |
 | **6: Data Sync + Onboarding** | PARTIAL | May 7 (Dexcom + onboarding done, Google Fit + sync-on-open remaining) |
-| **7: PWA + Polish** | PARTIAL | May 5-6 (push notifications + design system done, landing page + polish remaining) |
+| **7: PWA + Polish** | PARTIAL | May 5-8 (push notifications + design system + error boundaries + security cleanup done, landing page remaining) |
 | **8: Capacitor Native** | NOT STARTED | — |
 
 **MVP status:** The critical path (Phases 1-4) is complete. The app is deployable as a beta today with manual data entry, full charting, AI chat, pattern detection, and Dexcom sync.
@@ -68,16 +68,18 @@ projects/briefs/app-redesign/
         ├── app/
         │   ├── globals.css                  ← design system (teal/coral/amber)
         │   ├── layout.tsx                   ← Poppins + Inter fonts
+        │   ├── global-error.tsx             ← root error boundary
         │   ├── page.tsx                     ← landing page
         │   ├── (marketing)/layout.tsx
         │   ├── (auth)/sign-in/ + sign-up/
         │   ├── (app)/
         │   │   ├── layout.tsx               ← bottom nav + FAB
-        │   │   ├── today/page.tsx + actions.ts
-        │   │   ├── trends/page.tsx
-        │   │   ├── meds/page.tsx + actions.ts
+        │   │   ├── error.tsx                ← app-level error boundary
+        │   │   ├── today/page.tsx + actions.ts + error.tsx
+        │   │   ├── trends/page.tsx + error.tsx
+        │   │   ├── meds/page.tsx + actions.ts + error.tsx
         │   │   ├── meds/[id]/page.tsx
-        │   │   ├── profile/page.tsx + actions.ts + push-actions.ts
+        │   │   ├── profile/page.tsx + actions.ts + push-actions.ts + error.tsx
         │   │   └── log/
         │   │       ├── actions.ts
         │   │       ├── meal-photo/page.tsx
@@ -105,7 +107,6 @@ projects/briefs/app-redesign/
         │       ├── sync/dexcom/callback/route.ts
         │       ├── sync/dexcom/pull/route.ts
         │       ├── sync/dexcom/disconnect/route.ts
-        │       ├── sync/dexcom/mock-connect/route.ts
         │       └── sync/status/route.ts
         ├── components/
         │   ├── ui/ (button, card, badge, separator, avatar, sheet)
@@ -271,7 +272,7 @@ projects/briefs/app-redesign/
 | Dexcom OAuth integration | [x] | `api/sync/dexcom/route.ts`, `api/sync/dexcom/callback/route.ts`, `lib/dexcom.ts`, `lib/crypto.ts` |
 | Dexcom sync (pull glucose data) | [x] | `api/sync/dexcom/pull/route.ts` |
 | Dexcom disconnect | [x] | `api/sync/dexcom/disconnect/route.ts` |
-| Dexcom mock-connect (dev) | [x] | `api/sync/dexcom/mock-connect/route.ts` |
+| ~~Dexcom mock-connect (dev)~~ | REMOVED | Deleted — dev-only route |
 | Dexcom sync UI | [x] | `components/profile/data-sources-card.tsx`, `components/profile/dexcom-callback-toast.tsx` |
 | Sync status API | [x] | `api/sync/status/route.ts` |
 | Google Fit OAuth integration | [ ] | — |
@@ -281,7 +282,7 @@ projects/briefs/app-redesign/
 
 **Known issues:**
 - Dexcom sandbox SSL broken — `sandbox-api.dexcom.com` redirects to `developer-api-prod-us.platform.dexcomdev.com` with invalid cert
-- Mock-connect route must be deleted before production
+- ~~Mock-connect route must be deleted before production~~ DONE — both mock-connect routes + test-backdate deleted May 8
 - Apply for Dexcom Limited Access once real OAuth validated (allows 5 real users)
 
 ---
@@ -326,7 +327,7 @@ projects/briefs/app-redesign/
 | Task | Status | Notes |
 |------|--------|-------|
 | Basic landing page | [x] | `app/page.tsx` — hero CTA exists |
-| Full landing page rebuild | [ ] | Responsive, feature sections, social proof |
+| Full landing page rebuild | [x] | Responsive, 8 sections: header, hero, problem, features, how-it-works, testimonials, GLP-1 native, privacy, CTA, footer |
 | SEO (meta, OG, sitemap) | [ ] | — |
 | Analytics | [ ] | — |
 
@@ -335,11 +336,11 @@ projects/briefs/app-redesign/
 | Task | Status | Notes |
 |------|--------|-------|
 | Loading states / skeletons | [x] | Skeleton primitive + loading.tsx for today, trends, meds, meds/[id], profile |
-| Error handling / boundaries | [ ] | — |
+| Error handling / boundaries | [x] | `global-error.tsx`, `(app)/error.tsx`, `today/error.tsx`, `trends/error.tsx`, `meds/error.tsx`, `profile/error.tsx` + try/catch on all server actions |
 | Animations | [ ] | — |
 | Accessibility (WCAG AA) | [ ] | — |
 | Mobile testing (Safari, Chrome) | [ ] | — |
-| Security cleanup | [ ] | Remove mock-connect, audit routes, remove hardcoded creds |
+| Security cleanup | [x] | Deleted mock-connect (Dexcom + Fitbit) + test-backdate routes, all server actions wrapped in try/catch, notifications route wrapped |
 | Data migration script | [ ] | Streamlit Postgres → new schema (if needed) |
 
 ---
@@ -382,15 +383,15 @@ The critical path (Phases 1-4) is complete. To ship a production beta:
 - [ ] Deploy to Vercel (or equivalent)
 - [ ] Provision production PostgreSQL (Neon / Supabase)
 - [ ] Set production environment variables (Clerk, DB, Anthropic, VAPID, Dexcom, Encryption key)
-- [ ] Security audit: remove mock-connect route, verify all API routes are auth-gated
+- [x] Security audit: removed mock-connect routes + test-backdate, all API routes auth-gated
 - [ ] Validate Dexcom real OAuth (once sandbox SSL is fixed) or apply for Limited Access
 
 **Should-do before public beta:**
 - [x] Dark mode visual pass — verified May 8
 - [x] Glucose data flows to Trends page — mock-connect data confirmed rendering in charts
 - [x] Loading states / skeleton screens — May 8
-- [ ] Error boundaries on all pages
-- [ ] Full landing page with feature sections
+- [x] Error boundaries on all pages
+- [x] Full landing page with feature sections
 - [ ] SEO basics (meta tags, OG images)
 - [ ] App icon set for PWA install
 

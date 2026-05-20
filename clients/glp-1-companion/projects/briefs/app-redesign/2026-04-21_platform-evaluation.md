@@ -1,5 +1,48 @@
 # Platform Evaluation: GLP-1 Companion Redesign
 
+## Decision: Next.js + Capacitor Hybrid
+
+**Status:** Decided April 21, 2026. Build started April 28, 2026.
+
+Next.js 16 with App Router was selected as the platform for the GLP-1 Companion redesign. The app migrates from the original Streamlit prototype to a full Next.js PWA, with Capacitor native wrapping planned as a future phase for HealthKit, Health Connect, and App Store distribution.
+
+### What's Been Validated Since This Decision
+
+| Concern from evaluation | Result |
+|------------------------|--------|
+| Next.js 16 App Router stability | Confirmed. proxy.ts (formerly middleware.ts) works for Clerk auth. Route groups work as designed. |
+| shadcn/ui component quality | Confirmed. Ships with @base-ui/react. Minor API changes (no `asChild`) handled with `buttonVariants()` + Link. |
+| Prisma v7 on PostgreSQL | Confirmed. 11-table schema running. Constructor changed (uses `prisma.config.ts`), but works. |
+| Dexcom OAuth on web | Confirmed. Full OAuth 2.0 flow working. Sandbox SSL issue (cert redirect) is a Dexcom problem, not a platform limitation. |
+| Web Push for med reminders | Confirmed. VAPID-based push notifications working with mark-taken and snooze actions from the notification itself. |
+| Claude AI integration | Confirmed. Vercel AI SDK streaming works for food analysis, chat, and deep analysis. |
+| Recharts for mobile charts | Confirmed. Weight and glucose trend charts rendering with interactive tooltips, goal lines, and target range bands. |
+| PWA installability | Confirmed. Service worker + manifest.json in place. |
+
+### Actual Tech Stack (as built)
+
+| Layer | Technology | Status |
+|-------|-----------|--------|
+| Framework | Next.js 16 (App Router) | Running |
+| Styling | Tailwind CSS 4 + shadcn/ui | Running |
+| Database | PostgreSQL + Prisma 7 | Running |
+| Auth | Clerk | Running |
+| Charts | Recharts | Running |
+| AI | Anthropic Claude (Vercel AI SDK) | Running |
+| PDF | Server-side inline styles (doctor report) | Running |
+| PWA | Custom service worker + manifest | Running |
+| Push | Web Push (VAPID) | Running |
+| Encryption | AES-256-GCM (OAuth token storage) | Running |
+| Native wrapper | Capacitor 8 | Not started |
+| Health data | capacitor-health | Not started |
+| Hosting | Local dev (Vercel deployment pending) | Not deployed |
+
+---
+
+## Evaluation Summary (April 21, 2026)
+
+Three options were evaluated. The full analysis follows.
+
 ## The Three Options
 
 ### Option 1: Stay on Streamlit (Restructure Only)
