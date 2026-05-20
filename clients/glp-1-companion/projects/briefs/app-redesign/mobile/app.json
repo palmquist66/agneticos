@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "GLP-1 Companion",
+    "slug": "glp1-companion",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "glp1companion",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0F5F5A"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.glp1companion.app",
+      "infoPlist": {
+        "NSHealthShareUsageDescription": "GLP-1 Companion reads your health data (weight, glucose, steps, heart rate, sleep) to track your progress and provide personalized insights.",
+        "NSHealthUpdateUsageDescription": "GLP-1 Companion writes medication doses to Apple Health so all your health data stays in sync."
+      },
+      "entitlements": {
+        "com.apple.developer.healthkit": true,
+        "com.apple.developer.healthkit.background-delivery": true,
+        "aps-environment": "production"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-secure-store",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0F5F5A",
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 200
+        }
+      ],
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
