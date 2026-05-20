@@ -1,50 +1,57 @@
-import Link from "next/link";
+import { getCurrentUser } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { ActiveMedications } from "@/components/meds/active-medications";
+import { TitrationTimeline } from "@/components/meds/titration-timeline";
+import { InjectionSiteHistory } from "@/components/meds/injection-site-history";
+import { AddMedicationSheet } from "@/components/meds/add-medication-sheet";
 import { Pill, Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
-export default function MedsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function MedsPage() {
+  const user = await getCurrentUser();
+
+  const [medications, titrationSteps, injectionSites] = await Promise.all([
+    db.medicationSchedule.findMany({
+      where: { userId: user.id, active: true },
+      orderBy: { createdAt: "desc" },
+    }),
+    db.titrationSchedule.findMany({
+      where: { userId: user.id },
+      orderBy: { order: "asc" },
+    }),
+    db.injectionSite.findMany({
+      where: { userId: user.id },
+      orderBy: { loggedAt: "desc" },
+      take: 20,
+    }),
+  ]);
+
+  const hasAnyData = medications.length > 0 || titrationSteps.length > 0 || injectionSites.length > 0;
+
   return (
     <div className="mx-auto max-w-lg px-4 py-6">
-      <h1 className="text-lg font-semibold">Medications</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-lg font-semibold">Medications</h1>
+        <AddMedicationSheet />
+      </div>
 
       <div className="mt-6 space-y-4">
-        {/* Active Medications placeholder */}
-        <div className="flex flex-col items-center rounded-xl border py-12 text-center">
-          <Pill className="mb-3 h-10 w-10 text-muted-foreground/50" />
-          <p className="text-sm font-medium">No medications added</p>
-          <p className="mt-1 text-xs text-muted-foreground">
-            Add your medications to track adherence and see patterns.
-          </p>
-          <Button size="sm" className="mt-4">
-            <Plus className="mr-1 h-4 w-4" />
-            Add Medication
-          </Button>
-        </div>
-
-        {/* Titration Timeline placeholder */}
-        <div className="rounded-xl border p-4">
-          <h2 className="text-sm font-medium">Titration Timeline</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Your GLP-1 dose history will appear here once you start logging
-            doses.
-          </p>
-        </div>
-
-        {/* Injection Site Map placeholder */}
-        <div className="rounded-xl border p-4">
-          <h2 className="text-sm font-medium">Injection Sites</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Track injection site rotation after logging your first GLP-1 dose.
-          </p>
-        </div>
-
-        {/* Medication History placeholder */}
-        <div className="rounded-xl border p-4">
-          <h2 className="text-sm font-medium">History</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Your medication history will appear here.
-          </p>
-        </div>
+        {!hasAnyData ? (
+          <div className="flex flex-col items-center rounded-xl border py-12 text-center">
+            <Pill className="mb-3 h-10 w-10 text-muted-foreground/50" />
+            <p className="text-sm font-medium">No medications added</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Add your medications to track adherence and see patterns.
+            </p>
+          </div>
+        ) : (
+          <>
+            <ActiveMedications medications={medications} />
+            <TitrationTimeline steps={titrationSteps} />
+            <InjectionSiteHistory sites={injectionSites} />
+          </>
+        )}
       </div>
     </div>
   );

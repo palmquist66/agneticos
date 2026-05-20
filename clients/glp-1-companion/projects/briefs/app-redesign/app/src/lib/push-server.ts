@@ -4,12 +4,18 @@ import { db } from "@/lib/db";
 
 // ─── VAPID Config ────────────────────────────────────────
 
-const VAPID_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!;
-const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY!;
-const VAPID_EMAIL = process.env.VAPID_EMAIL || "mailto:admin@glp1companion.app";
-const ACTION_SECRET = process.env.CRON_SECRET!;
+let vapidConfigured = false;
 
-webpush.setVapidDetails(VAPID_EMAIL, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
+function ensureVapid() {
+  if (vapidConfigured) return true;
+  const pub = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
+  const priv = process.env.VAPID_PRIVATE_KEY;
+  if (!pub || !priv) return false;
+  const email = process.env.VAPID_EMAIL || "mailto:admin@glp1companion.app";
+  webpush.setVapidDetails(email, pub, priv);
+  vapidConfigured = true;
+  return true;
+}
 
 // ─── Action Tokens (HMAC) ────────────────────────────────
 
@@ -19,9 +25,11 @@ export function createActionToken(payload: {
   medName: string;
   dosage: string;
 }): string {
+  const secret = process.env.CRON_SECRET;
+  if (!secret) throw new Error("CRON_SECRET not set");
   const data = JSON.stringify(payload);
   const encoded = Buffer.from(data).toString("base64url");
-  const sig = createHmac("sha256", ACTION_SECRET).update(encoded).digest("base64url");
+  const sig = createHmac("sha256", secret).update(encoded).digest("base64url");
   return `${encoded}.${sig}`;
 }
 
@@ -35,7 +43,9 @@ export function verifyActionToken(token: string): {
   if (parts.length !== 2) return null;
 
   const [encoded, sig] = parts;
-  const expectedSig = createHmac("sha256", ACTION_SECRET)
+  const secret = process.env.CRON_SECRET;
+  if (!secret) return null;
+  const expectedSig = createHmac("sha256", secret)
     .update(encoded)
     .digest("base64url");
 
@@ -63,6 +73,7 @@ export async function sendPushToUser(
   userId: string,
   payload: PushPayload
 ): Promise<{ sent: number; failed: number }> {
+  if (!ensureVapid()) return { sent: 0, failed: 0 };
   const subscriptions = await db.pushSubscription.findMany({
     where: { userId },
   });

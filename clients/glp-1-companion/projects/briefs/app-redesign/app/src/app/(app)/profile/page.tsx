@@ -80,14 +80,16 @@ export default async function ProfilePage() {
         <ThemeToggle />
 
         {/* Account */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Account</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <UserButton />
-          </CardContent>
-        </Card>
+        {process.env.DEMO_MODE !== "true" && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Account</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <UserButton />
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   );

@@ -1,28 +1,17 @@
-"use client";
+import { getCurrentUser } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { WeightForm } from "./weight-form";
 
-import { ArrowLeft, Scale } from "lucide-react";
-import { useRouter } from "next/navigation";
+export const dynamic = "force-dynamic";
 
-export default function WeightPage() {
-  const router = useRouter();
+export default async function WeightPage() {
+  const user = await getCurrentUser();
 
-  return (
-    <div className="mx-auto max-w-lg px-4 py-6">
-      <button
-        onClick={() => router.back()}
-        className="mb-4 flex items-center gap-1 text-sm text-muted-foreground"
-      >
-        <ArrowLeft className="h-4 w-4" />
-        Back
-      </button>
-      <h1 className="text-lg font-semibold">Log Weight</h1>
-      <div className="mt-8 flex flex-col items-center rounded-xl border py-16 text-center">
-        <Scale className="mb-3 h-10 w-10 text-muted-foreground/50" />
-        <p className="text-sm text-muted-foreground">
-          Quick weight entry with +/- adjustment
-        </p>
-        <p className="mt-1 text-xs text-muted-foreground">Coming in Phase 2</p>
-      </div>
-    </div>
-  );
+  const lastLog = await db.weightLog.findFirst({
+    where: { userId: user.id },
+    orderBy: { loggedAt: "desc" },
+    select: { weight: true },
+  });
+
+  return <WeightForm lastWeight={lastLog?.weight ?? null} />;
 }

@@ -1,28 +1,54 @@
-"use client";
+import { getCurrentUser } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { DoseForm } from "./dose-form";
+import type { InjectionSiteValue } from "@/components/log/injection-site-picker";
 
-import { ArrowLeft, Syringe } from "lucide-react";
-import { useRouter } from "next/navigation";
+export const dynamic = "force-dynamic";
 
-export default function Glp1DosePage() {
-  const router = useRouter();
+const ALL_SITES: InjectionSiteValue[] = [
+  "left_arm",
+  "right_arm",
+  "left_abdomen",
+  "right_abdomen",
+  "left_thigh",
+  "right_thigh",
+];
+
+export default async function Glp1DosePage() {
+  const user = await getCurrentUser();
+
+  const [lastDose, recentSites] = await Promise.all([
+    db.medicationLog.findFirst({
+      where: {
+        userId: user.id,
+        medName: user.glp1Med ?? undefined,
+      },
+      orderBy: { loggedAt: "desc" },
+      select: { loggedAt: true },
+    }),
+    db.injectionSite.findMany({
+      where: { userId: user.id },
+      orderBy: { loggedAt: "desc" },
+      take: 12,
+      select: { site: true, loggedAt: true },
+    }),
+  ]);
+
+  // Recommend the site least recently used
+  const usedSites = new Set(recentSites.map((s) => s.site));
+  const recommended: InjectionSiteValue =
+    ALL_SITES.find((s) => !usedSites.has(s)) ??
+    (recentSites.length > 0
+      ? (recentSites[recentSites.length - 1].site as InjectionSiteValue)
+      : "left_abdomen");
 
   return (
-    <div className="mx-auto max-w-lg px-4 py-6">
-      <button
-        onClick={() => router.back()}
-        className="mb-4 flex items-center gap-1 text-sm text-muted-foreground"
-      >
-        <ArrowLeft className="h-4 w-4" />
-        Back
-      </button>
-      <h1 className="text-lg font-semibold">Log GLP-1 Dose</h1>
-      <div className="mt-8 flex flex-col items-center rounded-xl border py-16 text-center">
-        <Syringe className="mb-3 h-10 w-10 text-muted-foreground/50" />
-        <p className="text-sm text-muted-foreground">
-          Injection site body map with rotation tracking
-        </p>
-        <p className="mt-1 text-xs text-muted-foreground">Coming in Phase 2</p>
-      </div>
-    </div>
+    <DoseForm
+      medName={user.glp1Med}
+      dosage={user.glp1Dosage}
+      lastDoseDate={lastDose?.loggedAt ?? null}
+      recentSites={recentSites}
+      recommended={recommended}
+    />
   );
 }

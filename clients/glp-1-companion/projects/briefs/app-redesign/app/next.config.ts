@@ -1,10 +1,6 @@
 import type { NextConfig } from "next";
-import { resolve } from "path";
 
 const nextConfig: NextConfig = {
-  turbopack: {
-    root: resolve(__dirname),
-  },
   async headers() {
     return [
       {
@@ -12,6 +8,15 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "Service-Worker-Allowed", value: "/" },
           { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
+        ],
+      },
+      {
+        source: "/api/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Access-Control-Allow-Methods", value: "GET, POST, PUT, DELETE, OPTIONS" },
+          { key: "Access-Control-Allow-Headers", value: "Content-Type, Authorization" },
+          { key: "Access-Control-Max-Age", value: "86400" },
         ],
       },
     ];

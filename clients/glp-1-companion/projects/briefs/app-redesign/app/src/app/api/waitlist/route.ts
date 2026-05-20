@@ -1,4 +1,5 @@
 import { db } from "@/lib/db";
+import { sendWaitlistConfirmation } from "@/lib/email";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -26,10 +27,16 @@ export async function POST(request: Request) {
       data: { email: trimmed, source: "landing" },
     });
 
+    // Fire-and-forget — don't block the response on email delivery
+    sendWaitlistConfirmation(trimmed).catch((err) =>
+      console.error("[waitlist] email failed:", err)
+    );
+
     return NextResponse.json({ status: "success" });
-  } catch {
+  } catch (err) {
+    console.error("[waitlist] error:", err);
     return NextResponse.json(
-      { status: "error" },
+      { status: "error", message: err instanceof Error ? err.message : "Unknown error" },
       { status: 500 },
     );
   }

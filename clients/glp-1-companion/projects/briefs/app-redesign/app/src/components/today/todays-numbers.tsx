@@ -17,16 +17,16 @@ export function TodaysNumbers({ numbers }: { numbers: TodayNumbers }) {
               {numbers.weight.delta !== null && numbers.weight.delta !== 0 && (
                 <>
                   {numbers.weight.delta < 0 ? (
-                    <ArrowDown className="h-3 w-3 text-green-600" />
+                    <ArrowDown className="h-3 w-3 text-success" />
                   ) : (
-                    <ArrowUp className="h-3 w-3 text-red-500" />
+                    <ArrowUp className="h-3 w-3 text-error" />
                   )}
                   <span
                     className={cn(
                       "text-xs font-medium",
                       numbers.weight.delta < 0
-                        ? "text-green-600"
-                        : "text-red-500"
+                        ? "text-success"
+                        : "text-error"
                     )}
                   >
                     {Math.abs(numbers.weight.delta)}

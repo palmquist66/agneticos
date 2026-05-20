@@ -11,7 +11,9 @@ import {
   Syringe,
   ArrowRight,
 } from "lucide-react";
-import { WaitlistForm } from "@/components/landing/waitlist-form";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { db } from "@/lib/db";
 
 /* ─── Typography helpers (scoped to landing page) ─── */
 const h = "font-[family-name:var(--font-bricolage)]"; // heading
@@ -19,7 +21,16 @@ const b = "font-[family-name:var(--font-source-sans)]"; // body
 
 /* ─────────────────────────── LANDING PAGE ─────────────────────────── */
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const { userId } = await auth();
+  if (userId) {
+    const user = await db.user.findUnique({ where: { clerkId: userId } });
+    if (user?.onboarded) {
+      redirect("/today");
+    } else {
+      redirect("/onboarding/medication");
+    }
+  }
   return (
     <div className={`${b} flex min-h-screen flex-col bg-[#FAF8F3] text-[#07302E]`}>
       {/* ── Header ── */}
@@ -37,18 +48,26 @@ export default function LandingPage() {
               GLP-1 Companion
             </span>
           </Link>
-          <Link
-            href="#waitlist"
-            className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-[#FF8A6A] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#F56A48]"
-          >
-            Join the Beta
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/sign-in"
+              className="text-sm font-medium text-[#0F5F5A] transition-colors hover:text-[#07302E]"
+            >
+              Sign in
+            </Link>
+            <Link
+              href="/sign-up"
+              className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-[#FF8A6A] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#F56A48]"
+            >
+              Get Started
+            </Link>
+          </div>
         </div>
       </header>
 
       <main>
         {/* ═══════════════════ HERO ═══════════════════ */}
-        <section className="relative overflow-hidden px-5 pb-20 pt-16 sm:px-8 sm:pb-28 sm:pt-24 lg:pt-28" id="waitlist">
+        <section className="relative overflow-hidden px-5 pb-20 pt-16 sm:px-8 sm:pb-28 sm:pt-24 lg:pt-28">
           <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
             {/* Left — Copy + Form */}
             <div className="max-w-xl">
@@ -71,10 +90,16 @@ export default function LandingPage() {
                 you what it means.
               </p>
 
-              <div className="mt-8 max-w-md">
-                <WaitlistForm />
-                <p className="mt-3 text-[13px] text-[#6F6A5C]">
-                  Free to join. No credit card. We&#8217;ll email you when beta opens.
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <Link
+                  href="/sign-up"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#FF8A6A] px-8 text-[15px] font-semibold text-white shadow-sm transition-all hover:bg-[#F56A48] sm:h-14 sm:rounded-2xl sm:text-base"
+                >
+                  Create Free Account
+                  <ArrowRight className="size-4" />
+                </Link>
+                <p className="text-[13px] text-[#6F6A5C]">
+                  Free forever. No credit card required.
                 </p>
               </div>
             </div>
@@ -564,10 +589,16 @@ export default function LandingPage() {
               with answers, not questions.
             </p>
 
-            <div className="mx-auto mt-8 max-w-md">
-              <WaitlistForm />
+            <div className="mx-auto mt-8">
+              <Link
+                href="/sign-up"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#FF8A6A] px-8 text-[15px] font-semibold text-white shadow-sm transition-all hover:bg-[#F56A48] sm:h-14 sm:rounded-2xl sm:text-base"
+              >
+                Create Free Account
+                <ArrowRight className="size-4" />
+              </Link>
               <p className="mt-3 text-[13px] text-[#6F6A5C]">
-                Free to join. No credit card required.
+                Free forever. No credit card required.
               </p>
             </div>
           </div>
