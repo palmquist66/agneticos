@@ -38,7 +38,14 @@
           "imageWidth": 200
         }
       ],
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#0F5F5A"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

@@ -34,7 +34,10 @@ export async function GET(request: Request) {
       where: {
         active: true,
         user: {
-          pushSubscriptions: { some: {} },
+          OR: [
+            { pushSubscriptions: { some: {} } },
+            { deviceTokens: { some: { active: true } } },
+          ],
         },
       },
       include: {

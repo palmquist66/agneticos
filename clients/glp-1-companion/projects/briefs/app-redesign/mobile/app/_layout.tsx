@@ -1,12 +1,18 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useColorScheme } from "react-native";
 import { Slot, useRouter, useSegments } from "expo-router";
 import { ClerkProvider, ClerkLoaded, useAuth } from "@clerk/clerk-expo";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
+import * as Notifications from "expo-notifications";
 import { useFonts } from "expo-font";
 import { tokenCache } from "@/lib/auth";
 import { api, setAuthTokenGetter } from "@/lib/api";
+import {
+  setupNotificationCategories,
+  handleNotificationResponse,
+  registerForPushNotifications,
+} from "@/lib/notifications";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -59,6 +65,47 @@ function AuthGate() {
       checkOnboarding();
     }
   }, [isLoaded, isSignedIn, segments]);
+
+  // ─── Notification setup ────────────────────────────────
+  const responseListener = useRef<Notifications.EventSubscription | null>(null);
+  const tokenListener = useRef<Notifications.EventSubscription | null>(null);
+
+  // Register iOS notification categories on mount
+  useEffect(() => {
+    setupNotificationCategories();
+  }, []);
+
+  // Listen for notification taps (warm start)
+  useEffect(() => {
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener(handleNotificationResponse);
+
+    return () => {
+      responseListener.current?.remove();
+    };
+  }, []);
+
+  // Handle cold-start notification tap
+  useEffect(() => {
+    Notifications.getLastNotificationResponseAsync().then((response) => {
+      if (response) {
+        handleNotificationResponse(response);
+      }
+    });
+  }, []);
+
+  // Re-register token if it refreshes
+  useEffect(() => {
+    if (!isSignedIn) return;
+
+    tokenListener.current = Notifications.addPushTokenListener(() => {
+      registerForPushNotifications();
+    });
+
+    return () => {
+      tokenListener.current?.remove();
+    };
+  }, [isSignedIn]);
 
   return <Slot />;
 }

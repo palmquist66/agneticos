@@ -1,4 +1,5 @@
 import webpush from "web-push";
+import { Expo, type ExpoPushMessage } from "expo-server-sdk";
 import { createHmac } from "crypto";
 import { db } from "@/lib/db";
 
@@ -16,6 +17,10 @@ function ensureVapid() {
   vapidConfigured = true;
   return true;
 }
+
+// ─── Expo Push SDK ───────────────────────────────────────
+
+const expo = new Expo();
 
 // ─── Action Tokens (HMAC) ────────────────────────────────
 
@@ -69,7 +74,7 @@ type PushPayload = {
   data: Record<string, unknown>;
 };
 
-export async function sendPushToUser(
+async function sendWebPushToUser(
   userId: string,
   payload: PushPayload
 ): Promise<{ sent: number; failed: number }> {
@@ -102,4 +107,76 @@ export async function sendPushToUser(
   }
 
   return { sent, failed };
+}
+
+async function sendExpoPushToUser(
+  userId: string,
+  payload: PushPayload
+): Promise<{ sent: number; failed: number }> {
+  const tokens = await db.deviceToken.findMany({
+    where: { userId, active: true },
+  });
+
+  if (tokens.length === 0) return { sent: 0, failed: 0 };
+
+  const messages: ExpoPushMessage[] = tokens
+    .filter((t) => Expo.isExpoPushToken(t.token))
+    .map((t) => ({
+      to: t.token,
+      title: payload.title,
+      body: payload.body,
+      data: payload.data,
+      sound: "default" as const,
+      categoryId: "medication-reminder",
+    }));
+
+  if (messages.length === 0) return { sent: 0, failed: 0 };
+
+  let sent = 0;
+  let failed = 0;
+  const chunks = expo.chunkPushNotifications(messages);
+
+  for (const chunk of chunks) {
+    try {
+      const receipts = await expo.sendPushNotificationsAsync(chunk);
+      for (const receipt of receipts) {
+        if (receipt.status === "ok") {
+          sent++;
+        } else {
+          failed++;
+          // Deactivate tokens that are invalid
+          if (
+            receipt.details?.error === "DeviceNotRegistered"
+          ) {
+            const failedToken = chunk[receipts.indexOf(receipt)]?.to;
+            if (typeof failedToken === "string") {
+              await db.deviceToken.updateMany({
+                where: { token: failedToken },
+                data: { active: false },
+              });
+            }
+          }
+        }
+      }
+    } catch {
+      failed += chunk.length;
+    }
+  }
+
+  return { sent, failed };
+}
+
+export async function sendPushToUser(
+  userId: string,
+  payload: PushPayload
+): Promise<{ sent: number; failed: number }> {
+  const [web, mobile] = await Promise.all([
+    sendWebPushToUser(userId, payload),
+    sendExpoPushToUser(userId, payload),
+  ]);
+
+  return {
+    sent: web.sent + mobile.sent,
+    failed: web.failed + mobile.failed,
+  };
 }

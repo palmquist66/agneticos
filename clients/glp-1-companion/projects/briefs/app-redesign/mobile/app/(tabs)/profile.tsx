@@ -1,7 +1,9 @@
-import { View, Text, Pressable, useColorScheme } from "react-native";
+import { View, Text, Pressable, ScrollView, useColorScheme } from "react-native";
 import { useAuth, useUser } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import { Colors } from "@/constants/colors";
+import { NotificationToggle } from "@/components/profile/notification-toggle";
+import { unregisterPushNotifications } from "@/lib/notifications";
 
 export default function ProfileScreen() {
   const colorScheme = useColorScheme() ?? "light";
@@ -11,18 +13,15 @@ export default function ProfileScreen() {
   const router = useRouter();
 
   const handleSignOut = async () => {
+    await unregisterPushNotifications();
     await signOut();
     router.replace("/sign-in");
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: colors.background,
-        padding: 16,
-        gap: 16,
-      }}
+    <ScrollView
+      style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ padding: 16, gap: 16, paddingBottom: 32 }}
     >
       {/* User info card */}
       <View
@@ -76,7 +75,7 @@ export default function ProfileScreen() {
         </Text>
       </View>
 
-      {/* Placeholder sections */}
+      {/* Health Targets card */}
       <View
         style={{
           backgroundColor: colors.card,
@@ -107,6 +106,9 @@ export default function ProfileScreen() {
         </Text>
       </View>
 
+      {/* Notification toggle */}
+      <NotificationToggle />
+
       {/* Sign out button */}
       <Pressable
         onPress={handleSignOut}
@@ -117,7 +119,7 @@ export default function ProfileScreen() {
           alignItems: "center",
           borderWidth: 1,
           borderColor: colors.destructive,
-          marginTop: "auto",
+          marginTop: 16,
         }}
       >
         <Text
@@ -130,6 +132,6 @@ export default function ProfileScreen() {
           Sign Out
         </Text>
       </Pressable>
-    </View>
+    </ScrollView>
   );
 }

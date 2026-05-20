@@ -275,3 +275,8 @@ export interface RegisterDeviceTokenRequest {
   token: string;
   platform: "ios" | "android";
 }
+
+export interface RegisterDeviceTokenResponse {
+  success: boolean;
+  error?: string;
+}
