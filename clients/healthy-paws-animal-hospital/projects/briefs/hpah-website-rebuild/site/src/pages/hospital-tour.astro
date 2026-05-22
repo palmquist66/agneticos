@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { business } from '../data/business';
+
+const tourStops = [
+  {
+    name: 'Lobby',
+    subtitle: 'Small by Design',
+    description: `If our lobby seems small, that's because it is — intentionally. At most veterinary practices, the lobby is where the anxiety starts. Dogs pulling on leashes, cats hissing in carriers, and everyone waiting longer than they'd like. We designed Healthy Paws so that doesn't happen. When you arrive, you're escorted directly to an exam room. Our lobby exists for brief check-ins, not extended waits. We consider it a failure if you spend significant time here. It's one of the first things new clients notice — and one of the things they appreciate most.`,
+    placeholder: 'Lobby',
+  },
+  {
+    name: 'Exam Rooms',
+    subtitle: 'Where Your Visit Truly Begins',
+    description: `Our exam rooms are where the Healthy Paws experience comes to life. Featuring floor-to-ceiling windows that flood the space with natural light, each room is designed to feel calm, open, and welcoming — nothing like the sterile, windowless boxes you might expect. Your pet enters the exam room as soon as you arrive, so the entire appointment happens in one comfortable, familiar space. This is where your veterinarian conducts the exam, discusses findings, answers your questions, and works with you to build a care plan. It's also where you check out when the visit is complete — no need to go back to the front desk. The natural light, the unhurried pace, and the privacy of a dedicated room all contribute to a less stressful experience for both you and your pet.`,
+    placeholder: 'Exam Room',
+  },
+  {
+    name: 'Surgery Suite',
+    subtitle: 'Modern, Safe, and Fully Equipped',
+    description: `Our surgery suite is equipped with modern surgical tools, advanced monitoring equipment, and a sterile environment that meets the highest standards of veterinary surgical care. Whether your pet needs a routine spay or neuter, dental procedure, mass removal, or emergency surgery, our facility is designed to support safe, efficient surgical outcomes. We use multi-parameter monitoring during every procedure — tracking heart rate, blood pressure, oxygen saturation, and temperature in real time — so your pet's vital signs are watched continuously. Our team follows strict sterilization protocols, and every surgery patient receives a personalized anesthetic plan based on their age, breed, weight, and health status. After surgery, Dr. Burgess personally follows up to check on your pet's recovery.`,
+    placeholder: 'Surgery Suite',
+  },
+  {
+    name: 'In-House Laboratory',
+    subtitle: 'Fast Answers When They Matter Most',
+    description: `One of the most impactful decisions we made when building Healthy Paws was investing in a comprehensive in-house laboratory. Our lab allows us to run complete blood counts, chemistry panels, urinalysis, cytology, fecal analysis, and more — right here in our hospital, often while you wait. In veterinary medicine, timing matters. When your pet is sick, waiting two to three days for outside lab results can delay diagnosis and treatment. Our in-house lab gives us the ability to identify problems during your visit, start treatment the same day, and monitor your pet's response in real time. It's faster for you, better for your pet, and it means our veterinarians can make informed decisions with the most current data available.`,
+    placeholder: 'Laboratory',
+  },
+  {
+    name: 'Isolation Ward',
+    subtitle: 'Protecting Every Patient',
+    description: `Our hospital includes a dedicated isolation ward — a separate, self-contained area designed for pets who may have contagious conditions. This space has its own ventilation, separate entry points, and dedicated equipment to prevent the spread of infectious diseases to other patients in our care. The isolation ward ensures that if your pet needs to be seen for a potentially contagious illness, they receive the same high-quality care without putting other animals at risk. And if your pet is healthy and visiting for routine care, you can have peace of mind knowing we take every precaution to maintain a clean, safe environment for all patients.`,
+    placeholder: 'Isolation Ward',
+  },
+  {
+    name: 'Comprehensive Pharmacy',
+    subtitle: 'Medications Ready When You Need Them',
+    description: `Healthy Paws maintains a comprehensive on-site pharmacy stocked with a wide range of medications, supplements, prescription diets, and preventive products. When your veterinarian prescribes a medication, you can often take it home the same day — no extra trip to an outside pharmacy, no waiting for a mail-order delivery. Our pharmacy carries everything from antibiotics and pain medications to chronic disease management drugs, flea and tick preventives, heartworm medications, and specialized prescription diets. Having these products immediately available means your pet can start treatment faster, and you spend less time running errands when your focus should be on your pet's recovery.`,
+    placeholder: 'Pharmacy',
+  },
+];
+---
+
+<BaseLayout
+  title="Hospital Tour | Healthy Paws Animal Hospital"
+  description="Take a virtual tour of Healthy Paws Animal Hospital in Lake in the Hills, IL. See our exam rooms with floor-to-ceiling windows, in-house laboratory, surgery suite, and more. Designed around your pet's comfort."
+>
+  <!-- Hero -->
+  <section class="bg-hpah-green-light py-16 lg:py-20">
+    <div class="container max-w-3xl text-center">
+      <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-4">Hospital Tour</p>
+      <h1 class="text-4xl lg:text-5xl mb-6">See Where Your Pet Receives Care</h1>
+      <p class="text-lg text-hpah-text-light">
+        Every detail of Healthy Paws Animal Hospital was designed with intention — from the size of
+        our lobby to the windows in our exam rooms. Take a look inside and see how our facility
+        supports the gentle, low-stress, education-first experience that defines our practice.
+      </p>
+    </div>
+  </section>
+
+  <!-- Tour Stops -->
+  <section class="py-20">
+    <div class="container max-w-5xl">
+      <div class="space-y-20">
+        {tourStops.map((stop, index) => (
+          <div class:list={[
+            'flex flex-col md:flex-row gap-8 items-center',
+            index % 2 === 1 ? 'md:flex-row-reverse' : '',
+          ]}>
+            <!-- Placeholder Image -->
+            <div class="md:w-1/2">
+              <div class="w-full aspect-[4/3] bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center">
+                <svg class="w-12 h-12 text-gray-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <p class="text-gray-400 text-sm font-semibold">{stop.placeholder} Photo</p>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="md:w-1/2">
+              <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-2">{stop.subtitle}</p>
+              <h2 class="text-2xl mb-4">{stop.name}</h2>
+              <p class="text-hpah-text-light leading-relaxed">{stop.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Designed With Purpose -->
+  <section class="py-16 bg-hpah-bg-warm">
+    <div class="container max-w-3xl text-center">
+      <h2 class="mb-6">Every Detail Serves a Purpose</h2>
+      <p class="text-lg text-hpah-text-light mb-6">
+        When Dr. Burgess designed Healthy Paws Animal Hospital, she didn't just think about the
+        equipment and the floor plan. She thought about how it would feel to be a pet walking
+        through the door, and how it would feel to be a pet owner sitting in an exam room.
+      </p>
+      <p class="text-hpah-text-light mb-6">
+        The small lobby, the direct-to-exam-room flow, the natural light, the in-room checkout —
+        none of these are accidents. They're deliberate design decisions rooted in low-stress
+        principles and a deep understanding of what makes veterinary visits stressful for both
+        animals and their humans.
+      </p>
+      <p class="text-hpah-text-light">
+        The result is a hospital that feels welcoming from the moment you arrive. It's a space
+        where your pet can be calmer, your veterinarian can be more thorough, and you can feel
+        confident that every aspect of the experience was built with your family in mind.
+      </p>
+    </div>
+  </section>
+
+  <CTA heading="Come See It for Yourself" text="Photos can only show so much. Schedule a visit and experience the Healthy Paws difference in person." />
+</BaseLayout>

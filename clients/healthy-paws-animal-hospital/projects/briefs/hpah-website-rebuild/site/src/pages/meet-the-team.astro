@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { business, team } from '../data/business';
+
+const vetBios: Record<string, string> = {
+  'dr-burgess': `Dr. Burgess founded Healthy Paws Animal Hospital in May 2010 with a clear mission: build the veterinary practice she always wished existed. After earning her Doctor of Veterinary Medicine degree from Kansas State University in 1997, she spent over a decade in veterinary practice before deciding it was time to do things differently. She envisioned a clinic where every pet owner would be treated as a partner in their animal's care — not just a customer. Where education and transparency would replace rushed appointments and unexplained bills. Where the entire experience, from the moment you walk in to the moment you leave, would be designed around reducing stress for both pets and their families. That vision became Healthy Paws. As owner and lead veterinarian, Dr. Burgess personally oversees the standard of care across the practice and is known for her thorough approach, her willingness to take the time to answer every question, and her personal follow-up calls after surgery and significant procedures.`,
+  'dr-haslitt': `Dr. Haslitt joined the Healthy Paws team as an associate veterinarian, bringing a compassionate approach and a deep commitment to the practice's philosophy of education-first, gentle care. Pet owners appreciate Dr. Haslitt's warm demeanor, attention to detail, and ability to explain complex medical topics in a way that's easy to understand. Whether performing routine wellness exams or navigating more complex health challenges, Dr. Haslitt brings the same dedication and thoroughness to every appointment.`,
+  'dr-mosier': `Dr. Mosier is an associate veterinarian at Healthy Paws who shares the team's commitment to transparent, patient-centered medicine. Known for a gentle touch and a genuine love for animals, Dr. Mosier has become a trusted member of the Healthy Paws family. Pet owners regularly comment on Dr. Mosier's ability to put both pets and their owners at ease, making even nervous animals feel comfortable during their visits. Dr. Mosier is an integral part of maintaining the personal, educational approach that defines the Healthy Paws experience.`,
+};
+
+function getInitials(name: string): string {
+  return name
+    .replace('Dr. ', '')
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase();
+}
+
+const personSchemas = team.vets.map((vet) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: vet.fullName,
+  jobTitle: vet.role,
+  worksFor: {
+    '@type': 'VeterinaryCare',
+    name: business.name,
+    url: business.website,
+  },
+  ...(vet.education
+    ? {
+        alumniOf: {
+          '@type': 'EducationalOrganization',
+          name: vet.education.split(',')[0],
+        },
+      }
+    : {}),
+}));
+---
+
+<BaseLayout
+  title="Meet the Team | Healthy Paws Animal Hospital"
+  description="Meet the veterinary team at Healthy Paws Animal Hospital in Lake in the Hills, IL — Dr. Burgess, Dr. Haslitt, and Dr. Mosier. Veterinarians committed to gentle, low-stress, personal, educational care."
+>
+  <!-- Person Schema -->
+  <Fragment slot="schema">
+    {personSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="bg-hpah-green-light py-16 lg:py-20">
+    <div class="container max-w-3xl text-center">
+      <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-4">Our Team</p>
+      <h1 class="text-4xl lg:text-5xl mb-6">The People Behind the Care</h1>
+      <p class="text-lg text-hpah-text-light">
+        At Healthy Paws Animal Hospital, our team isn't just skilled — they're genuinely invested in
+        the well-being of every pet and family that walks through our doors. Every doctor and staff
+        member shares a commitment to gentle, low-stress care, transparency, and education.
+      </p>
+    </div>
+  </section>
+
+  <!-- Veterinarians -->
+  <section class="py-20">
+    <div class="container max-w-4xl">
+      <h2 class="text-center mb-12">Our Veterinarians</h2>
+
+      <div class="space-y-16">
+        {team.vets.map((vet, index) => (
+          <div class:list={[
+            'flex flex-col md:flex-row gap-8 items-start',
+            index % 2 === 1 ? 'md:flex-row-reverse' : '',
+          ]}>
+            <!-- Placeholder Photo -->
+            <div class="md:w-64 shrink-0">
+              <div class="w-full aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
+                <span class="text-5xl font-bold text-gray-400 font-narrow">
+                  {getInitials(vet.name)}
+                </span>
+              </div>
+            </div>
+
+            <!-- Bio -->
+            <div class="flex-1">
+              <h3 class="text-2xl mb-1">{vet.fullName}</h3>
+              <p class="text-hpah-green font-bold mb-1">{vet.role}</p>
+              {vet.education && (
+                <p class="text-sm text-hpah-text-light mb-4">{vet.education}</p>
+              )}
+              <p class="text-hpah-text-light leading-relaxed">
+                {vetBios[vet.slug] || ''}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Staff Section -->
+  <section class="py-20 bg-hpah-bg-warm">
+    <div class="container max-w-3xl text-center">
+      <h2 class="mb-6">Our Staff — The Secret Sauce</h2>
+      <p class="text-lg text-hpah-text-light mb-6">
+        Behind every great veterinary team is a support staff that makes the magic happen. Our
+        veterinary technicians, assistants, and client care coordinators are the backbone of Healthy
+        Paws Animal Hospital — and they're the reason your experience here feels different from any
+        other clinic.
+      </p>
+      <p class="text-hpah-text-light mb-6">
+        Every member of our staff is trained in gentle handling, which means they've completed specialized
+        training in reducing fear, anxiety, and stress in the animals they handle. But training
+        is just the baseline. What truly sets our team apart is their genuine compassion, their patience,
+        and their ability to make both pets and pet owners feel comfortable and cared for.
+      </p>
+      <p class="text-hpah-text-light mb-6">
+        From the person who greets you and escorts you directly to your exam room, to the technician
+        who holds your pet's paw during a blood draw, to the team member who processes your in-room
+        checkout — every interaction is handled with warmth, professionalism, and attention to detail.
+      </p>
+      <p class="text-hpah-text-light">
+        Dr. Burgess is selective about who joins the Healthy Paws team. Technical skill matters, but
+        so does heart. Everyone here genuinely loves animals and takes pride in providing the kind
+        of experience that keeps families coming back — and referring their friends. Our staff isn't
+        just part of the team. They're our secret sauce.
+      </p>
+    </div>
+  </section>
+
+  <!-- Culture -->
+  <section class="py-20">
+    <div class="container max-w-4xl">
+      <div class="text-center mb-12">
+        <h2 class="mb-4">What Unites Our Team</h2>
+        <p class="text-lg text-hpah-text-light max-w-2xl mx-auto">
+          Regardless of role, every person at Healthy Paws shares these values.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-hpah-green-light rounded-lg p-6 text-center">
+          <p class="text-2xl mb-3">💚</p>
+          <h3 class="text-lg mb-2">Low-Stress Mindset</h3>
+          <p class="text-sm text-hpah-text-light">
+            Every team member is trained and committed to making visits stress-free for your pet.
+          </p>
+        </div>
+        <div class="bg-hpah-green-light rounded-lg p-6 text-center">
+          <p class="text-2xl mb-3">📚</p>
+          <h3 class="text-lg mb-2">Continuous Learning</h3>
+          <p class="text-sm text-hpah-text-light">
+            Our team regularly pursues continuing education to stay current with best practices in veterinary medicine.
+          </p>
+        </div>
+        <div class="bg-hpah-green-light rounded-lg p-6 text-center">
+          <p class="text-2xl mb-3">🤝</p>
+          <h3 class="text-lg mb-2">Genuine Empathy</h3>
+          <p class="text-sm text-hpah-text-light">
+            We treat every family the way we'd want our own pets and families to be treated.
+          </p>
+        </div>
+        <div class="bg-hpah-green-light rounded-lg p-6 text-center">
+          <p class="text-2xl mb-3">🔍</p>
+          <h3 class="text-lg mb-2">Attention to Detail</h3>
+          <p class="text-sm text-hpah-text-light">
+            From medical records to patient handling, details are our specialty — nothing is overlooked.
+          </p>
+        </div>
+        <div class="bg-hpah-green-light rounded-lg p-6 text-center">
+          <p class="text-2xl mb-3">💬</p>
+          <h3 class="text-lg mb-2">Open Communication</h3>
+          <p class="text-sm text-hpah-text-light">
+            We explain, we listen, and we make sure you leave every visit with clarity and confidence.
+          </p>
+        </div>
+        <div class="bg-hpah-green-light rounded-lg p-6 text-center">
+          <p class="text-2xl mb-3">❤️</p>
+          <h3 class="text-lg mb-2">Love for Animals</h3>
+          <p class="text-sm text-hpah-text-light">
+            It might sound obvious, but it matters — everyone here chose this work because they love animals.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA heading="Meet Us in Person" text="Schedule a visit and experience the warmth and expertise of the Healthy Paws team firsthand." />
+</BaseLayout>

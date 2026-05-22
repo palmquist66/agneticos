@@ -7,8 +7,9 @@
 - **Focus:** Advanced, comprehensive, compassionate vet care with emphasis on efficiency, transparency, and education
 
 ## Role
-- External contractor / digital marketing consultant — NOT part of the practice
-- Provides SEO, AEO, and marketing services to Healthy Paws as a client
+- Friends first, beta customer — James is helping Karen (practice owner) as a friend, using HPAH as a beta client for his services
+- NOT a formal paid engagement — tone with Karen should be casual/friendly, not consultant-to-client
+- Provides SEO, AEO, website, and marketing help to Healthy Paws
 - When creating client-facing materials, use third-person for the practice ("Healthy Paws", "the practice") and first-person for the consultant's own work
 
 ## Communication Style

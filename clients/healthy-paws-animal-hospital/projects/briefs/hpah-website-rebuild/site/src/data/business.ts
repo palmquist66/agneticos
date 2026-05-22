@@ -1,0 +1,95 @@
+export const business = {
+  name: 'Healthy Paws Animal Hospital',
+  legalName: 'Healthy Paws Animal Hospital',
+  phone: '(815) 322-5400',
+  phoneRaw: '+18153225400',
+  email: 'service@hpah.org',
+  website: 'https://healthypawsanimalhospital.com',
+  address: {
+    street: '4581 Princeton Ln #101',
+    city: 'Lake in the Hills',
+    state: 'IL',
+    zip: '60156',
+    full: '4581 Princeton Ln #101, Lake in the Hills, IL 60156',
+  },
+  geo: {
+    latitude: 42.2025351,
+    longitude: -88.3828499,
+  },
+  founded: '2010-05-01',
+  tagline: 'Personal. Professional. Educational.',
+  hours: {
+    monday: '8:00 AM - 6:00 PM',
+    tuesday: '8:00 AM - 6:00 PM',
+    wednesday: '8:00 AM - 6:00 PM',
+    thursday: '8:00 AM - 6:00 PM',
+    friday: '8:00 AM - 6:00 PM',
+    saturday: '8:00 AM - 12:00 PM',
+    sunday: 'Closed',
+  },
+  hoursSchema: [
+    'Mo-Fr 08:00-18:00',
+    'Sa 08:00-12:00',
+  ],
+  social: {
+    facebook: 'https://www.facebook.com/healthypawsanimalhospital/',
+    yelp: 'https://www.yelp.com/biz/healthy-paws-animal-hospital-lake-in-the-hills',
+    google: 'https://share.google/NdX8yGH4TWkqxM3Db',
+  },
+  serviceAreas: [
+    'Lake in the Hills',
+    'Algonquin',
+    'Huntley',
+    'Crystal Lake',
+    'Cary',
+    'Village of Lakewood',
+  ],
+  logo: 'https://healthypawsanimalhospital.com/wp-content/uploads/2024/01/Healthy-Paws-Animal-Hospital-logo-1-2.png',
+  certifications: [],
+  attributes: ['Women-owned', 'Privately owned'],
+} as const;
+
+export const team = {
+  vets: [
+    {
+      name: 'Dr. Burgess',
+      fullName: 'Dr. Burgess, DVM',
+      role: 'Owner & Lead Veterinarian',
+      education: 'Kansas State University, 1997',
+      slug: 'dr-burgess',
+    },
+    {
+      name: 'Dr. Haslitt',
+      fullName: 'Dr. Haslitt, DVM',
+      role: 'Associate Veterinarian',
+      education: '',
+      slug: 'dr-haslitt',
+    },
+    {
+      name: 'Dr. Mosier',
+      fullName: 'Dr. Mosier, DVM',
+      role: 'Associate Veterinarian',
+      education: '',
+      slug: 'dr-mosier',
+    },
+  ],
+} as const;
+
+export const services = [
+  { name: 'Wellness Exams', slug: 'wellness-exams-lake-in-the-hills-il', icon: '🩺', description: 'Comprehensive annual and semi-annual wellness examinations for dogs and cats.' },
+  { name: 'Vaccinations', slug: 'pet-vaccinations-lake-in-the-hills-il', icon: '💉', description: 'Customized vaccination protocols tailored to your pet\'s lifestyle and risk factors.' },
+  { name: 'Dental Care', slug: 'dental-care', icon: '🦷', description: 'Digital dental radiography, teeth cleaning, and oral surgery.' },
+  { name: 'Surgery', slug: 'surgery', icon: '🏥', description: 'General and emergency surgical services in our modern surgery suite.' },
+  { name: 'Spay & Neuter', slug: 'spay-neuter-lake-in-the-hills-il', icon: '✂️', description: 'Safe, compassionate spay and neuter procedures with personalized aftercare.' },
+  { name: 'Senior Pet Care', slug: 'senior-pet-care-lake-in-the-hills-il', icon: '🐾', description: 'Specialized care for aging pets including early disease detection and pain management.' },
+  { name: 'Low-Stress Care', slug: 'low-stress-vet-lake-in-the-hills-il', icon: '💚', description: 'Gentle, low-stress approach that reduces anxiety during veterinary visits.' },
+  { name: 'Cat Veterinarian', slug: 'cat-vet-lake-in-the-hills-il', icon: '🐱', description: 'Specialized feline care from a team that understands cats\' unique needs.' },
+  { name: 'Pet Allergies', slug: 'pet-allergy-treatment-lake-in-the-hills-il', icon: '🌿', description: 'Diagnosis and treatment of skin conditions, food allergies, and environmental allergies.' },
+  { name: 'Emergency & Urgent Care', slug: 'emergency-urgent-care', icon: '🚨', description: 'Same-day urgent care for acute illness and injuries during business hours.' },
+  { name: 'Nutrition Counseling', slug: 'nutrition-counseling', icon: '🥗', description: 'Expert dietary guidance tailored to your pet\'s age, breed, and health needs.' },
+  { name: 'Pain Management', slug: 'pain-management', icon: '💊', description: 'Multimodal pain management to keep your pet comfortable and active.' },
+  { name: 'Behavioral Health', slug: 'behavioral-health', icon: '🧠', description: 'Behavioral assessments and recommendations to improve your pet\'s quality of life.' },
+  { name: 'End of Life Care', slug: 'end-of-life-care', icon: '🕊️', description: 'Compassionate euthanasia and end-of-life support for you and your pet.' },
+  { name: 'Microchipping', slug: 'microchipping', icon: '📡', description: 'Permanent identification to help reunite you with your pet if they\'re ever lost.' },
+  { name: 'Laboratory & Diagnostics', slug: 'laboratory-diagnostics', icon: '🔬', description: 'In-house laboratory for fast, accurate diagnostic results.' },
+] as const;

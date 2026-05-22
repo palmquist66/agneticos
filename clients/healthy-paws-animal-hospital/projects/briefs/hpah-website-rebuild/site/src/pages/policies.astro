@@ -1,0 +1,221 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { business } from '../data/business';
+---
+
+<BaseLayout
+  title="Hospital Policies | Healthy Paws Animal Hospital"
+  description="Review the hospital policies at Healthy Paws Animal Hospital including payment, cancellations, emergencies, vaccinations, and pet safety."
+>
+  <!-- Page Header -->
+  <section class="bg-hpah-green-light py-16">
+    <div class="container">
+      <h1 class="text-4xl lg:text-5xl mb-4">Hospital Policies</h1>
+      <p class="text-lg text-hpah-text-light max-w-2xl">
+        We believe in transparency in everything we do — including our policies.
+        These guidelines help us provide the best possible care for every pet that walks through our doors.
+      </p>
+    </div>
+  </section>
+
+  <!-- Policies -->
+  <section class="py-16">
+    <div class="container">
+      <div class="max-w-3xl mx-auto prose">
+
+        <!-- Payment Policy -->
+        <div class="mb-12">
+          <h2 class="flex items-center gap-3">
+            <span class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+              </svg>
+            </span>
+            Payment Policy
+          </h2>
+          <p>
+            Payment is due at the time of service. We accept cash, checks, Visa, MasterCard, Discover,
+            and American Express. We also accept CareCredit for those who prefer a financing option.
+          </p>
+          <p>
+            We are committed to transparent pricing. Before any procedure or treatment, we will provide you
+            with a detailed estimate so you know exactly what to expect. If costs change during treatment,
+            we will contact you before proceeding. There are no hidden fees or surprise charges.
+          </p>
+          <p>
+            We understand that veterinary care is an investment in your pet's health. If you have questions
+            about costs or need to discuss payment options, please don't hesitate to ask our team. We're
+            happy to work with you to prioritize your pet's care within your budget.
+          </p>
+        </div>
+
+        <!-- Appointment & Cancellation Policy -->
+        <div class="mb-12">
+          <h2 class="flex items-center gap-3">
+            <span class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </span>
+            Appointment &amp; Cancellation Policy
+          </h2>
+          <p>
+            We schedule appointments to give each pet the time and attention they deserve.
+            If you need to cancel or reschedule, we kindly ask that you give us at least
+            <strong>24 hours' notice</strong>. This allows us to offer that appointment
+            slot to another pet in need.
+          </p>
+          <p>
+            For surgical appointments, we require <strong>48 hours' notice</strong> for
+            cancellations, as surgical time blocks require additional preparation and staffing.
+          </p>
+          <p>
+            We understand that life happens and unexpected situations arise. If you're running
+            late or need to cancel on short notice, please call us as soon as possible at
+            <a href={`tel:${business.phoneRaw}`}>{business.phone}</a>. We'll always do
+            our best to accommodate you.
+          </p>
+          <p>
+            If you arrive more than 15 minutes late for your appointment, we may need to
+            reschedule to ensure we can provide your pet with the thorough care they deserve
+            without impacting other patients.
+          </p>
+        </div>
+
+        <!-- Emergency Protocol -->
+        <div class="mb-12">
+          <h2 class="flex items-center gap-3">
+            <span class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </span>
+            Emergency Protocol
+          </h2>
+          <p>
+            During business hours, we accept urgent and emergency cases on a walk-in basis.
+            If your pet is experiencing an emergency, call us immediately at
+            <a href={`tel:${business.phoneRaw}`}>{business.phone}</a> so we can prepare
+            for your arrival.
+          </p>
+          <p>
+            <strong>Signs of a veterinary emergency include:</strong>
+          </p>
+          <ul>
+            <li>Difficulty breathing or choking</li>
+            <li>Suspected poisoning or ingestion of a toxic substance</li>
+            <li>Severe bleeding or trauma</li>
+            <li>Inability to urinate or defecate (especially in male cats)</li>
+            <li>Seizures or sudden collapse</li>
+            <li>Bloated or distended abdomen</li>
+            <li>Prolonged vomiting or diarrhea</li>
+          </ul>
+          <p>
+            <strong>After hours:</strong> We are not a 24-hour facility. If your pet has
+            an emergency outside of our regular office hours, please contact your nearest
+            24-hour emergency veterinary hospital. When in doubt, do not wait — seek
+            emergency care immediately.
+          </p>
+        </div>
+
+        <!-- Vaccination Requirements -->
+        <div class="mb-12">
+          <h2 class="flex items-center gap-3">
+            <span class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </span>
+            Vaccination Policy
+          </h2>
+          <p>
+            We develop customized vaccination protocols based on your pet's age, lifestyle,
+            health status, and risk factors. We don't believe in a one-size-fits-all approach
+            to vaccinations — every recommendation is made with your individual pet in mind.
+          </p>
+          <p>
+            For the safety of all patients, we require that pets visiting our facility have
+            current <strong>rabies vaccinations</strong> as mandated by Illinois state law.
+            We recommend core vaccinations for dogs (rabies, DHPP) and cats (rabies, FVRCP),
+            with additional lifestyle-based vaccines discussed during your visit.
+          </p>
+          <p>
+            We're happy to discuss the purpose, benefits, and risks of every vaccine we
+            recommend. We believe informed pet owners make the best decisions about their
+            pet's care.
+          </p>
+        </div>
+
+        <!-- Pet Behavior & Safety -->
+        <div class="mb-12">
+          <h2 class="flex items-center gap-3">
+            <span class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </span>
+            Pet Behavior &amp; Safety
+          </h2>
+          <p>
+            As a practice dedicated to gentle, low-stress care, we are deeply committed to the emotional
+            well-being of every pet in our care. Our team is trained in gentle handling
+            techniques, and our facility is designed to minimize stress and anxiety.
+          </p>
+          <p>
+            To help us keep everyone safe and comfortable:
+          </p>
+          <ul>
+            <li><strong>Dogs</strong> should be on a leash at all times while in the building.</li>
+            <li><strong>Cats</strong> should be transported in a secure carrier. We recommend placing a familiar blanket inside for comfort.</li>
+            <li>Please let us know if your pet has a history of anxiety, fear, or aggression at veterinary visits — this helps us prepare and create the most positive experience possible.</li>
+            <li>If your pet is very anxious, we may recommend pre-visit calming medications. We see this as proactive care, not a last resort.</li>
+          </ul>
+          <p>
+            Your pet goes directly to the exam room when they arrive — no crowded waiting
+            area, no unexpected encounters with other animals. We consider it a failure if
+            you spend time in our lobby.
+          </p>
+        </div>
+
+        <!-- Medical Records -->
+        <div class="mb-12">
+          <h2 class="flex items-center gap-3">
+            <span class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </span>
+            Medical Records
+          </h2>
+          <p>
+            Your pet's medical records are maintained securely in our electronic medical
+            records system. You may request copies of your pet's records at any time by
+            contacting our office at <a href={`tel:${business.phoneRaw}`}>{business.phone}</a>
+            or emailing <a href={`mailto:${business.email}`}>{business.email}</a>.
+          </p>
+          <p>
+            If you are transferring from another veterinary practice, we recommend having
+            your previous records sent to us before your first visit. We can also request
+            records on your behalf with your written authorization.
+          </p>
+        </div>
+
+        <!-- Questions -->
+        <div class="bg-hpah-green-light rounded-lg p-8 text-center">
+          <h3 class="text-xl font-bold mb-3">Questions About Our Policies?</h3>
+          <p class="text-hpah-text-light mb-4">
+            We're happy to clarify anything. Transparency is one of our core values —
+            if something isn't clear, we want to know.
+          </p>
+          <a href={`tel:${business.phoneRaw}`} class="btn-primary">
+            Call {business.phone}
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

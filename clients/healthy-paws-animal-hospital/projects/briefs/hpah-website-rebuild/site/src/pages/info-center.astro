@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { business } from '../data/business';
+---
+
+<BaseLayout
+  title="Pet Health Info Center | Healthy Paws Animal Hospital"
+  description="Educational pet health resources from Healthy Paws Animal Hospital. Guides for new pet owners, preventive care, senior pets, nutrition, and emergencies in Lake in the Hills, IL."
+>
+  <!-- Page Header -->
+  <section class="bg-hpah-green-light py-16 lg:py-20">
+    <div class="container max-w-3xl text-center">
+      <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-4">Pet Health Info Center</p>
+      <h1 class="text-4xl lg:text-5xl mb-6">The Gift of Education Keeps on Giving</h1>
+      <p class="text-lg text-hpah-text-light">
+        At Healthy Paws, we believe informed pet owners make the best decisions for their animals.
+        This resource center is designed to help you understand your pet's health needs at every stage of life.
+      </p>
+    </div>
+  </section>
+
+  <!-- Resource Sections -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-5xl">
+
+      <!-- New Pet Owners -->
+      <div class="mb-16">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <h2 class="text-2xl">New Pet Owners</h2>
+        </div>
+        <p class="text-hpah-text-light mb-6 leading-relaxed">
+          Bringing home a new puppy, kitten, or adopted pet is exciting — and comes with a lot of questions. These
+          resources will help you start off on the right foot with a solid foundation of preventive care, proper
+          nutrition, and an understanding of what to expect during your first year together.
+        </p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="/your-first-visit/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Your First Visit</p>
+            <p class="text-sm text-hpah-text-light mt-1">What to expect and how to prepare</p>
+          </a>
+          <a href="/pet-vaccinations-lake-in-the-hills-il/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Vaccination Schedules</p>
+            <p class="text-sm text-hpah-text-light mt-1">Core and lifestyle vaccines for puppies and kittens</p>
+          </a>
+          <a href="/spay-neuter-lake-in-the-hills-il/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Spay & Neuter</p>
+            <p class="text-sm text-hpah-text-light mt-1">Timing, benefits, and what to expect</p>
+          </a>
+          <a href="/microchipping/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Microchipping</p>
+            <p class="text-sm text-hpah-text-light mt-1">Permanent identification for your pet's safety</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Preventive Care -->
+      <div class="mb-16">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h2 class="text-2xl">Preventive Care</h2>
+        </div>
+        <p class="text-hpah-text-light mb-6 leading-relaxed">
+          Prevention is always more effective — and less expensive — than treatment. Regular wellness exams, dental
+          care, and parasite prevention are the foundation of a long, healthy life for your pet. Our preventive care
+          approach catches problems early, when they're easiest to address.
+        </p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="/wellness-exams-lake-in-the-hills-il/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Wellness Exams</p>
+            <p class="text-sm text-hpah-text-light mt-1">Comprehensive annual and semi-annual checkups</p>
+          </a>
+          <a href="/dental-care/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Dental Care</p>
+            <p class="text-sm text-hpah-text-light mt-1">Professional cleanings, home care tips, and dental health</p>
+          </a>
+          <a href="/pet-vaccinations-lake-in-the-hills-il/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Vaccinations</p>
+            <p class="text-sm text-hpah-text-light mt-1">Tailored vaccine protocols based on lifestyle risk</p>
+          </a>
+          <a href="/laboratory-diagnostics/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Lab & Diagnostics</p>
+            <p class="text-sm text-hpah-text-light mt-1">Bloodwork, urinalysis, and early disease screening</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Senior Pet Care -->
+      <div class="mb-16">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+          <h2 class="text-2xl">Senior Pet Care</h2>
+        </div>
+        <p class="text-hpah-text-light mb-6 leading-relaxed">
+          Aging pets have unique health needs. Dogs are generally considered senior at age 7, and cats around age 11.
+          Regular wellness checks become even more important as your pet ages, helping us detect and manage conditions
+          like arthritis, kidney disease, diabetes, and cognitive changes early.
+        </p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="/senior-pet-care-lake-in-the-hills-il/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Senior Pet Care</p>
+            <p class="text-sm text-hpah-text-light mt-1">Specialized care for aging dogs and cats</p>
+          </a>
+          <a href="/pain-management/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Pain Management</p>
+            <p class="text-sm text-hpah-text-light mt-1">Keeping your senior pet comfortable and active</p>
+          </a>
+          <a href="/nutrition-counseling/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Senior Nutrition</p>
+            <p class="text-sm text-hpah-text-light mt-1">Diet adjustments for aging bodies</p>
+          </a>
+          <a href="/end-of-life-care/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">End of Life Care</p>
+            <p class="text-sm text-hpah-text-light mt-1">Compassionate guidance when the time comes</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Emergency Info -->
+      <div class="mb-16">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h2 class="text-2xl">Emergency Information</h2>
+        </div>
+        <p class="text-hpah-text-light mb-6 leading-relaxed">
+          Knowing what constitutes a veterinary emergency — and what to do when one happens — can save your pet's life.
+          We provide same-day urgent care during business hours. For after-hours emergencies, we'll direct you to the
+          nearest 24-hour emergency facility.
+        </p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="/emergency-urgent-care/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Emergency & Urgent Care</p>
+            <p class="text-sm text-hpah-text-light mt-1">When to seek immediate help</p>
+          </a>
+          <a href="/specialty-partners/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Specialty & Referral Partners</p>
+            <p class="text-sm text-hpah-text-light mt-1">When your pet needs advanced care</p>
+          </a>
+        </div>
+        <div class="mt-6 bg-red-50 rounded-lg p-6 border border-red-100">
+          <p class="font-semibold text-red-800 mb-2">If your pet is experiencing an emergency:</p>
+          <p class="text-red-700">
+            Call us immediately at <a href={`tel:${business.phoneRaw}`} class="font-bold underline">{business.phone}</a> during business hours.
+            If we're closed, contact your nearest 24-hour emergency veterinary hospital.
+          </p>
+        </div>
+      </div>
+
+      <!-- Nutrition -->
+      <div class="mb-16">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
+            </svg>
+          </div>
+          <h2 class="text-2xl">Nutrition & Diet</h2>
+        </div>
+        <p class="text-hpah-text-light mb-6 leading-relaxed">
+          What your pet eats directly impacts their health, energy, weight, and longevity. With hundreds of pet food
+          brands making competing claims, choosing the right diet can feel overwhelming. Our veterinarians provide
+          evidence-based nutrition guidance tailored to your pet's specific needs — not influenced by any brand partnerships.
+        </p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="/nutrition-counseling/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Nutrition Counseling</p>
+            <p class="text-sm text-hpah-text-light mt-1">Personalized diet recommendations</p>
+          </a>
+          <a href="/pet-allergy-treatment-lake-in-the-hills-il/" class="block bg-white border border-gray-100 rounded-lg p-4 hover:border-hpah-green transition-colors">
+            <p class="font-semibold text-hpah-text">Food Allergies</p>
+            <p class="text-sm text-hpah-text-light mt-1">Identifying and managing dietary sensitivities</p>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Blog Callout -->
+  <section class="py-12 bg-hpah-bg-warm">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-2xl mb-4">Visit Our Blog</h2>
+      <p class="text-hpah-text-light mb-6">
+        Our blog features seasonal health tips, in-depth articles on common pet health topics, and updates from
+        our team. It's another way we live our education-first philosophy — sharing knowledge beyond the exam room.
+      </p>
+      <a href="/blog/" class="btn-primary">Read Our Blog</a>
+    </div>
+  </section>
+
+  <CTA heading="Have a Health Question?" text="Our team is always happy to answer your questions — whether you're a current patient or considering Healthy Paws for the first time." />
+</BaseLayout>

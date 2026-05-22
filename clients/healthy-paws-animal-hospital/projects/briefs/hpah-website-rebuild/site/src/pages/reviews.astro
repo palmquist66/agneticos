@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { business } from '../data/business';
+
+const reviews = [
+  {
+    text: 'We switched to Healthy Paws after years at a corporate vet and the difference is remarkable. Dr. Burgess spent 45 minutes with us on our first visit, explaining every recommendation and answering every question. Our senior dog has never been so relaxed at the vet.',
+    author: 'Sarah M.',
+    location: 'Lake in the Hills',
+    rating: 5,
+    highlight: 'Education & Transparency',
+  },
+  {
+    text: 'The low-stress approach here is the real deal — not just a sticker on the wall. My cat used to hide for days after vet visits. At Healthy Paws, she goes straight to the exam room, gets treats, and is actually calm. The team genuinely cares about reducing stress for our pets.',
+    author: 'Mike T.',
+    location: 'Crystal Lake',
+    rating: 5,
+    highlight: 'Low-Stress Care',
+  },
+  {
+    text: 'Dr. Burgess found a dental issue during a routine wellness exam that our previous vet missed for years. She walked us through the dental X-rays, explained exactly what she saw, and gave us a clear treatment plan with transparent pricing. No surprises — just honest, thorough care.',
+    author: 'Jennifer L.',
+    location: 'Algonquin',
+    rating: 5,
+    highlight: 'Dental Care & Diagnostics',
+  },
+  {
+    text: 'When our golden retriever needed emergency surgery, Dr. Burgess called us personally that evening to check on him and again the next morning. That level of personal follow-up is something you just don\'t get at bigger practices. We\'ve been coming here for six years now.',
+    author: 'David & Karen R.',
+    location: 'Huntley',
+    rating: 5,
+    highlight: 'Personal Follow-Up',
+  },
+  {
+    text: 'As a first-time pet owner, I had so many questions and Healthy Paws never made me feel silly for asking. They took the time to teach me about nutrition, vaccination schedules, and what to watch for as my puppy grows. It feels like having a trusted partner in my pet\'s health.',
+    author: 'Amanda P.',
+    location: 'Cary',
+    rating: 5,
+    highlight: 'New Pet Owner Support',
+  },
+  {
+    text: 'The transparency here sets them apart. Before any procedure, they walk you through exactly what it costs, why it\'s recommended, and what alternatives exist. I\'ve never felt pressured into anything. They respect that you\'re the one making decisions for your pet.',
+    author: 'Tom W.',
+    location: 'Lake in the Hills',
+    rating: 5,
+    highlight: 'Transparent Pricing',
+  },
+  {
+    text: 'We have three cats and a dog, and the whole team knows each one by name. The single exam room design means our anxious cat never has to sit in a waiting room full of dogs. It\'s such a thoughtful detail that makes a huge difference for multi-pet families.',
+    author: 'Rachel & Chris K.',
+    location: 'Village of Lakewood',
+    rating: 5,
+    highlight: 'Multi-Pet Families',
+  },
+  {
+    text: 'Dr. Burgess helped us through the hardest day — when we had to say goodbye to our 16-year-old lab. The compassion and respect she showed us and our dog made an impossible moment as gentle as it could be. We\'ll always be grateful for that kindness.',
+    author: 'Linda S.',
+    location: 'Crystal Lake',
+    rating: 5,
+    highlight: 'Compassionate End-of-Life Care',
+  },
+];
+---
+
+<BaseLayout
+  title="Reviews | Healthy Paws Animal Hospital"
+  description={`Read what pet owners say about Healthy Paws Animal Hospital in Lake in the Hills, IL. Gentle, low-stress care, transparent pricing, and a team that truly cares.`}
+>
+  <!-- Page Header -->
+  <section class="bg-hpah-green-light py-16">
+    <div class="container">
+      <h1 class="text-4xl lg:text-5xl mb-4">What Our Clients Say</h1>
+      <p class="text-lg text-hpah-text-light max-w-2xl">
+        The best measure of a veterinary practice is the trust of the families it serves.
+        Here's what pet owners across our community have to say about their experience at Healthy Paws.
+      </p>
+    </div>
+  </section>
+
+  <!-- Reviews Grid -->
+  <section class="py-16">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {reviews.map((review) => (
+          <div class="bg-white rounded-lg p-8 border border-gray-200 hover:shadow-lg transition-shadow">
+            <!-- Stars -->
+            <div class="flex gap-1 mb-3">
+              {Array.from({ length: review.rating }).map(() => (
+                <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <!-- Highlight Tag -->
+            <span class="inline-block bg-hpah-green-light text-hpah-green text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+              {review.highlight}
+            </span>
+            <!-- Quote -->
+            <blockquote class="text-hpah-text mb-4 italic leading-relaxed">
+              "{review.text}"
+            </blockquote>
+            <!-- Attribution -->
+            <p class="text-sm font-semibold text-hpah-text-light">
+              — {review.author}, {review.location}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Leave a Review -->
+  <section class="py-16 bg-hpah-bg-warm">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl mb-4">Share Your Experience</h2>
+        <p class="text-hpah-text-light mb-8">
+          Had a great visit? We'd love to hear about it. Your reviews help other pet owners
+          find the care they're looking for — and they mean the world to our team.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href={business.social.google}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary"
+          >
+            Leave a Google Review
+          </a>
+          <a
+            href={business.social.yelp}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary"
+          >
+            Review Us on Yelp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+/* ── HPAH Brand Tokens ─────────────────────────────────── */
+@theme {
+  --color-hpah-green: #478033;
+  --color-hpah-green-dark: #3a6a2a;
+  --color-hpah-green-light: #E2F1E1;
+  --color-hpah-blue: #2098D1;
+  --color-hpah-text: #1a1a1a;
+  --color-hpah-text-light: #555555;
+  --color-hpah-border: #CCCCCC;
+  --color-hpah-bg: #FFFFFF;
+  --color-hpah-bg-warm: #FAFAF8;
+
+  --font-sans: 'PT Sans', Helvetica, Arial, Lucida, sans-serif;
+  --font-narrow: 'PT Sans Narrow', 'PT Sans', Helvetica, Arial, sans-serif;
+}
+
+/* ── Base Styles ───────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-hpah-text);
+  line-height: 1.7;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-narrow);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-hpah-text);
+}
+
+h1 { font-size: 2.75rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--color-hpah-blue);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--color-hpah-green);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Button Styles ─────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  background-color: var(--color-hpah-green);
+  color: white;
+  font-weight: 700;
+  border-radius: 50px;
+  transition: background-color 0.2s, transform 0.1s;
+  text-decoration: none;
+  font-size: 1rem;
+}
+.btn-primary:hover {
+  background-color: var(--color-hpah-green-dark);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  background-color: var(--color-hpah-green-light);
+  color: var(--color-hpah-text);
+  font-weight: 700;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  font-size: 1rem;
+}
+.btn-secondary:hover {
+  background-color: #d0e8cf;
+  color: var(--color-hpah-text);
+}
+
+/* ── Container ─────────────────────────────────────────── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ── Prose (for markdown content pages) ────────────────── */
+.prose h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.prose h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.prose ul, .prose ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+.prose li {
+  margin-bottom: 0.5rem;
+}
+.prose strong {
+  font-weight: 700;
+}
+
+/* ── Skip to content ───────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: 0.5rem 1rem;
+  background: var(--color-hpah-green);
+  color: white;
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 0;
+}

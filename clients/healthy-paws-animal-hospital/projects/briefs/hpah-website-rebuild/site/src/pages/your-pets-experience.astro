@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { business } from '../data/business';
+
+const lowStressApproach = [
+  {
+    title: 'We Never Fight Animals',
+    icon: '🤲',
+    description: `This is a foundational principle at Healthy Paws, and it's one that sets us apart from many practices. We do not restrain, force, or overpower animals to get through an exam or procedure. If a pet is too stressed, too fearful, or too agitated to safely continue, we stop. We reassess. We find a different approach. That might mean trying again with a different technique, rescheduling with pre-visit calming medication, or simply giving the pet more time to settle. We would rather take longer or reschedule entirely than traumatize an animal to get through an appointment. This commitment isn't just about being "nice" — it's better medicine. A calm patient gives us a more accurate exam, safer procedures, and a pet who isn't terrified to come back next time.`,
+  },
+  {
+    title: 'A Calming Environment from the Start',
+    icon: '🌿',
+    description: `Stress reduction starts before your pet even enters the exam room. Our hospital was designed with low-stress principles built into the architecture. The lobby is intentionally small — your pet goes directly to the exam room instead of waiting in a crowded reception area surrounded by unfamiliar animals and sounds. Our exam rooms feature floor-to-ceiling windows that let in natural light, creating a warm, open atmosphere that feels nothing like a sterile medical environment. We use pheromone diffusers (Adaptil for dogs, Feliway for cats) throughout the hospital to promote calm. Non-slip mats on exam tables prevent that anxiety-inducing sliding sensation. Soft background sounds help mask the clinical noises that can startle sensitive animals.`,
+  },
+  {
+    title: 'Gentle, Patient Handling',
+    icon: '💛',
+    description: `Every member of our team — every veterinarian, technician, and assistant — is trained in low-stress handling techniques. We approach animals slowly and on their terms. We read body language before we act. We use treats, distractions, and positive reinforcement to build trust during the visit rather than relying on physical restraint. For dogs, that might mean sitting on the floor during an exam, letting them explore the room first, or using a lick mat with peanut butter as a pleasant distraction. For cats, it might mean examining them in the bottom half of their carrier, using towel wraps for security, or dimming the lights to reduce overstimulation. These aren't extras — they're standard care at Healthy Paws.`,
+  },
+  {
+    title: 'Tailored to Each Pet\'s Comfort',
+    icon: '🎯',
+    description: `No two pets are the same, and their comfort strategies shouldn't be either. We note each patient's anxiety triggers, preferred treats, handling preferences, and what worked (or didn't work) at previous visits. This information goes into their medical record, so every team member who interacts with your pet knows exactly how to make them comfortable. For pets with severe anxiety, we offer pre-visit pharmaceutical options — calming medications that can be given at home before the appointment to take the edge off before they even get in the car. We discuss these options openly with pet owners so you can decide together with your veterinarian what approach gives your pet the best experience.`,
+  },
+  {
+    title: 'The Goal: A Stress-Free Visit',
+    icon: '✨',
+    description: `Our ultimate goal is for your pet to leave Healthy Paws feeling no worse — and ideally better — than when they arrived. We want tail wags at the door, not trembling. We want cats who aren't pressed into the back of their carriers, refusing to come out. We want pets who associate our hospital with treats, gentle hands, and calm voices — not with fear. This isn't an unrealistic ideal. It's what happens when you combine gentle handling training, thoughtful facility design, patient handling, and a team that genuinely refuses to compromise on an animal's emotional well-being. And when it works — when a previously terrified pet walks willingly into the exam room for the first time — it's the most rewarding part of what we do.`,
+  },
+];
+---
+
+<BaseLayout
+  title="Your Pet's Experience | Healthy Paws Animal Hospital"
+  description="Learn how Healthy Paws Animal Hospital in Lake in the Hills, IL creates stress-free veterinary visits. Gentle handling, calming environments, and care tailored to every pet's comfort."
+>
+  <!-- Hero -->
+  <section class="bg-hpah-green-light py-16 lg:py-20">
+    <div class="container max-w-3xl text-center">
+      <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-4">Your Pet's Experience</p>
+      <h1 class="text-4xl lg:text-5xl mb-6">How We Care for Your Pet — Body and Mind</h1>
+      <p class="text-lg text-hpah-text-light">
+        At Healthy Paws Animal Hospital, your pet's emotional well-being matters just as much as their
+        physical health. As a practice dedicated to gentle, low-stress care, we've designed every aspect of the
+        veterinary experience to minimize stress, reduce anxiety, and treat your pet with the
+        gentleness and patience they deserve.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="py-16">
+    <div class="container max-w-3xl">
+      <h2 class="text-center mb-6">The Low-Stress Difference</h2>
+      <p class="text-hpah-text-light text-center text-lg mb-8">
+        Gentle, low-stress care isn't just something we talk about — it's a comprehensive approach
+        to veterinary medicine that fundamentally changes how we interact with every animal in our
+        care. Our entire team, from doctors to support staff, is trained in gentle handling
+        and continues their education in low-stress, anxiety-reducing techniques.
+      </p>
+      <p class="text-hpah-text-light text-center">
+        Here's what that means in practice for your pet:
+      </p>
+    </div>
+  </section>
+
+  <!-- Approach Details -->
+  <section class="pb-20">
+    <div class="container max-w-4xl">
+      <div class="space-y-12">
+        {lowStressApproach.map((item, index) => (
+          <div class:list={[
+            'rounded-lg overflow-hidden',
+            index % 2 === 0 ? 'bg-white border border-gray-100' : 'bg-hpah-bg-warm',
+          ]}>
+            <div class="p-8 lg:p-10">
+              <div class="flex items-center gap-4 mb-4">
+                <span class="text-3xl">{item.icon}</span>
+                <h2 class="text-2xl">{item.title}</h2>
+              </div>
+              <p class="text-hpah-text-light leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Dogs vs Cats -->
+  <section class="py-20 bg-hpah-bg-warm">
+    <div class="container max-w-4xl">
+      <h2 class="text-center mb-12">Species-Specific Comfort</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-lg p-8 border border-gray-100">
+          <h3 class="text-xl mb-4">For Dogs</h3>
+          <ul class="space-y-3 text-hpah-text-light">
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Direct-to-room arrival to avoid lobby stress with other animals</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Adaptil pheromone diffusers to promote a sense of calm</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Treat-based positive reinforcement during exams and procedures</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Floor-level exams for nervous dogs who feel safer on the ground</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Lick mats and distraction techniques during blood draws and injections</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Pre-visit calming medication options for dogs with severe anxiety</span>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg p-8 border border-gray-100">
+          <h3 class="text-xl mb-4">For Cats</h3>
+          <ul class="space-y-3 text-hpah-text-light">
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Feliway pheromone diffusers throughout the hospital</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Carrier-based exams — we often examine cats in the bottom half of their carrier</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Towel wraps for cats who feel more secure with gentle pressure</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Dimmed lighting options to reduce overstimulation</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Quiet, slow-paced interactions that respect feline sensitivity</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Pre-visit calming options including gabapentin for highly anxious cats</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emotional Health -->
+  <section class="py-20">
+    <div class="container max-w-3xl text-center">
+      <h2 class="mb-6">Why Emotional Health Matters</h2>
+      <p class="text-lg text-hpah-text-light mb-6">
+        A pet who is terrified at the vet is harder to examine accurately, more likely to need
+        sedation for routine procedures, and more likely to avoid veterinary care altogether — which
+        means health problems get missed. Studies show that low-stress veterinary practices lead to more
+        thorough exams, earlier disease detection, and better long-term health outcomes.
+      </p>
+      <p class="text-hpah-text-light mb-6">
+        But beyond the clinical benefits, it's simply the right thing to do. Animals feel fear. They
+        feel stress. They remember negative experiences. And they deserve a veterinary team that
+        takes those feelings seriously — not one that pins them down and powers through.
+      </p>
+      <p class="text-hpah-text-light">
+        At Healthy Paws Animal Hospital, your pet's emotional experience is never an afterthought.
+        It's woven into every protocol, every design decision, and every interaction our team has
+        with the animals in our care. Because better emotional health means better physical health —
+        and a pet who doesn't dread coming to see us.
+      </p>
+    </div>
+  </section>
+
+  <CTA heading="Give Your Pet the Experience They Deserve" text="Schedule a visit and see how veterinary care feels when it's designed around your pet's comfort." />
+</BaseLayout>

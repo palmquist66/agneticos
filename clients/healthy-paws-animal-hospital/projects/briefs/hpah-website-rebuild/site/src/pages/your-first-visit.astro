@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { business } from '../data/business';
+
+const bringItems = [
+  'Any previous medical records, vaccination history, or lab results from your prior veterinarian',
+  'A list of current medications, supplements, or flea/tick preventives your pet is taking',
+  'Your pet\'s current food brand and type (or a photo of the label)',
+  'Any questions or concerns you want to discuss — write them down so you don\'t forget',
+  'A secure leash for dogs or a carrier for cats',
+  'Your pet\'s favorite treat or comfort item (blankets, toys) to help them feel at ease',
+  'A form of payment (we accept cash, credit, debit, and CareCredit)',
+];
+
+const steps = [
+  {
+    phase: 'Before Your Visit',
+    icon: '📋',
+    title: 'Getting Ready',
+    content: `We want your first visit to be as smooth and stress-free as possible — for you and your pet. Before your appointment, we'll ask you to complete new client paperwork. You can fill this out online ahead of time (we'll send you a link when you schedule) or arrive 10-15 minutes early to complete it in the office. The paperwork covers your pet's medical history, current diet, lifestyle, any medications they're taking, and the concerns you'd like to address. We also recommend gathering any previous medical records from your prior veterinarian. If you can have those sent to us ahead of time, our doctors can review them before your appointment, making the visit even more productive. Don't worry if you can't track everything down — we'll work with whatever information you have.`,
+  },
+  {
+    phase: 'When You Arrive',
+    icon: '🚪',
+    title: 'Directly to Your Exam Room',
+    content: `Here's where you'll notice the first difference. When you arrive at Healthy Paws, you won't sit in a crowded waiting room surrounded by anxious animals. Instead, you and your pet will be escorted directly to your own exam room. Our lobby is intentionally small because we believe the waiting room is the most stressful part of a veterinary visit for most pets. By going straight to the exam room, your pet can settle into a calm, quiet space before the appointment even begins. The room is yours for the entire visit — it's a private, comfortable space where you can relax, ask questions, and focus on your pet's care without distractions.`,
+  },
+  {
+    phase: 'During Your Visit',
+    icon: '🩺',
+    title: 'A Thorough, Unhurried Exam',
+    content: `Your veterinarian will perform a comprehensive physical examination, checking everything from your pet's eyes, ears, and teeth to their heart, lungs, joints, skin, and coat. But the exam is only part of the visit. At Healthy Paws, we take the time to talk with you — about your pet's history, their lifestyle, any concerns you've noticed at home, and what you can expect as they grow or age. We explain what we're finding during the exam, what it means, and what (if anything) we recommend doing about it. This is the education-first approach in action. We want you to understand your pet's health as well as we do, and we welcome every question. There are no rushed appointments here. If the exam reveals something that requires diagnostics, our in-house laboratory can often provide results during your visit, so we can discuss findings and next steps before you leave.`,
+  },
+  {
+    phase: 'After Your Visit',
+    icon: '✅',
+    title: 'In-Room Checkout & Follow-Up Plan',
+    content: `When the exam is complete, everything wraps up right where you are — in the exam room. We handle checkout on the spot so you don't have to navigate a front desk while managing your pet. Before you leave, your veterinarian or our team will make sure you have a clear understanding of any next steps: when to schedule follow-up visits, how to administer any medications, what signs to watch for at home, and who to call if you have questions between appointments. For pets who received vaccinations, had blood drawn, or are starting a new medication, we'll explain exactly what to expect in the days following the visit. And if your pet undergoes any significant procedure, Dr. Burgess personally follows up with a phone call to check on their recovery. Your relationship with Healthy Paws doesn't pause between visits.`,
+  },
+];
+---
+
+<BaseLayout
+  title="Your First Visit | Healthy Paws Animal Hospital"
+  description="What to expect at your first visit to Healthy Paws Animal Hospital in Lake in the Hills, IL. Learn about our direct-to-exam-room approach, thorough exams, and in-room checkout. Call (815) 322-5400."
+>
+  <!-- Hero -->
+  <section class="bg-hpah-green-light py-16 lg:py-20">
+    <div class="container max-w-3xl text-center">
+      <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-4">New Clients</p>
+      <h1 class="text-4xl lg:text-5xl mb-6">Your First Visit to Healthy Paws</h1>
+      <p class="text-lg text-hpah-text-light">
+        We know that choosing a new veterinarian is a big decision, and we want your first experience
+        with us to set the tone for a long and trusted relationship. Here's everything you need to
+        know about what to expect when you visit Healthy Paws Animal Hospital for the first time.
+      </p>
+    </div>
+  </section>
+
+  <!-- Visit Timeline -->
+  <section class="py-20">
+    <div class="container max-w-4xl">
+      <div class="space-y-16">
+        {steps.map((step, index) => (
+          <div class="relative">
+            <!-- Step indicator -->
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-hpah-green rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0">
+                {index + 1}
+              </div>
+              <div>
+                <p class="text-hpah-green font-bold text-sm uppercase tracking-wider">{step.phase}</p>
+                <h2 class="text-2xl">{step.title}</h2>
+              </div>
+            </div>
+            <div class="ml-16">
+              <p class="text-hpah-text-light leading-relaxed">{step.content}</p>
+            </div>
+            {index < steps.length - 1 && (
+              <div class="ml-6 mt-8 h-8 border-l-2 border-dashed border-hpah-green opacity-30"></div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Bring -->
+  <section class="py-20 bg-hpah-bg-warm">
+    <div class="container max-w-4xl">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+        <div class="lg:col-span-3">
+          <h2 class="mb-6">What to Bring</h2>
+          <p class="text-hpah-text-light mb-6">
+            Being prepared for your first visit helps us make the most of our time together. Here's
+            a checklist of what to bring along:
+          </p>
+          <ul class="space-y-4">
+            {bringItems.map((item) => (
+              <li class="flex gap-3 items-start">
+                <svg class="w-5 h-5 text-hpah-green mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-hpah-text-light">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-lg p-8 border border-gray-100">
+            <h3 class="text-xl mb-4 text-hpah-green">Helpful Tips</h3>
+            <div class="space-y-4 text-sm text-hpah-text-light">
+              <div>
+                <p class="font-bold text-hpah-text mb-1">For Dogs</p>
+                <p>Keep your dog on a secure leash. If your dog tends to be anxious in new settings,
+                  a calming walk before the appointment can help. Bring their favorite treats — we
+                  use treats as part of our low-stress approach.</p>
+              </div>
+              <div>
+                <p class="font-bold text-hpah-text mb-1">For Cats</p>
+                <p>Transport your cat in a secure carrier. Leave the carrier open at home for a few
+                  days before the visit so it becomes a familiar space. You can spray the inside with
+                  Feliway or place a familiar blanket inside for extra comfort.</p>
+              </div>
+              <div>
+                <p class="font-bold text-hpah-text mb-1">For Anxious Pets</p>
+                <p>Let us know ahead of time if your pet has a history of anxiety at the vet. We can
+                  tailor our low-stress approach specifically to their needs and ensure the environment
+                  is as calming as possible.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Sets Us Apart -->
+  <section class="py-16">
+    <div class="container max-w-3xl text-center">
+      <h2 class="mb-6">Why Your First Visit Will Feel Different</h2>
+      <p class="text-lg text-hpah-text-light mb-6">
+        If you've been to other veterinary practices, you'll notice the difference immediately.
+        There's no crowded lobby. No feeling rushed through an appointment. No confusion about what
+        just happened or what it costs. Instead, you'll experience a calm environment, a thorough
+        exam, clear communication, and the feeling that your veterinarian genuinely cares about your
+        pet and values your time.
+      </p>
+      <p class="text-hpah-text-light">
+        That's not by accident. Every part of the first-visit experience — from the direct-to-room
+        arrival to the in-room checkout — was designed to reflect the values that Dr. Burgess built
+        this practice on: transparency, education, and personal care. We want your first visit to
+        be the beginning of a relationship built on trust.
+      </p>
+    </div>
+  </section>
+
+  <CTA heading="Ready to Schedule Your First Visit?" text={`Call us at ${business.phone} or book online. We look forward to meeting you and your pet.`} />
+</BaseLayout>

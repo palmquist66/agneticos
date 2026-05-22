@@ -1,0 +1,156 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import FAQSection from '../components/FAQSection.astro';
+import CTA from '../components/CTA.astro';
+import { business, services } from '../data/business';
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  cityName: string;
+  driveTime: string;
+  driveRoute: string;
+  mapEmbedUrl: string;
+  faqs: FAQ[];
+}
+
+const {
+  title,
+  description,
+  cityName,
+  driveTime,
+  driveRoute,
+  mapEmbedUrl,
+  faqs,
+} = Astro.props;
+
+const topServices = services.slice(0, 10);
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero -->
+  <section class="bg-hpah-green-light py-16">
+    <div class="container">
+      <div class="max-w-3xl">
+        <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-3">
+          Serving {cityName}, IL
+        </p>
+        <h1 class="text-4xl lg:text-5xl mb-4">{title.split('|')[0].trim()}</h1>
+        <p class="text-lg text-hpah-text-light">
+          Just {driveTime} from {cityName} via {driveRoute}. Gentle, low-stress, privately owned veterinary care for your entire family.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-16">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Content -->
+        <div class="lg:col-span-2 prose">
+          <slot />
+
+          <!-- Services We Offer -->
+          <h2>Veterinary Services Available to {cityName} Pets</h2>
+          <p>
+            We offer comprehensive veterinary care for dogs and cats from {cityName} and surrounding communities.
+            Every service is delivered with our gentle, low-stress approach.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 not-prose my-6">
+            {topServices.map((svc) => (
+              <a
+                href={`/${svc.slug}/`}
+                class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-hpah-green hover:shadow-sm transition-all text-sm"
+              >
+                <span class="text-xl">{svc.icon}</span>
+                <span class="font-semibold text-hpah-text">{svc.name}</span>
+              </a>
+            ))}
+          </div>
+          <p>
+            <a href="/services/" class="font-semibold">View all services &rarr;</a>
+          </p>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-8">
+          <!-- Map -->
+          <div class="rounded-lg overflow-hidden border border-gray-200">
+            <iframe
+              src={mapEmbedUrl}
+              width="100%"
+              height="300"
+              style="border:0;"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title={`Map showing route from ${cityName} to Healthy Paws Animal Hospital`}
+            ></iframe>
+          </div>
+
+          <!-- Quick Contact -->
+          <div class="bg-hpah-green-light rounded-lg p-6">
+            <h3 class="text-lg font-bold mb-2">Schedule a Visit</h3>
+            <p class="text-sm text-hpah-text-light mb-4">
+              We're just {driveTime} from {cityName}. Call to schedule your pet's appointment.
+            </p>
+            <a href={`tel:${business.phoneRaw}`} class="btn-primary w-full justify-center text-sm">
+              Call {business.phone}
+            </a>
+          </div>
+
+          <!-- Hours -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-bold mb-3">Hours</h3>
+            <dl class="text-sm space-y-2">
+              <div class="flex justify-between">
+                <dt>Mon–Fri</dt>
+                <dd>8:00 AM – 6:00 PM</dd>
+              </div>
+              <div class="flex justify-between">
+                <dt>Saturday</dt>
+                <dd>8:00 AM – 12:00 PM</dd>
+              </div>
+              <div class="flex justify-between">
+                <dt>Sunday</dt>
+                <dd class="text-gray-400">Closed</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Address -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-bold mb-3">Our Location</h3>
+            <address class="not-italic text-sm text-hpah-text-light">
+              <p class="font-semibold text-hpah-text">{business.name}</p>
+              <p>{business.address.street}</p>
+              <p>{business.address.city}, {business.address.state} {business.address.zip}</p>
+            </address>
+            <a
+              href={`https://www.google.com/maps/dir/${encodeURIComponent(cityName + ', IL')}/${encodeURIComponent(business.address.full)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block mt-3 text-sm font-semibold text-hpah-green hover:text-hpah-green-dark"
+            >
+              Get Directions &rarr;
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  {faqs.length > 0 && <FAQSection faqs={faqs} />}
+
+  <CTA
+    heading={`${cityName} Pet Owners — We're Just Down the Road`}
+    text={`Schedule a visit and experience the Healthy Paws difference. We're just ${driveTime} from ${cityName}.`}
+  />
+</BaseLayout>

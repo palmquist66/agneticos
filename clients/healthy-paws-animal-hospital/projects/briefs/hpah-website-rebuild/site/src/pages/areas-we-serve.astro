@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { business } from '../data/business';
+
+const locations = [
+  {
+    name: 'Lake in the Hills',
+    badge: 'Home Base',
+    driveTime: null,
+    description: 'Our hospital is located at 4581 Princeton Ln #101, right in the heart of Lake in the Hills. This is where we have served the community since 2010.',
+    link: '/contact/',
+  },
+  {
+    name: 'Algonquin',
+    badge: null,
+    driveTime: '~10 min via Randall Road',
+    description: 'A straight shot north on Randall Road connects Algonquin pet owners to gentle, low-stress care, a single-exam-room design, and the personal attention of a privately owned practice.',
+    link: '/veterinarian-algonquin-il/',
+  },
+  {
+    name: 'Huntley',
+    badge: null,
+    driveTime: '~12 min via Route 47',
+    description: 'Huntley families looking for full-facility veterinary care with an education-first philosophy find us an easy drive south on Route 47 — comprehensive services under one roof.',
+    link: '/veterinarian-huntley-il/',
+  },
+  {
+    name: 'Crystal Lake',
+    badge: null,
+    driveTime: '~10 min via Route 176',
+    description: 'Crystal Lake pet owners choose Healthy Paws as the independent alternative to corporate chains — transparent pricing, unhurried appointments, and a team that prioritizes your pet\'s comfort.',
+    link: '/veterinarian-crystal-lake-il/',
+  },
+  {
+    name: 'Cary',
+    badge: null,
+    driveTime: '~12 min',
+    description: 'Cary residents enjoy convenient access to our full range of veterinary services. Our gentle, low-stress approach means calmer visits for pets who have historically been anxious at the vet.',
+    link: '/contact/',
+  },
+  {
+    name: 'Village of Lakewood',
+    badge: null,
+    driveTime: '~8 min',
+    description: 'Our closest neighboring community, Lakewood pet owners are just minutes away from comprehensive veterinary care delivered with a personal touch that larger practices cannot match.',
+    link: '/contact/',
+  },
+];
+---
+
+<BaseLayout
+  title="Areas We Serve | Healthy Paws Animal Hospital"
+  description="Healthy Paws Animal Hospital serves Lake in the Hills, Algonquin, Huntley, Crystal Lake, and surrounding IL communities. Call (815) 322-5400."
+>
+  <!-- Hero -->
+  <section class="bg-hpah-green-light py-16 lg:py-20">
+    <div class="container max-w-3xl text-center">
+      <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-4">Service Area</p>
+      <h1 class="text-4xl lg:text-5xl mb-6">Communities We Proudly Serve</h1>
+      <p class="text-lg text-hpah-text-light">
+        Healthy Paws Animal Hospital is centrally located in Lake in the Hills, serving pet owners
+        across McHenry and Kane Counties. Whether you are five minutes down the road or fifteen
+        minutes away, our doors are open to your family.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro Section -->
+  <section class="py-16">
+    <div class="container max-w-3xl">
+      <div class="prose mx-auto">
+        <p>
+          When Dr. Burgess founded Healthy Paws in 2010, she chose Lake in the Hills for a reason:
+          its central position within a network of growing communities that needed access to
+          high-quality, independently owned veterinary care. Fifteen years later, that decision
+          continues to serve families across the region.
+        </p>
+        <p>
+          We draw patients from Lake in the Hills, Algonquin, Huntley, Crystal Lake, Cary, the
+          Village of Lakewood, and surrounding areas. Each of these communities is connected to our
+          hospital by well-maintained roads with drive times ranging from five to fifteen minutes.
+          No matter where you are coming from, you will find a practice that values your time,
+          respects your intelligence, and treats your pet with genuine compassion.
+        </p>
+        <p>
+          What brings pet owners from across the area to a single practice in Lake in the Hills?
+          The same things that keep them coming back: <a href="/low-stress-vet-lake-in-the-hills-il/">gentle, low-stress care</a>
+          that reduces your pet's stress, an <a href="/why-choose-us/">education-first philosophy</a>
+          that empowers you to make informed decisions, and the accountability of a privately owned
+          hospital where the person making clinical recommendations is the same person responsible
+          for the quality of care your pet receives.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Cards -->
+  <section class="py-16 bg-hpah-bg-warm">
+    <div class="container">
+      <h2 class="text-center mb-12">Our Service Communities</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {locations.map((loc) => (
+          <a href={loc.link} class="block bg-white rounded-lg border border-gray-200 p-6 hover:border-hpah-green hover:shadow-md transition-all group">
+            <div class="flex items-center gap-3 mb-3">
+              <h3 class="text-xl font-bold group-hover:text-hpah-green transition-colors">{loc.name}</h3>
+              {loc.badge && (
+                <span class="text-xs font-bold bg-hpah-green text-white px-2 py-0.5 rounded-full">{loc.badge}</span>
+              )}
+            </div>
+            {loc.driveTime && (
+              <p class="text-sm text-hpah-green font-semibold mb-2">{loc.driveTime}</p>
+            )}
+            <p class="text-sm text-hpah-text-light leading-relaxed">{loc.description}</p>
+            <span class="inline-block mt-4 text-sm font-semibold text-hpah-green group-hover:translate-x-1 transition-transform">
+              Learn more &rarr;
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="py-16">
+    <div class="container max-w-4xl">
+      <h2 class="text-center mb-4">Centrally Located in Lake in the Hills</h2>
+      <p class="text-center text-hpah-text-light mb-8 max-w-2xl mx-auto">
+        Our hospital sits at the intersection of major routes connecting McHenry and Kane County
+        communities. Randall Road, Route 47, Route 176, and Crystal Lake Road all provide direct
+        access to our location.
+      </p>
+      <div class="rounded-lg overflow-hidden border border-gray-200 shadow-sm">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94500!2d-88.45!3d42.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880f1b0f0f0f0f0f%3A0x0!2s4581+Princeton+Ln%2C+Lake+in+the+Hills%2C+IL+60156!5e0!3m2!1sen!2sus!4v1"
+          width="100%"
+          height="400"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Map showing Healthy Paws Animal Hospital and surrounding service communities"
+        ></iframe>
+      </div>
+      <div class="mt-6 text-center">
+        <p class="text-sm text-hpah-text-light mb-2">
+          <strong>{business.name}</strong> &middot; {business.address.full}
+        </p>
+        <a
+          href={`https://www.google.com/maps/dir//${encodeURIComponent(business.address.full)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm font-semibold text-hpah-green hover:text-hpah-green-dark"
+        >
+          Get Directions &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Travel Section -->
+  <section class="py-16 bg-white">
+    <div class="container max-w-3xl">
+      <div class="prose mx-auto">
+        <h2 class="text-center">Worth the Short Drive</h2>
+        <p>
+          We understand you have veterinary options closer to home. The reason families from across
+          the region choose to spend a few extra minutes in the car is simple: the experience is
+          different. From the moment you arrive — no crowded lobby, no anxious wait — to the moment
+          you leave — in-room checkout, clear understanding of your pet's health and next steps —
+          every detail is designed around your pet's comfort and your peace of mind.
+        </p>
+        <p>
+          Whether you are in Algonquin, Huntley, Crystal Lake, Cary, Lakewood, or anywhere in
+          between, we welcome the opportunity to show you what veterinary care looks like when it
+          is built by people who chose this profession because they love animals — not because a
+          corporate group offered them a buyout.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Ready to Visit?"
+    text="Schedule your pet's appointment at Healthy Paws Animal Hospital. We serve families across McHenry and Kane Counties."
+  />
+</BaseLayout>

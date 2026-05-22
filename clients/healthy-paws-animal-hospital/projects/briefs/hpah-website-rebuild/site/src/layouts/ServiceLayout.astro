@@ -1,0 +1,138 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import FAQSection from '../components/FAQSection.astro';
+import ServiceSchema from '../components/ServiceSchema.astro';
+import CTA from '../components/CTA.astro';
+import { business, services } from '../data/business';
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  serviceName: string;
+  serviceDescription: string;
+  heroSubtitle?: string;
+  faqs: FAQ[];
+  relatedServices?: string[];
+}
+
+const {
+  title,
+  description,
+  serviceName,
+  serviceDescription,
+  heroSubtitle = `Serving ${business.serviceAreas.slice(0, 4).join(', ')}, and surrounding communities`,
+  faqs,
+  relatedServices = [],
+} = Astro.props;
+
+const pageUrl = `${business.website}${Astro.url.pathname}`;
+
+const related = services.filter((s) => relatedServices.includes(s.slug));
+---
+
+<BaseLayout title={title} description={description}>
+  <ServiceSchema
+    slot="schema"
+    name={serviceName}
+    description={serviceDescription}
+    url={pageUrl}
+  />
+
+  <!-- Hero -->
+  <section class="bg-hpah-green-light py-16">
+    <div class="container">
+      <div class="max-w-3xl">
+        <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-3">
+          {serviceName}
+        </p>
+        <h1 class="text-4xl lg:text-5xl mb-4">{title.split('|')[0].trim()}</h1>
+        <p class="text-lg text-hpah-text-light">{heroSubtitle}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-16">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Content -->
+        <div class="lg:col-span-2 prose">
+          <slot />
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-8">
+          <!-- Quick Contact -->
+          <div class="bg-hpah-green-light rounded-lg p-6">
+            <h3 class="text-lg font-bold mb-3">Schedule This Service</h3>
+            <p class="text-sm text-hpah-text-light mb-4">
+              Call us to schedule your pet's {serviceName.toLowerCase()} appointment.
+            </p>
+            <a href={`tel:${business.phoneRaw}`} class="btn-primary w-full justify-center text-sm">
+              Call {business.phone}
+            </a>
+          </div>
+
+          <!-- Hours -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-bold mb-3">Hours</h3>
+            <dl class="text-sm space-y-2">
+              <div class="flex justify-between">
+                <dt>Mon–Fri</dt>
+                <dd>8:00 AM – 6:00 PM</dd>
+              </div>
+              <div class="flex justify-between">
+                <dt>Saturday</dt>
+                <dd>8:00 AM – 12:00 PM</dd>
+              </div>
+              <div class="flex justify-between">
+                <dt>Sunday</dt>
+                <dd class="text-gray-400">Closed</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Related Services -->
+          {related.length > 0 && (
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+              <h3 class="text-lg font-bold mb-3">Related Services</h3>
+              <ul class="space-y-2">
+                {related.map((svc) => (
+                  <li>
+                    <a href={`/${svc.slug}/`} class="text-sm flex items-center gap-2 text-hpah-text hover:text-hpah-green transition-colors">
+                      <span>{svc.icon}</span>
+                      <span>{svc.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Location -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-bold mb-3">Location</h3>
+            <address class="not-italic text-sm text-hpah-text-light">
+              <p class="font-semibold text-hpah-text">{business.name}</p>
+              <p>{business.address.street}</p>
+              <p>{business.address.city}, {business.address.state} {business.address.zip}</p>
+            </address>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  {faqs.length > 0 && <FAQSection faqs={faqs} />}
+
+  <CTA
+    heading={`Questions About ${serviceName}?`}
+    text={`Our team is happy to answer any questions about ${serviceName.toLowerCase()} for your pet. Give us a call or schedule a visit.`}
+  />
+</BaseLayout>

@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { business } from '../data/business';
+
+const seasonalReminders = [
+  {
+    season: 'Spring',
+    title: 'Flea, Tick & Heartworm Prevention',
+    description: 'As temperatures rise, parasites become active. Now is the time to ensure your pet is current on flea, tick, and heartworm prevention. These parasites can cause serious illness — prevention is far easier (and less expensive) than treatment.',
+    tips: [
+      'Start or renew heartworm prevention — year-round is ideal in Illinois',
+      'Check your pet daily for ticks after outdoor activity',
+      'Watch for signs of flea allergy: excessive scratching, hair loss, or hot spots',
+      'Schedule a wellness exam to discuss the right prevention protocol for your pet\'s lifestyle',
+    ],
+  },
+  {
+    season: 'Summer',
+    title: 'Heat Safety & Outdoor Hazards',
+    description: 'Illinois summers can be hot and humid. Pets are at risk for heatstroke, dehydration, burned paw pads, and exposure to toxic plants and algae. A few simple precautions can keep your pet safe during the warmest months.',
+    tips: [
+      'Never leave your pet in a parked car — temperatures rise dangerously within minutes',
+      'Walk dogs in early morning or evening to avoid hot pavement (test with your hand first)',
+      'Provide fresh water and shade at all times during outdoor activity',
+      'Learn the signs of heatstroke: excessive panting, drooling, lethargy, vomiting',
+      'Keep antifreeze, rodenticides, and lawn chemicals away from pets',
+    ],
+  },
+  {
+    season: 'Fall',
+    title: 'Wellness Exams & Senior Check-Ups',
+    description: 'Fall is an excellent time for annual wellness exams, especially for senior pets. Catching health changes early gives us the most treatment options and the best outcomes. Plus, getting ahead of the holiday rush means more flexibility in scheduling.',
+    tips: [
+      'Schedule your pet\'s annual wellness exam and bloodwork',
+      'Senior pets (7+ years) benefit from twice-yearly check-ups',
+      'Update vaccinations before boarding season',
+      'Watch for signs of arthritis as temperatures drop — stiffness, reluctance to jump or climb stairs',
+    ],
+  },
+  {
+    season: 'Winter',
+    title: 'Cold Weather & Holiday Hazards',
+    description: 'Winter brings unique risks including antifreeze exposure, salt irritation on paws, and a house full of holiday foods that are toxic to pets. Being aware of these hazards helps keep your pet safe all season.',
+    tips: [
+      'Wipe paws after walks to remove salt and chemical deicers',
+      'Keep antifreeze stored securely — it tastes sweet but is deadly to pets',
+      'Avoid feeding pets chocolate, xylitol, grapes/raisins, onions, and garlic',
+      'Keep holiday plants (poinsettias, lilies, mistletoe) out of reach',
+      'Ensure your pet has a warm, dry place to rest — especially older pets with arthritis',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Alerts & Updates | Healthy Paws Animal Hospital"
+  description="Stay informed with the latest alerts, updates, and seasonal pet health reminders from Healthy Paws Animal Hospital in Lake in the Hills, IL."
+>
+  <!-- Page Header -->
+  <section class="bg-hpah-green-light py-16">
+    <div class="container">
+      <h1 class="text-4xl lg:text-5xl mb-4">Alerts &amp; Updates</h1>
+      <p class="text-lg text-hpah-text-light max-w-2xl">
+        Stay informed about important updates from our practice, along with seasonal health
+        reminders to keep your pet safe and healthy year-round.
+      </p>
+    </div>
+  </section>
+
+  <!-- Current Alerts -->
+  <section class="py-16">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl mb-6">Current Alerts</h2>
+
+        <!-- Active Alert -->
+        <div class="bg-hpah-green-light border border-hpah-green/30 rounded-lg p-6 mb-6">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-hpah-green rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold mb-1">Normal Operations</h3>
+              <p class="text-hpah-text-light">
+                We are currently operating on our regular schedule with no disruptions.
+                Appointments are available Monday through Friday from 8:00 AM to 6:00 PM
+                and Saturday from 8:00 AM to 12:00 PM.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reminder about emergencies -->
+        <div class="bg-white border border-gray-200 rounded-lg p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold mb-1">After-Hours Emergencies</h3>
+              <p class="text-hpah-text-light">
+                If your pet is experiencing a medical emergency outside of our business hours,
+                please contact your nearest 24-hour veterinary emergency hospital. Do not wait
+                until we reopen — prompt care can be life-saving. For urgent needs during business
+                hours, call us at <a href={`tel:${business.phoneRaw}`} class="text-hpah-blue hover:text-hpah-green font-semibold">{business.phone}</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seasonal Reminders -->
+  <section class="py-16 bg-hpah-bg-warm">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-2xl mb-4">Seasonal Pet Health Reminders</h2>
+          <p class="text-hpah-text-light max-w-2xl mx-auto">
+            Every season brings different health considerations for your pet. Here's what to
+            watch for throughout the year — and when to give us a call.
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          {seasonalReminders.map((season) => (
+            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+              <div class="p-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="inline-block bg-hpah-green-light text-hpah-green text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                    {season.season}
+                  </span>
+                  <h3 class="text-xl font-bold">{season.title}</h3>
+                </div>
+                <p class="text-hpah-text-light mb-4">
+                  {season.description}
+                </p>
+                <ul class="space-y-2">
+                  {season.tips.map((tip) => (
+                    <li class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-hpah-green shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="text-hpah-text-light">{tip}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stay Connected -->
+  <section class="py-16">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl mb-4">Stay Connected</h2>
+        <p class="text-hpah-text-light mb-8">
+          Follow us on social media for the latest updates, pet health tips, and behind-the-scenes
+          moments from our practice. We'll also post urgent alerts and schedule changes there first.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href={business.social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary"
+          >
+            Follow Us on Facebook
+          </a>
+          <a
+            href={`tel:${business.phoneRaw}`}
+            class="btn-secondary"
+          >
+            Call {business.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA heading="Due for a Visit?" text="If it's been more than a year since your pet's last wellness exam, now is a great time to schedule one. Prevention is always easier than treatment." />
+</BaseLayout>

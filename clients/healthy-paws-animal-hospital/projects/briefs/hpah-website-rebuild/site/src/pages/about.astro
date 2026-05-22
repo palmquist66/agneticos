@@ -1,0 +1,244 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { business } from '../data/business';
+---
+
+<BaseLayout
+  title="About Us | Healthy Paws Animal Hospital"
+  description="Learn about Healthy Paws Animal Hospital in Lake in the Hills, IL — founded in 2010 by Dr. Burgess. A privately owned, women-owned practice dedicated to gentle, low-stress care, built on transparency, education, and personal care."
+>
+  <!-- Hero -->
+  <section class="bg-hpah-green-light py-16 lg:py-20">
+    <div class="container max-w-3xl text-center">
+      <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-4">About Our Practice</p>
+      <h1 class="text-4xl lg:text-5xl mb-6">The Practice We Always Wished Existed</h1>
+      <p class="text-lg text-hpah-text-light">
+        Healthy Paws Animal Hospital was born from a simple idea: veterinary medicine should be personal,
+        transparent, and built around education — not corporate efficiency metrics. Since 2010, that idea
+        has guided everything we do.
+      </p>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="py-20">
+    <div class="container max-w-4xl">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+        <div class="lg:col-span-3">
+          <h2 class="mb-6">Our Story</h2>
+          <p>
+            In May 2010, Dr. Burgess opened the doors to Healthy Paws Animal Hospital in Lake in the Hills, Illinois,
+            with a clear vision: build the veterinary practice she always wished existed. After graduating from
+            Kansas State University College of Veterinary Medicine in 1997 and spending over a decade practicing
+            veterinary medicine, she had seen firsthand what worked — and what didn't — in the way animals
+            and their families were cared for.
+          </p>
+          <p>
+            Too often, she saw practices that rushed through appointments, left pet owners confused about
+            their options, and treated animals as cases rather than family members. She knew there was a
+            better way. So she built it.
+          </p>
+          <p>
+            From day one, Healthy Paws was designed around three principles: <strong>transparency</strong> in
+            every interaction, <strong>education</strong> at every appointment, and <strong>personal care</strong>
+            that treats every pet and owner as individuals. These aren't marketing slogans — they're the
+            foundation of how we practice medicine every single day.
+          </p>
+          <p>
+            What started as a single veterinarian with a vision has grown into a dedicated team of three
+            doctors and a compassionate support staff. But the core hasn't changed. We're still privately owned,
+            still women-owned, and still committed to the kind of care that made Dr. Burgess build this
+            practice in the first place.
+          </p>
+        </div>
+        <div class="lg:col-span-2">
+          <div class="bg-hpah-green-light rounded-lg p-8">
+            <h3 class="text-xl mb-4 text-hpah-green">Quick Facts</h3>
+            <ul class="space-y-3 text-hpah-text-light">
+              <li class="flex gap-3">
+                <span class="font-bold text-hpah-text">Founded:</span> May 2010
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-hpah-text">Owner:</span> Dr. Burgess, DVM
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-hpah-text">Location:</span> {business.address.city}, {business.address.state}
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-hpah-text">Approach:</span> Gentle, Low-Stress Care
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-hpah-text">Ownership:</span> Privately &amp; Women-Owned
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-hpah-text">Tagline:</span> {business.tagline}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Philosophy -->
+  <section class="py-20 bg-hpah-bg-warm">
+    <div class="container max-w-4xl">
+      <div class="text-center mb-12">
+        <h2>Our Philosophy</h2>
+        <p class="text-lg text-hpah-text-light mt-4 max-w-2xl mx-auto">
+          Three principles guide every decision we make, every recommendation we offer,
+          and every interaction we have with you and your pet.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg p-8 border border-gray-100 text-center">
+          <div class="w-16 h-16 bg-hpah-green-light rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </div>
+          <h3 class="text-xl mb-3">Transparency</h3>
+          <p class="text-hpah-text-light">
+            You deserve to know exactly what's happening with your pet's care and why. We explain every
+            diagnosis, every treatment option, and every cost before we proceed. We discuss what we recommend,
+            what the alternatives are, and what happens if you choose to wait. No surprises. No hidden fees.
+            No pressure. Just honest, open communication so you can make the best decisions for your family.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-lg p-8 border border-gray-100 text-center">
+          <div class="w-16 h-16 bg-hpah-green-light rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <h3 class="text-xl mb-3">Education</h3>
+          <p class="text-hpah-text-light">
+            We believe informed pet owners make the best decisions. That's why we take the time at every
+            appointment to explain the "why" behind our recommendations — not just the "what." We want you
+            to understand your pet's health, recognize early warning signs at home, and feel confident in
+            the care plan we build together. When you leave our office, you should feel empowered, not confused.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-lg p-8 border border-gray-100 text-center">
+          <div class="w-16 h-16 bg-hpah-green-light rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl mb-3">Personal Care</h3>
+          <p class="text-hpah-text-light">
+            Your pet isn't a number on a chart. We remember names, we know histories, and we care about
+            the little details that make your pet unique. From personal follow-up calls after surgery
+            to remembering that your cat prefers a specific exam room, we treat every family the way we'd
+            want our own pets treated. That's the advantage of a privately owned practice — we have the
+            freedom to prioritize relationships over volume.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Makes Us Different -->
+  <section class="py-20">
+    <div class="container max-w-4xl">
+      <div class="text-center mb-12">
+        <h2>What Makes Us Different</h2>
+        <p class="text-lg text-hpah-text-light mt-4 max-w-2xl mx-auto">
+          We didn't just adopt a philosophy — we designed our entire practice around it. From the physical
+          layout of our hospital to the technology we use, every detail serves a purpose.
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        <div class="flex gap-6 items-start">
+          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center shrink-0">
+            <span class="text-xl">💚</span>
+          </div>
+          <div>
+            <h3 class="text-xl mb-2">Gentle, Low-Stress Care</h3>
+            <p class="text-hpah-text-light">
+              Our entire team — doctors and staff alike — is trained in gentle handling techniques that reduce
+              fear, anxiety, and stress during every veterinary visit. We use gentle handling, calming
+              environments, and patient-centered protocols so your pet's emotional well-being is treated
+              with the same importance as their physical health.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-6 items-start">
+          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center shrink-0">
+            <span class="text-xl">🚪</span>
+          </div>
+          <div>
+            <h3 class="text-xl mb-2">Single Exam Room Design</h3>
+            <p class="text-hpah-text-light">
+              When you arrive at Healthy Paws, your pet goes directly to the exam room — not to a crowded
+              lobby full of other anxious animals. Our lobby is small by design because we consider it a
+              failure if you spend significant time there. This approach reduces stress for your pet and
+              ensures your visit begins the moment you walk through the door.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-6 items-start">
+          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center shrink-0">
+            <span class="text-xl">🔬</span>
+          </div>
+          <div>
+            <h3 class="text-xl mb-2">Comprehensive In-House Laboratory</h3>
+            <p class="text-hpah-text-light">
+              Our in-house laboratory allows us to run blood work, urinalysis, and other critical diagnostics
+              right here in our hospital. That means faster results, faster diagnoses, and faster treatment
+              for your pet. You won't have to wait days wondering what's wrong — in most cases, we have
+              answers during your visit.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-6 items-start">
+          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center shrink-0">
+            <span class="text-xl">🧾</span>
+          </div>
+          <div>
+            <h3 class="text-xl mb-2">In-Room Checkout</h3>
+            <p class="text-hpah-text-light">
+              Your visit ends where it began — in the exam room. We handle checkout right there, so you
+              never have to stand at a front desk juggling a leash, a pet carrier, and a credit card.
+              It's a small detail, but it's the kind of detail that makes a big difference in your experience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Commitment -->
+  <section class="py-20 bg-hpah-bg-warm">
+    <div class="container max-w-3xl text-center">
+      <h2 class="mb-6">Our Commitment to You</h2>
+      <p class="text-lg text-hpah-text-light mb-6">
+        When you bring your pet to Healthy Paws Animal Hospital, you're not just visiting a veterinary
+        clinic — you're joining a community. We're committed to being your partner in your pet's health
+        for every stage of their life, from their very first puppy or kitten visit through their senior
+        years and beyond.
+      </p>
+      <p class="text-lg text-hpah-text-light mb-6">
+        We promise to always be honest with you, to always explain our reasoning, and to always
+        respect your role as the most important advocate your pet has. We promise to stay privately owned,
+        to keep making decisions based on medicine rather than corporate directives, and to keep
+        investing in the training and technology that allows us to provide the best care possible.
+      </p>
+      <p class="text-lg text-hpah-text-light">
+        Most importantly, we promise to treat your pet the way we'd treat our own. Because at the end
+        of the day, that's exactly why Dr. Burgess built this practice.
+      </p>
+    </div>
+  </section>
+
+  <CTA heading="Come See the Difference for Yourself" text="Schedule a visit and discover what veterinary care looks like when it's built around your pet — not a corporate model." />
+</BaseLayout>

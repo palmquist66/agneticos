@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { business } from '../data/business';
+
+const benefits = [
+  {
+    title: 'Low-Stress Culture',
+    description: 'Our entire practice is built around reducing fear, anxiety, and stress — for pets and for our team. You\'ll never be asked to "just hold them down." We invest in training and techniques that make veterinary medicine better for everyone.',
+    icon: '💚',
+  },
+  {
+    title: 'Education First',
+    description: 'We believe in lifelong learning. Our team regularly participates in continuing education, and we encourage everyone to grow their skills. When you know more, you can do more for your patients.',
+    icon: '📚',
+  },
+  {
+    title: 'No Corporate Playbook',
+    description: 'As a privately owned practice, we make decisions based on what\'s best for our patients — not what maximizes quarterly revenue. You\'ll have the freedom to practice medicine the way it should be practiced.',
+    icon: '🏠',
+  },
+  {
+    title: 'Supportive Team',
+    description: 'We\'re a close-knit team that supports each other. No toxic hierarchy, no "that\'s not my job" culture. Everyone contributes, everyone is valued, and everyone\'s voice matters.',
+    icon: '🤝',
+  },
+  {
+    title: 'Work-Life Balance',
+    description: 'We respect your time outside of work. No mandatory weekends beyond the Saturday rotation, predictable schedules, and a genuine understanding that you have a life beyond the clinic.',
+    icon: '⚖️',
+  },
+  {
+    title: 'Modern Facility',
+    description: 'Work with quality equipment including digital radiography, in-house diagnostics, dental radiography, and more. We invest in the tools that help you do your best work.',
+    icon: '🔬',
+  },
+];
+---
+
+<BaseLayout
+  title="Careers | Healthy Paws Animal Hospital"
+  description="Join the team at Healthy Paws Animal Hospital in Lake in the Hills, IL. We're a gentle, low-stress, privately owned practice looking for passionate veterinary professionals."
+>
+  <!-- Page Header -->
+  <section class="bg-hpah-green-light py-16">
+    <div class="container">
+      <h1 class="text-4xl lg:text-5xl mb-4">Careers at Healthy Paws</h1>
+      <p class="text-lg text-hpah-text-light max-w-2xl">
+        We're always looking for passionate, compassionate people who believe veterinary
+        medicine can be better. If that sounds like you, we'd love to hear from you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="py-16">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl mb-6">Why Work at Healthy Paws?</h2>
+        <p class="text-lg text-hpah-text-light">
+          Healthy Paws Animal Hospital isn't just a place to work — it's a place to practice
+          veterinary medicine the way you always wanted to. We're a privately
+          owned, women-owned practice dedicated to gentle, low-stress care that puts patient care and team well-being above everything else.
+          Here, you'll have the time to do things right, the support to grow, and the freedom to
+          practice without corporate pressure.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Grid -->
+  <section class="py-16 bg-hpah-bg-warm">
+    <div class="container">
+      <h2 class="text-2xl text-center mb-12">What Makes Us Different</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {benefits.map((benefit) => (
+          <div class="bg-white rounded-lg p-8 border border-gray-100">
+            <span class="text-3xl mb-4 block">{benefit.icon}</span>
+            <h3 class="text-xl font-bold mb-3">{benefit.title}</h3>
+            <p class="text-hpah-text-light">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Private Practice Benefits -->
+  <section class="py-16">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl mb-6 text-center">The Private Practice Difference</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-lg font-bold mb-3">Patient-First Decisions</h3>
+            <p class="text-hpah-text-light">
+              When you work at a privately owned practice, every decision is made with the
+              patient in mind — not a corporate metric. You'll never be pressured to push
+              unnecessary services, hit production quotas, or rush through appointments to
+              fit more patients into the schedule.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-3">Longer Appointment Times</h3>
+            <p class="text-hpah-text-light">
+              We schedule adequate time for every visit because thorough care takes time.
+              You'll have the ability to truly examine each patient, educate each client,
+              and practice medicine without watching the clock.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-3">Your Voice Matters</h3>
+            <p class="text-hpah-text-light">
+              In a small practice, you're not a number. Your ideas, your concerns, and your
+              professional judgment are valued. If you see a way to improve something, you'll
+              actually be heard — and empowered to make it happen.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-3">True Relationships</h3>
+            <p class="text-hpah-text-light">
+              You'll get to know your patients and their families over years, not just
+              single visits. There's something deeply rewarding about watching a puppy
+              grow into a senior and knowing you were part of their health journey the
+              whole way.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Apply -->
+  <section class="py-16 bg-hpah-bg-warm">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl mb-6">How to Apply</h2>
+        <p class="text-hpah-text-light text-lg mb-4">
+          We're always interested in meeting talented veterinary professionals — veterinarians,
+          technicians, assistants, and client service team members. Even if we don't have a
+          specific opening listed, we'd love to keep your resume on file for future opportunities.
+        </p>
+        <p class="text-hpah-text-light text-lg mb-8">
+          To apply, send your resume and a brief note about why you'd be a great fit for our team to:
+        </p>
+        <a href={`mailto:${business.email}?subject=Career%20Inquiry%20-%20Healthy%20Paws%20Animal%20Hospital`} class="btn-primary text-lg">
+          Email Your Resume to {business.email}
+        </a>
+        <p class="text-sm text-hpah-text-light mt-6">
+          Please include "Career Inquiry" in the subject line. We review all applications and
+          will reach out if we'd like to schedule a conversation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Look For -->
+  <section class="py-16">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl mb-6 text-center">What We Look For</h2>
+        <p class="text-hpah-text-light text-center mb-8">
+          Skills can be taught, but values can't. Here's what matters most to us:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            'Genuine compassion for animals and their people',
+            'A desire to learn and grow professionally',
+            'Strong communication and teamwork skills',
+            'Commitment to gentle, low-stress handling',
+            'Attention to detail and thoroughness',
+            'Integrity and transparency in all interactions',
+          ].map((trait) => (
+            <div class="flex items-start gap-3 bg-hpah-green-light rounded-lg p-4">
+              <svg class="w-6 h-6 text-hpah-green shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="font-medium">{trait}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA heading="Want to Learn More About Us?" text="Visit our About page to learn about our team, our philosophy, and what makes Healthy Paws a special place to work." />
+</BaseLayout>

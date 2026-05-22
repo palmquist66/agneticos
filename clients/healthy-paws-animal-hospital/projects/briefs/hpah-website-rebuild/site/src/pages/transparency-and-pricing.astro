@@ -1,0 +1,300 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { business } from '../data/business';
+---
+
+<BaseLayout
+  title="Transparency & Pricing | Healthy Paws Animal Hospital"
+  description="Honest, upfront pricing at Healthy Paws Animal Hospital. We discuss costs before treatment, offer in-room checkout, and never surprise you with hidden fees. Lake in the Hills, IL."
+>
+  <!-- Page Header -->
+  <section class="bg-hpah-green-light py-16 lg:py-20">
+    <div class="container max-w-3xl text-center">
+      <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-4">Transparency & Pricing</p>
+      <h1 class="text-4xl lg:text-5xl mb-6">Honest Conversations About Cost</h1>
+      <p class="text-lg text-hpah-text-light">
+        We believe you deserve to know what veterinary care costs before we provide it — not after.
+        At Healthy Paws, financial transparency is a core value, not an afterthought.
+      </p>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-3xl">
+      <h2 class="text-3xl mb-6">Our Transparency Philosophy</h2>
+      <p class="text-hpah-text-light mb-6 leading-relaxed">
+        Veterinary care shouldn't come with financial anxiety. Too many pet owners have experienced the stress of
+        not knowing what a visit will cost until they're standing at a checkout counter, caught off guard by a total
+        they didn't expect. We built Healthy Paws to work differently.
+      </p>
+      <p class="text-hpah-text-light mb-6 leading-relaxed">
+        From the moment we discuss your pet's health needs, we include cost as part of the conversation — openly and
+        without judgment. We believe informed pet owners make better decisions, and that starts with understanding
+        the financial investment alongside the medical recommendation.
+      </p>
+      <div class="bg-hpah-bg-warm rounded-lg p-8 border-l-4 border-hpah-green">
+        <p class="text-lg font-semibold text-hpah-text mb-2">Our promise to you:</p>
+        <p class="text-hpah-text-light">
+          We will always discuss costs before treatment. We will always explain what you're paying for and why.
+          And we will always respect your decisions about your pet's care, regardless of budget.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-16 bg-hpah-bg-warm">
+    <div class="container max-w-4xl">
+      <h2 class="text-3xl mb-10 text-center">How We Handle Pricing</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-lg p-8 border border-gray-100">
+          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Costs Discussed First</h3>
+          <p class="text-hpah-text-light">
+            Before we perform any procedure, run any diagnostic, or administer any treatment, our veterinarians
+            discuss the expected cost with you. You'll know what to expect before we proceed — every time.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-lg p-8 border border-gray-100">
+          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Written Estimates</h3>
+          <p class="text-hpah-text-light">
+            For procedures, surgeries, and treatment plans, we provide detailed written estimates so you can review
+            everything at your own pace. If anything changes during treatment, we contact you before proceeding.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-lg p-8 border border-gray-100">
+          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">In-Room Checkout</h3>
+          <p class="text-hpah-text-light">
+            Your visit ends in the privacy of the exam room — not at a public front desk. Payment, scheduling, and
+            any questions about costs happen in a comfortable, private space where you can speak freely.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-lg p-8 border border-gray-100">
+          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">No Hidden Fees</h3>
+          <p class="text-hpah-text-light">
+            The price we discuss is the price you pay. There are no surprise charges, administrative fees, or
+            unexplained line items on your invoice. What we quote is what we charge.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Ranges -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-3xl">
+      <h2 class="text-3xl mb-4">Common Service Pricing Ranges</h2>
+      <p class="text-hpah-text-light mb-8">
+        While every pet's needs are unique — and final pricing depends on species, size, age, and specific health
+        conditions — these ranges give you a general idea of what to expect. We're happy to provide a specific
+        estimate for your pet during a consultation.
+      </p>
+
+      <div class="space-y-4">
+        <div class="flex justify-between items-center py-4 border-b border-gray-200">
+          <div>
+            <p class="font-semibold text-hpah-text">Comprehensive Wellness Exam</p>
+            <p class="text-sm text-hpah-text-light">Annual or semi-annual physical examination</p>
+          </div>
+          <p class="text-hpah-green font-bold whitespace-nowrap ml-4">Starting from $65</p>
+        </div>
+
+        <div class="flex justify-between items-center py-4 border-b border-gray-200">
+          <div>
+            <p class="font-semibold text-hpah-text">Core Vaccinations</p>
+            <p class="text-sm text-hpah-text-light">Individual vaccine pricing varies by type</p>
+          </div>
+          <p class="text-hpah-green font-bold whitespace-nowrap ml-4">$25 - $55 each</p>
+        </div>
+
+        <div class="flex justify-between items-center py-4 border-b border-gray-200">
+          <div>
+            <p class="font-semibold text-hpah-text">Dental Cleaning</p>
+            <p class="text-sm text-hpah-text-light">Includes anesthesia, scaling, polishing, and dental radiographs</p>
+          </div>
+          <p class="text-hpah-green font-bold whitespace-nowrap ml-4">$400 - $800+</p>
+        </div>
+
+        <div class="flex justify-between items-center py-4 border-b border-gray-200">
+          <div>
+            <p class="font-semibold text-hpah-text">Spay / Neuter</p>
+            <p class="text-sm text-hpah-text-light">Varies by species, size, and age</p>
+          </div>
+          <p class="text-hpah-green font-bold whitespace-nowrap ml-4">$300 - $600+</p>
+        </div>
+
+        <div class="flex justify-between items-center py-4 border-b border-gray-200">
+          <div>
+            <p class="font-semibold text-hpah-text">Bloodwork Panel</p>
+            <p class="text-sm text-hpah-text-light">CBC, chemistry, and other diagnostics</p>
+          </div>
+          <p class="text-hpah-green font-bold whitespace-nowrap ml-4">$150 - $350</p>
+        </div>
+
+        <div class="flex justify-between items-center py-4 border-b border-gray-200">
+          <div>
+            <p class="font-semibold text-hpah-text">Sick Visit / Urgent Care</p>
+            <p class="text-sm text-hpah-text-light">Exam plus diagnostics and treatment as needed</p>
+          </div>
+          <p class="text-hpah-green font-bold whitespace-nowrap ml-4">$85 - $300+</p>
+        </div>
+      </div>
+
+      <p class="text-sm text-hpah-text-light mt-6 italic">
+        These are approximate ranges provided for planning purposes. Actual pricing depends on your pet's individual
+        needs. We always provide a specific estimate before proceeding with any services.
+      </p>
+    </div>
+  </section>
+
+  <!-- Value vs Price -->
+  <section class="py-16 bg-hpah-bg-warm">
+    <div class="container max-w-3xl">
+      <h2 class="text-3xl mb-6">Why We Focus on Value, Not Lowest Price</h2>
+      <p class="text-hpah-text-light mb-6 leading-relaxed">
+        We understand that cost matters — it's one of the reasons we're so transparent about it. But we also believe
+        that the cheapest veterinary care isn't always the best veterinary care. At Healthy Paws, our pricing reflects
+        the quality of medicine we practice.
+      </p>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-hpah-green shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <p class="text-hpah-text-light"><strong>Longer appointments</strong> — our doctors spend 30+ minutes per visit, not 10</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-hpah-green shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <p class="text-hpah-text-light"><strong>Low-stress protocols</strong> — every visit includes gentle handling and stress-reduction techniques that take additional time and training</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-hpah-green shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <p class="text-hpah-text-light"><strong>Modern diagnostics</strong> — in-house lab work means faster answers and earlier interventions</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-hpah-green shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <p class="text-hpah-text-light"><strong>Personal follow-ups</strong> — Dr. Burgess calls after surgeries and significant procedures</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-hpah-green shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <p class="text-hpah-text-light"><strong>Education-first approach</strong> — you leave every visit understanding more about your pet's health</p>
+        </div>
+      </div>
+      <p class="text-hpah-text-light mt-6 leading-relaxed">
+        When you compare the depth of care, the time spent with your pet, and the personal attention you receive,
+        you'll find that Healthy Paws delivers exceptional value. We'd rather help fewer pets exceptionally well
+        than many pets rushed through a revolving door.
+      </p>
+    </div>
+  </section>
+
+  <!-- Insurance & Payment -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-3xl">
+      <h2 class="text-3xl mb-6">Insurance & Payment Options</h2>
+
+      <div class="mb-10">
+        <h3 class="text-xl font-bold mb-4">Pet Insurance</h3>
+        <p class="text-hpah-text-light mb-4 leading-relaxed">
+          We strongly encourage pet owners to consider pet insurance. While we are not affiliated with any specific
+          insurance provider, most major pet insurance companies work on a reimbursement model — you pay at the time
+          of service and submit claims directly to your insurer for reimbursement.
+        </p>
+        <p class="text-hpah-text-light leading-relaxed">
+          We're happy to provide the detailed invoices, medical records, and documentation your insurance company
+          needs to process claims. If you're unsure whether pet insurance is right for you, ask us during your next
+          visit — we can discuss what to look for in a plan based on your pet's age, breed, and health history.
+        </p>
+      </div>
+
+      <div class="mb-10">
+        <h3 class="text-xl font-bold mb-4">Accepted Payment Methods</h3>
+        <p class="text-hpah-text-light mb-4">Payment is due at the time of service. We accept:</p>
+        <ul class="space-y-2 text-hpah-text-light">
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Cash and personal checks
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Visa, MasterCard, Discover, American Express
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            CareCredit (financing with flexible payment plans)
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-hpah-green-light rounded-lg p-8">
+        <h3 class="text-xl font-bold mb-3">Questions About Cost?</h3>
+        <p class="text-hpah-text-light mb-4">
+          If you're concerned about the cost of a recommended treatment, please say so. We genuinely want to help
+          you make the best decision for your pet within your means. We can discuss alternatives, prioritize
+          treatments, or develop a phased plan that spreads costs over time.
+        </p>
+        <p class="text-hpah-text-light">
+          Call us at <a href={`tel:${business.phoneRaw}`} class="text-hpah-green font-semibold hover:underline">{business.phone}</a> or
+          email <a href={`mailto:${business.email}`} class="text-hpah-green font-semibold hover:underline">{business.email}</a>
+          with any pricing questions before your visit.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Links -->
+  <section class="py-12 border-t border-gray-100">
+    <div class="container max-w-3xl">
+      <h3 class="text-lg font-bold mb-4">Related Pages</h3>
+      <div class="flex flex-wrap gap-3">
+        <a href="/policies/" class="text-hpah-green hover:underline text-sm">Hospital Policies</a>
+        <span class="text-gray-300">|</span>
+        <a href="/why-choose-us/" class="text-hpah-green hover:underline text-sm">Why Choose Us</a>
+        <span class="text-gray-300">|</span>
+        <a href="/wellness-exams-lake-in-the-hills-il/" class="text-hpah-green hover:underline text-sm">Wellness Exams</a>
+        <span class="text-gray-300">|</span>
+        <a href="/schedule/" class="text-hpah-green hover:underline text-sm">Schedule a Visit</a>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

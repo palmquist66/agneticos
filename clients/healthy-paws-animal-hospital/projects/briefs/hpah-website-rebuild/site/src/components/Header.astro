@@ -1,0 +1,173 @@
+---
+import { business } from '../data/business';
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  {
+    label: 'About',
+    href: '/about/',
+    children: [
+      { label: 'About Us', href: '/about/' },
+      { label: 'Why Choose Us', href: '/why-choose-us/' },
+      { label: 'Meet the Team', href: '/meet-the-team/' },
+      { label: 'Hospital Tour', href: '/hospital-tour/' },
+      { label: 'Your First Visit', href: '/your-first-visit/' },
+      { label: 'Your Pet\'s Experience', href: '/your-pets-experience/' },
+    ],
+  },
+  {
+    label: 'Services',
+    href: '/services/',
+    children: [
+      { label: 'All Services', href: '/services/' },
+      { label: 'Wellness Exams', href: '/wellness-exams-lake-in-the-hills-il/' },
+      { label: 'Vaccinations', href: '/pet-vaccinations-lake-in-the-hills-il/' },
+      { label: 'Dental Care', href: '/dental-care/' },
+      { label: 'Surgery', href: '/surgery/' },
+      { label: 'Spay & Neuter', href: '/spay-neuter-lake-in-the-hills-il/' },
+      { label: 'Low-Stress Care', href: '/low-stress-vet-lake-in-the-hills-il/' },
+      { label: 'Senior Pet Care', href: '/senior-pet-care-lake-in-the-hills-il/' },
+      { label: 'Cat Veterinarian', href: '/cat-vet-lake-in-the-hills-il/' },
+      { label: 'Pet Allergies', href: '/pet-allergy-treatment-lake-in-the-hills-il/' },
+    ],
+  },
+  {
+    label: 'Areas We Serve',
+    href: '/areas-we-serve/',
+    children: [
+      { label: 'Lake in the Hills', href: '/areas-we-serve/' },
+      { label: 'Algonquin', href: '/veterinarian-algonquin-il/' },
+      { label: 'Huntley', href: '/veterinarian-huntley-il/' },
+      { label: 'Crystal Lake', href: '/veterinarian-crystal-lake-il/' },
+    ],
+  },
+  { label: 'Resources', href: '/info-center/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Contact', href: '/contact/' },
+];
+---
+
+<header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+  <!-- Top bar -->
+  <div class="bg-hpah-green text-white text-sm py-2">
+    <div class="container flex justify-between items-center">
+      <span>{business.tagline}</span>
+      <a href={`tel:${business.phoneRaw}`} class="text-white hover:text-hpah-green-light font-bold">
+        {business.phone}
+      </a>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <nav class="container py-4" aria-label="Main navigation">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="flex-shrink-0" aria-label="Healthy Paws Animal Hospital - Home">
+        <img
+          src={business.logo}
+          alt="Healthy Paws Animal Hospital logo"
+          width="220"
+          height="60"
+          class="h-14 w-auto"
+          loading="eager"
+        />
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden lg:flex items-center gap-1">
+        {navItems.map((item) => (
+          <div class="relative group">
+            <a
+              href={item.href}
+              class:list={[
+                'px-3 py-2 text-sm font-semibold rounded-md transition-colors inline-flex items-center gap-1',
+                currentPath.startsWith(item.href)
+                  ? 'text-hpah-green'
+                  : 'text-hpah-text hover:text-hpah-green',
+              ]}
+            >
+              {item.label}
+              {item.children && (
+                <svg class="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              )}
+            </a>
+            {item.children && (
+              <div class="absolute left-0 top-full pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
+                <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[220px]">
+                  {item.children.map((child) => (
+                    <a
+                      href={child.href}
+                      class:list={[
+                        'block px-4 py-2 text-sm hover:bg-hpah-green-light transition-colors',
+                        currentPath === child.href ? 'text-hpah-green font-semibold' : 'text-hpah-text',
+                      ]}
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+        <a href="/schedule/" class="btn-primary ml-3 text-sm">
+          Schedule Visit
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden p-2 rounded-md hover:bg-gray-100"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile nav -->
+    <div id="mobile-menu" class="hidden lg:hidden mt-4 pb-4 border-t border-gray-100 pt-4">
+      {navItems.map((item) => (
+        <div>
+          <a
+            href={item.href}
+            class="block py-2 text-base font-semibold text-hpah-text hover:text-hpah-green"
+          >
+            {item.label}
+          </a>
+          {item.children && (
+            <div class="pl-4 pb-2">
+              {item.children.map((child) => (
+                <a
+                  href={child.href}
+                  class="block py-1.5 text-sm text-hpah-text-light hover:text-hpah-green"
+                >
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+      <a href="/schedule/" class="btn-primary mt-4 w-full justify-center">
+        Schedule Visit
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden');
+  });
+</script>

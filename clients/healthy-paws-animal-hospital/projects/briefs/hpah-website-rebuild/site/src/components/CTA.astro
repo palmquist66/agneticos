@@ -1,0 +1,33 @@
+---
+import { business } from '../data/business';
+
+interface Props {
+  heading?: string;
+  text?: string;
+  variant?: 'green' | 'white';
+}
+
+const {
+  heading = 'Ready to Experience the Difference?',
+  text = `Schedule a visit and see why pet owners across ${business.serviceAreas.slice(0, 3).join(', ')}, and surrounding communities trust us with their pets' care.`,
+  variant = 'green',
+} = Astro.props;
+
+const bgClass = variant === 'green' ? 'bg-hpah-green text-white' : 'bg-hpah-green-light text-hpah-text';
+const btnClass = variant === 'green' ? 'btn-secondary' : 'btn-primary';
+---
+
+<section class:list={[bgClass, 'py-16']}>
+  <div class="container text-center max-w-2xl">
+    <h2 class:list={['mb-4', variant === 'green' ? 'text-white' : '']}>{heading}</h2>
+    <p class="text-lg mb-8 opacity-90">{text}</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href={`tel:${business.phoneRaw}`} class={btnClass}>
+        Call {business.phone}
+      </a>
+      <a href="/schedule/" class={btnClass}>
+        Schedule Online
+      </a>
+    </div>
+  </div>
+</section>

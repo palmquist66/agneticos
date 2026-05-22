@@ -1,0 +1,61 @@
+---
+import { business } from '../data/business';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'VeterinaryCare',
+  '@id': `${business.website}/#organization`,
+  name: business.name,
+  url: business.website,
+  telephone: business.phoneRaw,
+  email: business.email,
+  logo: business.logo,
+  image: business.logo,
+  description: 'Healthy Paws Animal Hospital is a privately owned veterinary practice in Lake in the Hills, IL dedicated to gentle, low-stress care. Personal. Professional. Educational.',
+  foundingDate: business.founded,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: business.address.street,
+    addressLocality: business.address.city,
+    addressRegion: business.address.state,
+    postalCode: business.address.zip,
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: business.geo.latitude,
+    longitude: business.geo.longitude,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Saturday',
+      opens: '08:00',
+      closes: '12:00',
+    },
+  ],
+  areaServed: business.serviceAreas.map((area) => ({
+    '@type': 'City',
+    name: `${area}, IL`,
+  })),
+  sameAs: [
+    business.social.facebook,
+    business.social.yelp,
+  ],
+  priceRange: '$$',
+  paymentAccepted: 'Cash, Credit Card, Debit Card',
+  hasCredential: business.certifications.map((cert) => ({
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'certification',
+    name: cert,
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
