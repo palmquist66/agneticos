@@ -1,0 +1,73 @@
+---
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import heroImg from '../assets/images/services/1-PUPPY-KITTEN-CARE-kbf-puppy-lap-12.9.2025.jpeg';
+
+const faqs = [
+  {
+    question: 'When should I first take my puppy or kitten to the veterinarian?',
+    answer: 'We would like to meet and examine your new friend as soon as possible. Whether you are a first-time pet owner or a seasoned caregiver, scheduling an early visit to our clinic is vital to your pet\'s well-being. A prompt checkup for your puppy or kitten allows us to identify and address any potential medical or behavioral concerns right from the start.',
+  },
+  {
+    question: 'How often will I need to bring my puppy or kitten to see you?',
+    answer: 'Your puppy or kitten will be seen every two to three weeks until they are sixteen weeks (4 months) old. We will conduct a nose to tail examination during these appointments, administer necessary vaccinations, provide parasite control, and discuss behavior and nutrition milestones and concerns.',
+  },
+  {
+    question: 'How many vaccinations will my puppy or kitten receive?',
+    answer: 'It is not the number of vaccines, but instead the interval of time between vaccines that determines a pet\'s vaccine schedule. Our goal is to ensure vaccination every 2-3 weeks with the final vaccines being given at (or after) 16 weeks of age. Core vaccinations are given to all pets and boostered as necessary. These include: Puppies — DA2P (Distemper, Adenovirus 2, Parvovirus), Leptospirosis, Rabies. Kittens — FVRCP (Feline Viral Rhinotracheitis, Calicivirus, Panleukopenia), Rabies. Non-core vaccinations are given to pets based on individual risk or exposure. These include: Puppies — Lyme, Parainfluenza, Influenza, Bordetella. Kittens — Feline Leukemia.',
+  },
+  {
+    question: 'What about deworming medications, in particular if my new pet has already been dewormed?',
+    answer: 'It is rare for a puppy or kitten to be born without intestinal parasites. There are a variety of parasites that we commonly see in puppies and kittens and each of them has their own unique way of being passed on, which means that sometimes the intestinal parasite exam may not detect all parasites the first time it is run. Treating parasites and follow-up testing is all based on the initial fecal examination and any applicable symptoms (ie diarrhea). We also start monthly heartworm, flea, and tick preventative on our first visit with puppies.',
+  },
+  {
+    question: 'What happens after our last puppy and kitten visit?',
+    answer: 'Spaying or neutering your pet will be discussed at your last vaccination visit. We will discuss the process, timing, follow-up care, and determine how you want to proceed. Six months of age is the most common time for us to alter pets. Our next preventative health care/wellness visit will be when your pet is approximately 1 1/2 years old and includes an annual physical exam, vaccine boosters, and labwork.',
+  },
+  {
+    question: 'Why should my pet be vaccinated?',
+    answer: 'Vaccines keep both your pet and you safe from a variety of illnesses. Some of these diseases only impact cats or dogs, others can infect humans. This can happen when your pet comes in contact with an infected animal/wildlife or, in some cases, just from exposure to infected urine or surfaces in their environment; these diseases can then be passed between dogs, wildlife, and humans. Puppies get some immunity through their mother\'s milk, but this starts to wane around 8 weeks of age; this is when vaccines should be started to prime their immune system. Immunity from nursing typically disappears at some point before our pets turn 4 months old, thus our need to vaccinate and protect in those crucial first months of life.',
+  },
+  {
+    question: 'Why avoid public places until fully vaccinated?',
+    answer: 'We recommend minimizing exposure to communal areas (ex. pet stores, doggie daycare, boarding, outdoor communal areas, dog parks) until your pet is fully vaccinated at 16 weeks (4 months) old. Pets that you know and have received regular veterinary care are acceptable playdates with a general rule of thumb being that family, friends, and neighborhood friends are fine. Puppy classes are an exception to this rule assuming vaccines are required and it is a closed class and environment.',
+  },
+  {
+    question: 'How will my pet feel after vaccines?',
+    answer: 'Just like in people, it is normal for pets to feel a little under the weather for 24-36 hours post vaccination. They may seem sore in their backend area where vaccines are administered, as well as lethargic or tired. Rarely pets can have more serious vaccine reactions. If you notice swelling of the face, increasing lethargy, hives, difficulty breathing or ongoing vomiting/diarrhea, please contact Healthy Paws Animal Hospital.',
+  },
+  {
+    question: 'How often should I bathe my pet or have them groomed?',
+    answer: 'It is generally considered okay to bathe your dog up to once weekly with shampoo labeled for use on pets. Cats can also be bathed, but typically self-groom; begin gentle nail trims early to get your kitten comfortable with handling. Depending on dog breed and coat length, professional grooming may be necessary as often as every 4 weeks. Toenails should be trimmed monthly at a minimum. Establishing a relationship with a groomer early on allows them to start creating a positive relationship with your pet, making long-term success more likely. Prior to 4 months of age, speak with your groomer to arrange for an appointment that does not require your pet to stay for an extended period, thus minimizing exposure to other pets.',
+  },
+  {
+    question: 'How much should I feed my pet?',
+    answer: 'In general, most puppies and kittens do not overeat or eat to obesity. Offer food 2 to 3 times daily allowing your pet to eat whatever they want in 5-10 minutes or until they slow down or are able to be distracted. Determine how much they eat daily over several days and make this your "feeding amount." Over time you will notice that your pet will likely become more cranky at dinnertime; this is a good indicator that it is time to increase the volume of food being fed.',
+  },
+  {
+    question: 'Can I limit my pet\'s water, picking it up at night?',
+    answer: 'Puppies\' kidneys are not fully functional until they are closer to 4 months old. They are not able to concentrate their urine yet, so they tend to urinate almost as quickly as they drink. This also makes them more prone to become dehydrated, making it important for them to have free access to water at all times. Kittens have small bodies and high metabolic rates, so they lose moisture quickly through breathing, play, and litter box use. Overnight, they still wake to groom, eat, or explore, all of which increase water needs. Even a few hours without water can start to dehydrate a small kitten.',
+  },
+  {
+    question: 'How do I address chewing, biting or scratching behavior?',
+    answer: 'A good guideline is if you do not want your pet to be doing something (ex. scratching, jumping, chewing, begging) for the next fifteen years, do not let them do it now. This means that pets are always learning and it is our responsibility to teach them what we want them to do by rewarding it and ignoring, or denying access to, the things we do not want them to do. Chewing is a normal puppy behavior. Trade soft inappropriate items for soft toys, and hard inappropriate items for hard toys. If you cannot push your fingernail into a toy, it is too hard for your pet to chew. Kong and Zogoflex are good brands for rubber type toys. Scratching is normal and healthy kitten behavior. Provide multiple scratching surfaces, including vertical posts and horizontal scratchers, and place near favorite resting spots. Redirect your kitten to the right area rather than punishing.',
+  },
+];
+---
+
+<ServiceLayout
+  title="Puppy & Kitten Care in Lake in the Hills, IL | Healthy Paws Animal Hospital"
+  description="New puppy or kitten? Get answers to common questions about vaccinations, feeding, grooming, behavior, and early vet visits at Healthy Paws Animal Hospital in Lake in the Hills, IL."
+  serviceName="Puppy & Kitten Care"
+  serviceDescription="Comprehensive veterinary care for puppies and kittens including vaccinations, parasite control, nutrition counseling, and behavioral guidance."
+  heroImage={heroImg}
+  faqs={faqs}
+  relatedServices={['wellness-exams-lake-in-the-hills-il', 'pet-vaccinations-lake-in-the-hills-il', 'spay-neuter-lake-in-the-hills-il']}
+>
+  <h2>Puppy & Kitten Care</h2>
+  <p>
+    Bringing a new puppy or kitten into your home is an exhilarating experience filled with joy, anticipation, funny moments, and sometimes frustration. At Healthy Paws Animal Hospital, we appreciate the excitement and challenges that come with this journey. As your family veterinarian, we are dedicated to supporting you through every phase, ensuring the health and happiness of your newest family member and setting everyone up for success.
+  </p>
+  <p>
+    Below find answers to common questions about caring for a new puppy or kitten.
+  </p>
+</ServiceLayout>

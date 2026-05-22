@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import FAQSection from '../components/FAQSection.astro';
 import ServiceSchema from '../components/ServiceSchema.astro';
@@ -16,6 +17,7 @@ interface Props {
   serviceName: string;
   serviceDescription: string;
   heroSubtitle?: string;
+  heroImage?: ImageMetadata;
   faqs: FAQ[];
   relatedServices?: string[];
 }
@@ -26,6 +28,7 @@ const {
   serviceName,
   serviceDescription,
   heroSubtitle = `Serving ${business.serviceAreas.slice(0, 4).join(', ')}, and surrounding communities`,
+  heroImage,
   faqs,
   relatedServices = [],
 } = Astro.props;
@@ -44,8 +47,20 @@ const related = services.filter((s) => relatedServices.includes(s.slug));
   />
 
   <!-- Hero -->
-  <section class="bg-hpah-green-light py-16">
-    <div class="container">
+  <section class="relative bg-hpah-green-light py-16 overflow-hidden">
+    {heroImage && (
+      <div class="absolute inset-0">
+        <Image
+          src={heroImage}
+          alt={`${serviceName} at Healthy Paws Animal Hospital`}
+          class="w-full h-full object-cover"
+          loading="eager"
+          widths={[640, 960, 1280]}
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-hpah-green-light/95 via-hpah-green-light/80 to-hpah-green-light/50"></div>
+      </div>
+    )}
+    <div class="container relative z-10">
       <div class="max-w-3xl">
         <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-3">
           {serviceName}
@@ -83,15 +98,15 @@ const related = services.filter((s) => relatedServices.includes(s.slug));
             <h3 class="text-lg font-bold mb-3">Hours</h3>
             <dl class="text-sm space-y-2">
               <div class="flex justify-between">
-                <dt>Mon–Fri</dt>
-                <dd>8:00 AM – 6:00 PM</dd>
+                <dt>Mon–Wed, Fri</dt>
+                <dd>{business.hours.monday}</dd>
               </div>
               <div class="flex justify-between">
-                <dt>Saturday</dt>
-                <dd>8:00 AM – 12:00 PM</dd>
+                <dt>Thursday</dt>
+                <dd>{business.hours.thursday}</dd>
               </div>
               <div class="flex justify-between">
-                <dt>Sunday</dt>
+                <dt>Sat–Sun</dt>
                 <dd class="text-gray-400">Closed</dd>
               </div>
             </dl>

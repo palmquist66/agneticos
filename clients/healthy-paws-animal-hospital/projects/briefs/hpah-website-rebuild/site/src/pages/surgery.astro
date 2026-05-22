@@ -1,91 +1,121 @@
 ---
 import ServiceLayout from '../layouts/ServiceLayout.astro';
+import heroImage from '../assets/images/services/6-SURGERY-header-Cheri-dog-cone-2.17.2026-2.jpeg';
 ---
 
 <ServiceLayout
+  heroImage={heroImage}
   title="Veterinary Surgery in Lake in the Hills, IL | Healthy Paws Animal Hospital"
   description="Veterinary surgery in Lake in the Hills, IL. Modern surgery suite, pre-surgical bloodwork, dedicated anesthesia monitoring. Call (815) 322-5400."
   serviceName="Surgery"
   serviceDescription="General and emergency surgical services performed in a modern surgery suite with comprehensive anesthesia monitoring and personalized aftercare."
   faqs={[
     {
-      question: 'What should I do to prepare my pet for surgery?',
-      answer: 'We will provide specific pre-surgical instructions during your consultation. In most cases, your pet will need to fast for 8-12 hours before the procedure. We also recommend pre-surgical bloodwork to confirm your pet is healthy enough for anesthesia. Our team will walk you through every step so you know exactly what to expect.',
+      question: 'When does my pet need surgery?',
+      answer: 'Surgery becomes necessary for a wide range of reasons. Injuries or trauma sometimes require surgical repair to restore function and comfort. Chronic conditions like hip dysplasia, torn ligaments, or certain tumors may only be fixed with surgical intervention. Preventive surgery matters too — spaying or neutering your pet reduces the risk of certain cancers, eliminates the risk of uterine infections, and helps control our pet population. If you are unsure whether surgery is the right next step, our team will walk you through everything and provide options clearly and honestly.',
     },
     {
-      question: 'How is anesthesia monitored during surgery?',
-      answer: 'Your pet is closely monitored throughout the entire procedure by a dedicated team member. We track heart rate, blood pressure, blood oxygen levels, respiratory rate, body temperature, and ECG. This level of monitoring allows us to respond immediately to any changes and ensures the safest possible experience for your pet.',
+      question: 'Is pre-anesthetic bloodwork required? Why does my pet need a catheter?',
+      answer: 'We recommend pre-anesthetic lab work for every patient before surgery requiring anesthesia. Bloodwork screens for underlying organ or blood abnormalities that could affect how your pet responds to anesthesia. An IV catheter is a small tube placed in a leg vein before every procedure. It allows us to deliver fluids to support safe blood pressure and hydration, and gives us immediate access to administer medications if needed. At Healthy Paws, pre-anesthetic bloodwork and IV catheter placement are standard and included with all anesthetic procedures. We do not offer them as optional add-ons. Lowering risk is always our goal.',
     },
     {
-      question: 'What is the recovery process like after surgery?',
-      answer: 'Recovery varies depending on the procedure. We provide detailed post-operative care instructions, appropriate pain management, and schedule follow-up appointments to monitor healing. Dr. Burgess personally follows up after surgery and significant procedures to check on your pet\'s recovery.',
+      question: 'How is my pet monitored during anesthesia?',
+      answer: 'Every surgical patient is monitored by a dedicated Certified Veterinary Technician (CVT) or Degreed Technician throughout the entire procedure. This is their only job during surgery — watching your pet, keeping them safely asleep and comfortable. Additional monitoring equipment tracks pulse oximetry (oxygen levels), EKG (heart rhythm), end-tidal CO2 (how well your pet is breathing), and blood pressure. Together, these give us a complete picture of how your pet is tolerating anesthesia in real time.',
     },
     {
-      question: 'Does Healthy Paws perform emergency surgery?',
-      answer: 'Yes, we provide emergency surgical services during business hours. If your pet needs urgent surgical attention, call us immediately at (815) 322-5400 so we can assess the situation and prepare our surgical team. For after-hours emergencies, we will direct you to the nearest emergency veterinary hospital.',
+      question: 'What medications does my pet receive?',
+      answer: 'Anesthetic drugs are tailored to each individual pet based on their size, health status, and procedure being performed. There is no one-size-fits-all protocol. On the morning of surgery, your pet receives a sedative and pain medication before anything else begins, often right after walking through our door. During the procedure, short-acting drugs allow safe placement of a breathing tube, and isoflurane gas maintains general anesthesia throughout. Pain management is most effective when it starts before a procedure and continues uninterrupted.',
+    },
+    {
+      question: 'Where does my pet recover after surgery?',
+      answer: 'After surgery, your pet is placed on a soft bed and covered with blankets in our treatment area. Warmth during recovery matters — it supports circulation and helps your pet come out of anesthesia more comfortably. Both the technician\'s and doctor\'s desks are located directly in the recovery room. Your pet is never out of sight during this critical window.',
+    },
+    {
+      question: 'What should I expect when I pick up my pet?',
+      answer: 'We provide thorough discharge instructions before your pet goes home. We will walk you through everything — no assumption that you already know what to do, all questions welcomed. In general, most pets need to remain quiet with limited activity for at least seven days following surgery. A protective collar (Elizabethan collar) is often sent home to prevent licking or chewing at incision sites. If you have questions after you get home, we are here. Do not hesitate to call.',
     },
   ]}
   relatedServices={['spay-neuter-lake-in-the-hills-il', 'pain-management', 'laboratory-diagnostics']}
 >
-  <h2>Surgical Care You Can Trust</h2>
+  <h2>Pet Surgery</h2>
   <p>
-    When your pet needs surgery, you want to know they're in capable, caring hands. At Healthy Paws Animal Hospital, Dr. Burgess and our surgical team approach every procedure with meticulous preparation, advanced monitoring, and a genuine commitment to your pet's comfort and safety. We understand that surgery can be stressful for you as a pet owner, and we take the time to explain every step of the process so you feel confident in your pet's care.
+    When your pet needs surgery, you deserve to know exactly what is happening and why. At Healthy Paws Animal Hospital, every surgical patient receives individualized anesthetic protocols, dedicated technician monitoring, and proactive pain management from the moment they arrive to the moment they go home.
+  </p>
+  <p>
+    Below find answers to common questions about pet surgery at Healthy Paws.
   </p>
 
-  <h2>Our Surgical Services</h2>
+  <h2>When Does My Pet Need Surgery?</h2>
   <p>
-    Our modern surgery suite is equipped to handle a wide range of procedures, including:
+    Surgery becomes necessary for a wide range of reasons. Injuries or trauma sometimes require surgical repair to restore function and comfort. Chronic conditions like hip dysplasia, torn ligaments, or certain tumors may be able to only be fixed with surgical intervention.
   </p>
-  <ul>
-    <li><strong>Soft tissue surgery</strong> — mass removals, bladder stone surgery, wound repair, abdominal exploratory procedures, and more</li>
-    <li><strong><a href="/spay-neuter-lake-in-the-hills-il/">Spay and neuter</a></strong> — routine reproductive surgeries performed with individualized pain management</li>
-    <li><strong>Dental surgery</strong> — complex extractions and oral procedures (see our <a href="/dental-care/">dental care</a> page for more details)</li>
-    <li><strong>Emergency surgery</strong> — urgent procedures for acute conditions like foreign body ingestion, lacerations, and other time-sensitive situations</li>
-    <li><strong>Orthopedic referrals</strong> — for procedures like ACL repair that require specialized surgical expertise, we work with trusted board-certified surgeons and coordinate your pet's care from start to finish</li>
-  </ul>
-
-  <h2>What Sets Our Surgical Care Apart</h2>
-
-  <h3>Pre-Surgical Bloodwork</h3>
   <p>
-    Before any procedure involving anesthesia, we recommend <a href="/laboratory-diagnostics/">pre-surgical bloodwork</a> to evaluate your pet's organ function. These tests help us identify any underlying conditions that could affect how your pet processes anesthesia, allowing us to tailor the anesthetic protocol to your pet's specific needs.
+    Preventive surgery matters too. <a href="/spay-neuter-lake-in-the-hills-il/">Spaying or neutering</a> your pet reduces the risk of certain cancers, eliminates the risk of uterine infections, and helps control our pet population.
+  </p>
+  <p>
+    If you are unsure whether surgery is the right next step for your pet, our team will walk you through everything and provide options clearly and honestly, discussing pros, cons, and alternatives.
   </p>
 
-  <h3>Dedicated Anesthesia Monitoring</h3>
+  <h2>Pre-Anesthetic Bloodwork and IV Catheters</h2>
   <p>
-    Safety during surgery starts with careful anesthesia management. A dedicated team member monitors your pet's vital signs throughout the entire procedure, tracking:
+    We recommend pre-anesthetic lab work for every patient before surgery requiring anesthesia. Bloodwork screens for underlying organ or blood abnormalities that could affect how your pet responds to anesthesia. These tests look for things that may not be visible on the outside.
   </p>
-  <ul>
-    <li>Heart rate and rhythm (ECG)</li>
-    <li>Blood pressure</li>
-    <li>Blood oxygen saturation (pulse oximetry)</li>
-    <li>Respiratory rate and carbon dioxide levels</li>
-    <li>Body temperature</li>
-  </ul>
   <p>
-    This comprehensive monitoring allows us to make real-time adjustments and respond immediately if any parameter changes.
+    An IV catheter is a small tube that is placed in a leg vein before every procedure. It allows us to deliver fluids to support safe blood pressure and hydration. It also gives us immediate access to administer medications if needed.
+  </p>
+  <p>
+    At Healthy Paws, pre-anesthetic bloodwork and IV catheter placement are standard and included with all anesthetic procedures. We do not offer them as optional add-ons. It is our responsibility to keep your pet as safe as possible. We do not expect owners to make this decision for their pet. It is enough worrying about a loved pet on surgery day. Lowering risk is always our goal.
   </p>
 
-  <h3>Individualized Pain Management</h3>
+  <h2>Anesthesia Monitoring</h2>
   <p>
-    We believe no pet should experience unnecessary pain. Our team uses a <a href="/pain-management/">multimodal pain management</a> approach, combining different types of pain relief to provide the most effective comfort. Pain management begins before surgery (pre-emptive analgesia), continues during the procedure, and extends into the recovery period at home.
+    Humans are the most important "monitor" for any procedure. Every surgical patient is monitored by a dedicated Certified Veterinary Technician (CVT) or Degreed Technician throughout the entire procedure. This is their only job during surgery — watching your pet, keeping them safely asleep and comfortable.
+  </p>
+  <p>
+    Additional monitoring equipment tracks pulse oximetry (oxygen levels in the blood), EKG (heart rhythm), end-tidal CO2 (how well your pet is breathing), and blood pressure. Together, these help give us a complete picture of how your pet is tolerating anesthesia in real time.
+  </p>
+  <p>
+    If anything shifts, we know immediately and can respond swiftly and with confidence.
   </p>
 
-  <h3>Personal Follow-Up by Dr. Burgess</h3>
+  <h2>Pain Management: Before, During, and After</h2>
   <p>
-    After surgery and significant procedures, Dr. Burgess personally follows up to check on your pet's recovery. This is part of our commitment to care that goes beyond the procedure itself — we want to make sure your pet is healing well and that you have the support you need during the recovery period.
+    Anesthetic drugs are tailored to each individual pet based on their size, health status, and procedure being performed. There is no one-size-fits-all protocol here.
+  </p>
+  <p>
+    On the morning of surgery, your pet receives a sedative and pain medication before anything else begins, often right after walking through our door. During the procedure, short-acting drugs allow safe placement of a breathing tube, and isoflurane gas maintains general anesthesia throughout.
+  </p>
+  <p>
+    Pain management is most effective when it starts before a procedure and continues uninterrupted. Preventing pain, and staying on top of it, is essential.
   </p>
 
-  <h2>What to Expect on Surgery Day</h2>
+  <h2>Recovery After Surgery</h2>
   <p>
-    We know surgery day can feel overwhelming. Here's what the process typically looks like:
+    After surgery, your pet is placed on a soft bed and covered with blankets in our treatment area. Warmth during recovery matters — it supports circulation and helps your pet come out of anesthesia more comfortably.
   </p>
-  <ol>
-    <li><strong>Morning drop-off</strong> — You'll bring your pet in at a scheduled time. Our team will answer any last-minute questions and confirm the surgical plan.</li>
-    <li><strong>Pre-surgical assessment</strong> — We perform a physical exam and review bloodwork results before proceeding.</li>
-    <li><strong>The procedure</strong> — Your pet receives individualized anesthesia and is monitored continuously throughout surgery.</li>
-    <li><strong>Recovery</strong> — Your pet wakes up in a warm, quiet recovery area under close supervision.</li>
-    <li><strong>Discharge</strong> — We'll call you when your pet is ready to go home, and our team will review detailed aftercare instructions in person.</li>
-    <li><strong>Follow-up</strong> — Dr. Burgess checks in on your pet's recovery, and we schedule any needed follow-up appointments.</li>
-  </ol>
+  <p>
+    Both the technician's and doctor's desks are located directly in the recovery room. Your pet is never out of sight during this critical window. This allows us to be a part of their recovery from start to finish.
+  </p>
+
+  <h2>What to Expect When You Pick Up Your Pet</h2>
+  <p>
+    We provide thorough discharge instructions before your pet goes home. We will walk you through everything — no assumption that you already know what to do, all questions welcomed.
+  </p>
+  <p>
+    In general, most pets need to remain quiet with limited activity for at least seven days following surgery. A protective collar (Elizabethan collar) is often sent home to prevent licking or chewing at incision sites.
+  </p>
+  <p>
+    If you have questions after you get home, we are here. Do not hesitate to call.
+  </p>
+
+  <h2>Why Choose Healthy Paws for Your Pet's Surgery?</h2>
+  <p>
+    Surgery is one of the most stressful things a pet owner faces. We understand that. Our <a href="/meet-the-team/">team</a> approaches every surgical case with the same care and deliberateness we would want for our own pets.
+  </p>
+  <p>
+    Our protocols are complex, researched, practiced, and thorough. This is a big day for owner and pet. Shortcuts are not acceptable. Pre-anesthetic bloodwork, dedicated technician monitoring, individualized drug protocols, warm recovery, and thorough discharge education are not extras. They are how we work.
+  </p>
+  <p>
+    We are proud to partner with the families of Lake in the Hills, Crystal Lake, Algonquin, Huntley, and the surrounding communities. Your pet deserves care that takes nothing for granted.
+  </p>
 </ServiceLayout>

@@ -1,261 +1,152 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import { business } from '../data/business';
+
+import heroImg from '../assets/images/hero/banner-img-13.jpg';
 ---
 
 <BaseLayout
-  title="Specialty & Referral Partners | Healthy Paws Animal Hospital"
-  description="When your pet needs advanced care, Healthy Paws Animal Hospital coordinates referrals to veterinary specialists — oncologists, surgeons, ophthalmologists, and more. Lake in the Hills, IL."
+  title="Specialty & Emergency Partners | Healthy Paws Animal Hospital"
+  description="After-hours veterinary emergency centers and poison control contacts recommended by Healthy Paws Animal Hospital in Lake in the Hills, IL."
 >
-  <!-- Page Header -->
-  <section class="bg-hpah-green-light py-16 lg:py-20">
-    <div class="container max-w-3xl text-center">
-      <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-4">Specialty & Referral Partners</p>
-      <h1 class="text-4xl lg:text-5xl mb-6">When Your Pet Needs a Specialist</h1>
-      <p class="text-lg text-hpah-text-light">
-        Some health conditions require expertise beyond general veterinary practice. When that happens,
-        we coordinate referrals to board-certified veterinary specialists so your pet receives the most
-        advanced care available.
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <div class="absolute inset-0">
+      <Image
+        src={heroImg}
+        alt="Healthy Paws Animal Hospital"
+        class="w-full h-full object-cover"
+        loading="eager"
+        widths={[640, 960, 1280, 1920]}
+      />
+      <div class="absolute inset-0" style="background: rgba(0,0,0,0.4);"></div>
+    </div>
+    <div class="container relative z-10 text-center">
+      <h1 class="text-4xl lg:text-5xl text-white mb-4">Specialty & Emergency Partners</h1>
+      <p class="text-lg text-white/90 max-w-2xl mx-auto">
+        For after-hours veterinary emergencies, please contact one of the following local emergency centers.
       </p>
     </div>
   </section>
 
-  <!-- Our Approach to Referrals -->
+  <!-- Emergencies -->
   <section class="py-16 lg:py-20">
-    <div class="container max-w-3xl">
-      <h2 class="text-3xl mb-6">How Our Referral Process Works</h2>
-      <p class="text-hpah-text-light mb-6 leading-relaxed">
-        Referring you to a specialist is never a decision we make lightly. It means we've identified a condition
-        that would benefit from advanced diagnostic tools, specialized training, or procedures we don't perform
-        in-house. When a referral is needed, here's what you can expect:
-      </p>
+    <div class="container" style="max-width: 900px;">
+      <h2 class="text-3xl mb-8">Emergencies</h2>
+      <p class="text-hpah-text-light mb-10">For an after-hours veterinary medical crisis, please call the following local emergency centers:</p>
 
-      <div class="space-y-6 mb-10">
-        <div class="flex items-start gap-4">
-          <div class="w-8 h-8 bg-hpah-green text-white rounded-full flex items-center justify-center font-bold shrink-0">1</div>
-          <div>
-            <p class="font-semibold text-hpah-text">We explain why</p>
-            <p class="text-hpah-text-light">Our veterinarian will explain the condition, why a specialist is recommended, and what the specialist can offer that we cannot. You'll understand the "why" before any referral is made.</p>
-          </div>
-        </div>
-        <div class="flex items-start gap-4">
-          <div class="w-8 h-8 bg-hpah-green text-white rounded-full flex items-center justify-center font-bold shrink-0">2</div>
-          <div>
-            <p class="font-semibold text-hpah-text">We coordinate the handoff</p>
-            <p class="text-hpah-text-light">We send your pet's complete medical records, lab results, imaging, and our clinical notes directly to the specialist. You won't need to repeat your pet's history from scratch.</p>
-          </div>
-        </div>
-        <div class="flex items-start gap-4">
-          <div class="w-8 h-8 bg-hpah-green text-white rounded-full flex items-center justify-center font-bold shrink-0">3</div>
-          <div>
-            <p class="font-semibold text-hpah-text">We help you schedule</p>
-            <p class="text-hpah-text-light">In many cases, we can help schedule your specialist appointment directly, reducing the time between referral and consultation.</p>
-          </div>
-        </div>
-        <div class="flex items-start gap-4">
-          <div class="w-8 h-8 bg-hpah-green text-white rounded-full flex items-center justify-center font-bold shrink-0">4</div>
-          <div>
-            <p class="font-semibold text-hpah-text">We follow up</p>
-            <p class="text-hpah-text-light">After your specialist visit, we receive their findings and recommendations. Your Healthy Paws veterinarian reviews everything and coordinates any ongoing care or follow-up treatment.</p>
-          </div>
-        </div>
-      </div>
+      <div class="space-y-8">
 
-      <div class="bg-hpah-green-light rounded-lg p-6">
-        <p class="text-hpah-text-light">
-          <strong>Your primary vet relationship stays with us.</strong> A referral doesn't mean we're sending you away.
-          It means we're bringing in additional expertise to support your pet's care. We remain your pet's primary
-          care team throughout the process and beyond.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Specialty Categories -->
-  <section class="py-16 bg-hpah-bg-warm">
-    <div class="container max-w-4xl">
-      <h2 class="text-3xl mb-4 text-center">Specialty Areas We Refer To</h2>
-      <p class="text-hpah-text-light mb-10 text-center max-w-2xl mx-auto">
-        We maintain relationships with board-certified veterinary specialists across multiple disciplines.
-        Depending on your pet's condition, we may refer to one or more of the following specialties.
-      </p>
-
-      <div class="grid md:grid-cols-2 gap-6">
-
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center shrink-0">
-              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold">Emergency & Critical Care</h3>
-          </div>
-          <p class="text-hpah-text-light text-sm">
-            24-hour emergency hospitals with intensive care units, advanced life support, and specialists trained
-            in stabilizing critically ill or injured animals. We refer here for after-hours emergencies and cases
-            requiring round-the-clock monitoring.
-          </p>
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">Companion Animal Specialty and Emergency</h3>
+          <p class="text-hpah-text-light">1095 Pingree Road<br/>Crystal Lake, Illinois 60014</p>
+          <p class="mt-2">Phone: <a href="tel:815-479-9119" class="text-hpah-green font-semibold">(815) 479-9119</a></p>
+          <p class="text-sm text-hpah-text-light">Fax: 847-854-9119</p>
+          <a href="https://www.casehospital.com/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
         </div>
 
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
-              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold">Veterinary Oncology</h3>
-          </div>
-          <p class="text-hpah-text-light text-sm">
-            Board-certified oncologists who specialize in diagnosing and treating cancer in pets. Services may include
-            advanced imaging, biopsies, chemotherapy, radiation therapy, and immunotherapy. They work with us to develop
-            treatment plans that balance quality of life with medical intervention.
-          </p>
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">Veterinary Specialty Center (VSC)</h3>
+          <p class="text-hpah-text-light">2051 Waukegan Rd.<br/>Bannockburn, IL 60015</p>
+          <p class="mt-2">Phone: <a href="tel:847-459-7535" class="text-hpah-green font-semibold">(847) 459-7535</a></p>
+          <p class="text-sm text-hpah-text-light">Open 24/7</p>
+          <a href="http://www.vetspecialty.com/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
         </div>
 
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
-              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold">Veterinary Ophthalmology</h3>
-          </div>
-          <p class="text-hpah-text-light text-sm">
-            Eye specialists who diagnose and treat conditions such as cataracts, glaucoma, corneal ulcers, and
-            retinal diseases. They have advanced diagnostic equipment and can perform surgeries like cataract removal
-            that require specialized training and instrumentation.
-          </p>
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">VCA Aurora</h3>
+          <p class="text-hpah-text-light">2600 W Galena Blvd<br/>Aurora, IL 60506</p>
+          <p class="mt-2">Phone: <a href="tel:630-301-6100" class="text-hpah-green font-semibold">(630) 301-6100</a></p>
+          <p class="text-sm text-hpah-text-light">Open 24/7</p>
+          <a href="https://www.vcahospitals.com/aurora" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
         </div>
 
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
-              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold">Veterinary Surgery</h3>
-          </div>
-          <p class="text-hpah-text-light text-sm">
-            Board-certified surgeons who perform complex orthopedic procedures (cruciate ligament repair, fracture
-            fixation, joint replacement), soft tissue surgeries, and minimally invasive procedures that require
-            specialized equipment and advanced surgical training.
-          </p>
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">Thrive Pet Healthcare Specialists Hoffman Estates</h3>
+          <p class="text-hpah-text-light">2700 W Higgins Rd<br/>Hoffman Estates, IL 60169</p>
+          <p class="mt-2">Phone: <a href="tel:618-495-5010" class="text-hpah-green font-semibold">(618) 495-5010</a> or <a href="tel:618-852-1732" class="text-hpah-green font-semibold">(618) 852-1732</a></p>
+          <p class="text-sm text-hpah-text-light">Open 24/7</p>
+          <a href="https://www.thrivepetcare.com/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
         </div>
 
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
-              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold">Veterinary Dermatology</h3>
-          </div>
-          <p class="text-hpah-text-light text-sm">
-            Skin specialists who manage chronic and complex skin conditions, allergies, autoimmune disorders, and
-            ear diseases. They offer advanced allergy testing, immunotherapy protocols, and specialized treatments
-            for conditions that haven't responded to standard therapy.
-          </p>
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">Blue Pearl Pet Hospital</h3>
+          <p class="text-hpah-text-light">820 W. Frontage Road<br/>Northfield, IL 60093</p>
+          <p class="mt-2">Phone: <a href="tel:847-564-5775" class="text-hpah-green font-semibold">(847) 564-5775</a></p>
+          <p class="text-sm text-hpah-text-light">Open 24/7</p>
+          <a href="https://bluepearlvet.com/hospital/northfield-il/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
         </div>
 
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
-              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold">Veterinary Neurology</h3>
-          </div>
-          <p class="text-hpah-text-light text-sm">
-            Neurologists who diagnose and treat conditions affecting the brain, spinal cord, and nervous system —
-            including seizures, intervertebral disc disease, vestibular disease, and brain tumors. They have access
-            to advanced imaging (MRI, CT) and can perform neurosurgical procedures.
-          </p>
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">Chicago MedVet</h3>
+          <p class="text-hpah-text-light">3305 N. California Avenue<br/>Chicago, IL 60618</p>
+          <p class="mt-2">Phone: <a href="tel:773-281-7110" class="text-hpah-green font-semibold">(773) 281-7110</a></p>
+          <p class="text-sm text-hpah-text-light">Open 24/7</p>
+          <a href="https://www.medvet.com/location/chicago/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
         </div>
 
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
-              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold">Veterinary Cardiology</h3>
-          </div>
-          <p class="text-hpah-text-light text-sm">
-            Heart specialists who diagnose and manage conditions like heart murmurs, congestive heart failure,
-            arrhythmias, and congenital heart defects. They use advanced echocardiography and electrocardiography
-            to develop precise treatment plans for your pet's cardiac health.
-          </p>
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">Elgin Urgent Vet Clinic</h3>
+          <p class="text-hpah-text-light">1190 South Randall Road, Suite 104<br/>Elgin, IL 60123</p>
+          <p class="mt-2">Phone: <a href="tel:630-221-6500" class="text-hpah-green font-semibold">(630) 221-6500</a></p>
+          <p class="text-sm text-hpah-text-light">Mon-Fri 3pm-11pm; Sat & Sun 10am-8pm</p>
+          <a href="https://www.urgentvet.com/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
         </div>
 
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-10 h-10 bg-hpah-green-light rounded-full flex items-center justify-center shrink-0">
-              <svg class="w-5 h-5 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold">Veterinary Internal Medicine</h3>
-          </div>
-          <p class="text-hpah-text-light text-sm">
-            Internists who specialize in complex diseases affecting internal organs — including endocrine disorders
-            (diabetes, Cushing's, Addison's), gastrointestinal diseases, liver and kidney conditions, and infectious
-            diseases. They often use advanced diagnostics like ultrasound-guided biopsies and endoscopy.
-          </p>
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">Veterinary Emergency Group Buffalo Grove</h3>
+          <p class="text-hpah-text-light">43 McHenry Rd.<br/>Buffalo Grove, IL 60089</p>
+          <p class="mt-2">Phone: <a href="tel:847-754-3996" class="text-hpah-green font-semibold">(847) 754-3996</a></p>
+          <p class="text-sm text-hpah-text-light">Open 24/7</p>
+          <a href="https://www.veg.com/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
+        </div>
+
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">Elk Grove Veterinary Specialty and Emergency (Thrive Pet Healthcare Elk Grove)</h3>
+          <p class="text-hpah-text-light">1050 Bonaventure Dr.<br/>Elk Grove Village, IL 60007</p>
+          <p class="mt-2">Phone: <a href="tel:847-584-0200" class="text-hpah-green font-semibold">(847) 584-0200</a> or <a href="tel:847-558-6791" class="text-hpah-green font-semibold">(847) 558-6791</a></p>
+          <p class="text-sm text-hpah-text-light">Open 24/7</p>
+          <a href="https://www.thrivepetcare.com/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
+        </div>
+
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">Premier Veterinary Group Mundelein</h3>
+          <p class="text-hpah-text-light">1385 Townline Rd<br/>Mundelein, IL 60060</p>
+          <p class="mt-2">Phone: <a href="tel:847-548-5300" class="text-hpah-green font-semibold">(847) 548-5300</a></p>
+          <p class="text-sm text-hpah-text-light">Open 7am-midnight</p>
+          <a href="https://www.premiervets.net/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- What to Expect -->
-  <section class="py-16">
-    <div class="container max-w-3xl">
-      <h2 class="text-3xl mb-6">What to Expect at a Specialist Visit</h2>
-      <div class="prose max-w-none">
-        <p class="text-hpah-text-light mb-4 leading-relaxed">
-          A specialist appointment is typically longer and more focused than a regular veterinary visit. Here are
-          a few things to keep in mind:
-        </p>
-        <ul class="space-y-3 text-hpah-text-light">
-          <li><strong>Bring your pet's medications</strong> — the specialist will want to know exactly what your pet is currently taking</li>
-          <li><strong>Prepare questions</strong> — write down anything you want to ask so you don't forget in the moment</li>
-          <li><strong>Expect detailed discussion</strong> — specialists will explain findings thoroughly and discuss treatment options with you</li>
-          <li><strong>Plan for time</strong> — some specialist appointments include same-day diagnostics and may take several hours</li>
-          <li><strong>Ask about costs upfront</strong> — specialist care can be a significant investment, and most facilities provide estimates before proceeding</li>
-        </ul>
-        <p class="text-hpah-text-light mt-6 leading-relaxed">
-          After your specialist visit, their findings and recommendations are sent back to us. Your Healthy Paws
-          veterinarian reviews everything, and we schedule a follow-up to discuss the plan going forward. You're
-          never left navigating complex medical information alone.
-        </p>
+  <!-- Poison Control -->
+  <section class="py-16" style="background-color: #DEDEE9;">
+    <div class="container" style="max-width: 900px;">
+      <h2 class="text-3xl mb-4">Poison Control</h2>
+      <p class="text-hpah-text-light mb-8">If you believe your pet may have ingested a potentially poisonous substance, contact Pet Poison Control for immediate guidance. *Fee associated</p>
+
+      <div class="space-y-8">
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">Pet Poison Helpline</h3>
+          <p class="text-hpah-text-light">3600 American Boulevard W., Suite 725<br/>Bloomington, MN 55431</p>
+          <p class="mt-2">Phone: <a href="tel:855-764-7661" class="text-hpah-green font-semibold">(855) 764-7661</a></p>
+          <a href="https://www.petpoisonhelpline.com/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
+        </div>
+
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">ASPCA Poison Control</h3>
+          <p class="text-hpah-text-light">424 E. 92nd St<br/>New York, NY 10128-6804</p>
+          <p class="mt-2">Phone: <a href="tel:888-426-4435" class="text-hpah-green font-semibold">(888) 426-4435</a></p>
+          <p class="text-sm text-hpah-text-light">Open 24/7</p>
+          <a href="https://www.aspca.org/pet-care/aspca-poison-control" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Related Links -->
-  <section class="py-12 border-t border-gray-100">
-    <div class="container max-w-3xl">
-      <h3 class="text-lg font-bold mb-4">Related Pages</h3>
-      <div class="flex flex-wrap gap-3">
-        <a href="/emergency-urgent-care/" class="text-hpah-green hover:underline text-sm">Emergency & Urgent Care</a>
-        <span class="text-gray-300">|</span>
-        <a href="/surgery/" class="text-hpah-green hover:underline text-sm">Surgery</a>
-        <span class="text-gray-300">|</span>
-        <a href="/laboratory-diagnostics/" class="text-hpah-green hover:underline text-sm">Lab & Diagnostics</a>
-        <span class="text-gray-300">|</span>
-        <a href="/local-pet-services/" class="text-hpah-green hover:underline text-sm">Local Pet Services</a>
-      </div>
-    </div>
-  </section>
-
-  <CTA heading="Have Questions About a Referral?" text={`If your pet has been referred to a specialist — or if you think they might need one — call us at ${business.phone}. We're happy to discuss your options.`} />
+  <CTA heading="Non-Emergency Questions?" text="For non-urgent concerns during business hours, call us directly. We're happy to help determine if your pet needs emergency care." />
 </BaseLayout>

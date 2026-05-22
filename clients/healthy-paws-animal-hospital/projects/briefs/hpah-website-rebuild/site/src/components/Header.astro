@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import { business } from '../data/business';
+import logo from '../assets/images/brand/Healthy-Paws-Animal-Hospital-logo-1-2.png';
 
 const currentPath = Astro.url.pathname;
 
@@ -48,7 +50,7 @@ const navItems = [
 ];
 ---
 
-<header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+<header class="bg-white border-b border-hpah-gray sticky top-0 z-50">
   <!-- Top bar -->
   <div class="bg-hpah-green text-white text-sm py-2">
     <div class="container flex justify-between items-center">
@@ -64,11 +66,10 @@ const navItems = [
     <div class="flex items-center justify-between">
       <!-- Logo -->
       <a href="/" class="flex-shrink-0" aria-label="Healthy Paws Animal Hospital - Home">
-        <img
-          src={business.logo}
+        <Image
+          src={logo}
           alt="Healthy Paws Animal Hospital logo"
-          width="220"
-          height="60"
+          width={220}
           class="h-14 w-auto"
           loading="eager"
         />
@@ -96,7 +97,7 @@ const navItems = [
             </a>
             {item.children && (
               <div class="absolute left-0 top-full pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
-                <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[220px]">
+                <div class="bg-white rounded-lg shadow-xl border border-hpah-gray py-2 min-w-[220px]">
                   {item.children.map((child) => (
                     <a
                       href={child.href}
@@ -132,7 +133,7 @@ const navItems = [
     </div>
 
     <!-- Mobile nav -->
-    <div id="mobile-menu" class="hidden lg:hidden mt-4 pb-4 border-t border-gray-100 pt-4">
+    <div id="mobile-menu" class="hidden lg:hidden mt-4 pb-4 border-t border-hpah-gray pt-4">
       {navItems.map((item) => (
         <div>
           <a

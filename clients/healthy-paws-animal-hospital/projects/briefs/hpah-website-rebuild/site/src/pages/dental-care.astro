@@ -1,90 +1,141 @@
 ---
 import ServiceLayout from '../layouts/ServiceLayout.astro';
+import heroImage from '../assets/images/services/5-DENTAL-CARE-kbf-with-Corgi-2.24.2026.jpeg';
 ---
 
 <ServiceLayout
+  heroImage={heroImage}
   title="Pet Dental Care in Lake in the Hills, IL | Healthy Paws Animal Hospital"
   description="Professional pet dental care in Lake in the Hills, IL. Digital dental X-rays, teeth cleaning, and oral surgery. Gentle, low-stress care. Call (815) 322-5400."
   serviceName="Dental Care"
   serviceDescription="Digital dental radiography, professional teeth cleaning, and oral surgery for dogs and cats."
   faqs={[
     {
-      question: 'How often does my pet need a dental cleaning?',
-      answer: 'We recommend professional dental cleanings annually for most pets, though some may need more frequent care depending on breed, age, and individual oral health. During your pet\'s wellness exam, our team will assess their teeth and gums and recommend the right schedule.',
+      question: 'Why does my pet\'s dental health matter?',
+      answer: 'More than 50% of dogs and cats over the age of one have some degree of periodontal disease. Dogs have 42 teeth, cats have 30. Just like humans, they accumulate plaque every single day. Left alone, plaque hardens into tartar which leads to gum inflammation, root decay, and ultimately tooth loss. The bacteria involved do not just stay in the mouth — they can enter the bloodstream and affect the heart, kidneys, and liver over time. Dental health is whole-body health.',
     },
     {
-      question: 'Does my pet need to go under anesthesia for a dental cleaning?',
-      answer: 'Yes. Safe, monitored general anesthesia is essential for a thorough dental cleaning. It allows us to clean below the gumline, take digital dental X-rays, and address any issues without causing your pet stress or pain. We perform pre-surgical bloodwork to ensure your pet is a safe candidate for anesthesia.',
+      question: 'What signs of dental problems should I watch for?',
+      answer: 'Bad breath (halitosis) is the most common sign owners notice. Other things to watch for: yellow or brown deposits on the teeth, trouble chewing or avoiding certain foods, pawing at the mouth, increased sensitivity around the face, or reluctance to let you touch their face or muzzle. Unfortunately, many pets with significant dental pain show no obvious signs at all. Owners often do not realize how much pain they were in until an offending tooth is removed and suddenly their pet\'s personality changes.',
     },
     {
-      question: 'What are the signs of dental disease in pets?',
-      answer: 'Common signs include bad breath, red or swollen gums, difficulty eating, drooling, pawing at the mouth, loose teeth, and reluctance to chew on toys. However, many pets hide dental pain, which is why regular professional dental exams are so important.',
+      question: 'Does hard kibble help keep my pet\'s teeth clean?',
+      answer: 'This is not accurate. When pets eat, they do not really chew the way we do. They bite down and break kibble apart and that action does not meaningfully contact the tooth surface where tartar forms. Plaque can be managed with brushing. Tartar, once formed, is more like concrete and has to be removed professionally, under anesthesia, with dental scaling equipment. What does help: tooth brushing, VOHC-approved products, and regular professional cleanings.',
     },
     {
-      question: 'How much does a pet dental cleaning cost?',
-      answer: 'The cost varies depending on the level of care needed. We provide a detailed estimate after the initial oral assessment so you know exactly what to expect. Our team is happy to discuss dental care options and help you plan for your pet\'s needs.',
+      question: 'What is a COHAT and why does my pet need anesthesia for it?',
+      answer: 'COHAT stands for Comprehensive Oral Health Assessment and Treatment. It is the veterinary equivalent of a thorough dental cleaning that includes scaling, polishing, full dental charting, and digital dental radiographs (x-rays). Anesthesia is required because a complete, safe exam cannot be done on an awake pet. Without full access to every surface of every tooth, including below the gumline, the cleaning is incomplete and problems are missed. The same anesthetic safety protocols we use for surgical procedures apply here: pre-anesthetic bloodwork, IV catheter, continuous monitoring by a dedicated trained technician, and individualized pain management throughout.',
     },
     {
-      question: 'Can I brush my pet\'s teeth at home?',
-      answer: 'Absolutely, and we encourage it. Daily brushing with pet-safe toothpaste is one of the best things you can do between professional cleanings. Our team can demonstrate proper brushing technique and recommend products that work well for your pet.',
+      question: 'What can a COHAT find that I would not notice at home?',
+      answer: 'Dental x-rays reveal what is happening below the gumline and inside the jaw, areas completely invisible during a visual exam. A COHAT allows us to identify extra teeth which can cause crowding, missing teeth that never erupted and may form cysts in the jaw, discolored or dead teeth which often look fine but are causing pain, and fractured or broken teeth which are painful even when pets do not show it. Finding these problems early changes the outcome.',
+    },
+    {
+      question: 'When is tooth extraction recommended?',
+      answer: 'Not every problem tooth needs to come out, but when a tooth is diseased from root decay, fracture, crowding, or infection, extraction is often the most effective way to relieve pain, clear infection, and protect the surrounding teeth. A sick tooth is like a splinter — the body tries to expel it, but that process is slow and painful. Most pets, even those who have had multiple or full-mouth extractions, return to eating hard kibble once healed. Losing diseased teeth does not diminish quality of life, however keeping them often does.',
+    },
+    {
+      question: 'How can I care for my pet\'s teeth at home? What is VOHC?',
+      answer: 'Brushing your pet\'s teeth every other day is the most effective way to slow plaque accumulation. Daily is ideal. We also recommend VOHC-approved products. The Veterinary Oral Health Council independently evaluates dental foods, treats, chews, and water additives and certifies those with evidence behind them. Things to avoid: hard chews, bones, or toys that you cannot push your fingernail into. If it is that hard, it can fracture a tooth. Antlers, bones, and hard nylon toys are common culprits. Our team will walk you through specific product recommendations and brushing technique at your pet\'s visit.',
+    },
+    {
+      question: 'How often does my pet need a professional dental cleaning?',
+      answer: 'We discuss dental health at every wellness visit and assess each pet\'s individual needs. Some pets develop tartar faster than others due to genetics, diet, or home care habits. Once a professional cleaning becomes necessary, it will typically need to be repeated every one to two years. The goal of home care and VOHC products is to extend the time between professional cleanings, not eliminate them. We recommend starting early — younger pets benefit most from establishing good oral hygiene habits.',
     },
   ]}
   relatedServices={['wellness-exams-lake-in-the-hills-il', 'senior-pet-care-lake-in-the-hills-il', 'surgery']}
 >
-  <h2>Why Dental Health Matters for Your Pet</h2>
+  <h2>Pet Dentistry</h2>
   <p>
-    Dental disease is one of the most common health problems we see in dogs and cats. Studies show that <strong>over 80% of pets develop some form of dental disease by age three</strong>. Left untreated, dental problems cause more than just bad breath — bacteria from infected gums can enter the bloodstream and affect your pet's heart, liver, and kidneys.
+    Dental disease is the most common health problem we see in dogs and cats and yet one of the most preventable. At Healthy Paws Animal Hospital, our approach to dentistry goes beyond a "cleaning." We assess, diagnose, treat, and educate so that you and your pet leave better off than when you arrived.
   </p>
   <p>
-    At Healthy Paws Animal Hospital, we take a proactive approach to pet dental care. Our goal is to identify and treat oral health issues early, before they cause pain or lead to more serious health complications.
+    Below find answers to common questions about pet dental care at Healthy Paws.
   </p>
 
-  <h2>Our Dental Care Services</h2>
-
-  <h3>Comprehensive Oral Examinations</h3>
+  <h2>Why Does My Pet's Dental Health Matter?</h2>
   <p>
-    Every <a href="/wellness-exams-lake-in-the-hills-il/">wellness exam</a> includes an oral health assessment. Our team examines your pet's teeth, gums, and oral tissues to check for signs of periodontal disease, fractured teeth, oral masses, and other concerns. When we identify issues, we'll walk you through exactly what we've found and recommend next steps.
+    More than 50% of dogs and cats over the age of one have some degree of periodontal disease or gum and tooth disease. It is one of the most common issues we see.
+  </p>
+  <p>
+    Here is what that means for your pet: Dogs have 42 teeth, cats have 30. Just like humans, they accumulate plaque, a sticky bacterial film, on those teeth every single day. Left alone, plaque then hardens into tartar which is almost like concrete in hardness. Tartar leads to gum inflammation, root decay, and ultimately tooth loss. The bacteria involved do not just stay in the mouth. They can enter the bloodstream and affect the heart, kidneys, and liver over time. Additionally, periodontal disease is often painful. A diseased tooth becomes essentially a splinter in the mouth, with the body trying to push the offending tooth out.
+  </p>
+  <p>
+    Dental health is whole-body health. We take it seriously because the consequences of ignoring it are real.
   </p>
 
-  <h3>Digital Dental Radiography</h3>
+  <h2>What Signs of Dental Problems Should I Watch For?</h2>
   <p>
-    What you see above the gumline is only part of the picture. Approximately <strong>60% of each tooth sits below the gumline</strong>, where problems like root abscesses, bone loss, and resorptive lesions can develop silently. Our digital dental X-rays provide detailed images of the entire tooth structure, helping us catch problems that a visual exam alone would miss.
+    Bad breath (halitosis) is the most common sign owners notice and over time it can become normal to have a pet with "doggie" mouth or "stinky" mouth. But persistent halitosis goes hand in hand with bacterial overgrowth in the mouth.
+  </p>
+  <p>
+    Other things to watch for: Yellow or brown deposits on the teeth, trouble chewing or avoiding certain foods, pawing at the mouth, increased sensitivity around the face, or reluctance to let you touch their face or muzzle. Any of these can be indicators of underlying dental disease.
+  </p>
+  <p>
+    Unfortunately, many pets with significant dental pain show no obvious signs at all. Owners often do not realize how much pain they were in until an offending tooth is removed and suddenly their pet's personality changes. This is why regular exams matter. We are looking for signs that pets may not be showing their owners.
   </p>
 
-  <h3>Professional Teeth Cleaning</h3>
+  <h2>What Is a COHAT?</h2>
   <p>
-    A professional dental cleaning at Healthy Paws involves several steps, all performed while your pet is under safe, monitored anesthesia:
+    COHAT stands for Comprehensive Oral Health Assessment and Treatment. It is the veterinary equivalent of a thorough dental cleaning that includes scaling, polishing, full dental charting, and digital dental radiographs (x-rays).
+  </p>
+  <p>
+    Anesthesia is required because a complete, safe exam cannot be done on an awake pet. Dogs and cats will not hold still for probing, scaling, or x-rays. More importantly, without full access to every surface of every tooth, including below the gumline, the cleaning is incomplete and problems are missed. Some may offer "awake" dental cleanings, however this is not anywhere near what is required for appropriate dental health and is not able to address disease that causes oral pain.
+  </p>
+  <p>
+    The same anesthetic safety protocols we use for <a href="/surgery/">surgical procedures</a> apply here: pre-anesthetic bloodwork, IV catheter, continuous monitoring by a dedicated trained technician, and individualized pain management throughout.
+  </p>
+
+  <h2>What Can a COHAT Find?</h2>
+  <p>
+    Dental x-rays reveal what is happening below the gumline and inside the jaw, areas completely invisible during a visual exam. A COHAT allows us to identify:
   </p>
   <ul>
-    <li>Full mouth digital dental X-rays</li>
-    <li>Scaling to remove plaque and tartar above and below the gumline</li>
-    <li>Polishing to smooth tooth surfaces and slow future plaque buildup</li>
-    <li>A thorough exam of each tooth and the surrounding gum tissue</li>
-    <li>Fluoride treatment to strengthen enamel</li>
-    <li>A detailed report of findings and any recommended follow-up care</li>
-  </ul>
-
-  <h3>Oral Surgery and Extractions</h3>
-  <p>
-    When a tooth is severely damaged, infected, or causing your pet pain, extraction may be the best option for their comfort and long-term health. Our team performs oral <a href="/surgery/">surgical procedures</a> with careful attention to <a href="/pain-management/">pain management</a>, and we'll discuss all options with you before proceeding.
-  </p>
-
-  <h2>Keeping Your Pet's Mouth Healthy at Home</h2>
-  <p>
-    Professional cleanings are essential, but daily home care makes a real difference between visits. We recommend:
-  </p>
-  <ul>
-    <li><strong>Daily brushing</strong> with pet-safe toothpaste (never use human toothpaste)</li>
-    <li><strong>Dental chews and treats</strong> approved by the Veterinary Oral Health Council (VOHC)</li>
-    <li><strong>Dental diets</strong> specifically formulated to reduce plaque and tartar</li>
-    <li><strong>Water additives</strong> that help control bacteria in your pet's mouth</li>
+    <li>Extra teeth, which can cause crowding and accelerate periodontal disease.</li>
+    <li>Missing teeth that never erupted and may form cysts in the jaw, similar to impacted wisdom teeth in people.</li>
+    <li>Discolored or dead teeth, which often look fine but are causing pain.</li>
+    <li>Fractured or broken teeth, which are painful even when pets do not show it. Dogs and cats are wired to hide discomfort.</li>
   </ul>
   <p>
-    During your pet's appointment, our team is happy to demonstrate brushing technique and help you choose the right products for your pet's needs.
+    Finding these problems early changes the outcome. Catching a fractured tooth before infection sets in is a very different situation than treating an abscess or having multiple teeth impacted because of one ignored bad tooth.
   </p>
 
-  <h2>Dental Care for Senior Pets</h2>
+  <h2>When Is Tooth Extraction Recommended?</h2>
   <p>
-    Older pets are especially prone to dental disease, and dental issues can significantly affect their quality of life. If your <a href="/senior-pet-care-lake-in-the-hills-il/">senior pet</a> is eating less, dropping food, or seems less enthusiastic about meals, dental pain may be the cause. We recommend more frequent dental evaluations for pets over seven years of age to stay ahead of age-related oral health changes.
+    Not every problem tooth needs to come out, but when a tooth is diseased from root decay, fracture, crowding, or infection, extraction is often the most effective way to relieve pain, clear infection, and protect the surrounding teeth from further damage.
+  </p>
+  <p>
+    A sick tooth is like a splinter. The body tries to expel it, but that process is slow and painful. Removing the source, the diseased tooth in this case, resolves the problem.
+  </p>
+  <p>
+    If extractions are recommended, soft food is suggested for the initial days or weeks to allow healing. Most pets, even those who have had multiple or full-mouth extractions, return to eating hard kibble once healed. Losing diseased teeth does not diminish quality of life, however keeping them often does.
+  </p>
+
+  <h2>Caring for Your Pet's Teeth at Home</h2>
+  <p>
+    Brushing your pet's teeth every other day is the most effective way to slow plaque accumulation. Daily is ideal.
+  </p>
+  <p>
+    We also recommend VOHC-approved products. The Veterinary Oral Health Council independently evaluates dental foods, treats, chews, and water additives and certifies those with evidence behind them. These products will not replace brushing, but they help reduce plaque and tartar buildup between cleanings. This is why regular exams and home dental care work best together.
+  </p>
+  <p>
+    Things to avoid for overall dental health include hard chews, bones, or toys that you cannot push your fingernail into. If it is that hard, it can fracture a tooth. Antlers, bones, and hard nylon toys are common culprits.
+  </p>
+  <p>
+    Our team will walk you through specific product recommendations and brushing technique at your pet's visit, as we want home care to actually work for your individual pet and household.
+  </p>
+
+  <h2>How Often Does My Pet Need a Professional Dental Cleaning?</h2>
+  <p>
+    We discuss dental health at every <a href="/wellness-exams-lake-in-the-hills-il/">wellness visit</a> and assess each pet's individual needs. Some pets develop tartar faster than others due to genetics, diet, or home care habits.
+  </p>
+  <p>
+    Once a professional cleaning becomes necessary, it will typically need to be repeated every one to two years. The goal of home care and VOHC products is to extend the time between professional cleanings, not eliminate them.
+  </p>
+  <p>
+    We recommend starting early. Younger pets benefit most from establishing good oral hygiene habits. And catching early-stage disease means simpler treatment, shorter procedures, and less cost over time.
+  </p>
+  <p>
+    We are proud to partner with the families of Lake in the Hills, Crystal Lake, Algonquin, Huntley, and the surrounding communities. Your pet deserves care that takes nothing for granted.
   </p>
 </ServiceLayout>

@@ -1,134 +1,143 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import { business } from '../data/business';
 
-const differentiators = [
+// Hero image
+import heroImg from '../assets/images/hero/banner-img-6.jpg';
+
+// Section images from WP site
+import transparencyImg from '../assets/images/wp-import/1.jpg';
+import experienceImg from '../assets/images/wp-import/3.jpg';
+import teamImg from '../assets/images/wp-import/2.jpg';
+import educationImg from '../assets/images/wp-import/4.jpg';
+import scheduleImg from '../assets/images/wp-import/Dog-img.jpg';
+import missionImg from '../assets/images/wp-import/cat-img.jpg';
+
+const sections = [
   {
-    title: 'Gentle, Low-Stress Care',
-    icon: '💚',
-    description: `Every member of our team — from our veterinarians to our technicians and front desk staff — is trained in gentle handling techniques. This isn't a line on a brochure. It's a fundamentally different approach to veterinary medicine that prioritizes your pet's emotional well-being alongside their physical health. We use gentle handling, pheromone diffusers, non-slip surfaces, calming treats, and patient-centered protocols designed to reduce fear, anxiety, and stress at every stage of the visit. The result? Pets who are calmer, exams that are more thorough, and families who actually look forward to coming back.`,
+    title: 'Transparency',
+    image: transparencyImg,
+    alt: 'A cat with green eyes',
+    content: `From the very beginning, one powerful term has steered our approach. As a unified team, we remain dedicated to embracing vulnerability and transparently showcasing our actions. This commitment not only fosters trust but also cultivates strong relationships with our clients and their beloved pets.`,
+    link: '/transparency-and-pricing/',
+    linkText: 'Learn More',
   },
   {
-    title: 'Privately Owned — No Corporate Playbook',
-    icon: '🏠',
-    description: `Healthy Paws Animal Hospital is independently and privately owned by Dr. Burgess. That means every clinical decision, every staffing choice, and every investment in equipment is made with one thing in mind: what's best for your pet. There are no shareholders to answer to, no corporate mandates to follow, and no pressure to upsell services you don't need. When we recommend something, it's because we genuinely believe it's the right course of action for your pet — not because a quarterly target says we should.`,
+    title: "Your Pet's Experience",
+    image: experienceImg,
+    alt: 'A dog standing on its hind legs',
+    content: `Imagine how you'd want your ailing pet to be cared for at the vet. That ethos guided us in reshaping conventional notions of veterinary care when we established our practice. We aimed to innovate and elevate, crafting an enhanced experience for both our clients and their beloved animal companions.`,
+    link: '/your-pets-experience/',
+    linkText: 'Learn More',
   },
   {
-    title: 'Transparency in Everything',
-    icon: '🔍',
-    description: `We believe you have the right to fully understand your pet's health and the care we're recommending. That means we explain every diagnosis in plain language, walk you through every treatment option (including the option to wait), and discuss costs before we proceed — not after. We'll tell you what we'd do if it were our own pet, and we'll respect your decision either way. No hidden fees, no surprise charges, no pressure tactics. Just honest, straightforward communication.`,
+    title: 'Our Team',
+    image: teamImg,
+    alt: 'Two cats standing on a ledge',
+    content: `Undoubtedly, our team sets us apart. Comprising individuals who embody a down-to-earth ethos, showcase remarkable talents, and confidently navigate their expertise, we adhere to the principle of surpassing expectations at every turn.`,
+    link: '/meet-the-team/',
+    linkText: 'Learn More',
   },
   {
-    title: 'Education-First Approach',
-    icon: '📚',
-    description: `At Healthy Paws, we take the time to teach — not just treat. We want you to understand the "why" behind every recommendation, recognize early warning signs at home, and feel confident making health decisions for your pet. Our appointments aren't rushed. We welcome your questions, and we'll answer every single one. When you leave our office, you should feel more informed than when you arrived. That's not an accident — it's by design.`,
+    title: 'Education',
+    image: educationImg,
+    alt: 'A dog with its tongue out',
+    content: `The perpetual presence of knowledge is a valuable gift. We aim for pet owners to perceive themselves as collaborative partners in making optimal choices for their pets. Success in this endeavor hinges on our commitment to educate our clients proactively.`,
+    link: '/info-center/',
+    linkText: 'Learn More',
   },
   {
-    title: 'Single Exam Room Design',
-    icon: '🚪',
-    description: `Most veterinary practices make you sit in a busy lobby surrounded by barking dogs, anxious cats, and other stressed animals before your appointment even begins. We do it differently. At Healthy Paws, your pet goes directly to the exam room when you arrive. Our lobby is intentionally small because we consider it a failure if you spend significant time there. This design eliminates the most stressful part of the vet visit for most pets and sets the tone for a calmer, more productive appointment.`,
+    title: 'Schedule',
+    image: scheduleImg,
+    alt: 'A dog standing on grass',
+    content: `Wholehearted commitment defines my approach, ensuring a seamless dedication to every task. My penchant for efficiently managing schedules and optimizing time is more than a skill—it's a unique passion. Balancing the demands of solo practice, I prioritize dedicating quality time to Healthy Paws, all while avoiding burnout. This commitment significantly influences our business plan and culture, setting us apart from other practices.`,
+    link: '/schedule/',
+    linkText: 'Learn More',
   },
   {
-    title: 'In-Room Checkout',
-    icon: '🧾',
-    description: `Your visit ends where it began — right in the exam room. We handle payment, schedule follow-ups, and answer any last questions without making you stand at a front desk while managing a leash, a pet carrier, and your wallet. It's a small touch that makes a big difference, especially for pet owners with anxious animals or multiple pets. It's also more private — if you have questions about costs or care plans, you can ask in a comfortable setting.`,
-  },
-  {
-    title: 'Personal Follow-Up from Dr. Burgess',
-    icon: '📞',
-    description: `After surgery, significant procedures, or when your pet is facing a health challenge, Dr. Burgess personally follows up to check on their recovery. Not a receptionist reading from a script — the doctor who performed the procedure, calling to ask how things are going and whether you have questions. This level of personal attention is rare in veterinary medicine, and it's something we're proud to offer. Your pet's care doesn't end when you leave our building.`,
-  },
-  {
-    title: 'Comprehensive In-House Laboratory',
-    icon: '🔬',
-    description: `Our hospital is equipped with a full in-house laboratory capable of running complete blood counts, chemistry panels, urinalysis, cytology, and more. This means we can diagnose conditions during your visit rather than sending samples to an outside lab and waiting days for results. When time matters — and in veterinary medicine, it often does — having answers in minutes instead of days can make all the difference in your pet's treatment and outcome.`,
-  },
-  {
-    title: 'Paperless Records',
-    icon: '💻',
-    description: `We maintain fully digital medical records, which means your pet's complete health history is accessible instantly at every visit. Whether you're seeing Dr. Burgess, Dr. Haslitt, or Dr. Mosier, they have your pet's full history at their fingertips — past bloodwork, vaccination records, treatment notes, weight trends, and more. Digital records also mean fewer errors, better coordination between our doctors, and the ability to spot trends in your pet's health over time.`,
-  },
-  {
-    title: 'Women-Owned',
-    icon: '👩‍⚕️',
-    description: `Healthy Paws Animal Hospital is proudly women-owned and operated. Dr. Burgess built this practice from the ground up in 2010, and her vision continues to guide every aspect of how we operate. We believe diversity in veterinary leadership leads to better care, more empathetic communication, and a more welcoming environment for every family who walks through our doors.`,
+    title: 'How it all began',
+    image: missionImg,
+    alt: 'A cat lying on a surface',
+    content: `James Herriot, 4H, and a cat named Cicero made Dr. Burgess who she is today. Born and raised in Kansas City with parents who were high school teachers, her summer driving trips were spent listening to All Creatures Great and Small on the car radio – it was then that an interest in veterinary medicine and a determination to embrace all things animal was born.`,
+    link: null,
+    linkText: null,
   },
 ];
 ---
 
 <BaseLayout
-  title="Why Choose Healthy Paws | Healthy Paws Animal Hospital"
-  description="Discover what makes Healthy Paws Animal Hospital different — gentle low-stress care, privately owned, education-first veterinary care in Lake in the Hills, IL. No corporate playbook. Just better care."
+  title="Why Choose Us | Healthy Paws Animal Hospital"
+  description="Committed to professional veterinary care, Healthy Paws prioritizes efficient schedules, a positive exam room experience, a supportive team, and continuous education in Lake in the Hills, IL."
 >
-  <!-- Hero -->
-  <section class="bg-hpah-green-light py-16 lg:py-20">
-    <div class="container max-w-3xl text-center">
-      <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-4">Why Choose Us</p>
-      <h1 class="text-4xl lg:text-5xl mb-6">Veterinary Care Designed Around Your Pet</h1>
-      <p class="text-lg text-hpah-text-light">
-        We didn't open Healthy Paws to be another veterinary clinic. We built it to be the practice
-        we always wished existed — one where transparency, education, and personal care aren't aspirational
-        values on a wall, but the foundation of how we practice medicine every day. Here's what that
-        looks like in practice.
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <div class="absolute inset-0">
+      <Image
+        src={heroImg}
+        alt="Healthy Paws Animal Hospital"
+        class="w-full h-full object-cover"
+        loading="eager"
+        widths={[640, 960, 1280, 1920]}
+      />
+      <div class="absolute inset-0" style="background: rgba(0,0,0,0.4);"></div>
+    </div>
+    <div class="container relative z-10 text-center">
+      <h1 class="text-4xl lg:text-5xl text-white mb-4">Why Choose Us</h1>
+      <p class="text-lg text-white/90 max-w-2xl mx-auto">
+        Committed to professional veterinary care, <a href="/about/" class="text-white underline">Healthy Paws</a> prioritizes efficient schedules, a positive exam room experience, a supportive team, and continuous education.
       </p>
     </div>
   </section>
 
-  <!-- Differentiators -->
+  <!-- Alternating Image/Text Sections -->
   <section class="py-20">
-    <div class="container max-w-4xl">
-      <div class="space-y-16">
-        {differentiators.map((item, index) => (
-          <div class:list={['flex flex-col md:flex-row gap-6 items-start', index % 2 === 1 ? 'md:flex-row-reverse' : '']}>
-            <div class="md:w-16 shrink-0">
-              <div class="w-14 h-14 bg-hpah-green-light rounded-lg flex items-center justify-center">
-                <span class="text-2xl">{item.icon}</span>
+    <div class="container" style="max-width: 960px;">
+      <div class="space-y-0">
+        {sections.map((section, index) => (
+          <div>
+            <div class:list={[
+              'flex flex-col md:flex-row gap-10 items-start py-16',
+              index % 2 === 1 ? 'md:flex-row-reverse' : '',
+            ]}>
+              <!-- Image (1/3) -->
+              <div class="md:w-1/3">
+                <div class="divi-card">
+                  <Image
+                    src={section.image}
+                    alt={section.alt}
+                    class="w-full"
+                    widths={[320, 480]}
+                  />
+                </div>
+              </div>
+
+              <!-- Text (2/3) -->
+              <div class="md:w-2/3">
+                <h2 class="mb-4">{section.title}</h2>
+                <p class="text-hpah-text-light leading-relaxed mb-6">{section.content}</p>
+                {section.link && (
+                  <a href={section.link} class="btn-secondary">{section.linkText}</a>
+                )}
               </div>
             </div>
-            <div class="flex-1">
-              <h2 class="text-2xl mb-4">{item.title}</h2>
-              <p class="text-hpah-text-light leading-relaxed">{item.description}</p>
-            </div>
+            {index < sections.length - 1 && <div class="section-divider"></div>}
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Summary Bar -->
-  <section class="py-16 bg-hpah-bg-warm">
-    <div class="container max-w-4xl">
-      <div class="text-center mb-10">
-        <h2 class="mb-4">It All Adds Up to Better Care</h2>
-        <p class="text-lg text-hpah-text-light max-w-2xl mx-auto">
-          Each of these choices reflects the same underlying belief: your pet deserves a veterinary
-          experience that's built around them — not around efficiency metrics or corporate profit
-          margins. When you combine gentle, low-stress techniques with a transparent, education-first philosophy
-          in a thoughtfully designed space, the result is something you can feel the moment you
-          walk through our doors.
-        </p>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <p class="text-3xl font-bold text-hpah-green">2010</p>
-          <p class="text-sm text-hpah-text-light mt-1">Founded</p>
-        </div>
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <p class="text-3xl font-bold text-hpah-green">3</p>
-          <p class="text-sm text-hpah-text-light mt-1">Veterinarians</p>
-        </div>
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <p class="text-3xl font-bold text-hpah-green">100%</p>
-          <p class="text-sm text-hpah-text-light mt-1">Low-Stress Trained</p>
-        </div>
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <p class="text-3xl font-bold text-hpah-green">0</p>
-          <p class="text-sm text-hpah-text-light mt-1">Corporate Owners</p>
-        </div>
-      </div>
+  <!-- Mission -->
+  <section class="py-16" style="background-color: #DEDEE9;">
+    <div class="container text-center" style="max-width: 800px;">
+      <h2 class="mb-6">Our Mission</h2>
+      <p class="text-lg text-hpah-text leading-relaxed" style="font-style: italic;">
+        "Healthy Paws is dedicated to providing advanced, comprehensive, and compassionate veterinary care in a timely and transparent manner. We prioritize promoting overall animal health and awareness within our client community and the broader public we serve."
+      </p>
     </div>
   </section>
 
-  <CTA heading="Ready to Experience the Difference?" text={`Schedule your visit and see why pet owners across ${business.serviceAreas.slice(0, 3).join(', ')}, and surrounding communities choose Healthy Paws.`} />
+  <CTA />
 </BaseLayout>

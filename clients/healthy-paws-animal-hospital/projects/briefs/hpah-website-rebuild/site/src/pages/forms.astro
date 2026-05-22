@@ -1,19 +1,31 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import { business } from '../data/business';
+
+import heroImg from '../assets/images/hero/banner-img-12.jpg';
 ---
 
 <BaseLayout
   title="Patient Forms | Healthy Paws Animal Hospital"
   description="Download patient forms for Healthy Paws Animal Hospital — new patient registration, health history, surgery consent, and more. Most forms available via our app. Lake in the Hills, IL."
 >
-  <!-- Page Header -->
-  <section class="bg-hpah-green-light py-16 lg:py-20">
-    <div class="container max-w-3xl text-center">
-      <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-4">Patient Forms</p>
-      <h1 class="text-4xl lg:text-5xl mb-6">Forms & Paperwork</h1>
-      <p class="text-lg text-hpah-text-light">
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <div class="absolute inset-0">
+      <Image
+        src={heroImg}
+        alt="Healthy Paws Animal Hospital"
+        class="w-full h-full object-cover"
+        loading="eager"
+        widths={[640, 960, 1280, 1920]}
+      />
+      <div class="absolute inset-0" style="background: rgba(0,0,0,0.4);"></div>
+    </div>
+    <div class="container relative z-10 text-center">
+      <h1 class="text-4xl lg:text-5xl text-white mb-4">Forms & Paperwork</h1>
+      <p class="text-lg text-white/90 max-w-2xl mx-auto">
         We keep things as paperless as possible, but some situations still require documentation.
         Here you'll find the forms you may need before your visit.
       </p>

@@ -1,225 +1,94 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import { business } from '../data/business';
+
+import heroImg from '../assets/images/hero/banner-img-2.jpg';
 ---
 
 <BaseLayout
   title="Local Pet Services Near Lake in the Hills, IL | Healthy Paws Animal Hospital"
-  description="Curated list of local pet services near Lake in the Hills, IL — groomers, pet stores, dog trainers, boarding, pet-friendly parks, and more community resources."
+  description="Recommended local pet services near Lake in the Hills, IL — trainers, adoption centers, daycare, and grooming referrals from Healthy Paws Animal Hospital."
 >
-  <!-- Page Header -->
-  <section class="bg-hpah-green-light py-16 lg:py-20">
-    <div class="container max-w-3xl text-center">
-      <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-4">Community Resources</p>
-      <h1 class="text-4xl lg:text-5xl mb-6">Local Pet Services</h1>
-      <p class="text-lg text-hpah-text-light">
-        Our community has many wonderful businesses and resources dedicated to pets.
-        We've gathered some categories to help you find complementary services near
-        {business.address.city}, IL.
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <div class="absolute inset-0">
+      <Image
+        src={heroImg}
+        alt="Healthy Paws Animal Hospital"
+        class="w-full h-full object-cover"
+        loading="eager"
+        widths={[640, 960, 1280, 1920]}
+      />
+      <div class="absolute inset-0" style="background: rgba(0,0,0,0.4);"></div>
+    </div>
+    <div class="container relative z-10 text-center">
+      <h1 class="text-4xl lg:text-5xl text-white mb-4">Local Pet Services</h1>
+      <p class="text-lg text-white/90 max-w-2xl mx-auto">
+        Recommended local pet service providers near Lake in the Hills, IL.
       </p>
     </div>
   </section>
 
-  <!-- Disclaimer -->
-  <section class="py-8 border-b border-gray-100">
-    <div class="container max-w-3xl">
-      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
-        <p class="text-sm text-amber-800">
-          <strong>Please note:</strong> The following categories are provided as community resources to help you
-          find local pet services. Listings do not constitute endorsements or recommendations by Healthy Paws
-          Animal Hospital. We encourage you to research any provider before using their services.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Service Categories -->
+  <!-- Training -->
   <section class="py-16 lg:py-20">
-    <div class="container max-w-4xl">
-      <div class="grid md:grid-cols-2 gap-8">
+    <div class="container" style="max-width: 900px;">
+      <h2 class="text-3xl mb-4">Training</h2>
+      <p class="text-hpah-text-light mb-8">We recommend specific trainers to provide the best guidance for your pet's behavior and obedience training needs.</p>
 
-        <!-- Groomers -->
-        <div class="bg-white rounded-lg p-8 border border-gray-100 shadow-sm">
-          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <h2 class="text-xl font-bold mb-3">Pet Groomers</h2>
-          <p class="text-hpah-text-light mb-4">
-            Professional grooming keeps your pet's coat healthy, prevents matting, and allows groomers to spot
-            skin issues early. Look for groomers who are patient with anxious animals and willing to work at
-            your pet's pace.
-          </p>
-          <p class="text-sm text-hpah-text-light italic">
-            What to look for: Gentle, low-stress handling practices, experience with your pet's breed, clean facilities,
-            and willingness to accommodate special needs.
-          </p>
+      <div class="space-y-8 mb-16">
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">NOCI</h3>
+          <p class="text-hpah-text-light">110 W Woodstock Street, Suite 2A<br/>Crystal Lake, IL 60014</p>
+          <p class="mt-2">Email: <a href="mailto:NOCITHS@gmail.com" class="text-hpah-green">NOCITHS@gmail.com</a></p>
+          <p>Phone: <a href="tel:847-639-3377" class="text-hpah-green font-semibold">(847) 639-3377</a> <span class="text-sm text-hpah-text-light">(voicemail only)</span></p>
+          <a href="https://northwestobedienceclub.org/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
         </div>
 
-        <!-- Pet Stores -->
-        <div class="bg-white rounded-lg p-8 border border-gray-100 shadow-sm">
-          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
-            </svg>
-          </div>
-          <h2 class="text-xl font-bold mb-3">Pet Supply Stores</h2>
-          <p class="text-hpah-text-light mb-4">
-            Quality food, treats, toys, and supplies are essential for your pet's well-being. Local pet stores
-            often carry premium brands and can provide personalized advice about products suited to your pet.
-          </p>
-          <p class="text-sm text-hpah-text-light italic">
-            What to look for: Knowledgeable staff, high-quality food options, a good selection of enrichment
-            toys, and willingness to special-order items.
-          </p>
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">A Sound Beginning</h3>
+          <p class="mt-2">Email: <a href="mailto:psasb22@gmail.com" class="text-hpah-green">psasb22@gmail.com</a></p>
+          <p>Phone: <a href="tel:630-465-0666" class="text-hpah-green font-semibold">(630) 465-0666</a></p>
+          <a href="https://www.asoundbeginningprogram.com/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
         </div>
-
-        <!-- Dog Trainers -->
-        <div class="bg-white rounded-lg p-8 border border-gray-100 shadow-sm">
-          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-            </svg>
-          </div>
-          <h2 class="text-xl font-bold mb-3">Dog Trainers & Behaviorists</h2>
-          <p class="text-hpah-text-light mb-4">
-            Professional training strengthens the bond between you and your dog while addressing behavioral
-            concerns. Whether you have a new puppy or an adult dog with specific challenges, positive-reinforcement
-            trainers can make a significant difference.
-          </p>
-          <p class="text-sm text-hpah-text-light italic">
-            What to look for: Positive reinforcement methods (no punishment-based training), certifications
-            (CPDT-KA, CAAB), experience with your dog's specific challenges.
-          </p>
-        </div>
-
-        <!-- Boarding & Pet Sitting -->
-        <div class="bg-white rounded-lg p-8 border border-gray-100 shadow-sm">
-          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-          </div>
-          <h2 class="text-xl font-bold mb-3">Boarding & Pet Sitting</h2>
-          <p class="text-hpah-text-light mb-4">
-            When you need to travel without your pet, finding trustworthy care is essential. Options in our area
-            include traditional boarding facilities, in-home pet sitting services, and dog daycare centers that
-            offer overnight stays.
-          </p>
-          <p class="text-sm text-hpah-text-light italic">
-            What to look for: Clean facilities, adequate staff-to-pet ratios, required vaccination protocols,
-            emergency vet on call, and a willingness to accommodate your pet's routine.
-          </p>
-        </div>
-
-        <!-- Dog Walking -->
-        <div class="bg-white rounded-lg p-8 border border-gray-100 shadow-sm">
-          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-            </svg>
-          </div>
-          <h2 class="text-xl font-bold mb-3">Dog Walking & Daycare</h2>
-          <p class="text-hpah-text-light mb-4">
-            Regular exercise and socialization are crucial for your dog's physical and mental health. Professional
-            dog walkers and daycare facilities provide structured activity when your schedule doesn't allow for
-            midday walks.
-          </p>
-          <p class="text-sm text-hpah-text-light italic">
-            What to look for: Insured and bonded, small group sizes, temperament assessments before group play,
-            and clear communication about your dog's day.
-          </p>
-        </div>
-
-        <!-- Pet-Friendly Parks -->
-        <div class="bg-white rounded-lg p-8 border border-gray-100 shadow-sm">
-          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-            </svg>
-          </div>
-          <h2 class="text-xl font-bold mb-3">Pet-Friendly Parks & Trails</h2>
-          <p class="text-hpah-text-light mb-4">
-            The Lake in the Hills and McHenry County area offers several parks and trails that welcome leashed
-            dogs. Some facilities also include off-leash dog parks with separate areas for large and small dogs.
-          </p>
-          <p class="text-sm text-hpah-text-light italic">
-            Remember: Keep your dog on a leash unless you're in a designated off-leash area. Always pick up
-            after your pet. Ensure vaccinations are current before visiting dog parks.
-          </p>
-        </div>
-
-        <!-- Emergency & After-Hours -->
-        <div class="bg-white rounded-lg p-8 border border-gray-100 shadow-sm">
-          <div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-          </div>
-          <h2 class="text-xl font-bold mb-3">After-Hours Emergency Hospitals</h2>
-          <p class="text-hpah-text-light mb-4">
-            Healthy Paws is not a 24-hour facility. If your pet has an emergency outside of our regular business
-            hours, you'll need a 24-hour emergency veterinary hospital. We maintain a list of nearby emergency
-            facilities and can always provide referrals.
-          </p>
-          <p class="text-sm text-hpah-text-light">
-            <a href="/emergency-urgent-care/" class="text-hpah-green hover:underline">See our Emergency & Urgent Care page</a>
-            for more information on what constitutes an emergency and where to go after hours.
-          </p>
-        </div>
-
-        <!-- Pet Waste Services -->
-        <div class="bg-white rounded-lg p-8 border border-gray-100 shadow-sm">
-          <div class="w-12 h-12 bg-hpah-green-light rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-            </svg>
-          </div>
-          <h2 class="text-xl font-bold mb-3">Pet Waste Removal Services</h2>
-          <p class="text-hpah-text-light mb-4">
-            Keeping your yard clean isn't just about aesthetics — it helps prevent parasite transmission and
-            keeps your family and pets healthier. Several local services offer weekly or bi-weekly yard
-            cleanup visits.
-          </p>
-          <p class="text-sm text-hpah-text-light italic">
-            Why it matters: Intestinal parasites can survive in soil for months. Regular waste removal reduces
-            your pet's exposure risk significantly.
-          </p>
-        </div>
-
       </div>
-    </div>
-  </section>
 
-  <!-- Know a Great Local Business -->
-  <section class="py-12 bg-hpah-bg-warm">
-    <div class="container max-w-3xl text-center">
-      <h2 class="text-2xl mb-4">Know a Great Local Pet Business?</h2>
-      <p class="text-hpah-text-light mb-6">
-        We love supporting our local pet community. If you've had a great experience with a local pet service
-        provider and think other pet owners would benefit, let us know. We're always looking to expand this resource.
+      <div class="section-divider"></div>
+
+      <h2 class="text-3xl mb-4 mt-16">Adoption</h2>
+
+      <div class="space-y-8 mb-16">
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">Helping Paws</h3>
+          <p class="text-hpah-text-light">2500 Harding Ln<br/>Woodstock, IL 60098</p>
+          <p class="mt-2">Phone: <a href="tel:815-338-4400" class="text-hpah-green font-semibold">(815) 338-4400</a></p>
+          <a href="https://helpingpaws.net/" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
+        </div>
+
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-2">McHenry County Animal Control</h3>
+          <p class="text-hpah-text-light">100 N. Virginia Street<br/>Crystal Lake, IL 60014</p>
+          <p class="mt-2">Phone: <a href="tel:815-459-6222" class="text-hpah-green font-semibold">(815) 459-6222</a></p>
+          <a href="https://www.mchenrycountyil.gov/departments/health-department/veterinary-division-animal-control/adoptable-pets" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:underline text-sm mt-2 inline-block">Visit Website &rarr;</a>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h2 class="text-3xl mb-4 mt-16">Daycare and Boarding</h2>
+      <p class="text-hpah-text-light mb-16">
+        We would be happy to provide personalized daycare and boarding recommendations tailored to the unique needs of you and your pet. Please contact our team for more information and guidance.
       </p>
-      <a href={`mailto:${business.email}`} class="btn-primary">Send Us a Suggestion</a>
+
+      <div class="section-divider"></div>
+
+      <h2 class="text-3xl mb-4 mt-16">Grooming</h2>
+      <p class="text-hpah-text-light">
+        While we do not provide grooming, we are happy to recommend local groomers for your pet. Please contact our team for more information and guidance.
+      </p>
     </div>
   </section>
 
-  <!-- Related Links -->
-  <section class="py-12 border-t border-gray-100">
-    <div class="container max-w-3xl">
-      <h3 class="text-lg font-bold mb-4">Related Pages</h3>
-      <div class="flex flex-wrap gap-3">
-        <a href="/specialty-partners/" class="text-hpah-green hover:underline text-sm">Specialty & Referral Partners</a>
-        <span class="text-gray-300">|</span>
-        <a href="/emergency-urgent-care/" class="text-hpah-green hover:underline text-sm">Emergency & Urgent Care</a>
-        <span class="text-gray-300">|</span>
-        <a href="/behavioral-health/" class="text-hpah-green hover:underline text-sm">Behavioral Health</a>
-        <span class="text-gray-300">|</span>
-        <a href="/info-center/" class="text-hpah-green hover:underline text-sm">Pet Health Info Center</a>
-      </div>
-    </div>
-  </section>
-
-  <CTA heading="Need a Veterinary Recommendation?" text="If you're looking for a specific type of pet service in the area, call us. Our team is happy to share what we know about local resources." />
+  <CTA heading="Need a Recommendation?" text="Contact our team and we'll be happy to point you in the right direction for your pet's needs." />
 </BaseLayout>

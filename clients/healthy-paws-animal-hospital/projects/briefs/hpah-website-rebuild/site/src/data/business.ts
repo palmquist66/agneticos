@@ -1,42 +1,54 @@
+// ============================================================
+// VERIFICATION STATUS
+// ============================================================
+// Fields marked VERIFIED have been confirmed from GBP, WP API,
+// or Karen directly. Fields marked NEEDS KAREN are placeholders
+// or pulled from the current site without confirmation.
+//
+// DO NOT ship any page that displays NEEDS KAREN data without
+// getting sign-off first.
+// ============================================================
+
 export const business = {
-  name: 'Healthy Paws Animal Hospital',
-  legalName: 'Healthy Paws Animal Hospital',
-  phone: '(815) 322-5400',
-  phoneRaw: '+18153225400',
-  email: 'service@hpah.org',
-  website: 'https://healthypawsanimalhospital.com',
-  address: {
+  name: 'Healthy Paws Animal Hospital',                  // VERIFIED (GBP)
+  legalName: 'Healthy Paws Animal Hospital',             // VERIFIED (GBP)
+  phone: '(815) 322-5400',                               // VERIFIED (GBP)
+  phoneRaw: '+18153225400',                              // VERIFIED (GBP)
+  email: 'service@hpah.org',                             // VERIFIED (website)
+  website: 'https://healthypawsanimalhospital.com',      // VERIFIED
+  address: {                                             // VERIFIED (GBP)
     street: '4581 Princeton Ln #101',
     city: 'Lake in the Hills',
     state: 'IL',
     zip: '60156',
     full: '4581 Princeton Ln #101, Lake in the Hills, IL 60156',
   },
-  geo: {
+  geo: {                                                 // VERIFIED (GBP)
     latitude: 42.2025351,
     longitude: -88.3828499,
   },
-  founded: '2010-05-01',
-  tagline: 'Personal. Professional. Educational.',
-  hours: {
-    monday: '8:00 AM - 6:00 PM',
-    tuesday: '8:00 AM - 6:00 PM',
-    wednesday: '8:00 AM - 6:00 PM',
-    thursday: '8:00 AM - 6:00 PM',
-    friday: '8:00 AM - 6:00 PM',
-    saturday: '8:00 AM - 12:00 PM',
+  founded: '',                                           // NEEDS KAREN — not found on website
+  tagline: 'Personal. Professional. Educational.',       // VERIFIED (website header + about page)
+  hours: {                                               // VERIFIED (website screenshot)
+    monday: '7:30 AM - 5:00 PM',
+    tuesday: '7:30 AM - 5:00 PM',
+    wednesday: '7:30 AM - 5:00 PM',
+    thursday: '7:30 AM - 7:00 PM',
+    friday: '7:30 AM - 5:00 PM',
+    saturday: 'Closed',
     sunday: 'Closed',
   },
-  hoursSchema: [
-    'Mo-Fr 08:00-18:00',
-    'Sa 08:00-12:00',
+  hoursSchema: [                                         // VERIFIED — derived from hours
+    'Mo-We 07:30-17:00',
+    'Th 07:30-19:00',
+    'Fr 07:30-17:00',
   ],
-  social: {
+  social: {                                              // VERIFIED
     facebook: 'https://www.facebook.com/healthypawsanimalhospital/',
     yelp: 'https://www.yelp.com/biz/healthy-paws-animal-hospital-lake-in-the-hills',
     google: 'https://share.google/NdX8yGH4TWkqxM3Db',
   },
-  serviceAreas: [
+  serviceAreas: [                                        // VERIFIED (GBP)
     'Lake in the Hills',
     'Algonquin',
     'Huntley',
@@ -46,36 +58,64 @@ export const business = {
   ],
   logo: 'https://healthypawsanimalhospital.com/wp-content/uploads/2024/01/Healthy-Paws-Animal-Hospital-logo-1-2.png',
   certifications: [],
-  attributes: ['Women-owned', 'Privately owned'],
+  attributes: ['Privately owned'],                        // VERIFIED (website header: "Proud to be Privately Owned"). Women-owned removed — not on site, needs Karen to confirm before adding back.
 } as const;
 
+// VERIFIED — full team roster scraped from live website team page
+// Bio details (education, personal info) still NEED KAREN — Divi
+// blocks individual bio page content from being read.
 export const team = {
   vets: [
     {
-      name: 'Dr. Burgess',
-      fullName: 'Dr. Burgess, DVM',
-      role: 'Owner & Lead Veterinarian',
-      education: 'Kansas State University, 1997',
+      name: 'Dr. Karen Burgess',                         // VERIFIED (website)
+      fullName: 'Dr. Karen Burgess, DVM',
+      role: 'Head Veterinarian',                         // VERIFIED (website — "Head Veterinarian", not "Owner & Lead")
+      education: '',                                     // NEEDS KAREN — bio page blocked by Divi
+      photo: 'Dr.-Burgess2.jpg',
       slug: 'dr-burgess',
     },
     {
-      name: 'Dr. Haslitt',
-      fullName: 'Dr. Haslitt, DVM',
-      role: 'Associate Veterinarian',
+      name: 'Dr. Tracey Haslitt',                        // VERIFIED (website)
+      fullName: 'Dr. Tracey Haslitt, DVM',
+      role: 'Associate Veterinarian',                    // VERIFIED (website)
       education: '',
+      photo: 'Dr.-Haslitt.png',
       slug: 'dr-haslitt',
     },
     {
-      name: 'Dr. Mosier',
-      fullName: 'Dr. Mosier, DVM',
-      role: 'Associate Veterinarian',
+      name: 'Dr. Megan Mosier',                          // VERIFIED (website)
+      fullName: 'Dr. Megan Mosier, DVM',
+      role: 'Associate Veterinarian',                    // VERIFIED (website)
       education: '',
+      photo: 'Dr.-Mosier.jpg',
       slug: 'dr-mosier',
     },
   ],
+  staff: [
+    { name: 'Brooke Burger', role: 'Certified Veterinary Technician', photo: 'Brooke.jpg' },
+    { name: 'Cheri Eckdhal', role: 'Certified Veterinary Technician', photo: 'Cheri-1.jpg' },
+    { name: 'Amanda Schwarz', role: 'Certified Veterinary Technician', photo: 'Amanda-Schwarz-1.jpg' },
+    { name: 'Heather Sullivan', role: 'Certified Veterinary Technician', photo: 'Heather-8.png' },
+    { name: 'Liz Hartzheim', role: 'Certified Veterinary Technician', photo: 'Liz-Hartzheim.jpg' },
+    { name: 'Eryn Czarnik', role: 'Certified Veterinary Technician', photo: 'Eryn.jpg' },
+    { name: 'Sarah Prigge', role: 'Veterinary Assistant', photo: 'Sarah-Prigge.jpg' },
+    { name: 'Anastasiia Gusarova', role: 'Veterinary Assistant', photo: 'Anastasiia-Gusarova.jpg' },
+    { name: 'Kadee Palmquist', role: 'Care Coordinator', photo: 'Kadee-Palmquist.jpg' },
+    { name: 'Carol Pietsch', role: 'Care Coordinator', photo: 'Carol-1.jpg' },
+    { name: 'Brenda Czarnecki', role: 'Care Coordinator', photo: 'Brenda-1.jpg' },
+    { name: 'Kristen Koske', role: 'Care Coordinator', photo: 'Kristen-1.jpg' },
+    { name: 'Anna Zipparro', role: 'Care Coordinator', photo: 'ANNA.jpg' },
+    { name: 'Jean-Marie Brickey', role: 'Accountant', photo: 'Jean-Marie-1.jpg' },
+    { name: 'John Ferrero', role: 'Practice Manager', photo: 'John-1-1.jpg' },
+  ],                                                     // ALL VERIFIED (website team page)
+  clinicCats: [
+    { name: 'Gus Gus', photo: 'Gus.jpg' },
+    { name: 'Eleanor', photo: 'Eleanor-cat.jpg' },
+  ],                                                     // VERIFIED (website)
 } as const;
 
 export const services = [
+  { name: 'Puppy & Kitten Care', slug: 'general-care-lake-in-the-hills-il', icon: '🐶', description: 'Vaccinations, parasite control, nutrition counseling, and behavioral guidance for new puppies and kittens.' },
   { name: 'Wellness Exams', slug: 'wellness-exams-lake-in-the-hills-il', icon: '🩺', description: 'Comprehensive annual and semi-annual wellness examinations for dogs and cats.' },
   { name: 'Vaccinations', slug: 'pet-vaccinations-lake-in-the-hills-il', icon: '💉', description: 'Customized vaccination protocols tailored to your pet\'s lifestyle and risk factors.' },
   { name: 'Dental Care', slug: 'dental-care', icon: '🦷', description: 'Digital dental radiography, teeth cleaning, and oral surgery.' },

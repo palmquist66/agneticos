@@ -1,16 +1,21 @@
 @import "tailwindcss";
 
-/* ── HPAH Brand Tokens ─────────────────────────────────── */
+/* ── HPAH Brand Tokens (matched to WP Divi site) ────── */
 @theme {
   --color-hpah-green: #478033;
   --color-hpah-green-dark: #3a6a2a;
   --color-hpah-green-light: #E2F1E1;
+  --color-hpah-green-accent: #99B43A;
+  --color-hpah-green-tint: rgba(71, 128, 51, 0.04);
+  --color-hpah-green-highlight: rgba(72, 170, 67, 0.16);
   --color-hpah-blue: #2098D1;
-  --color-hpah-text: #1a1a1a;
+  --color-hpah-text: #262626;
   --color-hpah-text-light: #555555;
-  --color-hpah-border: #CCCCCC;
+  --color-hpah-gray: #DEDEE9;
+  --color-hpah-border: #DEDEE9;
   --color-hpah-bg: #FFFFFF;
   --color-hpah-bg-warm: #FAFAF8;
+  --color-hpah-toggle-bg: #f8f8f8;
 
   --font-sans: 'PT Sans', Helvetica, Arial, Lucida, sans-serif;
   --font-narrow: 'PT Sans Narrow', 'PT Sans', Helvetica, Arial, sans-serif;
@@ -97,6 +102,69 @@ img {
   color: var(--color-hpah-text);
 }
 
+/* ── Divi-Style Card Patterns ──────────────────────────── */
+.divi-card {
+  border: 2px solid var(--color-hpah-gray);
+  border-radius: 0 0 30px 30px;
+  box-shadow: 20px 20px 0 var(--color-hpah-gray);
+  overflow: hidden;
+}
+
+.divi-card-green {
+  border: 3px solid var(--color-hpah-green);
+  border-radius: 30px;
+  box-shadow: 20px 20px 0 var(--color-hpah-gray);
+  overflow: hidden;
+}
+
+/* ── Hero Slider ───────────────────────────────────────── */
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.hero-slide.active {
+  opacity: 1;
+  position: relative;
+}
+
+/* ── Alert Bar ─────────────────────────────────────────── */
+.alert-bar {
+  background-color: var(--color-hpah-green);
+  color: white;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* ── Section Divider ───────────────────────────────────── */
+.section-divider {
+  border-bottom: 1px solid var(--color-hpah-gray);
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* ── Toggle / Accordion ────────────────────────────────── */
+.toggle-item {
+  background-color: var(--color-hpah-toggle-bg);
+  border-left: 3px solid var(--color-hpah-green);
+  margin-bottom: 0.5rem;
+}
+.toggle-item summary {
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--font-narrow);
+}
+.toggle-item .toggle-content {
+  padding: 0 1.25rem 1rem;
+}
+
 /* ── Container ─────────────────────────────────────────── */
 .container {
   max-width: 1200px;
@@ -122,6 +190,19 @@ img {
 }
 .prose strong {
   font-weight: 700;
+}
+
+/* ── Hero Banner (WP-matching pattern) ────────────────── */
+.hero-banner {
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0;
+}
+@media (max-width: 1024px) {
+  .hero-banner { padding: 80px 0; }
+}
+@media (max-width: 767px) {
+  .hero-banner { padding: 60px 0; }
 }
 
 /* ── Skip to content ───────────────────────────────────── */

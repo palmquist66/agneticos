@@ -37,7 +37,7 @@ const locations = [
           class="h-12 w-auto mb-4 brightness-0 invert"
           loading="lazy"
         />
-        <p class="text-sm mb-4 italic">{business.tagline}</p>
+              {business.tagline && <p class="text-sm mb-4 italic">{business.tagline}</p>}
         <address class="not-italic text-sm space-y-2">
           <p>
             <a

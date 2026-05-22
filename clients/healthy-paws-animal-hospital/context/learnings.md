@@ -55,6 +55,7 @@
 ## meta-wrap-up
 
 ## tool-firecrawl-scraper
+- 2026-05-22: After replacing AI copy with WP content, user still sees mismatches on visual comparison. Need a systematic page-by-page side-by-side review (open WP page + Astro page together) rather than trusting scraped markdown alone. Markdown scrapes miss layout, emphasis, and structural nuances that only visual comparison catches.
 
 ## str-trending-research
 
