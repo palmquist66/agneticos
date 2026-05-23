@@ -11,11 +11,7 @@ import { business } from '../data/business';
   <!-- Page Header -->
   <section class="bg-hpah-green-light py-16">
     <div class="container">
-      <h1 class="text-4xl lg:text-5xl mb-4">Accessibility</h1>
-      <p class="text-lg text-hpah-text-light max-w-2xl">
-        We are committed to making our website accessible and usable for everyone,
-        regardless of ability or technology.
-      </p>
+      <h1 class="text-4xl lg:text-5xl mb-4">Accessibility Statement</h1>
     </div>
   </section>
 
@@ -24,89 +20,32 @@ import { business } from '../data/business';
     <div class="container">
       <div class="max-w-3xl mx-auto prose">
 
-        <h2>Our Commitment</h2>
         <p>
-          {business.name} is committed to ensuring that our website is accessible to all
-          visitors, including those with disabilities. We believe that every pet owner
-          deserves equal access to information about their pet's care, our services, and
-          our practice — regardless of how they access our website.
-        </p>
-        <p>
-          Accessibility isn't just a technical requirement for us — it reflects the same
-          values we bring to veterinary medicine: inclusivity, thoughtfulness, and a
-          genuine desire to help everyone who comes through our doors (physical or digital).
+          At Healthy Paws Animal Hospital, we take web accessibility seriously and are committed to making our website as accessible as possible. We are doing this by following the guidelines of Section 508 and the Web Content Accessibility Guidelines (WCAG 2.0) established by the World Wide Web Consortium (W3C) designed to make websites more accessible and easier to navigate, particularly for people who may have disabilities.
         </p>
 
-        <h2>Conformance Goal</h2>
-        <p>
-          We strive to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1,
-          Level AA</strong> standards. These guidelines, developed by the World Wide Web
-          Consortium (W3C), provide a framework for making web content more accessible to
-          people with a wide range of disabilities, including:
-        </p>
+        <p>Here are some of the ways we make our website more accessible:</p>
+
         <ul>
-          <li>Visual impairments (blindness, low vision, color blindness)</li>
-          <li>Hearing impairments</li>
-          <li>Motor impairments</li>
-          <li>Cognitive and learning disabilities</li>
+          <li><strong>Browser Zoom:</strong> We provide the option to enable browser zoom to allow visually impaired users to read the text of the website.</li>
+          <li><strong>Alt tags for images:</strong> We use alternative text (alt) tags for all images on our websites, which are designed to describe the image for individuals using screen readers. This is intended to enable users with visual impairments to understand the content of the images on our websites.</li>
+          <li><strong>Consistent page structure:</strong> We strive to make our websites have a consistent page structure, which is intended to make it easier for users to navigate and understand the content of the website.</li>
+          <li><strong>Mobile Menu Aria Support:</strong> Aria attributes are added to the mobile (hamburger) menu on the website to make it more accessible to users.</li>
+          <li>
+            <strong>Keyboard accessibility:</strong> We strive to make our websites keyboard accessible, which is intended to enable individuals with motor disabilities to more easily navigate our website using a keyboard instead of a mouse.
+            <ul>
+              <li>Dropdown Menu Keyboard Navigation: Allow easier navigation of dropdown menus with the keyboard.</li>
+            </ul>
+          </li>
+          <li><strong>Video and audio transcripts:</strong> Upon request to <a href={`mailto:${business.email}`}>{business.email}</a>, we would be happy to provide transcripts for all video and audio content on our websites to help individuals with hearing impairments have better access to the content.</li>
+          <li><strong>Accessibility testing:</strong> We conduct regular accessibility testing on our websites to monitor our progress in meeting accessibility standards and strive to identify any issues that need to be addressed.</li>
         </ul>
 
-        <h2>Measures We Take</h2>
         <p>
-          To support our accessibility goals, we have implemented the following measures:
+          We are actively working on improving our website to make it more accessible as outlined by Section 508 of the U.S. Rehabilitation Act and the Web Content Accessibility Guidelines of the World Wide Web Consortium.
         </p>
-        <ul>
-          <li><strong>Semantic HTML:</strong> We use proper heading structures, landmarks, and semantic elements to ensure our content is navigable by screen readers and assistive technologies.</li>
-          <li><strong>Keyboard navigation:</strong> All interactive elements on our website are accessible via keyboard navigation.</li>
-          <li><strong>Alternative text:</strong> Images include descriptive alt text to convey their content and purpose to screen reader users.</li>
-          <li><strong>Color contrast:</strong> We maintain sufficient color contrast ratios between text and backgrounds to ensure readability.</li>
-          <li><strong>Responsive design:</strong> Our website adapts to different screen sizes and zoom levels without loss of content or functionality.</li>
-          <li><strong>Clear link text:</strong> Links are descriptive and clearly indicate their destination or purpose.</li>
-          <li><strong>Skip navigation:</strong> A "skip to content" link is provided for keyboard users to bypass repetitive navigation.</li>
-          <li><strong>Form accessibility:</strong> Form fields include proper labels and error messages that are announced by screen readers.</li>
-        </ul>
-
-        <h2>Ongoing Efforts</h2>
         <p>
-          Accessibility is an ongoing effort, not a one-time project. We regularly review
-          and test our website to identify and address accessibility barriers. We are
-          committed to continual improvement as technology and standards evolve.
-        </p>
-
-        <h2>Known Limitations</h2>
-        <p>
-          While we strive for full accessibility, some third-party content embedded on our
-          website (such as the Google Maps iframe on our contact page) may have accessibility
-          limitations outside our direct control. We work to provide alternative access to
-          the same information wherever possible — for example, our full address is provided
-          as text alongside the map.
-        </p>
-
-        <h2>Feedback &amp; Contact</h2>
-        <p>
-          Your feedback is important to us. If you encounter any accessibility barriers on our
-          website, or if you have suggestions for how we can improve accessibility, please
-          let us know. We take all feedback seriously and will do our best to address concerns
-          promptly.
-        </p>
-        <p>You can reach us through the following channels:</p>
-        <ul>
-          <li><strong>Phone:</strong> <a href={`tel:${business.phoneRaw}`}>{business.phone}</a></li>
-          <li><strong>Email:</strong> <a href={`mailto:${business.email}`}>{business.email}</a></li>
-          <li><strong>Mail:</strong> {business.name}, {business.address.full}</li>
-        </ul>
-        <p>
-          When reporting an accessibility issue, it is helpful to include the following information:
-        </p>
-        <ul>
-          <li>The web page URL where the issue occurred</li>
-          <li>A description of the issue you encountered</li>
-          <li>The assistive technology you were using (if applicable)</li>
-          <li>Your preferred method of contact for our response</li>
-        </ul>
-        <p>
-          We will make every reasonable effort to respond to accessibility feedback within
-          5 business days and to resolve identified issues as quickly as possible.
+          In the meantime, if you need help with using or accessing our website, please email us at <a href={`mailto:${business.email}`}>{business.email}</a> and provide us with the URL of the page you are trying to access. We will do our best to provide you with the information you need.
         </p>
 
       </div>

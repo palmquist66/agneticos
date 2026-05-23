@@ -14,6 +14,7 @@ export const business = {
   legalName: 'Healthy Paws Animal Hospital',             // VERIFIED (GBP)
   phone: '(815) 322-5400',                               // VERIFIED (GBP)
   phoneRaw: '+18153225400',                              // VERIFIED (GBP)
+  fax: '815-322-5401',                                   // VERIFIED (live site footer)
   email: 'service@hpah.org',                             // VERIFIED (website)
   website: 'https://healthypawsanimalhospital.com',      // VERIFIED
   address: {                                             // VERIFIED (GBP)
@@ -22,6 +23,7 @@ export const business = {
     state: 'IL',
     zip: '60156',
     full: '4581 Princeton Ln #101, Lake in the Hills, IL 60156',
+    note: '(On Lakewood at Ackman)',                     // VERIFIED (live site footer)
   },
   geo: {                                                 // VERIFIED (GBP)
     latitude: 42.2025351,
@@ -29,19 +31,20 @@ export const business = {
   },
   founded: '',                                           // NEEDS KAREN — not found on website
   tagline: 'Personal. Professional. Educational.',       // VERIFIED (website header + about page)
-  hours: {                                               // VERIFIED (website screenshot)
-    monday: '7:30 AM - 5:00 PM',
-    tuesday: '7:30 AM - 5:00 PM',
-    wednesday: '7:30 AM - 5:00 PM',
-    thursday: '7:30 AM - 7:00 PM',
-    friday: '7:30 AM - 5:00 PM',
+  hours: {                                               // CONFIRMED 2026-05-23 — matches live site footer (supersedes prior screenshot values).
+    monday: '7:00 AM - 6:00 PM',
+    tuesday: '7:00 AM - 6:00 PM',
+    wednesday: '8:00 AM - 6:00 PM',
+    thursday: '10:00 AM - 6:00 PM',
+    friday: '7:00 AM - 5:00 PM',
     saturday: 'Closed',
     sunday: 'Closed',
   },
-  hoursSchema: [                                         // VERIFIED — derived from hours
-    'Mo-We 07:30-17:00',
-    'Th 07:30-19:00',
-    'Fr 07:30-17:00',
+  hoursSchema: [                                         // derived from live-site hours
+    'Mo,Tu 07:00-18:00',
+    'We 08:00-18:00',
+    'Th 10:00-18:00',
+    'Fr 07:00-17:00',
   ],
   social: {                                              // VERIFIED
     facebook: 'https://www.facebook.com/healthypawsanimalhospital/',

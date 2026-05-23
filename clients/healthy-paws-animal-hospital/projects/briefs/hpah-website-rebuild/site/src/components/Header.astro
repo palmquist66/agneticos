@@ -5,62 +5,60 @@ import logo from '../assets/images/brand/Healthy-Paws-Animal-Hospital-logo-1-2.p
 
 const currentPath = Astro.url.pathname;
 
+// Top-level nav mirrors the live site: About Us / Our Team / Services / Resources & Education / Contact Us
 const navItems = [
   {
-    label: 'About',
+    label: 'About Us',
     href: '/about/',
     children: [
       { label: 'About Us', href: '/about/' },
       { label: 'Why Choose Us', href: '/why-choose-us/' },
-      { label: 'Meet the Team', href: '/meet-the-team/' },
-      { label: 'Hospital Tour', href: '/hospital-tour/' },
-      { label: 'Your First Visit', href: '/your-first-visit/' },
+      { label: 'Transparency', href: '/transparency/' },
       { label: 'Your Pet\'s Experience', href: '/your-pets-experience/' },
+      { label: 'Your First Visit', href: '/your-first-visit/' },
+      { label: 'Take a Tour', href: '/hospital-tour/' },
+    ],
+  },
+  {
+    label: 'Our Team',
+    href: '/meet-the-team/',
+    children: [
+      { label: 'Meet the Team', href: '/meet-the-team/' },
+      { label: 'Reviews', href: '/reviews/' },
+      { label: 'Careers', href: '/careers/' },
     ],
   },
   {
     label: 'Services',
     href: '/services/',
     children: [
-      { label: 'All Services', href: '/services/' },
-      { label: 'Wellness Exams', href: '/wellness-exams-lake-in-the-hills-il/' },
-      { label: 'Vaccinations', href: '/pet-vaccinations-lake-in-the-hills-il/' },
+      { label: 'Puppy & Kitten Care', href: '/general-care-lake-in-the-hills-il/' },
+      { label: 'Adult Care', href: '/pet-adult-care-in-the-hills-il/' },
+      { label: 'Senior Care', href: '/senior-pet-care-lake-in-the-hills-il/' },
+      { label: 'Fearful Friends', href: '/behavioral-health/' },
+      { label: 'End of Life Care', href: '/end-of-life-care/' },
       { label: 'Dental Care', href: '/dental-care/' },
       { label: 'Surgery', href: '/surgery/' },
       { label: 'Spay & Neuter', href: '/spay-neuter-lake-in-the-hills-il/' },
-      { label: 'Low-Stress Care', href: '/low-stress-vet-lake-in-the-hills-il/' },
-      { label: 'Senior Pet Care', href: '/senior-pet-care-lake-in-the-hills-il/' },
-      { label: 'Cat Veterinarian', href: '/cat-vet-lake-in-the-hills-il/' },
-      { label: 'Pet Allergies', href: '/pet-allergy-treatment-lake-in-the-hills-il/' },
     ],
   },
   {
-    label: 'Areas We Serve',
-    href: '/areas-we-serve/',
+    label: 'Resources & Education',
+    href: '/info-center/',
     children: [
-      { label: 'Lake in the Hills', href: '/areas-we-serve/' },
-      { label: 'Algonquin', href: '/veterinarian-algonquin-il/' },
-      { label: 'Huntley', href: '/veterinarian-huntley-il/' },
-      { label: 'Crystal Lake', href: '/veterinarian-crystal-lake-il/' },
+      { label: 'Education', href: '/education/' },
+      { label: 'Pricing Transparency', href: '/pricing-transparency/' },
+      { label: 'Prescription Refills', href: '/prescription-refills/' },
+      { label: 'Pet Health Articles', href: '/info-center/' },
+      { label: 'Pet Portal', href: '/our-app/' },
+      { label: 'Specialty & Emergency Partners', href: '/specialty-partners/' },
+      { label: 'Local Pet Services', href: '/local-pet-services/' },
     ],
   },
-  { label: 'Resources', href: '/info-center/' },
-  { label: 'Blog', href: '/blog/' },
-  { label: 'Contact', href: '/contact/' },
 ];
 ---
 
 <header class="bg-white border-b border-hpah-gray sticky top-0 z-50">
-  <!-- Top bar -->
-  <div class="bg-hpah-green text-white text-sm py-2">
-    <div class="container flex justify-between items-center">
-      <span>{business.tagline}</span>
-      <a href={`tel:${business.phoneRaw}`} class="text-white hover:text-hpah-green-light font-bold">
-        {business.phone}
-      </a>
-    </div>
-  </div>
-
   <!-- Main nav -->
   <nav class="container py-4" aria-label="Main navigation">
     <div class="flex items-center justify-between">
@@ -114,8 +112,8 @@ const navItems = [
             )}
           </div>
         ))}
-        <a href="/schedule/" class="btn-primary ml-3 text-sm">
-          Schedule Visit
+        <a href="/contact/" class="btn-primary ml-3 text-sm">
+          Contact Us
         </a>
       </div>
 
@@ -156,8 +154,8 @@ const navItems = [
           )}
         </div>
       ))}
-      <a href="/schedule/" class="btn-primary mt-4 w-full justify-center">
-        Schedule Visit
+      <a href="/contact/" class="btn-primary mt-4 w-full justify-center">
+        Contact Us
       </a>
     </div>
   </nav>

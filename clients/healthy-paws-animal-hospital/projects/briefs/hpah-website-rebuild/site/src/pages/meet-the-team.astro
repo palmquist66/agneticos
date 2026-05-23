@@ -63,10 +63,11 @@ const catPhotos: Record<string, ImageMetadata> = {
   'Eleanor-cat.jpg': eleanorPhoto,
 };
 
-const vetBios: Record<string, string> = {
-  'dr-burgess': `Dr. Burgess founded Healthy Paws Animal Hospital with a clear mission: build the veterinary practice she always wished existed. She envisioned a clinic where every pet owner would be treated as a partner in their animal's care — not just a customer. Where education and transparency would replace rushed appointments and unexplained bills. As head veterinarian, Dr. Burgess personally oversees the standard of care across the practice and is known for her thorough approach, her willingness to take the time to answer every question, and her personal follow-up calls after surgery and significant procedures.`,
-  'dr-haslitt': `Dr. Haslitt joined the Healthy Paws team as an associate veterinarian, bringing a compassionate approach and a deep commitment to the practice's philosophy of education-first, gentle care. Pet owners appreciate Dr. Haslitt's warm demeanor, attention to detail, and ability to explain complex medical topics in a way that's easy to understand. Whether performing routine wellness exams or navigating more complex health challenges, Dr. Haslitt brings the same dedication and thoroughness to every appointment.`,
-  'dr-mosier': `Dr. Mosier is an associate veterinarian at Healthy Paws who shares the team's commitment to transparent, patient-centered medicine. Known for a gentle touch and a genuine love for animals, Dr. Mosier has become a trusted member of the Healthy Paws family. Pet owners regularly comment on Dr. Mosier's ability to put both pets and their owners at ease, making even nervous animals feel comfortable during their visits.`,
+// Vet bio anchors: WP links to anchor bios on the live site — no inline bio text shown here.
+const vetBioAnchors: Record<string, string> = {
+  'dr-burgess': 'karen',
+  'dr-haslitt': 'Tracey',
+  'dr-mosier': 'Megan',
 };
 
 // Group staff by role category
@@ -173,14 +174,14 @@ const personSchemas = team.vets.map((vet) => ({
               {vet.education && (
                 <p class="text-xs text-hpah-text-light mb-3">{vet.education}</p>
               )}
-              <details class="text-left">
-                <summary class="text-hpah-blue text-sm font-bold cursor-pointer hover:text-hpah-green transition-colors">
-                  Read Bio
-                </summary>
-                <p class="text-sm text-hpah-text-light mt-3 leading-relaxed">
-                  {vetBios[vet.slug] || ''}
-                </p>
-              </details>
+              <a
+                href={`https://healthypawsanimalhospital.com/veterinarian-lake-in-the-hills-il/#${vetBioAnchors[vet.slug] || vet.slug}`}
+                class="text-hpah-green text-sm font-bold hover:text-hpah-green transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read Bio &rarr;
+              </a>
             </div>
           </div>
         ))}

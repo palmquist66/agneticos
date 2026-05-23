@@ -1,94 +1,17 @@
 ---
-import { Image } from 'astro:assets';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import CTA from '../components/CTA.astro';
-import { business } from '../data/business';
-
-import heroImg from '../assets/images/misc/1.jpg';
+// This page was split into /transparency/ (philosophy) and /pricing-transparency/
+// (pricing) to match the live site. This route now redirects to /transparency/.
 ---
-
-<BaseLayout
-  title="Transparency | Healthy Paws Animal Hospital"
-  description="Experience transparency in veterinary care at Healthy Paws Animal Hospital with our open-door policy, honesty, and compassionate practices for pets in Lake in the Hills, IL."
->
-  <!-- Hero Banner -->
-  <section class="hero-banner">
-    <div class="absolute inset-0">
-      <Image
-        src={heroImg}
-        alt="Cat with green eyes at Healthy Paws Animal Hospital"
-        class="w-full h-full object-cover"
-        loading="eager"
-        widths={[640, 960, 1280, 1920]}
-      />
-      <div class="absolute inset-0" style="background: rgba(0,0,0,0.4);"></div>
-    </div>
-    <div class="container relative z-10 text-center">
-      <h1 class="text-4xl lg:text-5xl text-white mb-4">Transparency</h1>
-      <p class="text-lg text-white/90 max-w-2xl mx-auto">
-        Experience transparency in <a href="/services/" class="text-white underline">veterinary care</a> at Healthy Paws Animal Hospital with our open-door policy, honesty, and compassionate practices for pets.
-      </p>
-    </div>
-  </section>
-
-  <!-- Quote -->
-  <section class="py-12" style="background-color: #DEDEE9;">
-    <div class="container text-center" style="max-width: 700px;">
-      <p class="text-lg text-hpah-text leading-relaxed italic">
-        "Honesty and transparency make you vulnerable. Be honest and transparent anyway"
-      </p>
-      <p class="font-bold mt-3">Mother Teresa</p>
-    </div>
-  </section>
-
-  <!-- Main Content -->
-  <section class="py-16 lg:py-20">
-    <div class="container" style="max-width: 900px;">
-      <h2 class="text-3xl mb-6">Transparency</h2>
-
-      <p class="mb-6 leading-relaxed">
-        <strong>Transparency.</strong> This is the single word that has guided our practice since day one. In veterinary medicine, there are many situations caregivers face that may lead to feelings of vulnerability and the instinct to hide. Examples include causing discomfort to a pet (taking a temperature, drawing blood, restraint for a procedure), handling an aggressive pet, or discussing finances. It was essential when we developed <a href="/about/">Healthy Paws Animal Hospital</a> to take these, at times, awkward situations and turn them upside down, finding ways to do our job safely while avoiding feelings of uncertainty. As a team, we are committed to being vulnerable, telling and showing what we do honestly, thus allowing us to create trusting relationships with both our clients and their pets.
-      </p>
-
-      <div class="section-divider"></div>
-
-      <h3 class="text-xl font-bold mt-8 mb-4">Open-door policy</h3>
-      <p class="mb-6 leading-relaxed">
-        We welcome tours at any time; no notice is needed. Our team takes pride in the care we provide and in our physical facility. We love showing this off.
-      </p>
-      <p class="mb-6 leading-relaxed">
-        We perform non-anesthetized procedures in front of owners. Ninety percent of what we do is performed in the exam room with the owner and pet present. Examples include blood draws, urine collection, and wound care. Sometimes, this means seeing a pet restrained or in some minor discomfort. But it also allows us to show how we defuse stressful situations and discuss how we can make things easier in the future.
-      </p>
-
-      <div class="section-divider"></div>
-
-      <h3 class="text-xl font-bold mt-8 mb-4">Discussing fear and aggression openly with clients</h3>
-      <p class="mb-6 leading-relaxed">
-        Fear, anxiety, mistrust, previous bad experiences, and pain all affect how a cat or dog reacts to the care we are providing. I would argue they play a role in every interaction we have with pets. The goal is to make the situation easier each time we interact with a pet and actively discuss it with clients to involve them in the solution. Ultimately, safety for the pet and <a href="/meet-the-team/">our team</a> is our primary concern. We will not fight an animal to achieve our goals, which may mean being unable to do everything desired in one visit. We will discuss different ways to safely treat their pet with owners, whether with creative exams (ex., in the lobby, outside, while eating peanut butter), using a muzzle, or providing medication to take the edge off. Ultimately, it does not help anyone to pretend that a pet is safe to handle if it is not.
-      </p>
-
-      <div class="section-divider"></div>
-
-      <h3 class="text-xl font-bold mt-8 mb-4">Discussing finances in advance</h3>
-      <p class="mb-6 leading-relaxed">
-        I do not like surprises, mainly when they involve money or affect my ability to make good decisions for my family. I assume this to be true for most; thus, this is why we discuss finances upfront. This allows a dialogue about what is in a pet and their family's best interest. It also allows our team to ensure a client understands our goals upfront and that we are not missing any discussed details. My mantra is that I will never give an option I cannot morally or ethically support. My commitment is to provide choices, educate an owner on the pros and cons of those choices, and ultimately support the decisions they have made for their pet.
-      </p>
-
-      <div class="section-divider"></div>
-
-      <h3 class="text-xl font-bold mt-8 mb-4">Saying "I don't know" with confidence</h3>
-      <p class="mb-6 leading-relaxed">
-        There are situations in which, for various reasons, a team member or I may not know the answer. We strive to admit freely when we do not know something and then explain how we will find the answer and in what time frame. Being reliable is a priority, and we understand it is more important to be accurate and predictable than reckless or haphazard with the information we provide.
-      </p>
-
-      <div class="section-divider"></div>
-
-      <h3 class="text-xl font-bold mt-8 mb-4">Honesty in admitting our mistakes</h3>
-      <p class="mb-6 leading-relaxed">
-        No one is perfect. If there is one thing I try to model for our team, it is being upfront and honest. We can deal with anything as long as we are aware of it and given the opportunity to address it. The number of details we deal with in a day is infinite. We can provide the best care for our patients when we work together with our pet owners and team members to ensure we are all seeking the same goal: the best medical care possible.
-      </p>
-    </div>
-  </section>
-
-  <CTA />
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url=/transparency/" />
+    <link rel="canonical" href="/transparency/" />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <p>This page has moved to <a href="/transparency/">Transparency</a>.</p>
+  </body>
+</html>

@@ -16,10 +16,9 @@ const hours = Object.entries(business.hours).map(([day, time]) => ({
   <!-- Page Header -->
   <section class="bg-hpah-green-light py-16">
     <div class="container">
-      <h1 class="text-4xl lg:text-5xl mb-4">Contact Us</h1>
+      <h1 class="text-4xl lg:text-5xl mb-4">Contact Healthy Paws Animal Hospital</h1>
       <p class="text-lg text-hpah-text-light max-w-2xl">
-        We'd love to hear from you. Whether you need to schedule an appointment, ask a question about your pet's care,
-        or just want to learn more about our practice, our team is here to help.
+        Our <a href="/meet-the-team/" class="text-hpah-green hover:text-hpah-green">veterinary team</a> is here for you and your pet. Feel free to reach out to us at any time if you have questions.
       </p>
     </div>
   </section>
@@ -42,12 +41,9 @@ const hours = Object.entries(business.hours).map(([day, time]) => ({
               </div>
               <div>
                 <h3 class="text-lg font-bold mb-1">Phone</h3>
-                <a href={`tel:${business.phoneRaw}`} class="text-hpah-blue text-lg font-semibold hover:text-hpah-green">
+                <a href={`tel:${business.phoneRaw}`} class="text-hpah-green text-lg font-semibold hover:text-hpah-green">
                   {business.phone}
                 </a>
-                <p class="text-sm text-hpah-text-light mt-1">
-                  Calling is the fastest way to reach us and schedule an appointment.
-                </p>
               </div>
             </div>
 
@@ -60,12 +56,9 @@ const hours = Object.entries(business.hours).map(([day, time]) => ({
               </div>
               <div>
                 <h3 class="text-lg font-bold mb-1">Email</h3>
-                <a href={`mailto:${business.email}`} class="text-hpah-blue text-lg font-semibold hover:text-hpah-green">
+                <a href={`mailto:${business.email}`} class="text-hpah-green text-lg font-semibold hover:text-hpah-green">
                   {business.email}
                 </a>
-                <p class="text-sm text-hpah-text-light mt-1">
-                  For non-urgent questions, medical record requests, and general inquiries.
-                </p>
               </div>
             </div>
 
@@ -83,14 +76,11 @@ const hours = Object.entries(business.hours).map(([day, time]) => ({
                   href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address.full)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-hpah-blue font-semibold hover:text-hpah-green"
+                  class="text-hpah-green font-semibold hover:text-hpah-green"
                 >
                   {business.address.street}<br />
                   {business.address.city}, {business.address.state} {business.address.zip}
                 </a>
-                <p class="text-sm text-hpah-text-light mt-1">
-                  Located in the Princeton Ln professional plaza, Suite 101.
-                </p>
               </div>
             </div>
           </div>
@@ -113,9 +103,7 @@ const hours = Object.entries(business.hours).map(([day, time]) => ({
               </table>
             </div>
             <p class="text-sm text-hpah-text-light mt-3">
-              If your pet has an emergency outside of our business hours, please contact
-              <a href="https://www.bluepearlvet.com" target="_blank" rel="noopener noreferrer" class="text-hpah-blue hover:text-hpah-green">BluePearl Emergency Pet Hospital</a>
-              or your nearest 24-hour veterinary emergency clinic.
+              When we are not in the office, <a href="https://maps.app.goo.gl/JWQpbcEoqbXDJ6ccA" target="_blank" rel="noopener noreferrer" class="text-hpah-green hover:text-hpah-green">Companion Animal Specialty and Emergency</a> (located less than ten minutes away) provides 24-hour emergency care for our clients.
             </p>
           </div>
         </div>
@@ -139,42 +127,14 @@ const hours = Object.entries(business.hours).map(([day, time]) => ({
     </div>
   </section>
 
-  <!-- Driving Directions -->
+  <!-- Mission Section -->
   <section class="py-16 bg-hpah-bg-warm">
     <div class="container">
-      <h2 class="text-2xl mb-8 text-center">Driving Directions</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <h3 class="text-lg font-bold mb-3">From Algonquin</h3>
-          <p class="text-hpah-text-light text-sm">
-            Head north on Randall Rd toward Algonquin Rd. Turn left onto Princeton Ln.
-            We are located in the professional plaza on the right, Suite 101. Approximately 10 minutes.
-          </p>
-        </div>
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <h3 class="text-lg font-bold mb-3">From Crystal Lake</h3>
-          <p class="text-hpah-text-light text-sm">
-            Take Rakow Rd west to Pyott Rd, then head south to Princeton Ln.
-            Turn right and look for our building in the plaza on the left. Approximately 15 minutes.
-          </p>
-        </div>
-        <div class="bg-white rounded-lg p-6 border border-gray-100">
-          <h3 class="text-lg font-bold mb-3">From Huntley</h3>
-          <p class="text-hpah-text-light text-sm">
-            Take Route 47 south toward Lake in the Hills. Turn left onto Princeton Ln.
-            Our practice is located in the professional plaza, Suite 101. Approximately 12 minutes.
-          </p>
-        </div>
-      </div>
-      <div class="text-center mt-8">
-        <a
-          href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address.full)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary"
-        >
-          Get Directions on Google Maps
-        </a>
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl mb-6">We Proudly Serve the Pets of Lake in the Hills, IL, and Beyond</h2>
+        <p class="text-hpah-text-light text-lg">
+          It is our mission to partner with our clients to nurture and preserve the human-animal bond by providing compassionate, expert, and affordable <a href="/services/" class="text-hpah-green hover:text-hpah-green">veterinary care</a> from your pet's first adventure throughout a long and healthy life.
+        </p>
       </div>
     </div>
   </section>

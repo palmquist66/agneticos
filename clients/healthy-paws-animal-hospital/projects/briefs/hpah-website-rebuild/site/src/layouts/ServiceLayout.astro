@@ -1,10 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
-import FAQSection from '../components/FAQSection.astro';
+import FAQSchema from '../components/FAQSchema.astro';
 import ServiceSchema from '../components/ServiceSchema.astro';
-import CTA from '../components/CTA.astro';
-import { business, services } from '../data/business';
+import { business } from '../data/business';
 
 interface FAQ {
   question: string;
@@ -30,12 +29,10 @@ const {
   heroSubtitle = `Serving ${business.serviceAreas.slice(0, 4).join(', ')}, and surrounding communities`,
   heroImage,
   faqs,
-  relatedServices = [],
 } = Astro.props;
 
 const pageUrl = `${business.website}${Astro.url.pathname}`;
-
-const related = services.filter((s) => relatedServices.includes(s.slug));
+const h1 = title.split('|')[0].trim();
 ---
 
 <BaseLayout title={title} description={description}>
@@ -47,7 +44,7 @@ const related = services.filter((s) => relatedServices.includes(s.slug));
   />
 
   <!-- Hero -->
-  <section class="relative bg-hpah-green-light py-16 overflow-hidden">
+  <section class="hero-banner">
     {heroImage && (
       <div class="absolute inset-0">
         <Image
@@ -55,99 +52,54 @@ const related = services.filter((s) => relatedServices.includes(s.slug));
           alt={`${serviceName} at Healthy Paws Animal Hospital`}
           class="w-full h-full object-cover"
           loading="eager"
-          widths={[640, 960, 1280]}
+          widths={[640, 960, 1280, 1920]}
         />
-        <div class="absolute inset-0 bg-gradient-to-r from-hpah-green-light/95 via-hpah-green-light/80 to-hpah-green-light/50"></div>
+        <div class="absolute inset-0" style="background: rgba(0,0,0,0.5);"></div>
       </div>
     )}
-    <div class="container relative z-10">
-      <div class="max-w-3xl">
-        <p class="text-hpah-green font-bold text-sm uppercase tracking-wider mb-3">
-          {serviceName}
-        </p>
-        <h1 class="text-4xl lg:text-5xl mb-4">{title.split('|')[0].trim()}</h1>
-        <p class="text-lg text-hpah-text-light">{heroSubtitle}</p>
-      </div>
+    <div class="container relative z-10 text-center">
+      <h1 class="text-4xl lg:text-5xl text-white mb-3">{h1}</h1>
+      <p class="text-lg text-white/90 max-w-2xl mx-auto">{heroSubtitle}</p>
     </div>
   </section>
 
-  <!-- Main Content -->
+  <!-- Main Content: image left, content + FAQ right -->
   <section class="py-16">
     <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <!-- Content -->
-        <div class="lg:col-span-2 prose">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+        {heroImage && (
+          <div class="lg:col-span-2">
+            <Image
+              src={heroImage}
+              alt={serviceName}
+              widths={[400, 600, 800]}
+              class="w-full object-cover divi-card-green"
+            />
+          </div>
+        )}
+        <div class:list={['prose', heroImage ? 'lg:col-span-3' : 'lg:col-span-5']}>
           <slot />
-        </div>
-
-        <!-- Sidebar -->
-        <aside class="space-y-8">
-          <!-- Quick Contact -->
-          <div class="bg-hpah-green-light rounded-lg p-6">
-            <h3 class="text-lg font-bold mb-3">Schedule This Service</h3>
-            <p class="text-sm text-hpah-text-light mb-4">
-              Call us to schedule your pet's {serviceName.toLowerCase()} appointment.
-            </p>
-            <a href={`tel:${business.phoneRaw}`} class="btn-primary w-full justify-center text-sm">
-              Call {business.phone}
-            </a>
-          </div>
-
-          <!-- Hours -->
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 class="text-lg font-bold mb-3">Hours</h3>
-            <dl class="text-sm space-y-2">
-              <div class="flex justify-between">
-                <dt>Mon–Wed, Fri</dt>
-                <dd>{business.hours.monday}</dd>
-              </div>
-              <div class="flex justify-between">
-                <dt>Thursday</dt>
-                <dd>{business.hours.thursday}</dd>
-              </div>
-              <div class="flex justify-between">
-                <dt>Sat–Sun</dt>
-                <dd class="text-gray-400">Closed</dd>
-              </div>
-            </dl>
-          </div>
-
-          <!-- Related Services -->
-          {related.length > 0 && (
-            <div class="bg-white rounded-lg border border-gray-200 p-6">
-              <h3 class="text-lg font-bold mb-3">Related Services</h3>
-              <ul class="space-y-2">
-                {related.map((svc) => (
-                  <li>
-                    <a href={`/${svc.slug}/`} class="text-sm flex items-center gap-2 text-hpah-text hover:text-hpah-green transition-colors">
-                      <span>{svc.icon}</span>
-                      <span>{svc.name}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          {faqs.length > 0 && (
+            <div class="space-y-4 mt-8">
+              {faqs.map((faq) => (
+                <details class="group rounded-lg overflow-hidden" style="background-color: var(--color-hpah-toggle-bg); border-left: 4px solid var(--color-hpah-green);">
+                  <summary class="flex justify-between items-center cursor-pointer p-5 font-bold text-hpah-text hover:text-hpah-green transition-colors list-none" style="font-family: var(--font-narrow);">
+                    <span>{faq.question}</span>
+                    <svg class="w-5 h-5 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </summary>
+                  <div class="px-5 pb-5 text-hpah-text-light leading-relaxed">
+                    {faq.answer}
+                  </div>
+                </details>
+              ))}
             </div>
           )}
-
-          <!-- Location -->
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 class="text-lg font-bold mb-3">Location</h3>
-            <address class="not-italic text-sm text-hpah-text-light">
-              <p class="font-semibold text-hpah-text">{business.name}</p>
-              <p>{business.address.street}</p>
-              <p>{business.address.city}, {business.address.state} {business.address.zip}</p>
-            </address>
-          </div>
-        </aside>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  {faqs.length > 0 && <FAQSection faqs={faqs} />}
-
-  <CTA
-    heading={`Questions About ${serviceName}?`}
-    text={`Our team is happy to answer any questions about ${serviceName.toLowerCase()} for your pet. Give us a call or schedule a visit.`}
-  />
+  {faqs.length > 0 && <FAQSchema faqs={faqs} />}
 </BaseLayout>

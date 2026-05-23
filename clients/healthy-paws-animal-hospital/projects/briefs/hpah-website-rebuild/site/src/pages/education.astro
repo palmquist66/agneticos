@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import heroImg from '../assets/images/hero/banner-img-6.jpg';
+import educationImg from '../assets/images/wp-import/4.jpg';
+---
+
+<BaseLayout
+  title="Education | Healthy Paws Animal Hospital"
+  description="We are passionate about education in veterinary medicine: empowering teams, staying current, and educating clients for better pet care decisions. Lake in the Hills, IL."
+>
+  <!-- Hero -->
+  <section class="hero-banner">
+    <div class="absolute inset-0">
+      <Image src={heroImg} alt="Education at Healthy Paws Animal Hospital" class="w-full h-full object-cover" loading="eager" widths={[640, 960, 1280, 1920]} />
+      <div class="absolute inset-0" style="background: rgba(0,0,0,0.5);"></div>
+    </div>
+    <div class="container relative z-10 text-center">
+      <h1 class="text-4xl lg:text-5xl text-white mb-3">Education</h1>
+      <p class="text-lg text-white/90 max-w-2xl mx-auto">
+        We are passionate about education in veterinary medicine: empowering teams, staying current, and educating clients for better pet care decisions.
+      </p>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="py-12 bg-hpah-bg-warm">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center">
+        <blockquote class="text-xl italic text-hpah-text mb-3">"A well-educated mind will always have more questions than answers."</blockquote>
+        <p class="font-bold text-hpah-text">Helen Keller</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16">
+    <div class="container">
+      <div class="max-w-3xl mx-auto prose">
+        <h2>Education</h2>
+        <p>
+          The gift of education keeps on giving and can create intrigue regardless of subject matter. I have always been grateful and credited my parents for my love of learning. The opportunities this has afforded me in every aspect of my life are infinite. I love researching, finding different perspectives, and ultimately teaching topics of any sort to anyone. Discovering pearls of wisdom or hidden facts is just plain fun for me. Veterinary medicine has provided the ultimate learner's playground, and I have tried to take advantage of this for myself, our business, and my team.
+        </p>
+
+        <div class="my-8 overflow-hidden rounded-lg">
+          <Image src={educationImg} alt="A dog with its tongue out" widths={[480, 720, 960]} class="w-full object-cover" />
+        </div>
+
+        <p>
+          <strong>Continuing education for team members.</strong> We provide as a benefit and encourage our staff to take advantage of continuing education. Our goal is to enhance people's lives. We tell our team that while we want to keep them with us forever, the true gauge of our success is if, when they leave, they are more qualified for success than when they started. We rely on <a href="/meet-the-team/">our team</a> to question, push for a better understanding of things that do not make sense, and have the desire to solve problems. Empowering them with education opportunities is an essential way we do this. Additionally, we bring various professional resources to our hospital to do on-site training. Specialists in anesthesia, <a href="/dental-care/">dentistry</a>, grief, cytology, nutrition, immunology, and behavior, to name a few, are all part of our extended team of educators.
+        </p>
+        <p>
+          <strong>Continuing education for myself.</strong> The world, technology, and medicine are all changing so fast. Fortunately, access to resources and reference materials has afforded us many new and great options in our medical treatment of pets. While I attend formal veterinary conferences annually, my real continuing education happens daily. I take full advantage of a multitude of specialty consults for my patients. Whether it be an online professional veterinary forum, a local specialty hospital <a href="/meet-the-team/">veterinarian</a>, or over the phone using our laboratory consultation services, I fully utilize these resources to expand the scope of care I can provide, all at no fee for the client. All while learning more myself. It is truly a win-win situation for all.
+        </p>
+        <p>
+          <strong>Continuing education for clients.</strong> We love educating clients. At times, we almost have to reign it in as we know that information overload is real, particularly if a client is worried about their pet. For this reason, we work diligently to communicate effectively in the exam room, over the phone with follow-up calls, and in writing with handouts. We want our pet owners to feel like partners with us in making the best decisions for their pets. This can only be successful if we do our part by educating our clients first.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

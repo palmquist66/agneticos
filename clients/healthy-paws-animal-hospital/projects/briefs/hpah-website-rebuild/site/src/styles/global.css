@@ -51,12 +51,12 @@ p {
 }
 
 a {
-  color: var(--color-hpah-blue);
+  color: var(--color-hpah-green);
   text-decoration: none;
   transition: color 0.2s;
 }
 a:hover {
-  color: var(--color-hpah-green);
+  color: var(--color-hpah-green-dark);
 }
 
 img {

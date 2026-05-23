@@ -1,178 +1,138 @@
 ---
-import { business, services } from '../data/business';
+import { Image } from 'astro:assets';
+import { business } from '../data/business';
+import readyImg from '../assets/images/wp-import/Happy-Dog.jpg';
 
 const currentYear = new Date().getFullYear();
 
-const quickLinks = [
-  { label: 'About Us', href: '/about/' },
-  { label: 'Meet the Team', href: '/meet-the-team/' },
-  { label: 'Your First Visit', href: '/your-first-visit/' },
-  { label: 'Hospital Tour', href: '/hospital-tour/' },
-  { label: 'Reviews', href: '/reviews/' },
-  { label: 'Careers', href: '/careers/' },
-  { label: 'Contact', href: '/contact/' },
-];
-
-const topServices = services.slice(0, 8);
-
-const locations = [
-  { label: 'Lake in the Hills', href: '/areas-we-serve/' },
-  { label: 'Algonquin', href: '/veterinarian-algonquin-il/' },
-  { label: 'Huntley', href: '/veterinarian-huntley-il/' },
-  { label: 'Crystal Lake', href: '/veterinarian-crystal-lake-il/' },
+// Hours rendered to match the live site grouping
+const hoursRows = [
+  { days: 'Monday & Tuesday', time: '7:00 am – 6:00 pm' },
+  { days: 'Wednesday', time: '8:00 am – 6:00 pm' },
+  { days: 'Thursday', time: '10:00 am – 6:00 pm' },
+  { days: 'Friday', time: '7:00 am – 5:00 pm' },
+  { days: 'Saturday & Sunday', time: 'Closed' },
 ];
 ---
 
-<footer class="bg-gray-900 text-gray-300">
-  <!-- Main footer -->
-  <div class="container py-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-      <!-- Column 1: Practice info -->
-      <div>
-        <img
-          src={business.logo}
-          alt="Healthy Paws Animal Hospital logo"
-          width="200"
-          height="55"
-          class="h-12 w-auto mb-4 brightness-0 invert"
-          loading="lazy"
-        />
-              {business.tagline && <p class="text-sm mb-4 italic">{business.tagline}</p>}
-        <address class="not-italic text-sm space-y-2">
-          <p>
-            <a
-              href={`https://www.google.com/maps/place/${encodeURIComponent(business.address.full)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-gray-300 hover:text-white"
-            >
-              {business.address.street}<br />
-              {business.address.city}, {business.address.state} {business.address.zip}
-            </a>
+<footer>
+  <!-- Ready to Visit? -->
+  <section class="py-20 bg-white">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="mb-4">Ready to Visit?</h2>
+          <p class="text-hpah-text-light mb-6">
+            We proudly serve the clients of Village of Lakewood, Bull Valley, Crystal Lake, Algonquin, Woodstock, McHenry, Cary, Lake in the Hills, Huntley, and beyond. We look forward to helping you and your pet! If you would like to schedule an appointment, please click the button below.
           </p>
-          <p>
-            <a href={`tel:${business.phoneRaw}`} class="text-white font-bold hover:text-hpah-green-light text-base">
-              {business.phone}
-            </a>
-          </p>
-          <p>
-            <a href={`mailto:${business.email}`} class="text-gray-300 hover:text-white">
-              {business.email}
-            </a>
-          </p>
-        </address>
-
-        <!-- Hours -->
-        <div class="mt-4">
-          <h4 class="text-white font-bold text-sm mb-2">Hours</h4>
-          <dl class="text-sm space-y-1">
-            <div class="flex justify-between">
-              <dt>Mon–Fri</dt>
-              <dd>8:00 AM – 6:00 PM</dd>
-            </div>
-            <div class="flex justify-between">
-              <dt>Saturday</dt>
-              <dd>8:00 AM – 12:00 PM</dd>
-            </div>
-            <div class="flex justify-between">
-              <dt>Sunday</dt>
-              <dd class="text-gray-500">Closed</dd>
-            </div>
-          </dl>
+          <a href="/schedule/" class="btn-primary">Book Appointment</a>
         </div>
-      </div>
-
-      <!-- Column 2: Quick links -->
-      <div>
-        <h4 class="text-white font-bold mb-4">Quick Links</h4>
-        <ul class="space-y-2 text-sm">
-          {quickLinks.map((link) => (
-            <li>
-              <a href={link.href} class="text-gray-300 hover:text-white transition-colors">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Column 3: Services -->
-      <div>
-        <h4 class="text-white font-bold mb-4">Services</h4>
-        <ul class="space-y-2 text-sm">
-          {topServices.map((svc) => (
-            <li>
-              <a href={`/${svc.slug}/`} class="text-gray-300 hover:text-white transition-colors">
-                {svc.name}
-              </a>
-            </li>
-          ))}
-          <li>
-            <a href="/services/" class="text-hpah-green-light hover:text-white transition-colors font-semibold">
-              All Services &rarr;
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Column 4: Areas We Serve -->
-      <div>
-        <h4 class="text-white font-bold mb-4">Areas We Serve</h4>
-        <ul class="space-y-2 text-sm">
-          {locations.map((loc) => (
-            <li>
-              <a href={loc.href} class="text-gray-300 hover:text-white transition-colors">
-                {loc.label}, IL
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <!-- Social links -->
-        <div class="mt-8">
-          <h4 class="text-white font-bold mb-3">Follow Us</h4>
-          <div class="flex gap-3">
-            <a
-              href={business.social.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-hpah-green transition-colors"
-              aria-label="Healthy Paws Animal Hospital on Facebook"
-            >
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/></svg>
-            </a>
-            <a
-              href={business.social.yelp}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-hpah-green transition-colors"
-              aria-label="Healthy Paws Animal Hospital on Yelp"
-            >
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.16 12.73c-.27-.19-.72-.3-1.1-.3h-2.35c-.05 0-.11.03-.14.08a.17.17 0 00-.02.16c.12.32.53.43.86.43h1.76c.14 0 .28.05.36.15.08.1.1.23.05.35l-.76 1.72c-.06.14-.2.23-.35.23h-1.43c-.43 0-.84-.18-1.13-.5l-1.48-1.65c-.06-.07-.16-.1-.24-.06-.08.03-.13.11-.13.2v2.6c0 .2-.12.38-.3.46l-1.61.7a.48.48 0 01-.46-.05.48.48 0 01-.22-.4v-5.6l-4.7-7.55a.48.48 0 01.06-.59l1.28-1.28c.1-.1.23-.15.37-.15.09 0 .17.02.25.07l4.51 2.95c.12.08.27.07.38-.02l4.6-3.53c.14-.1.32-.13.48-.06.17.07.28.22.28.4v.58c0 .5-.27.96-.7 1.21l-2.35 1.37c-.1.06-.14.18-.1.28.05.1.15.17.27.17h2.43c.2 0 .38.12.46.3l.82 1.83c.05.12.04.25-.03.36z"/></svg>
-            </a>
-            <a
-              href={business.social.google}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-hpah-green transition-colors"
-              aria-label="Healthy Paws Animal Hospital on Google"
-            >
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
-            </a>
-          </div>
+        <div class="overflow-hidden rounded-lg">
+          <Image src={readyImg} alt="A happy dog relaxing" widths={[480, 720, 960]} class="w-full h-full object-cover" />
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Contact form -->
+  <section class="py-20" style="background: rgba(72,170,67,0.16);">
+    <div class="container max-w-2xl">
+      <div class="text-center mb-8">
+        <h2 class="mb-3">Contact Us</h2>
+        <p class="text-hpah-text-light">
+          Please complete the form below, and a member of our team will get back to you as quickly as possible. If your pet needs immediate treatment and it's during normal business hours, please contact the office at <a href={`tel:${business.phoneRaw}`} class="text-hpah-green font-semibold">{business.phone}</a>.
+        </p>
+      </div>
+      <form action={`mailto:${business.email}`} method="post" enctype="text/plain" class="bg-white rounded-lg p-8 border border-hpah-gray space-y-5">
+        <div>
+          <label class="block text-sm font-semibold text-hpah-text mb-2" for="footer-name">Name <span class="text-hpah-green">*</span></label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input id="footer-name" name="First Name" type="text" placeholder="First" required class="w-full border border-hpah-gray rounded-md px-4 py-2.5 focus:outline-none focus:border-hpah-green" />
+            <input name="Last Name" type="text" placeholder="Last" class="w-full border border-hpah-gray rounded-md px-4 py-2.5 focus:outline-none focus:border-hpah-green" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-hpah-text mb-2" for="footer-email">Email <span class="text-hpah-green">*</span></label>
+          <input id="footer-email" name="Email" type="email" required class="w-full border border-hpah-gray rounded-md px-4 py-2.5 focus:outline-none focus:border-hpah-green" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-hpah-text mb-2" for="footer-phone">Phone</label>
+          <input id="footer-phone" name="Phone" type="tel" class="w-full border border-hpah-gray rounded-md px-4 py-2.5 focus:outline-none focus:border-hpah-green" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-hpah-text mb-2" for="footer-message">How can we help you? <span class="text-hpah-green">*</span></label>
+          <textarea id="footer-message" name="Message" rows="4" required class="w-full border border-hpah-gray rounded-md px-4 py-2.5 focus:outline-none focus:border-hpah-green"></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full justify-center">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- We're Here to Help -->
+  <section class="bg-hpah-green-light py-16 border-t border-hpah-gray">
+    <div class="container">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-3xl mb-3">We're Here to Help</h2>
+        <p class="text-hpah-text-light">Get in touch! A member of our team will reach out shortly.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-4xl mx-auto">
+        <!-- Location -->
+        <div class="text-center md:text-left">
+          <h3 class="text-lg font-bold text-hpah-green mb-3" style="font-family: var(--font-narrow);">Location</h3>
+          <address class="not-italic text-hpah-text-light space-y-1">
+            <p class="font-semibold text-hpah-text">{business.name}</p>
+            <p>
+              <a
+                href={`https://www.google.com/maps/place/${encodeURIComponent(business.address.full)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-hpah-green"
+              >
+                {business.address.street} {business.address.note}<br />
+                {business.address.city}, {business.address.state} {business.address.zip}
+              </a>
+            </p>
+            <p>
+              <a href={`tel:${business.phoneRaw}`} class="font-bold text-hpah-green hover:text-hpah-green-accent">
+                {business.phone}
+              </a>
+            </p>
+          </address>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="text-center md:text-left">
+          <h3 class="text-lg font-bold text-hpah-green mb-3" style="font-family: var(--font-narrow);">Contact Information</h3>
+          <div class="text-hpah-text-light space-y-1">
+            <p>Email: <a href={`mailto:${business.email}`} class="hover:text-hpah-green">{business.email}</a></p>
+            <p>Fax: {business.fax}</p>
+          </div>
+        </div>
+
+        <!-- Hours -->
+        <div class="text-center md:text-left">
+          <h3 class="text-lg font-bold text-hpah-green mb-3" style="font-family: var(--font-narrow);">Hours</h3>
+          <dl class="text-hpah-text-light space-y-1">
+            {hoursRows.map((row) => (
+              <div>
+                <dt class="font-semibold text-hpah-text inline">{row.days}:</dt>
+                <dd class="inline"> {row.time}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Bottom bar -->
-  <div class="border-t border-gray-800">
-    <div class="container py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-      <p>&copy; {currentYear} {business.name}. All rights reserved. Proud to be privately owned.</p>
+  <div class="bg-hpah-text text-white/80">
+    <div class="container py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-sm">
+      <p class="mb-0">&copy; {currentYear} {business.name}</p>
       <div class="flex gap-6">
-        <a href="/privacy-policy/" class="hover:text-gray-300 transition-colors">Privacy Policy</a>
-        <a href="/accessibility/" class="hover:text-gray-300 transition-colors">Accessibility</a>
-        <a href="/policies/" class="hover:text-gray-300 transition-colors">Policies</a>
+        <a href="/privacy-policy/" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="/accessibility/" class="hover:text-white transition-colors">Accessibility Statement</a>
       </div>
     </div>
   </div>

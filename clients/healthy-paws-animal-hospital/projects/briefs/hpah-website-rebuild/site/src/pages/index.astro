@@ -1,17 +1,23 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CTA from '../components/CTA.astro';
-import { business, services } from '../data/business';
+import { business } from '../data/business';
 
 // Hero slider images
 import heroSlide1 from '../assets/images/wp-import/a-person-with-two-dogs.jpg';
 import heroSlide2 from '../assets/images/wp-import/book-app-image.jpg';
 import heroSlide3 from '../assets/images/wp-import/Healthy-Paws-Office-Front-Offset.jpg';
 
-// Service icons from WP
-import generalCareIcon from '../assets/images/wp-import/General-Care.png';
-import seniorCareIcon from '../assets/images/wp-import/Senior-Care.png';
+// Service photos from WP home page
+import generalCareImg from '../assets/images/wp-import/General-Care.png';
+import seniorCareImg from '../assets/images/wp-import/senior-care-1.png';
+import endOfLifeImg from '../assets/images/wp-import/senior-wellness.png';
+
+// Commitment photos (WP home page)
+import transparencyImg from '../assets/images/wp-import/1.jpg';
+import experienceImg from '../assets/images/wp-import/3.jpg';
+import teamImg from '../assets/images/wp-import/2.jpg';
+import educationCommitImg from '../assets/images/wp-import/4.jpg';
 
 const slides = [
   {
@@ -38,53 +44,58 @@ const commitments = [
   {
     title: 'Transparency',
     subtitle: 'Clear and Kind',
-    description: 'From the very beginning, one powerful term has steered our approach. We remain dedicated to transparently showcasing our actions.',
-    href: '/transparency-and-pricing/',
+    description: 'This is the single word that has guided our practice since day one. As a team, we are committed to being vulnerable, telling and showing what we do honestly, allowing us to create trusting relationships with both our clients and their pets.',
+    href: '/transparency/',
+    image: transparencyImg,
   },
   {
     title: "Your Pet's Experience",
     subtitle: 'Your Experience',
-    description: 'We aimed to innovate and elevate, crafting an enhanced experience for both our clients and their beloved animal companions.',
+    description: 'How would I like to be treated if I were taking my sick pet to the veterinarian? When building our practice, we challenged traditional veterinary office ideas to create a better experience for our clients and patients.',
     href: '/your-pets-experience/',
+    image: experienceImg,
   },
   {
     title: 'Our Team',
     subtitle: 'Our Secret Sauce',
-    description: 'Undoubtedly, our team sets us apart. Comprising individuals who embody a down-to-earth ethos and showcase remarkable talents.',
+    description: 'Our team is, hands down, what makes us different. They are the salt of the Earth, talented and confident in what they do and do not know. Striving to exceed expectations is our guiding principle.',
     href: '/meet-the-team/',
+    image: teamImg,
   },
   {
     title: 'Education',
     subtitle: 'Where Trust Begins',
-    description: 'We aim for pet owners to perceive themselves as collaborative partners in making optimal choices for their pets.',
-    href: '/info-center/',
+    description: 'The gift of education is one that keeps on giving. We want our pet owners to feel like partners with us in making the best decisions for their pets. This can only be successful if we do our part by educating our clients first.',
+    href: '/education/',
+    image: educationCommitImg,
   },
 ];
 
+// Real Google reviews as shown on the WP home page
 const testimonials = [
   {
-    text: 'The care our pets receive at Healthy Paws is unmatched. Dr. Burgess and the entire team take the time to explain everything and truly care about our animals.',
-    author: 'Lake in the Hills Pet Owner',
+    text: 'The Healthy Paws team is kind and compassionate. Dr. Burgess is attentive and provides a level of comfort that I trust fully to care for my furr babies. Thank you for all you do!',
+    author: 'Kate W.',
     rating: 5,
   },
   {
-    text: 'We switched from a corporate vet to Healthy Paws and the difference is night and day. The gentle, low-stress approach makes all the difference — our cat actually doesn\'t mind going to the vet anymore.',
-    author: 'Crystal Lake Pet Owner',
+    text: 'We love the professional and personal feel of this office! I always recommend Healthy Paws to friends and family!',
+    author: 'Jennifer G.',
     rating: 5,
   },
   {
-    text: 'The transparency and education we receive is incredible. They never push unnecessary treatments and always explain their recommendations thoroughly.',
-    author: 'Algonquin Pet Owner',
+    text: 'Love Healthy Paws!! Easy to schedule an appointment, staff and Drs are friendly, helpful and supportive. Harley is a handful, but they take great care of him. Totally recommend. Have been a "patient" since they first opened their door',
+    author: 'Lynn P.',
     rating: 5,
   },
   {
-    text: 'Dr. Burgess personally called to check on our dog after surgery. You don\'t get that kind of follow-up anywhere else. This is what veterinary care should be.',
-    author: 'Huntley Pet Owner',
+    text: 'Amazing staff and they got my dog in immediately as a new client. The Dr was very thorough and the entire staff was on top of everything & detail oriented. I highly recommend. I actually am switching my dog to this vet because I was so happy with everything and everyone.',
+    author: 'Kari B.',
     rating: 5,
   },
   {
-    text: 'From the moment you walk in, you can tell this is a different kind of vet. The team genuinely loves what they do, and it shows in how they treat every patient.',
-    author: 'Cary Pet Owner',
+    text: 'All the staff was wonderful from the front desk, to the tech and the doctor!!! Highly recommend!!!',
+    author: 'Beth S.',
     rating: 5,
   },
 ];
@@ -149,34 +160,32 @@ const testimonials = [
   <section class="py-20">
     <div class="container">
       <div class="text-center max-w-3xl mx-auto mb-12">
-        <h2>Comprehensive Veterinary Services</h2>
-        <p class="text-hpah-text-light mt-4">
-          From wellness exams and preventive care to surgery and end-of-life support, we provide compassionate, comprehensive veterinary services for every stage of your pet's life.
+        <h2>Exceptional Veterinary Care for Every Stage of Life</h2>
+        <p class="text-hpah-text-light mt-4 italic">
+          Professional. Educational. Personal.
         </p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <a href="/services/" class="group text-center">
-          <div class="mb-4 flex justify-center">
-            <Image src={generalCareIcon} alt="General veterinary care" width={80} height={80} />
+        <a href="/general-care-lake-in-the-hills-il/" class="group text-center">
+          <div class="mb-5 overflow-hidden rounded-lg">
+            <Image src={generalCareImg} alt="General veterinary care" width={500} height={500} class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105" />
           </div>
           <h3 class="text-xl font-bold mb-2 group-hover:text-hpah-green transition-colors">General Care</h3>
-          <p class="text-hpah-text-light text-base">Wellness exams, vaccinations, nutrition counseling, and preventive care for pets of all ages.</p>
+          <p class="text-hpah-text-light text-base">Healthy beginnings for a lifetime of care</p>
         </a>
         <a href="/senior-pet-care-lake-in-the-hills-il/" class="group text-center">
-          <div class="mb-4 flex justify-center">
-            <Image src={seniorCareIcon} alt="Senior pet care" width={80} height={80} />
+          <div class="mb-5 overflow-hidden rounded-lg">
+            <Image src={seniorCareImg} alt="Senior pet care" width={500} height={500} class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105" />
           </div>
           <h3 class="text-xl font-bold mb-2 group-hover:text-hpah-green transition-colors">Senior Care</h3>
-          <p class="text-hpah-text-light text-base">Specialized care for pets aged 8+, including proactive health monitoring and lab work.</p>
+          <p class="text-hpah-text-light text-base">Helping your pet thrive in every chapter</p>
         </a>
-        <a href="/services/" class="group text-center">
-          <div class="mb-4 flex justify-center">
-            <svg class="w-20 h-20 text-hpah-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-            </svg>
+        <a href="/end-of-life-care/" class="group text-center">
+          <div class="mb-5 overflow-hidden rounded-lg">
+            <Image src={endOfLifeImg} alt="End of life care" width={500} height={500} class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105" />
           </div>
           <h3 class="text-xl font-bold mb-2 group-hover:text-hpah-green transition-colors">End of Life Care</h3>
-          <p class="text-hpah-text-light text-base">Compassionate euthanasia services in a quiet, private space, ensuring a peaceful passing.</p>
+          <p class="text-hpah-text-light text-base">Compassion and comfort when you need it most</p>
         </a>
       </div>
       <div class="text-center mt-10">
@@ -193,16 +202,15 @@ const testimonials = [
   <section class="py-20" style="background: rgba(72,170,67,0.16);">
     <div class="container">
       <div class="text-center max-w-3xl mx-auto mb-12">
-        <h2>What Sets Us Apart</h2>
-        <p class="text-hpah-text-light mt-4">
-          From the very beginning, these values have guided everything we do.
-        </p>
+        <h2>Our Commitment to You and Your Pet&hellip;</h2>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {commitments.map((item) => (
-          <a href={item.href} class="group bg-white rounded-lg p-8 border border-hpah-gray hover:shadow-lg transition-all text-center">
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hpah-green transition-colors">{item.title}</h3>
-            <p class="text-hpah-green-accent font-bold text-sm mb-3" style="color: var(--color-hpah-green-accent);">{item.subtitle}</p>
+          <a href={item.href} class="group block text-center">
+            <div class="mb-5 overflow-hidden rounded-lg">
+              <Image src={item.image} alt={item.title} widths={[300, 450, 600]} class="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-105" />
+            </div>
+            <h3 class="text-lg font-bold mb-3 text-hpah-text group-hover:text-hpah-green transition-colors">{item.title}&hellip;{item.subtitle}</h3>
             <p class="text-hpah-text-light text-sm mb-0">{item.description}</p>
           </a>
         ))}
@@ -210,14 +218,22 @@ const testimonials = [
     </div>
   </section>
 
+  <!-- Veterinary Care band -->
+  <section class="py-16" style="background: rgba(72,170,67,0.16);">
+    <div class="container text-center max-w-3xl mx-auto">
+      <h2 class="mb-4">Veterinary Care in Lake in the Hills, IL</h2>
+      <p class="text-hpah-text-light mb-8">
+        At Healthy Paws Animal Hospital, we take pride in offering a comprehensive range of veterinary services to cater to all your pet's needs.
+      </p>
+      <a href="/services/" class="btn-primary">View All Services</a>
+    </div>
+  </section>
+
   <!-- Testimonials -->
   <section class="py-20 bg-white">
     <div class="container">
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2>What Pet Owners Are Saying</h2>
-        <p class="text-hpah-text-light mt-4">
-          Don't take our word for it — hear from the pet owners who trust us with their family members.
-        </p>
+        <h2>Thank You for Your Kind Words</h2>
       </div>
       <!-- Testimonial Carousel -->
       <div class="relative overflow-hidden" id="testimonial-carousel">
@@ -254,34 +270,6 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- Service Areas -->
-  <section class="py-16 bg-white border-t border-hpah-gray">
-    <div class="container text-center">
-      <h2 class="mb-4">Proudly Serving McHenry & Kane County Communities</h2>
-      <p class="text-hpah-text-light mb-8 max-w-2xl mx-auto">
-        Located in Lake in the Hills, we welcome pets and their families from across the region.
-      </p>
-      <div class="flex flex-wrap justify-center gap-4">
-        {[
-          { name: 'Lake in the Hills', href: '/areas-we-serve/' },
-          { name: 'Algonquin', href: '/veterinarian-algonquin-il/' },
-          { name: 'Huntley', href: '/veterinarian-huntley-il/' },
-          { name: 'Crystal Lake', href: '/veterinarian-crystal-lake-il/' },
-          { name: 'Cary', href: '/areas-we-serve/' },
-          { name: 'Village of Lakewood', href: '/areas-we-serve/' },
-        ].map((area) => (
-          <a
-            href={area.href}
-            class="px-6 py-3 bg-hpah-green-light rounded-full text-hpah-text font-semibold hover:bg-hpah-green hover:text-white transition-colors"
-          >
-            {area.name}, IL
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <CTA />
 </BaseLayout>
 
 <script>

@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  class?: string;
+  width?: number;
+  height?: number;
+  rounded?: boolean;
+  loading?: 'lazy' | 'eager';
+}
+
+const {
+  src,
+  alt,
+  class: className = '',
+  width,
+  height,
+  rounded = false,
+  loading = 'lazy',
+} = Astro.props;
+
+const roundedClass = rounded ? 'rounded-lg' : '';
+---
+
+<Image
+  src={src}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  class:list={[roundedClass, className]}
+/>

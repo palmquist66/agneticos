@@ -1,0 +1,95 @@
+# Puppy & Kitten Care in Lake in the Hills, IL
+
+![Puppy sitting on vet's lap](https://healthypawsanimalhospital.com/wp-content/uploads/2026/03/1-PUPPY-KITTEN-CARE-kbf-puppy-lap-12.9.2025-scaled.jpeg)
+
+## Puppy & Kitten Care
+
+Bringing a new puppy or kitten into your home is an exhilarating experience filled with joy, anticipation, funny moments, and sometimes frustration. At Healthy Paws Animal Hospital, we appreciate the excitement and challenges that come with this journey. As your family veterinarian, we are dedicated to supporting you through every phase, ensuring the health and happiness of your newest family member and setting everyone up for success.
+
+Below find answers to common questions about caring for a new puppy or kitten.
+
+##### When should I first take my puppy or kitten to the veterinarian?
+
+_Early Checkups for Lifelong Well-being_
+
+We would like to meet and examine your new friend as soon as possible. Whether you are a first-time pet owner or a seasoned caregiver, scheduling an early visit to our clinic is vital to your pet’s well-being. A prompt checkup for your puppy or kitten allows us to identify and address any potential medical or behavioral concerns right from the start.
+
+##### How often will I need to bring my puppy or kitten to see you?
+
+_Regular Checkups for Complete Care_
+
+Your puppy or kitten will be seen every two to three weeks until they are sixteen weeks (4 months) old. We will conduct a nose to tail examination during these appointments, administer necessary vaccinations, provide parasite control, and discuss behavior and nutrition milestones and concerns.
+
+##### How many vaccinations will my puppy or kitten receive?
+
+_Individualized Puppy and Kitten Vaccine Schedules_
+
+It is not the number of vaccines, but instead the interval of time between vaccines that determines a pet’s vaccine schedule. Our goal is to ensure vaccination every 2-3 weeks with the final vaccines being given at (or after) 16 weeks of age.
+
+**Core vaccinations** are given to all pets and boostered as necessary. These include:
+
+- Puppies: DA2P (Distemper, Adenovirus 2, Parvovirus), Leptospirosis, Rabies
+- Kittens: FVRCP (Feline Viral Rhinotracheitis, Calicivirus,Panleukopenia), Rabies
+
+**Non-core vaccinations** are given to pets based on individual risk or exposure. These include:
+
+- Puppies: Lyme, Parainfluenza, Influenza, Bordetella
+- Kittens: Feline Leukemia
+
+##### What about deworming medications, in particular if my new pet has already been dewormed?
+
+_Worms Like to Stick Around_
+
+It is rare for a puppy or kitten to be born without intestinal parasites. There are a variety of parasites that we commonly see in puppies and kittens and each of them has their own unique way of being passed on, which means that sometimes the intestinal parasite exam may not detect all parasites the first time it is run. Treating parasites and follow-up testing is all based on the initial fecal examination and any applicable symptoms (ie diarrhea). We also start monthly heartworm, flea, and tick preventative on our first visit with puppies.
+
+##### What happens after our last puppy and kitten visit?
+
+_What Comes Next_
+
+Spaying or neutering your pet will be discussed at your last vaccination visit. We will discuss the process, timing, follow-up care, and determine how you want to proceed. Six months of age is the most common time for us to alter pets. Our next preventative health care/wellness visit will be when your pet is approximately 1 ½ years old and includes an annual physical exam, vaccine boosters, and labwork.
+
+##### Why should my pet be vaccinated?
+
+_Protecting Your Pet_
+
+Vaccines keep both your pet and you safe from a variety of illnesses. Some of these diseases only impact cats or dogs, others can infect humans. This can happen when your pet comes in contact with an infected animal/wildlife or, in some cases, just from exposure to infected urine or surfaces in their environment; these diseases can then be passed between dogs, wildlife, and humans. Puppies get some immunity through their mother’s milk, but this starts to wane around 8 weeks of age; this is when vaccines should be started to prime their immune system. Immunity from nursing typically disappears at some point before our pets turn 4 months old, thus our need to vaccinate and protect in those crucial first months of life.
+
+##### Why avoid public places until fully vaccinated?
+
+_Play With Family and Friends’ Pets_
+
+We recommend minimizing exposure to communal areas (ex. pet stores, doggie daycare, boarding, outdoor communal areas, dog parks) until your pet is fully vaccinated at 16 weeks (4 months) old. Pets that you know and have received regular veterinary care are acceptable playdates with a general rule of thumb being that family, friends, and neighborhood friends are fine. Puppy classes are an exception to this rule assuming vaccines are required and it is a closed class and environment.
+
+##### How will my pet feel after vaccines?
+
+_Feeling Flu-ish For A Day_
+
+Just like in people, it is normal for pets to feel a little under the weather for 24-36 hours post vaccination. They may seem sore in their backend area where vaccines are administered, as well as lethargic or tired. Rarely pets can have more serious vaccine reactions. If you notice swelling of the face, increasing lethargy, hives, difficulty breathing or ongoing vomiting/diarrhea, please contact Healthy Paws Animal Hospital.
+
+##### How often should I bathe my pet or have them groomed?
+
+_Sooner the Better_
+
+It is generally considered okay to bathe your dog up to once weekly with shampoo labeled for use on pets. Cats can also be bathed, but typically self-groom; begin gentle nail trims early to get your kitten comfortable with handling. Depending on dog breed and coat length, professional grooming may be necessary as often as every 4 weeks. Toenails should be trimmed monthly at a minimum. Establishing a relationship with a groomer early on allows them to start creating a positive relationship with your pet, making long-term success more likely. Prior to 4 months of age, speak with your groomer to arrange for an appointment that does not require your pet to stay for an extended period, thus minimizing exposure to other pets.
+
+##### How much should I feed my pet?
+
+_As Much as They Want_
+
+In general, most puppies and kittens do not overeat or eat to obesity. Offer food 2 to 3 times daily allowing your pet to eat whatever they want in 5-10 minutes or until they slow down or are able to be distracted. Determine how much they eat daily over several days and make this your “feeding amount.” Over time you will notice that your pet will likely become more cranky at dinnertime; this is a good indicator that it is time to increase the volume of food being fed.
+
+##### Can I limit my pet’s water, picking it up at night?
+
+_No_
+
+Puppies’ kidneys are not fully functional until they are closer to 4 months old. They are not able to concentrate their urine yet, so they tend to urinate almost as quickly as they drink. This also makes them more prone to become dehydrated, making it important for them to have free access to water at all times. Kittens have small bodies and high metabolic rates, so they lose moisture quickly through breathing, play, and litter box use. Overnight, they still wake to groom, eat, or explore, all of which increase water needs. Even a few hours without water can start to dehydrate a small kitten.
+
+##### How do I address chewing, biting or scratching behavior?
+
+_Ignore Any Behavior You Do Not Like_
+
+A good guideline is if you do not want your pet to be doing something (ex. scratching, jumping, chewing, begging) for the next fifteen years, do not let them do it now. This means that pets are always learning and it is our responsibility to teach them what we want them to do by rewarding it and ignoring, or denying access to, the things we do not want them to do.
+
+Chewing is a normal puppy behavior and not uncommon, in particular in the first year of life. They are exploring, playing, teething, and learning about their environment via their mouth. Our goal is to allow our pets to chew safely and on appropriate items. Trade soft inappropriate items (ex. pants, pillows) for soft toys, and hard inappropriate items (ex. furniture, shoes) for hard toys. It is also important to make sure any hard toys are not harmful to teeth; if you cannot push your fingernail into a toy, it is too hard for your pet to chew. Kong and Zogoflex are good brands for rubber type toys. Supervise your pet when they are chewing on toys and avoid rawhides or similar edible treats that are considered choking hazards for puppies. Lastly, instruct family members and friends to avoid nuisance chewing. Instead of saying no or reaching for your pet, make a noise and distract with an appropriate toy.
+
+Scratching is normal and healthy kitten behavior and helps them stretch, mark territory, shed old claw sheaths, and relieve stress. The goal isn’t to stop scratching, but to redirect it to appropriate places. Provide multiple scratching surfaces, including vertical posts and horizontal scratchers of different materials (ex. sisal rope, cardboard, carpet) and place near favorite resting spots, windows or areas where your kitten already tries to scratch (like near furniture). To make them attractive to your kitten, you can rub catnip on them, reward your kitten with treats or play when they use the post, and use toys or a wand to guide paws onto the post. To discourage unwanted scratching, cover or block tempting areas temporarily (ex. double-sided tape, furniture protectors) and redirect your kitten to the right area.

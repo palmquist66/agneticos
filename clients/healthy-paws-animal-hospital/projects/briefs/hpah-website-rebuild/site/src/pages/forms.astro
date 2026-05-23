@@ -8,8 +8,8 @@ import heroImg from '../assets/images/hero/banner-img-12.jpg';
 ---
 
 <BaseLayout
-  title="Patient Forms | Healthy Paws Animal Hospital"
-  description="Download patient forms for Healthy Paws Animal Hospital — new patient registration, health history, surgery consent, and more. Most forms available via our app. Lake in the Hills, IL."
+  title="Patient Health Form | Healthy Paws Animal Hospital"
+  description="Complete your Patient Health Form before your visit to Healthy Paws Animal Hospital in Lake in the Hills, IL — a pre-visit questionnaire for new and returning patients."
 >
   <!-- Hero Banner -->
   <section class="hero-banner">
@@ -24,207 +24,33 @@ import heroImg from '../assets/images/hero/banner-img-12.jpg';
       <div class="absolute inset-0" style="background: rgba(0,0,0,0.4);"></div>
     </div>
     <div class="container relative z-10 text-center">
-      <h1 class="text-4xl lg:text-5xl text-white mb-4">Forms & Paperwork</h1>
-      <p class="text-lg text-white/90 max-w-2xl mx-auto">
-        We keep things as paperless as possible, but some situations still require documentation.
-        Here you'll find the forms you may need before your visit.
-      </p>
+      <h1 class="text-4xl lg:text-5xl text-white mb-4">Patient Health Form</h1>
     </div>
   </section>
 
-  <!-- Paperless Note -->
+  <!-- Intro -->
   <section class="py-12">
-    <div class="container max-w-3xl">
-      <div class="bg-hpah-green-light rounded-lg p-6 border-l-4 border-hpah-green">
-        <h2 class="text-lg font-bold mb-2">We're a Paperless Practice</h2>
-        <p class="text-hpah-text-light">
-          Healthy Paws maintains fully digital medical records. Most of our forms and documentation can be
-          completed at the hospital on a tablet, or ahead of time through our <a href="/our-app/" class="text-hpah-green font-semibold hover:underline">mobile app</a>.
-          If you prefer, you can download and print the forms below to bring with you — but it's not required.
-          Our team is happy to walk you through everything when you arrive.
+    <div class="container max-w-3xl text-center">
+      <p class="text-lg text-hpah-text-light">We're excited to see you and your pet for their upcoming exam!</p>
+    </div>
+  </section>
+
+  <!-- Patient Health Form -->
+  <section class="pb-20">
+    <div class="container max-w-2xl">
+      <div class="bg-white rounded-lg p-8 border border-gray-200 text-center">
+        <h2 class="text-2xl mb-3">Patient Health Form &middot; Pre-Visit Questionnaire</h2>
+        <p class="text-hpah-text-light mb-6">
+          <strong>Welcome!</strong> Please select your visit type, complete the form, and click <strong>Submit Form</strong>. Your responses go directly to our team.
         </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Forms List -->
-  <section class="py-12">
-    <div class="container max-w-3xl">
-      <h2 class="text-3xl mb-8">Available Forms</h2>
-
-      <div class="space-y-6">
-
-        <!-- New Patient Registration -->
-        <div class="bg-white rounded-lg p-6 border border-gray-100 shadow-sm">
-          <div class="flex items-start justify-between gap-4">
-            <div class="flex-1">
-              <div class="flex items-center gap-3 mb-2">
-                <svg class="w-6 h-6 text-hpah-green shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                </svg>
-                <h3 class="text-lg font-bold">New Patient Registration</h3>
-              </div>
-              <p class="text-hpah-text-light text-sm">
-                Required for all new patients. Includes owner contact information, pet information, emergency
-                contacts, and authorization for treatment. Please complete before your first visit if possible.
-              </p>
-            </div>
-            <a href="#" class="btn-primary text-sm whitespace-nowrap">Download PDF</a>
-          </div>
-        </div>
-
-        <!-- Patient Health History -->
-        <div class="bg-white rounded-lg p-6 border border-gray-100 shadow-sm">
-          <div class="flex items-start justify-between gap-4">
-            <div class="flex-1">
-              <div class="flex items-center gap-3 mb-2">
-                <svg class="w-6 h-6 text-hpah-green shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <h3 class="text-lg font-bold">Patient Health History</h3>
-              </div>
-              <p class="text-hpah-text-light text-sm">
-                Helps our veterinarians understand your pet's medical background. Includes past surgeries,
-                current medications, known allergies, dietary information, and behavioral notes. Especially
-                helpful if you're transferring from another veterinary practice.
-              </p>
-            </div>
-            <a href="#" class="btn-primary text-sm whitespace-nowrap">Download PDF</a>
-          </div>
-        </div>
-
-        <!-- Surgery Consent -->
-        <div class="bg-white rounded-lg p-6 border border-gray-100 shadow-sm">
-          <div class="flex items-start justify-between gap-4">
-            <div class="flex-1">
-              <div class="flex items-center gap-3 mb-2">
-                <svg class="w-6 h-6 text-hpah-green shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                </svg>
-                <h3 class="text-lg font-bold">Surgery Consent Form</h3>
-              </div>
-              <p class="text-hpah-text-light text-sm">
-                Required before any surgical procedure. Documents your understanding of the procedure, risks,
-                anesthesia protocols, and post-operative care. We review this form with you in detail before
-                surgery day and answer all questions.
-              </p>
-            </div>
-            <a href="#" class="btn-primary text-sm whitespace-nowrap">Download PDF</a>
-          </div>
-        </div>
-
-        <!-- Euthanasia Consent -->
-        <div class="bg-white rounded-lg p-6 border border-gray-100 shadow-sm">
-          <div class="flex items-start justify-between gap-4">
-            <div class="flex-1">
-              <div class="flex items-center gap-3 mb-2">
-                <svg class="w-6 h-6 text-hpah-green shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-                <h3 class="text-lg font-bold">Euthanasia Consent Form</h3>
-              </div>
-              <p class="text-hpah-text-light text-sm">
-                We handle end-of-life decisions with the utmost compassion and respect. This form is typically
-                completed at the hospital during your appointment. Includes options for cremation services and
-                memorial arrangements. Our team guides you through every step with care.
-              </p>
-            </div>
-            <a href="#" class="btn-primary text-sm whitespace-nowrap">Download PDF</a>
-          </div>
-        </div>
-
-        <!-- Boarding Authorization -->
-        <div class="bg-white rounded-lg p-6 border border-gray-100 shadow-sm">
-          <div class="flex items-start justify-between gap-4">
-            <div class="flex-1">
-              <div class="flex items-center gap-3 mb-2">
-                <svg class="w-6 h-6 text-hpah-green shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                <h3 class="text-lg font-bold">Boarding Authorization</h3>
-              </div>
-              <p class="text-hpah-text-light text-sm">
-                Required if you need to authorize a friend, family member, or pet sitter to bring your pet to
-                Healthy Paws on your behalf. Documents the authorized person's information and the scope of
-                care decisions they can make.
-              </p>
-            </div>
-            <a href="#" class="btn-primary text-sm whitespace-nowrap">Download PDF</a>
-          </div>
-        </div>
-
-      </div>
-
-      <p class="text-sm text-hpah-text-light mt-8 italic">
-        Download links are placeholders. Actual forms will be available soon. In the meantime, forms can be
-        completed at the hospital or through our mobile app.
-      </p>
-    </div>
-  </section>
-
-  <!-- Completing Forms -->
-  <section class="py-16 bg-hpah-bg-warm">
-    <div class="container max-w-3xl">
-      <h2 class="text-3xl mb-6">How to Complete Your Forms</h2>
-      <div class="grid sm:grid-cols-3 gap-6">
-        <div class="text-center">
-          <div class="w-14 h-14 bg-hpah-green text-white rounded-full flex items-center justify-center font-bold mx-auto mb-3 text-xl">1</div>
-          <h3 class="font-bold mb-2">Through Our App</h3>
-          <p class="text-sm text-hpah-text-light">
-            The easiest option. Download the <a href="/our-app/" class="text-hpah-green hover:underline">Healthy Paws app</a>,
-            create your profile, and complete forms digitally at your convenience.
-          </p>
-        </div>
-        <div class="text-center">
-          <div class="w-14 h-14 bg-hpah-green text-white rounded-full flex items-center justify-center font-bold mx-auto mb-3 text-xl">2</div>
-          <h3 class="font-bold mb-2">Download & Print</h3>
-          <p class="text-sm text-hpah-text-light">
-            Download forms from this page, print and fill them out at home, and bring them to your appointment.
-          </p>
-        </div>
-        <div class="text-center">
-          <div class="w-14 h-14 bg-hpah-green text-white rounded-full flex items-center justify-center font-bold mx-auto mb-3 text-xl">3</div>
-          <h3 class="font-bold mb-2">At the Hospital</h3>
-          <p class="text-sm text-hpah-text-light">
-            Complete forms on a tablet when you arrive. We recommend arriving 10-15 minutes early for your first
-            visit to allow time for paperwork.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Transferring Records -->
-  <section class="py-16">
-    <div class="container max-w-3xl">
-      <h2 class="text-2xl mb-4">Transferring Records from Another Veterinarian?</h2>
-      <p class="text-hpah-text-light mb-4 leading-relaxed">
-        If you're coming to Healthy Paws from another practice, we can request your pet's medical records on your
-        behalf. Just let us know the name and contact information of your previous veterinarian when you schedule
-        your first appointment, and we'll handle the rest.
-      </p>
-      <p class="text-hpah-text-light leading-relaxed">
-        Having your pet's history before your first visit helps our veterinarians provide the most informed care
-        possible. We recommend requesting the transfer at least one week before your appointment.
-      </p>
-      <div class="mt-6">
-        <a href="/contact/" class="text-hpah-green font-semibold hover:underline">Contact us to start the transfer process</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Related Links -->
-  <section class="py-12 border-t border-gray-100">
-    <div class="container max-w-3xl">
-      <h3 class="text-lg font-bold mb-4">Related Pages</h3>
-      <div class="flex flex-wrap gap-3">
-        <a href="/your-first-visit/" class="text-hpah-green hover:underline text-sm">Your First Visit</a>
-        <span class="text-gray-300">|</span>
-        <a href="/our-app/" class="text-hpah-green hover:underline text-sm">Our App</a>
-        <span class="text-gray-300">|</span>
-        <a href="/policies/" class="text-hpah-green hover:underline text-sm">Hospital Policies</a>
-        <span class="text-gray-300">|</span>
-        <a href="/schedule/" class="text-hpah-green hover:underline text-sm">Schedule a Visit</a>
+        <a
+          href="https://healthypawsanimalhospital.com/patient-health-form/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary text-lg"
+        >
+          Complete the Patient Health Form
+        </a>
       </div>
     </div>
   </section>

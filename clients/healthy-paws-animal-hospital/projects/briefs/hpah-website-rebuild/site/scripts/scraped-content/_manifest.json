@@ -1,0 +1,113 @@
+{
+  "succeeded": {
+    "about": {
+      "wp_slug": "about-healthy-paws-animal-hospital",
+      "url": "https://healthypawsanimalhospital.com/about-healthy-paws-animal-hospital/",
+      "chars": 2414,
+      "lines": 20
+    },
+    "services": {
+      "wp_slug": "lake-in-the-hills-il-veterinary-services",
+      "url": "https://healthypawsanimalhospital.com/lake-in-the-hills-il-veterinary-services/",
+      "chars": 5364,
+      "lines": 70
+    },
+    "meet-the-team": {
+      "wp_slug": "veterinarian-lake-in-the-hills-il",
+      "url": "https://healthypawsanimalhospital.com/veterinarian-lake-in-the-hills-il/",
+      "chars": 8469,
+      "lines": 180
+    },
+    "careers": {
+      "wp_slug": "lake-in-the-hills-il-veterinary-jobs",
+      "url": "https://healthypawsanimalhospital.com/lake-in-the-hills-il-veterinary-jobs/",
+      "chars": 650,
+      "lines": 30
+    },
+    "transparency-and-pricing": {
+      "wp_slug": "transparency",
+      "url": "https://healthypawsanimalhospital.com/transparency/",
+      "chars": 4449,
+      "lines": 24
+    },
+    "contact": {
+      "wp_slug": "contact",
+      "url": "https://healthypawsanimalhospital.com/contact/",
+      "chars": 778,
+      "lines": 10
+    },
+    "prescription-refills": {
+      "wp_slug": "prescription-refills",
+      "url": "https://healthypawsanimalhospital.com/prescription-refills/",
+      "chars": 3923,
+      "lines": 90
+    },
+    "specialty-partners": {
+      "wp_slug": "specialty-emergency-partners",
+      "url": "https://healthypawsanimalhospital.com/specialty-emergency-partners/",
+      "chars": 2733,
+      "lines": 150
+    },
+    "local-pet-services": {
+      "wp_slug": "local-pet-services",
+      "url": "https://healthypawsanimalhospital.com/local-pet-services/",
+      "chars": 1357,
+      "lines": 54
+    },
+    "info-center": {
+      "wp_slug": "info-center",
+      "url": "https://healthypawsanimalhospital.com/info-center/",
+      "chars": 10613,
+      "lines": 314
+    },
+    "forms": {
+      "wp_slug": "patient-health-form",
+      "url": "https://healthypawsanimalhospital.com/patient-health-form/",
+      "chars": 4493,
+      "lines": 274
+    },
+    "your-pets-experience": {
+      "wp_slug": "your-pets-experience",
+      "url": "https://healthypawsanimalhospital.com/your-pets-experience/",
+      "chars": 2796,
+      "lines": 20
+    },
+    "areas-we-serve": {
+      "wp_slug": "areas-we-serve",
+      "url": "https://healthypawsanimalhospital.com/areas-we-serve/",
+      "chars": 5035,
+      "lines": 96
+    },
+    "dental-care": {
+      "wp_slug": "pet-dentistry-lake-in-the-hills-il",
+      "url": "https://healthypawsanimalhospital.com/pet-dentistry-lake-in-the-hills-il/",
+      "chars": 7974,
+      "lines": 97
+    },
+    "surgery": {
+      "wp_slug": "pet-surgery-lake-in-the-hills-il",
+      "url": "https://healthypawsanimalhospital.com/pet-surgery-lake-in-the-hills-il/",
+      "chars": 5877,
+      "lines": 80
+    },
+    "spay-neuter": {
+      "wp_slug": "pet-spay-and-neuter-lake-in-the-hills-il",
+      "url": "https://healthypawsanimalhospital.com/pet-spay-and-neuter-lake-in-the-hills-il/",
+      "chars": 7194,
+      "lines": 94
+    },
+    "senior-pet-care": {
+      "wp_slug": "pet-senior-care-lake-in-the-hills-il",
+      "url": "https://healthypawsanimalhospital.com/pet-senior-care-lake-in-the-hills-il/",
+      "chars": 4131,
+      "lines": 56
+    },
+    "low-stress-vet": {
+      "wp_slug": "fearful-friends-lake-in-the-hills-il",
+      "url": "https://healthypawsanimalhospital.com/fearful-friends-lake-in-the-hills-il/",
+      "chars": 5520,
+      "lines": 75
+    }
+  },
+  "failed": []
+}
