@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # local dev verification screenshots (not part of the deliverable)
 scripts/visual-reference/
+.vercel

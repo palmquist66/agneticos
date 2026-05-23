@@ -20,7 +20,7 @@ Replace the current WordPress/Divi site with a fast, static Astro site that AI c
 - [x] Blog system with content collections (5 sample articles — full 119 migration pending WordPress export)
 - [x] robots.txt allowing all AI crawlers
 - [x] Auto-generated sitemap (60 URLs)
-- [ ] Deployed demo on Vercel for Karen review
+- [x] Deployed demo on Vercel for Karen review — https://healthy-paws-demo.vercel.app
 
 ## Acceptance Criteria
 

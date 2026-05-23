@@ -18,6 +18,8 @@
 - 2026-04-09: Always confirm which section of a slide the user is referring to before deleting elements. Ask before acting on ambiguous references.
 - 2026-04-12: Jim P does NOT manage the HP website — they have a separate developer/service. Website changes (service pages, schema, technical SEO) should be packaged as a developer handoff brief, not treated as something Jim P executes.
 - 2026-04-12: For non-technical clients, convert markdown deliverables to email (plain text) or Google Doc/PDF format. Markdown files are useless to practice managers.
+- 2026-05-23: For verbatim content audits, Firecrawl markdown scrape beats WebFetch (WebFetch paraphrases via a small model). Use Firecrawl `map` to get the real live URL inventory before guessing slugs.
+- 2026-05-23: To screenshot a LOCAL site for visual comparison, Playwright with the system Chrome works with no bundled browser download: `chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' })`. Pair with live full-page Firecrawl screenshots to compare a WP→Astro rebuild section by section.
 
 ## What doesn't work well
 - 2026-03-29: Don't assume "we" framing — user is a contractor, not part of the client's business. Always use third-person for the practice in client-facing materials
@@ -30,6 +32,9 @@
 - 2026-05-15: AI visibility testing means querying actual AI models (ChatGPT, Perplexity, Claude) and recording their responses — NOT running web searches to see what sources exist. Web search shows what Google ranks; AI visibility shows what AI models actually recommend. These are different things. For a proper test: answer as Claude from training data, then have the user run the same queries in ChatGPT and Perplexity for a 3-model comparison.
 - 2026-05-18: When drafting text messages for James, keep them SHORT. First drafts tend to run long — a text message should be 1-3 sentences max. James will rewrite in his own voice anyway; shorter drafts are closer to what he actually sends.
 - 2026-05-22: Always run humanizer on ANY text output the user will send — email drafts, text messages, copy, etc. Don't wait for the user to ask. Treat it like a pipeline step: draft → humanize → present.
+- 2026-05-23: When making a rebuild's nav match a live site, don't orphan NEW pages. The live nav won't link pages that don't exist on the live site (e.g., GEO/location pages), so matching it can hide the very additions being showcased. Keep new pages linked via an added nav/footer section. (Caught only because James asked "where are the location pages?")
+- 2026-05-23: Verify the EXACT URL handed to the user is publicly reachable. Vercel custom aliases sit behind Deployment Protection (401) while the auto-assigned production domain (`<proj>-<scope>.vercel.app`) is public. I gave the protected alias first — check with a fetch before sharing.
+- 2026-05-23: Vercel CLI device-login can report "signed in" but silently NOT persist the token on old versions (Homebrew/npm-global v50.22.1 left an empty 3-byte auth.json). Fix: `npm i -g vercel@latest` (v54+), then re-login. Always confirm with `vercel whoami`, not the login success message.
 
 
 # Individual Skills
