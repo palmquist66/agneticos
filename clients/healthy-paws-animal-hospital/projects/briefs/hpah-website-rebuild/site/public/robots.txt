@@ -1,29 +1,4 @@
+# PRIVATE DEMO — not for indexing. Do not crawl.
+# Production robots.txt saved as robots.txt.production-bak — restore before any public launch.
 User-agent: *
-Allow: /
-
-# AI Crawlers — all welcome
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: Anthropic-AI
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
-Sitemap: https://healthypawsanimalhospital.com/sitemap-index.xml
+Disallow: /

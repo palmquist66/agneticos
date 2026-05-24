@@ -6,40 +6,52 @@ import heroImage from '../assets/images/wp-import/burgess-exam.jpg';
 <ServiceLayout
   heroImage={heroImage}
   title="Emergency & Urgent Veterinary Care in Lake in the Hills, IL | Healthy Paws Animal Hospital"
-  description="Same-day urgent veterinary care in Lake in the Hills, IL during business hours. Acute illness, injuries, and emergencies. Call (815) 322-5400 immediately."
+  description="Urgent veterinary care in Lake in the Hills, IL during business hours — we make every effort to see urgent cases the same day. For after-hours and true emergencies, we refer to our trusted emergency partners. Call (815) 322-5400."
   serviceName="Emergency & Urgent Care"
-  serviceDescription="Same-day urgent veterinary care for acute illness and injuries during business hours, with triage and stabilization services."
+  serviceDescription="During business hours we make every effort to see urgent cases the same day (a same-day fee applies). For after-hours care and true emergencies, we refer to our trusted local emergency partners."
   faqs={[
     {
-      question: 'Does Healthy Paws offer after-hours emergency care?',
-      answer: 'We provide urgent and emergency care during our regular business hours (Monday–Wednesday and Friday 7:30 AM–5:00 PM, Thursday 7:30 AM–7:00 PM). We are closed on weekends. For after-hours emergencies, we will direct you to the nearest 24-hour emergency veterinary hospital. Always call us first — our voicemail provides current emergency referral information.',
+      question: 'Does Healthy Paws handle emergencies?',
+      answer: 'During our regular business hours, we make every effort to help when your pet has an urgent or emergency problem — call us right away at (815) 322-5400 and we will do our best to see your pet the same day (a same-day urgent care fee applies). If we are unable to accommodate the case, or if it is a true emergency that needs round-the-clock critical care, we will recommend one of the emergency hospitals on our Specialty & Emergency Partners page.',
+    },
+    {
+      question: 'What about after-hours emergencies?',
+      answer: 'We are not a 24-hour hospital, so for emergencies outside our business hours please go directly to one of the emergency centers listed on our Specialty & Emergency Partners page. Several are open 24/7. If you are unsure, you can call us first — our voicemail also points you to emergency referral information.',
+    },
+    {
+      question: 'What are your business hours?',
+      answer: 'Monday and Tuesday 7:00 AM–6:00 PM, Wednesday 8:00 AM–6:00 PM, Thursday 10:00 AM–6:00 PM, and Friday 7:00 AM–5:00 PM. We are closed Saturday and Sunday. Urgent cases are seen during these hours whenever we are able.',
     },
     {
       question: 'How do I know if my pet needs emergency care?',
-      answer: 'Signs that require immediate attention include difficulty breathing, uncontrolled bleeding, inability to urinate, seizures, collapse, suspected poisoning, severe vomiting or diarrhea (especially with blood), trauma from being hit by a car, and sudden inability to walk. When in doubt, call us — we would always rather hear from you and help you decide than have you wait when your pet needs care.',
+      answer: 'Signs that need immediate attention include difficulty breathing, uncontrolled bleeding, inability to urinate, seizures, collapse, suspected poisoning, severe vomiting or diarrhea (especially with blood), trauma such as being hit by a car, and sudden inability to walk. When in doubt, call us — we would always rather hear from you and help you decide than have you wait when your pet needs care.',
     },
     {
-      question: 'Should I call before bringing my pet in for urgent care?',
-      answer: 'Yes, please call (815) 322-5400 before heading to our office. Calling ahead allows our team to prepare for your pet\'s arrival, provide first-aid guidance over the phone, and ensure we can accommodate your pet as quickly as possible. In a true life-threatening emergency, call while you\'re on your way.',
-    },
-    {
-      question: 'What should I bring when I come in for an emergency visit?',
-      answer: 'If possible, bring any medications your pet is currently taking, information about what happened (including when symptoms started), and any substances your pet may have ingested. If your pet has a regular vet file elsewhere, knowing that history is helpful but not required — we will never delay care while waiting for records.',
+      question: 'Should I call before bringing my pet in?',
+      answer: 'Yes, please call (815) 322-5400 before heading over. Calling ahead lets our team prepare for your pet\'s arrival, give first-aid guidance over the phone, and let you know right away whether we can see your pet that day or whether you should head straight to an emergency partner.',
     },
   ]}
-  relatedServices={['surgery', 'laboratory-diagnostics', 'pain-management']}
+  relatedServices={['surgery', 'laboratory-diagnostics', 'specialty-partners']}
 >
   <h2>When Your Pet Needs Urgent Attention</h2>
   <p>
-    When your pet is sick or injured and can't wait for a scheduled appointment, our team is here to help. Healthy Paws Animal Hospital provides same-day urgent care during business hours for pets experiencing acute illness, injuries, and other time-sensitive health concerns. <strong>If your pet is having an emergency, call us immediately at (815) 322-5400.</strong>
+    When your pet is sick or injured and can't wait for a scheduled appointment, we are here to help. During our regular business hours, we make every effort to assist with urgent and emergency situations and to see your pet the same day whenever we are able (a same-day urgent care fee applies). <strong>If your pet needs urgent help, call us right away at <a href="tel:+18153225400">(815) 322-5400</a>.</strong>
   </p>
   <p>
-    Our team will triage your pet's situation over the phone, provide immediate guidance, and prepare for your arrival so we can begin assessment and treatment as quickly as possible.
+    Healthy Paws is a full-service general practice, not a 24-hour emergency hospital. If we are unable to accommodate your pet, or if the situation is a true emergency that needs round-the-clock critical care, we will recommend one of our trusted emergency partners. For anything outside our business hours, please head directly to one of those emergency centers.
   </p>
+
+  <div class="not-prose my-8 rounded-lg border-l-4 border-hpah-green bg-hpah-green-light p-6">
+    <h3 class="text-xl font-bold mb-2">After Hours or a True Emergency?</h3>
+    <p class="mb-4 text-hpah-text">
+      We refer after-hours and critical cases to a network of local 24/7 emergency and specialty hospitals — including poison control contacts. Find the nearest one, with addresses and phone numbers, on our partners page.
+    </p>
+    <a href="/specialty-partners/" class="btn-primary">View Specialty &amp; Emergency Partners</a>
+  </div>
 
   <h2>What Constitutes a Veterinary Emergency?</h2>
   <p>
-    Some situations require immediate veterinary attention. Bring your pet in right away or call us if you observe any of the following:
+    Some situations need immediate veterinary attention. Call us (during business hours) or go straight to an <a href="/specialty-partners/">emergency partner</a> if you observe any of the following:
   </p>
   <ul>
     <li><strong>Breathing difficulty</strong> — labored breathing, choking, or blue-tinged gums</li>
@@ -54,44 +66,42 @@ import heroImage from '../assets/images/wp-import/burgess-exam.jpg';
     <li><strong>Eye injuries</strong> — sudden swelling, discharge, squinting, or visible trauma to the eye</li>
   </ul>
 
-  <h2>What to Do in an Emergency</h2>
+  <h2>What to Do</h2>
 
   <h3>During Business Hours</h3>
   <ol>
-    <li><strong>Call us at (815) 322-5400</strong> — Our team will assess the situation and give you guidance while you're on the way.</li>
+    <li><strong>Call us at <a href="tel:+18153225400">(815) 322-5400</a></strong> — We'll assess the situation, give guidance, and let you know whether we can see your pet the same day or whether you should head straight to an emergency partner.</li>
     <li><strong>Keep your pet calm and safe</strong> — Minimize movement if you suspect a broken bone or spinal injury. Wrap your pet gently in a towel or blanket for transport.</li>
     <li><strong>Do not give any medications</strong> — unless specifically instructed by our team.</li>
-    <li><strong>Drive safely</strong> — We're preparing for your arrival, so focus on getting here safely.</li>
+    <li><strong>Drive safely</strong> — If we're expecting you, focus on getting here safely.</li>
   </ol>
 
-  <h3>After Hours</h3>
+  <h3>After Hours or When We Can't Accommodate</h3>
   <p>
-    For emergencies outside our business hours, we recommend contacting the nearest 24-hour emergency veterinary hospital. Our voicemail recording provides current referral information and contact numbers. If you're unsure whether your pet's situation can wait until morning, err on the side of caution and seek emergency care.
+    For emergencies outside our business hours — or any time we're unable to take an urgent case — go directly to one of the 24-hour hospitals on our <a href="/specialty-partners/">Specialty &amp; Emergency Partners</a> page. For suspected poisoning, that page also lists the Pet Poison Helpline and ASPCA Poison Control. If you're unsure whether something can wait until morning, err on the side of caution and seek emergency care.
   </p>
 
-  <h2>Our Urgent Care Capabilities</h2>
+  <h2>What We Can Do During Business Hours</h2>
   <p>
-    When your pet arrives for urgent or emergency care, our team can provide:
+    When we're able to see your pet for an urgent visit, depending on the situation our team can provide:
   </p>
   <ul>
-    <li>Rapid triage and stabilization</li>
+    <li>Triage and stabilization</li>
     <li><a href="/laboratory-diagnostics/">In-house laboratory diagnostics</a> for fast results</li>
     <li>Digital radiography</li>
     <li>Fluid therapy and supportive care</li>
     <li><a href="/pain-management/">Pain management</a></li>
     <li>Wound care and bandaging</li>
-    <li><a href="/surgery/">Emergency surgery</a> when needed</li>
-    <li>Toxin decontamination</li>
   </ul>
   <p>
-    Our <a href="/laboratory-diagnostics/">in-house laboratory</a> allows us to run critical blood tests and get results within minutes — not days. This means faster diagnosis and faster treatment for your pet when time matters most.
+    Cases that need round-the-clock monitoring, overnight hospitalization, or critical/specialty care are referred to one of our <a href="/specialty-partners/">emergency partners</a>, where a team is available 24/7.
   </p>
 
   <h2>Urgent vs. Emergency: What's the Difference?</h2>
   <p>
-    <strong>Emergencies</strong> are life-threatening situations that require immediate intervention. <strong>Urgent care</strong> addresses conditions that need same-day attention but may not be immediately life-threatening — things like sudden limping, ear infections causing severe discomfort, eye irritation, persistent vomiting, or acute allergic reactions.
+    <strong>Emergencies</strong> are life-threatening situations that need immediate intervention — these often need a 24-hour facility. <strong>Urgent care</strong> covers conditions that need same-day attention but may not be immediately life-threatening — things like sudden limping, ear infections causing severe discomfort, eye irritation, persistent vomiting, or acute allergic reactions.
   </p>
   <p>
-    If you're unsure which category your pet's situation falls into, call us. We will always help you determine the right level of care and ensure your pet is seen as quickly as their condition requires.
+    If you're unsure which category your pet's situation falls into, call us. We'll help you determine the right level of care and, if you need an emergency hospital, point you to the nearest one.
   </p>
 </ServiceLayout>

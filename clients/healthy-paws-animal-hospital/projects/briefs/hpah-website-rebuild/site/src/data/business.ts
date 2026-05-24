@@ -128,7 +128,7 @@ export const services = [
   { name: 'Low-Stress Care', slug: 'low-stress-vet-lake-in-the-hills-il', icon: '💚', description: 'Gentle, low-stress approach that reduces anxiety during veterinary visits.' },
   { name: 'Cat Veterinarian', slug: 'cat-vet-lake-in-the-hills-il', icon: '🐱', description: 'Specialized feline care from a team that understands cats\' unique needs.' },
   { name: 'Pet Allergies', slug: 'pet-allergy-treatment-lake-in-the-hills-il', icon: '🌿', description: 'Diagnosis and treatment of skin conditions, food allergies, and environmental allergies.' },
-  { name: 'Emergency & Urgent Care', slug: 'emergency-urgent-care', icon: '🚨', description: 'Same-day urgent care for acute illness and injuries during business hours.' },
+  { name: 'Emergency & Urgent Care', slug: 'emergency-urgent-care', icon: '🚨', description: 'Urgent cases seen same-day when possible during business hours; after-hours and true emergencies referred to our trusted emergency partners.' },
   { name: 'Nutrition Counseling', slug: 'nutrition-counseling', icon: '🥗', description: 'Expert dietary guidance tailored to your pet\'s age, breed, and health needs.' },
   { name: 'Pain Management', slug: 'pain-management', icon: '💊', description: 'Multimodal pain management to keep your pet comfortable and active.' },
   { name: 'Behavioral Health', slug: 'behavioral-health', icon: '🧠', description: 'Behavioral assessments and recommendations to improve your pet\'s quality of life.' },

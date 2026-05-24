@@ -59,9 +59,14 @@ a:hover {
   color: var(--color-hpah-green-dark);
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+/* Responsive image default. Layered into `base` so Tailwind height
+   utilities (h-44, h-full, …) in the utilities layer can override it.
+   Unlayered, this `height: auto` silently beat every height class. */
+@layer base {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 /* ── Button Styles ─────────────────────────────────────── */
