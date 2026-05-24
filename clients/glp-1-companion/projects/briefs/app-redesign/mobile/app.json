@@ -16,15 +16,19 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.glp1companion.app",
-      "infoPlist": {
-        "NSHealthShareUsageDescription": "GLP-1 Companion reads your health data (weight, glucose, steps, heart rate, sleep) to track your progress and provide personalized insights.",
-        "NSHealthUpdateUsageDescription": "GLP-1 Companion writes medication doses to Apple Health so all your health data stays in sync."
-      },
+      "infoPlist": {},
       "entitlements": {
-        "com.apple.developer.healthkit": true,
-        "com.apple.developer.healthkit.background-delivery": true,
         "aps-environment": "production"
       }
+    },
+    "android": {
+      "package": "com.glp1companion.app",
+      "permissions": [
+        "android.permission.health.READ_WEIGHT",
+        "android.permission.health.READ_BLOOD_GLUCOSE",
+        "android.permission.health.READ_STEPS",
+        "android.permission.health.READ_ACTIVE_CALORIES_BURNED"
+      ]
     },
     "plugins": [
       "expo-router",
@@ -45,7 +49,27 @@
           "icon": "./assets/icon.png",
           "color": "#0F5F5A"
         }
-      ]
+      ],
+      [
+        "@kingstinct/react-native-healthkit",
+        {
+          "NSHealthShareUsageDescription": "GLP-1 Companion reads your weight, glucose, steps, and active energy from Apple Health to track progress and surface insights.",
+          "NSHealthUpdateUsageDescription": "GLP-1 Companion writes medication doses to Apple Health so your data stays in sync.",
+          "background": true
+        }
+      ],
+      "react-native-health-connect",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "minSdkVersion": 26
+          }
+        }
+      ],
+      "./plugins/withHealthConnectRationale"
     ],
     "experiments": {
       "typedRoutes": true

@@ -15,45 +15,50 @@ export async function GET() {
 
     const connMap = new Map(connections.map((c) => [c.source, c]));
 
-    // Count total records per source
-    const [dexcomCount, fitbitCount] = await Promise.all([
-      connMap.has("dexcom")
-        ? db.glucoseLog.count({
-            where: { userId: user.id, source: "dexcom" },
-          })
-        : 0,
-      connMap.has("fitbit")
-        ? db.weightLog.count({
-            where: { userId: user.id, source: "fitbit" },
-          })
-        : 0,
-    ]);
+    // Count total records per source.
+    // Device-health sources (apple_health / health_connect) span weight,
+    // glucose, and activity logs.
+    const countDeviceHealth = async (source: string) => {
+      if (!connMap.has(source)) return 0;
+      const [w, g, a] = await Promise.all([
+        db.weightLog.count({ where: { userId: user.id, source } }),
+        db.glucoseLog.count({ where: { userId: user.id, source } }),
+        db.activityLog.count({ where: { userId: user.id, source } }),
+      ]);
+      return w + g + a;
+    };
+
+    const [dexcomCount, fitbitCount, appleHealthCount, healthConnectCount] =
+      await Promise.all([
+        connMap.has("dexcom")
+          ? db.glucoseLog.count({ where: { userId: user.id, source: "dexcom" } })
+          : 0,
+        connMap.has("fitbit")
+          ? db.weightLog.count({ where: { userId: user.id, source: "fitbit" } })
+          : 0,
+        countDeviceHealth("apple_health"),
+        countDeviceHealth("health_connect"),
+      ]);
+
+    const describe = (source: string, totalRecords: number, available: boolean) => ({
+      source,
+      status: connMap.get(source)?.status || "not_connected",
+      available,
+      lastSyncAt: connMap.get(source)?.lastSyncAt?.toISOString() || null,
+      lastSyncStatus: connMap.get(source)?.lastSyncStatus || null,
+      lastSyncRecords: connMap.get(source)?.lastSyncRecords ?? null,
+      lastSyncError: connMap.get(source)?.lastSyncError || null,
+      totalRecords,
+    });
 
     const sources = [
-      {
-        source: "dexcom",
-        status: connMap.get("dexcom")?.status || "not_connected",
-        lastSyncAt: connMap.get("dexcom")?.lastSyncAt?.toISOString() || null,
-        lastSyncStatus: connMap.get("dexcom")?.lastSyncStatus || null,
-        lastSyncRecords: connMap.get("dexcom")?.lastSyncRecords || null,
-        lastSyncError: connMap.get("dexcom")?.lastSyncError || null,
-        totalRecords: dexcomCount,
-      },
-      {
-        source: "fitbit",
-        status: connMap.get("fitbit")?.status || "not_connected",
-        lastSyncAt: connMap.get("fitbit")?.lastSyncAt?.toISOString() || null,
-        lastSyncStatus: connMap.get("fitbit")?.lastSyncStatus || null,
-        lastSyncRecords: connMap.get("fitbit")?.lastSyncRecords || null,
-        lastSyncError: connMap.get("fitbit")?.lastSyncError || null,
-        totalRecords: fitbitCount,
-      },
-      {
-        source: "apple_health",
-        status: "not_connected",
-        available: false,
-        reason: "Requires iOS app",
-      },
+      describe("dexcom", dexcomCount, true),
+      describe("fitbit", fitbitCount, true),
+      // Native device sources are now live via the mobile app. The client
+      // decides which to surface based on platform (Apple Health on iOS,
+      // Health Connect on Android).
+      describe("apple_health", appleHealthCount, true),
+      describe("health_connect", healthConnectCount, true),
     ];
 
     return NextResponse.json({ sources });

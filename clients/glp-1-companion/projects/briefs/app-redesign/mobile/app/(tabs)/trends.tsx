@@ -12,6 +12,7 @@ import { api } from "@/lib/api";
 import { TimeRangeSelector } from "@/components/trends/time-range-selector";
 import { WeightChart } from "@/components/trends/weight-chart";
 import { GlucoseChart } from "@/components/trends/glucose-chart";
+import { ActivityChart } from "@/components/trends/activity-chart";
 import { PatternCards } from "@/components/trends/pattern-cards";
 import { AIChat } from "@/components/trends/ai-chat";
 import { DeepAnalysis } from "@/components/trends/deep-analysis";
@@ -38,6 +39,12 @@ type GlucoseStats = {
   count: number;
 };
 
+type ActivityDataPoint = {
+  date: string;
+  steps: number | null;
+  activeEnergyKcal: number | null;
+};
+
 type Pattern = {
   type: string;
   title: string;
@@ -50,6 +57,7 @@ type Pattern = {
 type TrendsResponse = {
   weight: WeightDataPoint[];
   glucose: GlucoseDataPoint[];
+  activity: ActivityDataPoint[];
   glucoseStats: GlucoseStats | null;
   patterns: Pattern[];
   goalWeight: number | null;
@@ -134,7 +142,9 @@ export default function TrendsScreen() {
   }
 
   const hasChartData =
-    (data?.weight?.length ?? 0) > 0 || (data?.glucose?.length ?? 0) > 0;
+    (data?.weight?.length ?? 0) > 0 ||
+    (data?.glucose?.length ?? 0) > 0 ||
+    (data?.activity?.length ?? 0) > 0;
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
@@ -161,6 +171,10 @@ export default function TrendsScreen() {
             targetMin={data.glucoseMin}
             targetMax={data.glucoseMax}
           />
+        )}
+
+        {data?.activity && data.activity.length > 0 && (
+          <ActivityChart data={data.activity} />
         )}
 
         {!hasChartData && (

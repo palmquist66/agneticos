@@ -7,6 +7,8 @@
 
 # General
 ## What works well
+- 2026-05-23: For native-module integrations where the package isn't installed yet, `require()` the module lazily inside platform branches and type it as `any`. The wrapper file (`lib/health.ts`) then type-checks clean *before* `npx expo install` runs, isolating native-API specifics to one file. Pairs well with verifying exact API signatures against the library's source on GitHub (`gh api .../git/trees/master?recursive=1` + fetch the file) rather than guessing — caught that kingstinct's query `filter` is a nested `date:{startDate,endDate}` of Date objects, not flat ISO strings.
+- 2026-05-23: When adding a new sync source, mirror the existing one's data model instead of inventing a parallel one. Native health slotted into the Dexcom pattern exactly (DataSourceConnection + SyncLog + `source` tag + composite-unique dedup) because the schema already documented `apple_health` and `/api/sync/status` already stubbed it. Read the established pattern first.
 
 ## What doesn't work well
 - 2026-05-06: When adding API routes that need to be called externally (cron, webhooks, service workers), always check the auth middleware (e.g. Clerk's `proxy.ts`) and add them to the public routes list DURING implementation — not after debugging 401s.

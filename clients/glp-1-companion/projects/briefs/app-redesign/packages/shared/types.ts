@@ -248,25 +248,66 @@ export interface OnboardingGoalsRequest {
   glucoseMax?: number;
 }
 
-// ─── HealthKit ─────────────────────────────────────────────
+// ─── Native Health Sync (Apple Health / Android Health Connect) ────
+//
+// Contract for POST /api/sync/health/import. The mobile lib/health.ts
+// reads native samples, canonicalizes units (weight → lbs, glucose →
+// mg/dL) and aggregates steps/active-energy to daily totals before
+// POSTing. Weight + glucose are sent as point samples; steps + active
+// energy as per-day totals.
 
-export interface HealthKitPushRequest {
-  records: HealthKitRecord[];
-}
+export type HealthSource = "apple_health" | "health_connect";
 
-export interface HealthKitRecord {
-  type: "weight" | "glucose" | "steps" | "heart_rate" | "sleep";
+/** A single point reading (weight or glucose). */
+export interface HealthSample {
+  type: "weight" | "glucose";
+  /** Canonical unit: weight in lbs, glucose in mg/dL. */
   value: number;
-  unit: string;
-  startDate: string;
-  endDate: string;
-  sourceName: string;
-  sourceId: string;
+  /** ISO timestamp the sample was recorded. */
+  recordedAt: string;
+  /** Native sample UUID (HealthKit) / record id (Health Connect) — kept for dedup + future delete-sync. */
+  sampleId?: string;
+  /** Glucose meal context, if the platform provides it. */
+  context?: string | null;
 }
 
-export interface HealthKitStatusResponse {
+/** Per-day activity totals (steps, active energy). */
+export interface DailyActivityTotals {
+  /** ISO start-of-day (UTC) the totals belong to. */
+  date: string;
+  steps?: number;
+  activeEnergyKcal?: number;
+}
+
+export interface HealthImportRequest {
+  source: HealthSource;
+  samples?: HealthSample[];
+  dailyActivity?: DailyActivityTotals[];
+}
+
+export interface HealthImportResponse {
+  success: boolean;
+  imported: { weight: number; glucose: number; activity: number };
+  skipped: { weight: number; glucose: number };
+  error?: string;
+}
+
+export interface HealthConnectRequest {
+  source: HealthSource;
+  /** Read permissions the user granted, for display + diagnostics. */
+  grantedTypes?: string[];
+}
+
+export interface HealthSyncStatus {
+  source: string;
+  status: string; // 'connected' | 'disconnected' | 'not_connected' | 'error' | 'expired'
+  available: boolean;
+  reason?: string;
   lastSyncAt: string | null;
-  recordCounts: Record<string, number>;
+  lastSyncStatus: string | null;
+  lastSyncRecords: number | null;
+  lastSyncError: string | null;
+  totalRecords: number;
 }
 
 // ─── Device Tokens ─────────────────────────────────────────

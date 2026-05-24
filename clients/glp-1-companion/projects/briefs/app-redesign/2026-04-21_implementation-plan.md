@@ -17,7 +17,10 @@ Phased execution order. Each phase ships a usable increment — the app works at
 | **5: Meds + Profile** | COMPLETE | Apr 28 – May 6 |
 | **6: Data Sync + Onboarding** | PARTIAL | May 7 (Dexcom + onboarding done, Google Fit + sync-on-open remaining) |
 | **7: PWA + Polish** | PARTIAL | May 5-8 (push notifications + design system + error boundaries + security cleanup done, landing page remaining) |
-| **8: Capacitor Native** | NOT STARTED | — |
+| **8: Capacitor Native** | SUPERSEDED | Replaced by standalone Expo app (`mobile/`) — see note below |
+| **9: Native Health Sync** | IN PROGRESS | Started May 23 — iOS HealthKit + Android Health Connect |
+
+> **Note (May 23):** The native path pivoted from Capacitor-wrapping the Next.js PWA (Phase 8) to a **standalone React Native / Expo (SDK 54) app** in `mobile/`, consuming the deployed Next.js app at `glp1companion.vercel.app` as its API. The `mobile/` app reached feature parity on logging, Today, Trends, Meds, onboarding, push notifications, and health-targets editing through May. Phase 9 adds the native differentiator: device health data.
 
 **MVP status:** The critical path (Phases 1-4) is complete. The app is deployable as a beta today with manual data entry, full charting, AI chat, pattern detection, and Dexcom sync.
 
@@ -359,6 +362,55 @@ projects/briefs/app-redesign/
 | Android build + internal testing | [ ] |
 | App Store submission | [ ] |
 | Google Play submission | [ ] |
+
+---
+
+## Phase 9: Native Health Sync (Expo app) ~ IN PROGRESS
+
+**Goal:** Auto-import device health data so users stop typing numbers in. This is the reason to be native — it directly serves the brief's core principle, "data in = value out."
+
+**Scope decisions (May 23):**
+- **Platform:** iOS HealthKit first (entitlements already scaffolded, no app-store data gate). Android Health Connect scaffolded in the same abstraction; start the Google Play health-data declaration in parallel (~2-week approval).
+- **Data types:** body weight, blood glucose, steps, active energy.
+- **Sync model:** foreground "pull-since-last-sync" (matches the existing on-demand-pull constraint). iOS background delivery is a later enhancement, not the contract.
+
+**Library choices (verified for Expo SDK 54 / RN 0.81 / New Architecture):**
+| Platform | Library | Version | Notes |
+|----------|---------|---------|-------|
+| iOS | `@kingstinct/react-native-healthkit` | 14.x | Nitro module, New-Arch native, ships Expo config plugin, anchored queries for incremental sync |
+| Android | `react-native-health-connect` | 3.5.x | Expo config plugin; needs a permissions-rationale activity (custom config plugin) |
+
+No mature cross-platform wrapper exists → a thin `lib/health.ts` abstraction wraps both. Both libs require a **dev build** (no Expo Go); HealthKit must be tested on a **physical device** (unreliable on simulator).
+
+### Backend (Next.js `app/`)
+
+| Task | Status | Files |
+|------|--------|-------|
+| Schema: `externalId` dedup on WeightLog/GlucoseLog + `ActivityLog` model (steps, active energy) + migration | [ ] | `prisma/schema.prisma`, `prisma/migrations/` |
+| `POST /api/sync/health/import` — batch upsert weight/glucose/steps/energy, dedup, kg→lbs, SyncLog + DataSourceConnection | [ ] | `api/sync/health/import/route.ts`, `lib/health-import.ts` |
+| `POST /api/sync/health/connect` + `/disconnect` — manage DataSourceConnection (no OAuth tokens) | [ ] | `api/sync/health/connect/route.ts`, `.../disconnect/route.ts` |
+| Update `/api/sync/status` — mark `apple_health`/`health_connect` available with real counts | [ ] | `api/sync/status/route.ts` |
+| Surface steps + active energy in Trends | [ ] | `lib/trends-queries.ts`, `api/trends/route.ts` |
+
+### Mobile (Expo `mobile/`)
+
+| Task | Status | Files |
+|------|--------|-------|
+| Config plugins, Android permissions, entitlement reconciliation, Health Connect rationale plugin | [ ] | `app.json`, `plugins/withHealthConnectRationale.js`, `package.json` |
+| `lib/health.ts` — availability, permissions, incremental readers, canonical units, anchor persistence | [ ] | `lib/health.ts` |
+| Sync orchestration (foreground + manual) → import API | [ ] | `lib/health-sync.ts`, `components/sync/*` |
+| `data-sources-card` on Profile + wire onboarding `connect.tsx` to real permission flow | [ ] | `components/profile/data-sources-card.tsx`, `app/(tabs)/profile.tsx`, `app/onboarding/connect.tsx` |
+| Trends: steps + active energy display | [ ] | `app/(tabs)/trends.tsx`, `components/trends/*` |
+
+### Ship
+
+| Task | Status | Notes |
+|------|--------|-------|
+| EAS dev build + physical-device test of permission + sync flow | [ ] | `npx expo prebuild --clean` → `eas build --profile development` |
+| Google Play health-data declaration (Android) | [ ] | Start now — ~2-week approval, gates Android prod release |
+| Configure `eas.projectId` in app.json (also unblocks production push tokens) | [ ] | Open thread from May 19 push-notification work |
+
+**Constraints carried from earlier phases:** weight stored in **lbs**, glucose in **mg/dL** — `lib/health.ts` canonicalizes to these before POSTing. `DataSourceConnection.source` already documents `'apple_health'`; `/api/sync/status` already stubs it as `available:false` — Phase 9 makes it real.
 
 ---
 

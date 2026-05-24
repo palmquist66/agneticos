@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import { Colors } from "@/constants/colors";
 import { NotificationToggle } from "@/components/profile/notification-toggle";
 import { HealthTargetsCard } from "@/components/profile/health-targets-card";
+import { DataSourcesCard } from "@/components/profile/data-sources-card";
 import { unregisterPushNotifications } from "@/lib/notifications";
 import { api } from "@/lib/api";
 
@@ -127,6 +128,9 @@ export default function ProfileScreen() {
           onUpdate={(data) => setTargets(data)}
         />
       ) : null}
+
+      {/* Connected data sources (Apple Health / Health Connect) */}
+      <DataSourcesCard />
 
       {/* Notification toggle */}
       <NotificationToggle />

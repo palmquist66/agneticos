@@ -30,6 +30,12 @@ export type GlucoseStats = {
   count: number;
 };
 
+export type ActivityDataPoint = {
+  date: string; // YYYY-MM-DD
+  steps: number | null;
+  activeEnergyKcal: number | null;
+};
+
 // ─── Patterns ───────────────────────────────────────────
 export type PatternType = "weight_dose" | "side_effects_dose" | "protein_weight";
 

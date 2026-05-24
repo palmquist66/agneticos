@@ -13,6 +13,7 @@ import {
   handleNotificationResponse,
   registerForPushNotifications,
 } from "@/lib/notifications";
+import { useHealthAutoSync } from "@/lib/health-sync";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -106,6 +107,9 @@ function AuthGate() {
       tokenListener.current?.remove();
     };
   }, [isSignedIn]);
+
+  // Foreground health sync (no-op until the user connects a health source).
+  useHealthAutoSync();
 
   return <Slot />;
 }

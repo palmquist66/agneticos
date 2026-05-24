@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth";
 import {
   getWeightTrend,
   getGlucoseTrend,
+  getActivityTrend,
   getPatternData,
   computeGlucoseStats,
   TIME_RANGE_DAYS,
@@ -20,9 +21,10 @@ export async function GET(request: NextRequest) {
     ) as TimeRange;
     const days = TIME_RANGE_DAYS[range];
 
-    const [weight, glucose, patternData] = await Promise.all([
+    const [weight, glucose, activity, patternData] = await Promise.all([
       getWeightTrend(user.id, days),
       getGlucoseTrend(user.id, days),
+      getActivityTrend(user.id, days),
       getPatternData(user.id),
     ]);
 
@@ -39,6 +41,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       weight,
       glucose,
+      activity,
       glucoseStats,
       patterns,
       goalWeight: user.goalWeight,

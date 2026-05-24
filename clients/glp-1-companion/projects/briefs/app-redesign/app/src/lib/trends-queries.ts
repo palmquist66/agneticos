@@ -4,6 +4,7 @@ import type {
   WeightDataPoint,
   GlucoseDataPoint,
   GlucoseStats,
+  ActivityDataPoint,
   TIME_RANGE_DAYS,
 } from "@/lib/types/trends";
 
@@ -112,6 +113,44 @@ export function computeGlucoseStats(
 
 // ─── Raw Pattern Data ───────────────────────────────────
 // Fetches broader data windows for the pattern engine
+
+// ─── Activity Data (steps, active energy) ───────────────
+
+export async function getActivityTrend(
+  userId: string,
+  days: number
+): Promise<ActivityDataPoint[]> {
+  const since = daysAgo(days);
+
+  const logs = await db.activityLog.findMany({
+    where: { userId, date: { gte: since } },
+    orderBy: { date: "asc" },
+    select: { date: true, steps: true, activeEnergyKcal: true },
+    take: 90,
+  });
+
+  if (logs.length === 0) return [];
+
+  // A day may have rows from more than one source (rare — usually one
+  // device). Take the max per metric per day to avoid double-counting.
+  const byDate = new Map<string, { steps: number | null; energy: number | null }>();
+  for (const log of logs) {
+    const key = toDateKey(log.date);
+    const cur = byDate.get(key) ?? { steps: null, energy: null };
+    if (log.steps != null) cur.steps = Math.max(cur.steps ?? 0, log.steps);
+    if (log.activeEnergyKcal != null)
+      cur.energy = Math.max(cur.energy ?? 0, log.activeEnergyKcal);
+    byDate.set(key, cur);
+  }
+
+  return Array.from(byDate.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([date, v]) => ({
+      date,
+      steps: v.steps,
+      activeEnergyKcal: v.energy == null ? null : parseFloat(v.energy.toFixed(1)),
+    }));
+}
 
 export async function getPatternData(userId: string) {
   const since90 = daysAgo(90);
