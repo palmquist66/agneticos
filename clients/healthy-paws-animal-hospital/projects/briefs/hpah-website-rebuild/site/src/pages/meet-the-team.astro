@@ -63,13 +63,6 @@ const catPhotos: Record<string, ImageMetadata> = {
   'Eleanor-cat.jpg': eleanorPhoto,
 };
 
-// Vet bio anchors: WP links to anchor bios on the live site — no inline bio text shown here.
-const vetBioAnchors: Record<string, string> = {
-  'dr-burgess': 'karen',
-  'dr-haslitt': 'Tracey',
-  'dr-mosier': 'Megan',
-};
-
 // Group staff by role category
 const cvts = team.staff.filter((m) => m.role === 'Certified Veterinary Technician');
 const assistants = team.staff.filter((m) => m.role === 'Veterinary Assistant');
@@ -174,14 +167,6 @@ const personSchemas = team.vets.map((vet) => ({
               {vet.education && (
                 <p class="text-xs text-hpah-text-light mb-3">{vet.education}</p>
               )}
-              <a
-                href={`https://healthypawsanimalhospital.com/veterinarian-lake-in-the-hills-il/#${vetBioAnchors[vet.slug] || vet.slug}`}
-                class="text-hpah-green text-sm font-bold hover:text-hpah-green transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Read Bio &rarr;
-              </a>
             </div>
           </div>
         ))}

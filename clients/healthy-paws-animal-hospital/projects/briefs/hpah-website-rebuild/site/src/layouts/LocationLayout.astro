@@ -1,8 +1,35 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import FAQSection from '../components/FAQSection.astro';
 import CTA from '../components/CTA.astro';
 import { business, services } from '../data/business';
+
+// Service thumbnails — reuse the services-page photos so the location
+// service list matches that page's photographic style instead of emoji.
+import puppyCareImg from '../assets/images/services/puppy-care.png';
+import seniorCareImg from '../assets/images/services/senior-care.png';
+import fearfulFriendsImg from '../assets/images/services/fearful-friends.png';
+import dentistryImg from '../assets/images/services/Dentistry-2.png';
+import surgeryImg from '../assets/images/services/Surgery.jpg';
+import spayNeuterImg from '../assets/images/services/spay-3.png';
+import vaccineImg from '../assets/images/wp-import/Vaccine.jpg';
+import catVetImg from '../assets/images/wp-import/cute-cat-sitting-chair.jpg';
+import allergyImg from '../assets/images/wp-import/Cute-dog-12.9.2025.jpg';
+import wellnessImg from '../assets/images/wp-import/burgess-exam.jpg';
+
+const serviceThumbs: Record<string, ImageMetadata> = {
+  'general-care-lake-in-the-hills-il': puppyCareImg,
+  'wellness-exams-lake-in-the-hills-il': wellnessImg,
+  'pet-vaccinations-lake-in-the-hills-il': vaccineImg,
+  'dental-care': dentistryImg,
+  'surgery': surgeryImg,
+  'spay-neuter-lake-in-the-hills-il': spayNeuterImg,
+  'senior-pet-care-lake-in-the-hills-il': seniorCareImg,
+  'low-stress-vet-lake-in-the-hills-il': fearfulFriendsImg,
+  'cat-vet-lake-in-the-hills-il': catVetImg,
+  'pet-allergy-treatment-lake-in-the-hills-il': allergyImg,
+};
 
 interface FAQ {
   question: string;
@@ -66,9 +93,18 @@ const topServices = services.slice(0, 10);
             {topServices.map((svc) => (
               <a
                 href={`/${svc.slug}/`}
-                class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-hpah-green hover:shadow-sm transition-all text-sm"
+                class="flex items-center gap-3 p-2 pr-3 rounded-lg border border-gray-200 hover:border-hpah-green hover:shadow-sm transition-all text-sm"
               >
-                <span class="text-xl">{svc.icon}</span>
+                {serviceThumbs[svc.slug] ? (
+                  <Image
+                    src={serviceThumbs[svc.slug]}
+                    alt={svc.name}
+                    width={128}
+                    class="w-14 h-14 rounded-md object-cover flex-shrink-0"
+                  />
+                ) : (
+                  <span class="w-14 h-14 flex items-center justify-center text-2xl flex-shrink-0">{svc.icon}</span>
+                )}
                 <span class="font-semibold text-hpah-text">{svc.name}</span>
               </a>
             ))}

@@ -254,7 +254,7 @@ const categories = [
   <section class="py-16">
     <div class="container" style="max-width: 900px;">
       <p class="text-lg text-hpah-text-light text-center leading-relaxed">
-        The <a href="https://healthypawsanimalhospital.com/veterinarian-lake-in-the-hills-il/">Healthy Paws Animal Hospital team</a> has written articles that will help you learn new information and improve your pet's quality of life!
+        The <a href="/meet-the-team/" class="text-hpah-green font-semibold">Healthy Paws Animal Hospital team</a> has written articles that will help you learn new information and improve your pet's quality of life!
       </p>
     </div>
   </section>
@@ -269,14 +269,7 @@ const categories = [
             <ul class="space-y-1.5">
               {category.articles.map((article) => (
                 <li>
-                  <a
-                    href={`https://healthypawsanimalhospital.com/${article.slug}/`}
-                    class="text-hpah-green hover:text-hpah-green transition-colors text-sm"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    {article.title}
-                  </a>
+                  <span class="text-hpah-text-light text-sm">{article.title}</span>
                 </li>
               ))}
             </ul>

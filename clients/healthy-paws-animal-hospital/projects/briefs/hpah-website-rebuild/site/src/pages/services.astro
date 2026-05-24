@@ -173,19 +173,19 @@ const additionalServices = services.filter((s) => !featuredSlugs.includes(s.slug
         <div class="text-center max-w-3xl mx-auto mb-12">
           <h2>More Services</h2>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto items-start">
           {additionalServices.map((service) => (
             <a
               href={`/${service.slug}/`}
-              class="group block bg-white rounded-lg border border-gray-200 overflow-hidden hover:border-hpah-green hover:shadow-lg transition-all"
+              class="divi-card-green group block bg-white transition-all"
             >
               {moreServiceImages[service.slug] ? (
-                <div class="overflow-hidden">
+                <div class="h-44 overflow-hidden">
                   <Image
                     src={moreServiceImages[service.slug]}
                     alt={service.name}
                     widths={[300, 450, 600]}
-                    class="w-full h-44 object-cover transition-transform duration-300 group-hover:scale-105"
+                    class="w-full h-44! object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
               ) : (

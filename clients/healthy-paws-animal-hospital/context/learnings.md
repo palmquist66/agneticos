@@ -35,6 +35,8 @@
 - 2026-05-23: When making a rebuild's nav match a live site, don't orphan NEW pages. The live nav won't link pages that don't exist on the live site (e.g., GEO/location pages), so matching it can hide the very additions being showcased. Keep new pages linked via an added nav/footer section. (Caught only because James asked "where are the location pages?")
 - 2026-05-23: Verify the EXACT URL handed to the user is publicly reachable. Vercel custom aliases sit behind Deployment Protection (401) while the auto-assigned production domain (`<proj>-<scope>.vercel.app`) is public. I gave the protected alias first — check with a fetch before sharing.
 - 2026-05-23: Vercel CLI device-login can report "signed in" but silently NOT persist the token on old versions (Homebrew/npm-global v50.22.1 left an empty 3-byte auth.json). Fix: `npm i -g vercel@latest` (v54+), then re-login. Always confirm with `vercel whoami`, not the login success message.
+- 2026-05-24: Verify the RENDERED output (built HTML / live DOM), not just the source, before telling the user a visual property is correct. Claimed the service-card images were uniform height because the source had `h-44`; the built HTML showed the class was silently overridden by an unlayered `img{height:auto}` in global.css. Checking `dist/` caught it — after two wrong reassurances.
+- 2026-05-24: Before declaring anything "locked"/"safe"/"done," test EVERY relevant URL/endpoint, not a sample. Told James the Vercel demo was private after checking 2 of 5 aliases (both 401); a 3rd alias — the production domain — was serving the full site publicly. Took the whole deployment offline to be sure. (Extends the 2026-05-23 Vercel-URL lesson.)
 
 
 # Individual Skills
@@ -75,6 +77,7 @@
 ## mkt-content-repurposing
 
 ## mkt-copywriting
+- 2026-05-24: Comms with Karen (HPAH) are friend-to-friend, not consultant-to-client. James is a friend helping out; HPAH is a beta customer. Write friendly, personal, first-person — use "I", never "we"/agency voice. Don't sell the website (a 3rd-party designer builds it); the framing is "here's what the additions would look like," not a pitch.
 
 ## tool-humanizer
 - 2026-03-30: Em dashes are a strong AI tell in casual/short-form content — replace with periods or commas. Even 2 in a short email is too many. Be more aggressive about flagging these.
