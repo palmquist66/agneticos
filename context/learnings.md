@@ -57,6 +57,7 @@
 ## mkt-copywriting
 
 ## tool-humanizer
+- 2026-05-23: HARD RULE from James — he never uses em dashes in his writing (emails/copy). Remove ALL em dashes from prose; replace with colons, commas, periods, or rephrase into shorter sentences (which also fits his punchy voice). Only exception: dashes as bullet/list markers are fine. Applied to the John+Karen beta email. This is a standing preference, not a one-off.
 - 2026-05-18: No feedback — routine session. Deep mode humanizer on 5 social media files. Main fixes: em dash reduction, bullet lists converted to flowing text for LinkedIn, parallel constructions broken up, generic closers replaced with harder landings. Voice profile was well-applied in initial drafts — humanizer pass was light touch, mostly rhythm and structure tightening.
 
 ## tool-youtube

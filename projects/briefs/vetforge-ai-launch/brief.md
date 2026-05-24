@@ -53,9 +53,12 @@ Launch VetForge AI as an AI-powered marketing agency for veterinary practices, o
 - [ ] Optional: File in Class 42 (software/SaaS services)
 
 ### Phase 6: Service Packaging
-- [ ] Define service tiers / offerings
-- [ ] Pricing structure
-- [ ] Client onboarding process
+- [x] Define service tiers / offerings — Spark/Forge/Foundry 3-tier bundle (2026-05-23)
+- [x] Pricing structure — $600/$1,200/$2,200/mo + $500 setup, month-to-month w/ annual (2 mo free) option (2026-05-23)
+- [x] Client onboarding process — 7-step flow from free audit → delivery (2026-05-23)
+- [x] Internal delivery & capacity model — per-task AI/human hour split, effective $/hr per tier, solo capacity ceiling, danger zones, HPAH beta validation plan (2026-05-23)
+- See `2026-05-23_service-packaging.md` for full tiers, comparison matrix, add-ons, sales notes
+- See `2026-05-23_delivery-capacity-model.md` (internal) for hours/AI-leverage per service + capacity math
 
 ## Key Decisions Made
 - **2026-04-27:** Name finalized as VetForge AI (vetforgeai.com available, no USPTO trademark conflict)
@@ -65,6 +68,9 @@ Launch VetForge AI as an AI-powered marketing agency for veterinary practices, o
 - **2026-04-28:** Contact form sends to palmquist66@gmail.com (no inbox for hello@vetforgeai.com yet)
 - **2026-05-06:** Business email set up via Google Workspace (Business Starter, $7.20/mo). Primary: james@vetforgeai.com. Aliases: hello@, info@. DKIM authenticated via GoDaddy.
 - **2026-05-06:** GBP created as service-area business in Chicago metro. Pending Google verification.
+- **2026-05-23:** Service packaging defined — 3 tiers (Spark $600 / Forge $1,200 / Foundry $2,200), $500 one-time setup fee (covers brand voice profile build), month-to-month default with annual option (2 months free). Entry priced as a buyer-group "no-brainer" well under agency rates. First milestone = 5 Forge clients = $6k/mo MRR.
+- **2026-05-23:** Repositioned model from advisor → operator. Tiers now sell ongoing website maintenance + AI-search optimization (keeping clients found in ChatGPT/Perplexity/AI Overviews + legacy Google), not just reports the client implements. Added two engagement models: **Handoff** (Spark — for practices locked into a current web-dev contract; we provide strategy/content/dev-ready specs, their dev implements; upgrades to Forge when contract ends) and **Operator** (Forge/Foundry — we build, host, and maintain). Added one-time **Website Rebuild** on-ramp (from $2,500, HPAH is the proof case) that flows into Operator maintenance.
+- **2026-05-23:** Added "How We Work — Your Site, Your Say" control principles (apply to all tiers): (1) we still report on everything monthly even though we implement; (2) client controls approval — Review-first (preview link, approve before live) vs Auto-pilot, default Review-first; (3) post-it-yourself publishing — client drops a blog/update file in a shared folder, we optimize for brand voice + AI-search and publish (Operator tiers publish directly; Handoff = we optimize + hand to their dev). Onboarding sets approval preference + shared folder.
 
 ## Notes
 - No existing "VetForge" trademark found in USPTO
