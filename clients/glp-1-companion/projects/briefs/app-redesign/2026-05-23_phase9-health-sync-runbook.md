@@ -1,3 +1,7 @@
+> **SUPERSEDED (2026-05-26):** This runbook assumed the backend was already deployed.
+> It is not. Use `2026-05-26_phase9-ship-runbook.md` instead, which ships the backend
+> first. Kept for reference only.
+
 # Phase 9 — Native Health Sync: Build & Ship Runbook
 
 Everything that needs **your machine / device / accounts** to finish Phase 9.

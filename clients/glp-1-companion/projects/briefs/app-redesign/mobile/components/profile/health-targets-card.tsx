@@ -8,7 +8,7 @@ import {
   useColorScheme,
 } from "react-native";
 import * as Haptics from "expo-haptics";
-import { Colors } from "@/constants/colors";
+import { Colors, type AppColors } from "@/constants/colors";
 import { api } from "@/lib/api";
 
 interface HealthTargetsCardProps {
@@ -371,7 +371,7 @@ function TargetRow({
 }: {
   label: string;
   value: string | null;
-  colors: (typeof Colors)["light"];
+  colors: AppColors;
 }) {
   return (
     <View
