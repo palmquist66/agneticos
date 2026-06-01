@@ -46,6 +46,7 @@
 - 2026-05-26: Reinforces 2026-05-18 — when James asks for a text to Karen, give the bare human sentence(s) and NOTHING else. Keep strategic framing OUT of the text itself (he rejected "which is actually a big part of what I want to talk through" as too much). He also rejected explanatory commentary wrapped around the draft. Default: one or two plain sentences, no angle, no pitch baked in. The strategy lives in the call prep, not the text.
 - 2026-05-28: Check beta/free status before putting ANY pricing into a client deliverable. Drafted Karen's call-prep with a paid-offer frame; James corrected — HPAH is a free beta customer (it's in the client CLAUDE.md). Reframed "free + zero risk" as a strength.
 - 2026-05-28: When a tool's auth fails, confirm whether it's config or the tool BEFORE recreating credentials. Sank time into gws Google auth (logout/login, building a brand-new OAuth client) — a fresh, valid Desktop client threw the IDENTICAL "missing response_type" error, proving it's a gws bug, not config. One fresh-client test would have saved the whole detour.
+- 2026-06-01: Don't prefix `vercel deploy --prod` with a long absolute `cd` path in the `!` Bash prefix — Claude Code's terminal line-wraps long input AND inserts a literal space at the wrap point, corrupting the path string before zsh sees it. Hit this twice today; quoting the path didn't help (the corruption happens in input handling, not shell parsing). Fix: ensure the shell's cwd is already in `site/` (verify with `! pwd` once), then run a bare `vercel deploy --prod` with no `cd`. Short commands don't wrap. James's working directory is already `site/` after any prior session in this project, so this is the default state.
 
 
 # Individual Skills
@@ -97,6 +98,7 @@
 ## tool-youtube
 
 ## viz-excalidraw-diagram
+- 2026-05-28: The renderer's `esm.sh/@excalidraw/excalidraw?bundle` import is BROKEN — a transitive dep (`@braintree/sanitize-url`) 404s, so `window.__moduleReady` never fires and the render hangs to timeout (looks like a network/timeout bug but isn't). Fix applied to both root + client `references/render_template.html`: pin to `https://cdn.jsdelivr.net/npm/@excalidraw/excalidraw@0.18.0/+esm` (loads clean, exposes `exportToSvg`). Note: v0.17.6 only exports `default`, so use 0.18.0+. Also bumped the `__moduleReady` wait in `render_excalidraw.py` 30s→120s (cold CDN bundle build can be slow). Rendering needs `dangerouslyDisableSandbox` so the headless browser can reach the CDN. First run rendered cleanly after the fix — side-by-side current/proposed flow with convergence + a return loop reads well for a non-technical audience.
 
 ## tool-stitch
 
